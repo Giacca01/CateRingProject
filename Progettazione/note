@@ -1,0 +1,80 @@
+1) La scheda riepilogativa serve davvero? Le info che ci sono dentro sono sicuramente utili, ma non so quanto
+siano condivise
+
+2) Lo chef lavora a tempo indeterminato per l'azienda di catering, quindi non da la disponibilità.
+La verifica del fatto che lo chef non sia già impegnato in un altro evento viene eseguita
+controllando l'associazione e le date dell'evento associato.
+
+3) Serve una br per imporre che l'evento semplcie abbia un solo menù???
+
+4) Il cliente che commissiona l'evento si memorizza come entità perchè si tratta comunque di un concetto
+significativo nella realtà di interesse, anche se user stories e testo lo menzionano poco, non dandoci
+abbastanza informazioni per dettagliarlo meglio.
+
+5) La prenotazione è la chiamata di un membro del personale: ha poco senso prenotare un turno
+in cui non c'è ancora nessuno di disponibile, da cui la business rule.
+
+6) Non ho memorizzato il tipo di evento: è facilmente deducibile dal numero di servizi associati
+
+
+Cose da chiedere:
+    1) ha senso mettere il cliente come concetto nel modello di dominio??
+    
+    2) cosa fare con i servizi?? Vanno inclusi nel uc degli eventi o no??
+    In teoria ha senso, perchè un evento è composto da servizi.
+    
+    3) Ha senso non mettere la scheda riepilogativa? In fin dei conti sembra una
+    vista di informazioni riferite all'evento ed al servizio
+    
+    4) è normale che nell'uc dettagliato non ci sia nulla sugli eventi ricorrenti?
+    Il sistema potrebbe compilare automaticamente le occorrenze...
+    
+    5) Ha senso la gestire la prenotazione del personale in questo modo??
+    
+    6) I servizi sono tutti nello stesso luogo??
+    
+    
+TODO:
+    Sistemare la distribuzione di informazioni tra evento e servizio
+    
+    
+1) Scheda evento: è più che altro una vista di informazioni di evento e servizio, quindi
+non c'è bisogno di un concetto a parte.
+Per quanto riguarda gli attributi di servizio ed evento, ne parla solo Viola, quindi non
+ho riportato tutto, ma solo le cose "di buon senso", che mi sembravano sicuramente
+condivise da Pierpaolo.
+
+Ha senso non metterla: è una vista di informazioni di servizio ed evento
+
+2) Assegnamento personale ai servizi: conviene fare un'entità "Compiti servizio", associata al servizio, al turno
+ed al personale di cucina. Prenotare il personale vuol quindi dire associare il compito ad un turno in cui ci sia qualcuno di disponibile.
+Un membro può ricoprire più ruoli diversi??
+
+Non è sbagliato, anche mettere un concetto di ruolo non è sbagliato, ma è meglio che il concetto di ruolo sia legato
+all'assegnazione personale-servizio
+
+Ok
+
+3) eventi ricorrenti, due possibilità:
+    -autoassociazione, ha il pregio di modellare il fatto che le occorrenze sono eventi tanto quanto il capofila.
+    Questa soluzione è un po' più complicata da implementare, perchè richiede BR aggiuntive per imporre che certi
+    attributi siano valorizzati solo per l'evento capofila
+    
+    -generalizzazione: ha il vantaggio di modellare il fatto che l'evento capofila ha comunque degli attributi
+    in più di quelli normali e, pur essendo oggetti dello stesso tipo, occupano ruoli diversi.
+    Inoltre, c'è un associazione diretta tra tutte le occorrenze ed il capofila, anche se non so quali vantaggi possa dare questa cosa.
+    
+    In entrambi i casi, è bene che sia il sistema a fillare le info sugli eventi ricorrenti, soprattutto quando tali non sono
+    (es. impostare numero di occorrenze ad 1).
+    Inoltre, le occorrenze vanno create automaticamente con gli attributi corretti.
+
+    Hanno senso entrambe
+    
+4) ricontrollare tutto, soprattutto aggregazioni e composizioni, e dettagliare aggiungendo tutti gli attributi necessari
+
+
+
+Cose da aggiungere:
+    1) modellare documentazione rilevante
+    2) modellare la prpopsta di modifiche
+    3) aggiungere generazione automatica occorrenze ad uc dettagliato

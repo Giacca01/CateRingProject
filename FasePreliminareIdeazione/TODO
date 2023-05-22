@@ -17,10 +17,15 @@ Analisi:
         d) controllare i cicli impliciti: fatto, chiedere se vada bene una condizione scritta così
         e) quanti menù ci sono per evento?? Uno per ogni servizio
         f) controllare modifica menù usato in evento
+        
   ---------------------------------------  
     3) Modello di dominio: Io
-                b) rendere ricettario-mansione di cucina un'aggregazione
+                a) la scheda riepilogativa è abbastanza importante da essere un contesto a parte? Se sì, con quali attributi?
+                Quelli attuali li nomina solo Viola.
+                b) come si rappresenta un attributo vettore di valori
                 c) ricontrollare aggregazioni e composizioni
+                d) i servizi vanno trattati in questo UC
+                f) aggiungere il cliente che commissiona l'evento
                 
     
     4) SSD: Io
@@ -31,8 +36,7 @@ Analisi:
 Progettazione: 7 giugno
     1) Dcd: Mike
     2) DSD: Mike
-    3) Implementazione: Mike
-
+    
 
 UC Simulazione:
     
@@ -45,13 +49,12 @@ UC Simulazione:
    ----------------------------------
         6) SSD: Io / Mike
         7) Contratti: MIke
-        8) DCD: Mike
    ---------------------------------- (25 maggio)
+        8) DCD: Mike
         9) DSD: Io
-        10) Implementazione: IO
    ---------------------------------- (7 giugno)
    
-   
+10) Implementazione: entrambi??
    
 Cose che devo fare io:
     1) Rilettura testo, uc breve per sistemazione glossario: ok
