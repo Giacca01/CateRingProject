@@ -34,10 +34,6 @@ Cose da chiedere:
     6) I servizi sono tutti nello stesso luogo??
     
     
-TODO:
-    Sistemare la distribuzione di informazioni tra evento e servizio
-    
-    
 1) Scheda evento: è più che altro una vista di informazioni di evento e servizio, quindi
 non c'è bisogno di un concetto a parte.
 Per quanto riguarda gli attributi di servizio ed evento, ne parla solo Viola, quindi non
@@ -75,6 +71,27 @@ Ok
 
 
 Cose da aggiungere:
-    1) modellare documentazione rilevante
-    2) modellare la prpopsta di modifiche
-    3) aggiungere generazione automatica occorrenze ad uc dettagliato
+    1) modellare documentazione rilevante: ok
+    2) modellare la prpopsta di modifiche: ok
+        -non c'è un'associazione con organizzatore, perchè altrimenti modelleremmo un'azione
+        
+        -descrizione indica l'operazione da fare sulla ricetta
+        Problema: come modellare la cancellazione? Per non alterare il menù originale
+        si potrebbe creare una nuova coppia (menù, ricetta), in cui menù e ricetta
+        sono uguali, ma ci sono gli attributi addizionali, con descrizione che vale "elimina"
+    3) aggiungere generazione automatica occorrenze ad uc dettagliato: OK
+        -per ora direi di rimanere sul vago, limitandoci a dire che il sistema
+        è in grado di propagare le modifiche al resto della ricorrenza così
+        come richiesto dall'utente. Una descrizione più precisa (ad es. specificando
+        cosa fare delle occorrenze in sovrapiù in caso di eliminazione) si potrà fare
+        durante ssd e contratti.
+    4) Guardano il  glossario, vedere se manchino degli attributi
+    
+    
+Domande:
+    Ha senso il livello di dettaglio adottato per gli eventi ricorrenti nell'UC dettagliato?
+    
+    In caso di modifica ai servizi di una ricorrenza, dobbiamo chiedere se voglia modificare
+    in automatico anche tutte le altre?
+    
+    Come modellare la documentazione aggiuntiva? Non sembra molto utile...

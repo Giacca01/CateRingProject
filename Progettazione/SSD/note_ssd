@@ -1,0 +1,5 @@
+1) Controllare se utente e sistema abbiano le informazioni necessarie:
+    -se vogliamo supporre noto l'evento, il passo 1 non può essere opzionale
+    (deve esserci una qualche operazione di consultazione)
+
+2) Inserire indicazioni di flusso

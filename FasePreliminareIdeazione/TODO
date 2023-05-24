@@ -17,7 +17,6 @@ Analisi:
         d) controllare i cicli impliciti: fatto, chiedere se vada bene una condizione scritta così
         e) quanti menù ci sono per evento?? Uno per ogni servizio
         f) controllare modifica menù usato in evento
-        
   ---------------------------------------  
     3) Modello di dominio: Io
                 a) la scheda riepilogativa è abbastanza importante da essere un contesto a parte? Se sì, con quali attributi?

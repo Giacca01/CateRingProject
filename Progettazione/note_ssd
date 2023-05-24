@@ -1,0 +1,10 @@
+1) Controllare se utente e sistema abbiano le informazioni necessarie:
+    -se vogliamo supporre noto l'evento, il passo 1 non può essere opzionale
+    (deve esserci una qualche operazione di consultazione)
+
+2) Inserire indicazioni di flusso
+
+3) L'SDD deve essere un elenco delle funzionalità offerte dal sistema, nel formato azione-risposta.
+Va bene così com'è (cioè semplice mapping 1-1 "formale" dell'UC dettagliato)? Oppure manca qualcosa??
+
+4) Ho spostato alcuni loop (quello finale e quello dopo il passo 2), per tenere il tutto più compatto, vedere se abbia senso
