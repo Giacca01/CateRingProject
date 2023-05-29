@@ -1,0 +1,125 @@
+<diagram program="umletino" version="15.1"><zoom_level>9</zoom_level><element><id>UMLPackage</id><coordinates><x>210</x><y>22</y><w>1062</w><h>594</h></coordinates><panel_attributes>EventManagement</panel_attributes><additional_attributes></additional_attributes></element><element><id>UMLClass</id><coordinates><x>219</x><y>49</y><w>324</w><h>216</h></coordinates><panel_attributes>EventManager
+--
+
+--
+*event sender methods*
++addReceiver(er: MenuEventReceiver)
++removeReceiver(er: MenuEventReceiver)
+-notifySummarySheetCreated(s: SummarySheet)
+-notifyAddedAssignment(a: Assignment)
+-notifyDeletedAssignment(a: Assignment)
+-notifySortedSummarySheet(summarySheet: SummarySheet)
+--
+*operations methods*
++createEventSheet(e:Event)
++addAssignment(r: Recipe)
++sortSummarySheet(assignment: Assignment, position: int)</panel_attributes><additional_attributes></additional_attributes></element><element><id>UMLClass</id><coordinates><x>687</x><y>49</y><w>297</w><h>153</h></coordinates><panel_attributes>Event
+--
+-recurrent: boolean
+-pastMenus: Menu[]
+-client: string
+--
++isInCharge(u: User): boolean
+-setCurrentEvent(e: Event)
+-createSummarySheet()
+-getMenu(): Menu
+-getSummarySheet(): SummarySheet</panel_attributes><additional_attributes></additional_attributes></element><element><id>Relation</id><coordinates><x>534</x><y>103</y><w>171</w><h>45</h></coordinates><panel_attributes>lt=&lt;-
+currentEvent
+m1=0..1</panel_attributes><additional_attributes>170;20;10;20</additional_attributes></element><element><id>UMLClass</id><coordinates><x>615</x><y>274</y><w>315</w><h>135</h></coordinates><panel_attributes>SummarySheet
+--
+-title: String
+-published: boolean
+-inUse: boolean
+-features: String[]
+-featureValues: boolean[]
+--
+-addAssignment(r: Recipe)
+-sortSummarySheet(assignment: Assignment, position: int)
+
+</panel_attributes><additional_attributes></additional_attributes></element><element><id>UMLClass</id><coordinates><x>624</x><y>472</y><w>297</w><h>90</h></coordinates><panel_attributes>Assignment
+--
+-estimatedTime: int
+-quantity: int
+-toPreparare: boolean
+
+</panel_attributes><additional_attributes></additional_attributes></element><element><id>Relation</id><coordinates><x>741</x><y>193</y><w>117</w><h>99</h></coordinates><panel_attributes>lt=&lt;-
+summarySheet
+m1=0..1</panel_attributes><additional_attributes>10;90;10;50;110;50;110;10</additional_attributes></element><element><id>Relation</id><coordinates><x>750</x><y>400</y><w>90</w><h>90</h></coordinates><panel_attributes>lt=&lt;-
+assignments
+m1=0..n</panel_attributes><additional_attributes>10;80;10;10</additional_attributes></element><element><id>UMLPackage</id><coordinates><x>1290</x><y>40</y><w>270</w><h>216</h></coordinates><panel_attributes>RecipeManagement
+fg=gray</panel_attributes><additional_attributes></additional_attributes></element><element><id>UMLClass</id><coordinates><x>1299</x><y>67</y><w>135</w><h>63</h></coordinates><panel_attributes>Recipe
+fg=gray
+--
+-name
+-isDish(): boolean
+-isPreparation(): boolean</panel_attributes><additional_attributes></additional_attributes></element><element><id>UMLClass</id><coordinates><x>1308</x><y>166</y><w>171</w><h>81</h></coordinates><panel_attributes>RecipeManager
+--
+
+--
++getRecipeBook(): 
+	ArrayList&lt;Recipe&gt;
+
+fg=gray
+</panel_attributes><additional_attributes></additional_attributes></element><element><id>Relation</id><coordinates><x>1425</x><y>85</y><w>135</w><h>126</h></coordinates><panel_attributes>lt=-&gt;
+m2=0..n
+recipes
+fg=gray</panel_attributes><additional_attributes>60;120;90;120;90;10;10;10</additional_attributes></element><element><id>Relation</id><coordinates><x>885</x><y>193</y><w>234</w><h>99</h></coordinates><panel_attributes>lt=&lt;-
+menu
+m1=0..1</panel_attributes><additional_attributes>220;90;220;50;10;50;10;10</additional_attributes></element><element><id>UMLClass</id><coordinates><x>948</x><y>274</y><w>252</w><h>171</h></coordinates><panel_attributes>Menu
+--
+-title: String
+-published: boolean
+-inUse: boolean
+-fingerFood: boolean
+-requiresCook: boolean
+hotDishes: boolean
+requiresKitchen: boolean
+buffet: boolean
+--
+-getRecipes()
+
+</panel_attributes><additional_attributes></additional_attributes></element><element><id>UMLClass</id><coordinates><x>219</x><y>364</y><w>351</w><h>135</h></coordinates><panel_attributes>EventManagerReceiver
+{interface}
+--
+
+--
++updateSummarySheetCreated(e: Event, s: SummarySheet)
++updateAddedAssignment(s: SummarySheet, a: Assignment)
++updateDeletedAssignment(s: SummarySheet, a: Assignment)
++updateSortedSummarySheet(summarySheet: SummarySheet)</panel_attributes><additional_attributes></additional_attributes></element><element><id>Relation</id><coordinates><x>363</x><y>256</y><w>99</w><h>126</h></coordinates><panel_attributes>lt=&lt;-
+eventReceivers
+m1=0..n</panel_attributes><additional_attributes>10;120;10;10</additional_attributes></element><element><id>Relation</id><coordinates><x>912</x><y>85</y><w>405</w><h>450</h></coordinates><panel_attributes>lt=&lt;-
+recipe
+m1=0..1</panel_attributes><additional_attributes>430;10;350;10;350;480;10;480</additional_attributes></element><element><id>UMLPackage</id><coordinates><x>1290</x><y>265</y><w>270</w><h>387</h></coordinates><panel_attributes>UserManagement
+fg=gray</panel_attributes><additional_attributes></additional_attributes></element><element><id>UMLClass</id><coordinates><x>1308</x><y>292</y><w>135</w><h>99</h></coordinates><panel_attributes>User
+
+--
+
+--
++isOrganizer( ): boolean
+
+fg=gray
+</panel_attributes><additional_attributes></additional_attributes></element><element><id>UMLClass</id><coordinates><x>1299</x><y>463</y><w>234</w><h>180</h></coordinates><panel_attributes>UserManager
+--
+
+--
+*event sender methods*
+
+
+--
+*operations methods*
++getCurrentUser(): User
+fg=gray</panel_attributes><additional_attributes></additional_attributes></element><element><id>Relation</id><coordinates><x>1362</x><y>382</y><w>90</w><h>99</h></coordinates><panel_attributes>lt=&lt;-
+currentUser
+m1=0..1
+fg=gray</panel_attributes><additional_attributes>10;10;10;90</additional_attributes></element><element><id>UMLPackage</id><coordinates><x>210</x><y>634</y><w>486</w><h>216</h></coordinates><panel_attributes>General module
+fg=gray</panel_attributes><additional_attributes></additional_attributes></element><element><id>UMLClass</id><coordinates><x>228</x><y>679</y><w>198</w><h>63</h></coordinates><panel_attributes>UseCaseLogicException
+--
+fg=gray</panel_attributes><additional_attributes></additional_attributes></element><element><id>UMLClass</id><coordinates><x>561</x><y>679</y><w>117</w><h>63</h></coordinates><panel_attributes>Exception
+--
+
+fg=magenta
+fg=gray</panel_attributes><additional_attributes></additional_attributes></element><element><id>Relation</id><coordinates><x>417</x><y>706</y><w>162</w><h>27</h></coordinates><panel_attributes>lt=&lt;&lt;-
+fg=gray</panel_attributes><additional_attributes>160;10;10;10</additional_attributes></element><element><id>Relation</id><coordinates><x>975</x><y>121</y><w>351</w><h>261</h></coordinates><panel_attributes>lt=&lt;-
+organizer
+m1=0..1</panel_attributes><additional_attributes>370;260;310;260;310;10;10;10</additional_attributes></element></diagram>
