@@ -1,0 +1,39 @@
+1) Per ora separiamo nettamente la creazione dell'evento dalla creazione dei servizi associati
+
+2) DataInizio e DataFine in Evento sono ricavabili dai servizi: servono soltanto per semplificare la creazione
+degli eventi ricorrenti. Senza dovremmo creare subito il primo e l'ultimo servizio, ma al passo uno non disponiamo
+ancora delle informazioni necessarie (vedi punto 1)
+
+3) Vedere come specificare la data di fine di
+    -evento capofila, quando la ricorrenza è espressa tramite numero di occorrenze
+    -delle singole occorrenze della ricorrenza
+    
+4) Verificare che il singolo servizio venga svolto in un solo giorno
+
+5) Ha senso aggiungere un valore "Creazione" all'attributo stato dell'evento???
+
+6) Mettere i nomi delle associazioni in minuscolo
+
+7) Un membro del personale può svolgere più compiti nello stesso servizio???
+
+8) Chiarire con Polato la gestione delle disponibilità (non ci sono troppe br?? bisogna reificare??)
+
+9) Al passo 6 non è possibile prenotare il personale: per farlo, saltiamo il passo 6, torniamo al 4,
+prenotiamo, saltimo il 5 ed eseguiamo il 6.
+
+10) È legale una pre-condizione del tipo "mp è un Membro del personale di servizio" ??
+
+11) Reifichiamo disponibilità per sapere in quale turno e servizio il membro del personale
+di servizio abbia svolto un certo compito
+
+12) Ha senso rendere obbligatoria la prenotazione del membro del personale???
+Viene menzionata in entrambe le user stories...
+
+13) È il caso di modificare l'uc per contrallare che l'utente agisca solo su eventi suoi?
+
+14) Controllare di aver cancellato i vecchi collegamenti
+
+15) L'organizzatore non può modificare i menù: può solo accettarli o rifiutarli, l'unico a poter
+fare proposte è lo chef
+
+16) Controllare che tutti gli attributi opzionali abbiano la molteplicità [0..1]
