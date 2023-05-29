@@ -1,0 +1,56 @@
+<mxfile host="app.diagrams.net" modified="2023-05-29T13:47:36.939Z" agent="Mozilla/5.0 (X11; Linux x86_64; rv:108.0) Gecko/20100101 Firefox/108.0" etag="EmqX4cquKHFygX1sO9fg" version="21.3.5" type="device">
+  <diagram name="Page-1" id="C9pzCndqXw9tzlgMs6Lu">
+    <mxGraphModel dx="954" dy="547" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="827" pageHeight="1169" math="0" shadow="0">
+      <root>
+        <mxCell id="0" />
+        <mxCell id="1" parent="0" />
+        <mxCell id="JGHvN4DTKtbSaEVO_j0C-1" value="" style="shape=umlLifeline;perimeter=lifelinePerimeter;whiteSpace=wrap;html=1;container=1;dropTarget=0;collapsible=0;recursiveResize=0;outlineConnect=0;portConstraint=eastwest;newEdgeStyle={&quot;edgeStyle&quot;:&quot;elbowEdgeStyle&quot;,&quot;elbow&quot;:&quot;vertical&quot;,&quot;curved&quot;:0,&quot;rounded&quot;:0};participant=umlActor;" vertex="1" parent="1">
+          <mxGeometry x="150" y="110" width="20" height="300" as="geometry" />
+        </mxCell>
+        <mxCell id="JGHvN4DTKtbSaEVO_j0C-2" value="Sistema" style="shape=umlLifeline;perimeter=lifelinePerimeter;whiteSpace=wrap;html=1;container=1;dropTarget=0;collapsible=0;recursiveResize=0;outlineConnect=0;portConstraint=eastwest;newEdgeStyle={&quot;edgeStyle&quot;:&quot;elbowEdgeStyle&quot;,&quot;elbow&quot;:&quot;vertical&quot;,&quot;curved&quot;:0,&quot;rounded&quot;:0};" vertex="1" parent="1">
+          <mxGeometry x="470" y="110" width="100" height="300" as="geometry" />
+        </mxCell>
+        <mxCell id="JGHvN4DTKtbSaEVO_j0C-3" value="ALT" style="shape=umlFrame;whiteSpace=wrap;html=1;pointerEvents=0;fillColor=#f8cecc;strokeColor=#b85450;" vertex="1" parent="1">
+          <mxGeometry x="110" y="230" width="450" height="140" as="geometry" />
+        </mxCell>
+        <mxCell id="JGHvN4DTKtbSaEVO_j0C-5" value="assegnazioneRuolo(Disponibilità, Ruolo, Servizio)" style="html=1;verticalAlign=bottom;endArrow=block;edgeStyle=elbowEdgeStyle;elbow=vertical;curved=0;rounded=0;" edge="1" parent="1" source="JGHvN4DTKtbSaEVO_j0C-1" target="JGHvN4DTKtbSaEVO_j0C-2">
+          <mxGeometry width="80" relative="1" as="geometry">
+            <mxPoint x="350" y="230" as="sourcePoint" />
+            <mxPoint x="430" y="230" as="targetPoint" />
+            <Array as="points">
+              <mxPoint x="440" y="220" />
+              <mxPoint x="260" y="230" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="JGHvN4DTKtbSaEVO_j0C-6" value="" style="endArrow=none;endFill=0;endSize=12;html=1;rounded=0;" edge="1" parent="1" source="JGHvN4DTKtbSaEVO_j0C-1" target="JGHvN4DTKtbSaEVO_j0C-2">
+          <mxGeometry width="160" relative="1" as="geometry">
+            <mxPoint x="160" y="280" as="sourcePoint" />
+            <mxPoint x="320" y="280" as="targetPoint" />
+            <Array as="points">
+              <mxPoint x="380" y="310" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="JGHvN4DTKtbSaEVO_j0C-8" value="operazione completata" style="html=1;verticalAlign=bottom;endArrow=block;edgeStyle=elbowEdgeStyle;elbow=vertical;curved=0;rounded=0;" edge="1" parent="1" source="JGHvN4DTKtbSaEVO_j0C-2" target="JGHvN4DTKtbSaEVO_j0C-1">
+          <mxGeometry width="80" relative="1" as="geometry">
+            <mxPoint x="390" y="230" as="sourcePoint" />
+            <mxPoint x="310" y="230" as="targetPoint" />
+            <Array as="points">
+              <mxPoint x="290" y="280" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="JGHvN4DTKtbSaEVO_j0C-9" value="membro del personale non prenotato" style="html=1;verticalAlign=bottom;endArrow=block;edgeStyle=elbowEdgeStyle;elbow=vertical;curved=0;rounded=0;" edge="1" parent="1">
+          <mxGeometry width="80" relative="1" as="geometry">
+            <mxPoint x="520" y="340" as="sourcePoint" />
+            <mxPoint x="160" y="340" as="targetPoint" />
+            <Array as="points">
+              <mxPoint x="290" y="340" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+      </root>
+    </mxGraphModel>
+  </diagram>
+</mxfile>

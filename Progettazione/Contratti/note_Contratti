@@ -37,3 +37,10 @@ Viene menzionata in entrambe le user stories...
 fare proposte è lo chef
 
 16) Controllare che tutti gli attributi opzionali abbiano la molteplicità [0..1]
+
+17) Nel passo 6, bisogna aggiungere un'eccezione per controllare i permessi dell'attore?
+
+18) Cosa fare se, al passo 5, proviamo ad aggiungere una ricetta che c'è già? Potremmo fregarcene, e non entrare nel merito del commento
+alla proposta di modifica, lasciando che se la veda lo chef.
+
+19) Al passo 4, può aver senso propagare la modifica a tutti gli eventi ricorrenti??

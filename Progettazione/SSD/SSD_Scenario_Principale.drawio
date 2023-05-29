@@ -1,6 +1,6 @@
-<mxfile host="app.diagrams.net" modified="2023-05-26T12:53:28.164Z" agent="Mozilla/5.0 (X11; Linux x86_64; rv:108.0) Gecko/20100101 Firefox/108.0" etag="LDFtRNYRXDMV9nzcR2_0" version="21.3.4" type="device">
+<mxfile host="app.diagrams.net" modified="2023-05-29T15:36:23.908Z" agent="Mozilla/5.0 (X11; Linux x86_64; rv:108.0) Gecko/20100101 Firefox/108.0" etag="tcJeNgx9CwLMfUcC-rYf" version="21.3.5" type="device">
   <diagram name="Page-1" id="aDgRZFvFXDjg_jGfRXhe">
-    <mxGraphModel dx="1781" dy="547" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="827" pageHeight="1169" math="0" shadow="0">
+    <mxGraphModel dx="1781" dy="512" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="827" pageHeight="1169" math="0" shadow="0">
       <root>
         <mxCell id="0" />
         <mxCell id="1" parent="0" />
@@ -154,7 +154,7 @@
         <mxCell id="en180CTn0l9zymGrBvhz-25" value="" style="group" parent="en180CTn0l9zymGrBvhz-36" vertex="1" connectable="0">
           <mxGeometry y="253.22" width="1060" height="103.59" as="geometry" />
         </mxCell>
-        <mxCell id="en180CTn0l9zymGrBvhz-14" value="assegnazioneRuolo(Membro, Ruolo, Servizio)" style="html=1;verticalAlign=bottom;endArrow=block;edgeStyle=elbowEdgeStyle;elbow=vertical;curved=0;rounded=0;movable=1;resizable=1;rotatable=1;deletable=1;editable=1;locked=0;connectable=1;" parent="en180CTn0l9zymGrBvhz-25" edge="1">
+        <mxCell id="en180CTn0l9zymGrBvhz-14" value="assegnazioneRuolo(Disponibilità, Ruolo, Servizio)" style="html=1;verticalAlign=bottom;endArrow=block;edgeStyle=elbowEdgeStyle;elbow=vertical;curved=0;rounded=0;movable=1;resizable=1;rotatable=1;deletable=1;editable=1;locked=0;connectable=1;" parent="en180CTn0l9zymGrBvhz-25" edge="1">
           <mxGeometry width="80" relative="1" as="geometry">
             <mxPoint x="50" y="46.04" as="sourcePoint" />
             <mxPoint x="1020" y="46.04" as="targetPoint" />
@@ -179,7 +179,7 @@
         <mxCell id="en180CTn0l9zymGrBvhz-26" value="" style="group" parent="en180CTn0l9zymGrBvhz-36" vertex="1" connectable="0">
           <mxGeometry y="115.1" width="1060" height="115.1" as="geometry" />
         </mxCell>
-        <mxCell id="en180CTn0l9zymGrBvhz-12" value="approvazioneMenu(Menu)" style="html=1;verticalAlign=bottom;endArrow=block;edgeStyle=elbowEdgeStyle;elbow=vertical;curved=0;rounded=0;movable=1;resizable=1;rotatable=1;deletable=1;editable=1;locked=0;connectable=1;" parent="en180CTn0l9zymGrBvhz-26" edge="1">
+        <mxCell id="en180CTn0l9zymGrBvhz-12" value="approvazioneMenu(Servizio)" style="html=1;verticalAlign=bottom;endArrow=block;edgeStyle=elbowEdgeStyle;elbow=vertical;curved=0;rounded=0;movable=1;resizable=1;rotatable=1;deletable=1;editable=1;locked=0;connectable=1;" parent="en180CTn0l9zymGrBvhz-26" edge="1">
           <mxGeometry width="80" relative="1" as="geometry">
             <mxPoint x="50" y="57.55" as="sourcePoint" />
             <mxPoint x="1020" y="57.55" as="targetPoint" />
@@ -204,7 +204,7 @@
         <mxCell id="en180CTn0l9zymGrBvhz-27" value="" style="group" parent="en180CTn0l9zymGrBvhz-36" vertex="1" connectable="0">
           <mxGeometry width="1060" height="92.08" as="geometry" />
         </mxCell>
-        <mxCell id="en180CTn0l9zymGrBvhz-10" value="prenotazionePersonale(Membro, Turno)" style="html=1;verticalAlign=bottom;endArrow=block;edgeStyle=elbowEdgeStyle;elbow=vertical;curved=0;rounded=0;movable=1;resizable=1;rotatable=1;deletable=1;editable=1;locked=0;connectable=1;" parent="en180CTn0l9zymGrBvhz-27" edge="1">
+        <mxCell id="en180CTn0l9zymGrBvhz-10" value="prenotazionePersonale(Membro, Turno, Servizio)" style="html=1;verticalAlign=bottom;endArrow=block;edgeStyle=elbowEdgeStyle;elbow=vertical;curved=0;rounded=0;movable=1;resizable=1;rotatable=1;deletable=1;editable=1;locked=0;connectable=1;" parent="en180CTn0l9zymGrBvhz-27" edge="1">
           <mxGeometry width="80" relative="1" as="geometry">
             <mxPoint x="45" y="34.53" as="sourcePoint" />
             <mxPoint x="1015" y="34.53" as="targetPoint" />
@@ -214,7 +214,7 @@
             </Array>
           </mxGeometry>
         </mxCell>
-        <mxCell id="en180CTn0l9zymGrBvhz-11" value="prenotazione effettuata" style="html=1;verticalAlign=bottom;endArrow=none;edgeStyle=elbowEdgeStyle;elbow=vertical;curved=0;rounded=0;startArrow=classic;startFill=1;endFill=0;movable=1;resizable=1;rotatable=1;deletable=1;editable=1;locked=0;connectable=1;" parent="en180CTn0l9zymGrBvhz-27" edge="1">
+        <mxCell id="en180CTn0l9zymGrBvhz-11" value="disponibilità prenotata" style="html=1;verticalAlign=bottom;endArrow=none;edgeStyle=elbowEdgeStyle;elbow=vertical;curved=0;rounded=0;startArrow=classic;startFill=1;endFill=0;movable=1;resizable=1;rotatable=1;deletable=1;editable=1;locked=0;connectable=1;" parent="en180CTn0l9zymGrBvhz-27" edge="1">
           <mxGeometry width="80" relative="1" as="geometry">
             <mxPoint x="45" y="69.06" as="sourcePoint" />
             <mxPoint x="1015" y="69.06" as="targetPoint" />
@@ -238,7 +238,7 @@
         <mxCell id="en180CTn0l9zymGrBvhz-48" value="LOOP" style="shape=umlFrame;whiteSpace=wrap;html=1;pointerEvents=0;fillColor=#dae8fc;strokeColor=#6c8ebf;" parent="en180CTn0l9zymGrBvhz-38" vertex="1">
           <mxGeometry x="30" y="450.4" width="1060" height="103.59" as="geometry" />
         </mxCell>
-        <mxCell id="en180CTn0l9zymGrBvhz-49" value="assegnazioneRuolo(Membro, Ruolo, Servizio)" style="html=1;verticalAlign=bottom;endArrow=block;edgeStyle=elbowEdgeStyle;elbow=vertical;curved=0;rounded=0;movable=1;resizable=1;rotatable=1;deletable=1;editable=1;locked=0;connectable=1;" parent="en180CTn0l9zymGrBvhz-38" edge="1">
+        <mxCell id="en180CTn0l9zymGrBvhz-49" value="assegnazioneRuolo(Disponibilità, Ruolo, Servizio)" style="html=1;verticalAlign=bottom;endArrow=block;edgeStyle=elbowEdgeStyle;elbow=vertical;curved=0;rounded=0;movable=1;resizable=1;rotatable=1;deletable=1;editable=1;locked=0;connectable=1;" parent="en180CTn0l9zymGrBvhz-38" edge="1">
           <mxGeometry width="80" relative="1" as="geometry">
             <mxPoint x="80" y="496.43999999999994" as="sourcePoint" />
             <mxPoint x="1050" y="496.43999999999994" as="targetPoint" />
