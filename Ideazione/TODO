@@ -1,0 +1,63 @@
+Fase preliminare ideazione: (già fatto nel giro precedente, occorrono soltanto alcune modifiche)
+    1) Estensione glossario
+
+    2) Elenco azioni: ok
+
+    3) Attori - uc brevi: ok
+
+    4) Processo utente
+
+
+Analisi: 
+    1) Uc dettagliato (usare il testo del progetto): Mike
+    
+    2) Processi utenti (user stories): Mike
+        a) controllare le operazioni che non si sa su cosa vengano fatte (sottolineate in giallo)
+        c) controllare se ci siano operazioni automatizzabile dal sistema (deve essere il segretario stupido dell'attore)
+        d) controllare i cicli impliciti: fatto, chiedere se vada bene una condizione scritta così
+        e) quanti menù ci sono per evento?? Uno per ogni servizio
+        f) controllare modifica menù usato in evento
+  ---------------------------------------  
+    3) Modello di dominio: Io
+                a) la scheda riepilogativa è abbastanza importante da essere un contesto a parte? Se sì, con quali attributi?
+                Quelli attuali li nomina solo Viola.
+                b) come si rappresenta un attributo vettore di valori
+                c) ricontrollare aggregazioni e composizioni
+                d) i servizi vanno trattati in questo UC
+                f) aggiungere il cliente che commissiona l'evento
+                
+    
+    4) SSD: Io
+    
+    5) Contratti: Io
+  ------------------------------------------- 25 maggio  
+
+Progettazione: 7 giugno
+    1) Dcd: Mike
+    2) DSD: Mike
+    
+
+UC Simulazione:
+    
+   Fase preliminare ideazione:
+        1) Glossario: IO
+        2) Elenco Azioni: Io
+        3) Attori uc brevi: Io
+        4) processo utente: IO
+        5) modello di dominio: IO
+   ----------------------------------
+        6) SSD: Io / Mike
+        7) Contratti: MIke
+   ---------------------------------- (25 maggio)
+        8) DCD: Mike
+        9) DSD: Io
+   ---------------------------------- (7 giugno)
+   
+10) Implementazione: entrambi??
+   
+Cose che devo fare io:
+    1) Rilettura testo, uc breve per sistemazione glossario: ok
+    2) rilettura materiale mike
+    3) estensione modello di dominio
+    4) scrittura ssd
+    5) scrittura contratti

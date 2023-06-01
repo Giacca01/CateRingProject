@@ -1,0 +1,6 @@
+1) Non mettiamo nulla riguardo l'accettazione delle modifiche, perchè compare in un altro UC
+
+2) Non c'è la ripetizione dopo il passo 1: la logica è quella di creare un evento, eseguire una
+serie di operazioni su di esso (come l'assegnazione dello chef) e solo creare ancora un altro evento.
+Nei servizi invece, l'idea è quella di aggiungere prima tutti i servizi di un singolo evento, quindi
+c'è la ripetizione.
