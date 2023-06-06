@@ -1,0 +1,66 @@
+1) isInCharge verifica se l'utente passato come parametro sia il cuoco a capo dell'evento
+
+2) Vedere se user si possa sostituire con il più specifico chef
+
+3) recipe è ispirata alla classe concettuale mansione di cucina
+
+4) Nel primo dsd, aggiungere loop per inserimento preparazioni correlate
+
+controllare se il foglio riepilogativo su cui si lavoro sia settato correttamente
+
+implementare pre dsd 1 e 2
+
+sostituire evento con servizio
+
+5) cancellare la ricettà in realtà vuol dire scollegare una ricetta dal compito
+
+6) Non dovrebbe esserci molta differenza tra il far creare il foglio al manager ed al servizio, tanto
+entrambi sono comunque accopiati con esso, dato che devono tenere un riferimento ad esso.
+RICONTROLLARE: FORSE POSSIAMO EVITARE DI TIRARE IN MEZZO IL SERVIZIO
+
+7) Nell'ordinamento restituisco il compito ordinato anche se probabilmente non serve un cazzo, solo per notificare la fine dell'operazione
+
+8) SIstemare le eccezioni
+
+9) Modifica ed inserimento di tempistiche e porzioni sono uguali: le lasciamo comunque, perchè, pur avendo
+la stessa implementazione, differiscono concettualmente.
+
+10) Lo stesso ragionamento vale per il passo 7
+
+11) Per il passo 5: nell'uc dettagliato abbiamo indicato che "assegnare significa specificare una mansione .... " il fatto è che
+noi il compito con la mansione associata l'abbiamo già creato.
+Ciò che manca sono i dettagli e l'associazioni con turno e cuoco, settati con questo uc.
+Anche qui, la modifica ha poco senso, perchè si riconduce al settaggio (se vogliamo cambiare mansione, basta eliminare il compito
+e crearne uno nuovo)
+
+12) Aggiungere NOTIFICA EVENTI
+
+13) Ho scelto di implementare la 6 senza mantenere l'ordinamento
+
+Domande:
+
+1) Quanto essere specifici con i controlli, ad esempio a senso controllare il parametro null (in caso di paraemtri non opzionali)?
+
+2) Ha senso non restituire nulla all'UI? Di solito si restituisce l'oggetto su cui si è lavorato
+
+3) Mandare messagi "semplici" di conferma delle operazioni: non serve, restituire l'oggetto su cui si è lavorato
+
+4) Chiedere se abbia senso fare la modifiche all'UC dettagliato, oppure se siano differenze  accettabili visti i due punti di vista diversi:
+sono differenze accettabili, l'uc dettagliato va bene con cicli impliciti
+
+5) Si possono mettere richiami di metodo nelle condizioni dell'alt??
+L'importante è che sia chiara la semantica
+
+6) Chiedere se l'implementazione del passo 5 abbia senso.
+
+
+
+Cose da fare:
+    1) Finire dsd op 5, definendo a chi spetti la responsabilità, facendo i contratti delle operazioni
+    mancanti
+    
+    1a) Verificare se serva controllare che l'evento non sia già in corso
+    
+    2) Sistemare il dsd
+    
+    3) Rivedere tutto

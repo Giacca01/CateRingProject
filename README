@@ -1,0 +1,20 @@
+Situazione al 06/06:
+
+Ho implementato i dsd di tutte le operazioni tranne le estensioni del passo 5.
+Qua e la rimangono cose da sistemare, soprattutto alla luce del fatto che questo
+era il mio primo tentativo e mancavano contratti e dcd.
+In particolare, quest'ultimo è ancora incompleto.
+Ho cercato, per quanto possibile, di
+    -annotare in giallo, SUL FOGLIO DEI CONTRATTI, le cose mancanti in ogni DCD
+    -scrivere scelte varie nei file note in ogni sezione
+    
+Cosa rimane da fare ora? Nell'ordine:
+    1) Fare i contratti delle estensioni del passo 5
+    
+    2) Fare il dcd: partire includendo le classi evidenziate in verde nel modello di dominio
+    e tenendo quando già sviluppato durante i dsd
+    
+    3) Fare il dsd delle estensioni del passo 5
+    
+    4) Rivedere tutto, risistemando dsd, dcd ed ssd (sicuramente ci saranno degli errori, ad esempio la mancanza delle notify in qualche caso,
+    e poi sono cambiati i contratti)
