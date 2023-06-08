@@ -5,3 +5,7 @@ crearlo, associando la mansione di cucina, specificare i dettagli, che verranno 
 
 3) L'operazione 3 viene implementata una posizione alla volta: serve mottificare l'SSD aggiugendo un ciclo??
 Allo stesso modo, serve modificare i contratti??
+
+4) Per quanto riguarda la modifica dell'assegnazione:
+    -assegnare vuol dire specificare almeno il turno associato al compito
+    -quindi possiamo modificare un'assegnazione solo a patto che sia stato specificato un compito
