@@ -37,6 +37,9 @@ e crearne uno nuovo)
 
 13) Ho scelto di implementare la 6 senza mantenere l'ordinamento
 
+14) Non ho messo il foglio riepilogativo: in fin dei conti è un'astrazione di una lista di assignments
+
+
 Domande:
 
 1) Quanto essere specifici con i controlli, ad esempio a senso controllare il parametro null (in caso di paraemtri non opzionali)?
