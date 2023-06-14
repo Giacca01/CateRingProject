@@ -18,20 +18,15 @@ user</panel_attributes><additional_attributes>10;20;270;20</additional_attribute
 --
 
 
-
 -.
 
 
 
 
 
--.
 
 
 
-
-
--.
 
 
 
@@ -76,11 +71,9 @@ user</panel_attributes><additional_attributes>10;20;270;20</additional_attribute
 
 -.
 fontsize=11
-</panel_attributes><additional_attributes></additional_attributes></element><element><id>Relation</id><coordinates><x>1740</x><y>40</y><w>30</w><h>980</h></coordinates><panel_attributes>lt=.</panel_attributes><additional_attributes>10;10;10;960</additional_attributes></element><element><id>Relation</id><coordinates><x>110</x><y>230</y><w>210</w><h>40</h></coordinates><panel_attributes>lt=&lt;.
-throw UseCaseLogicException</panel_attributes><additional_attributes>10;20;190;20</additional_attributes></element><element><id>Text</id><coordinates><x>0</x><y>380</y><w>230</w><h>60</h></coordinates><panel_attributes>[currentSheet == null]
-style=wordwrap
-fontsize=11</panel_attributes><additional_attributes></additional_attributes></element><element><id>Relation</id><coordinates><x>110</x><y>400</y><w>210</w><h>40</h></coordinates><panel_attributes>lt=&lt;.
-throw UseCaseLogicException</panel_attributes><additional_attributes>10;20;190;20</additional_attributes></element><element><id>Text</id><coordinates><x>0</x><y>450</y><w>160</w><h>60</h></coordinates><panel_attributes>[position &gt; 0]
+</panel_attributes><additional_attributes></additional_attributes></element><element><id>Relation</id><coordinates><x>1740</x><y>40</y><w>30</w><h>980</h></coordinates><panel_attributes>lt=.
+fg=magenta</panel_attributes><additional_attributes>10;10;10;960</additional_attributes></element><element><id>Relation</id><coordinates><x>110</x><y>230</y><w>210</w><h>40</h></coordinates><panel_attributes>lt=&lt;.
+throw UseCaseLogicException</panel_attributes><additional_attributes>10;20;190;20</additional_attributes></element><element><id>Text</id><coordinates><x>0</x><y>290</y><w>160</w><h>60</h></coordinates><panel_attributes>[position &gt; 0]
 style=wordwrap
 fontsize=11</panel_attributes><additional_attributes></additional_attributes></element><element><id>Relation</id><coordinates><x>1020</x><y>480</y><w>540</w><h>40</h></coordinates><panel_attributes>lt=&lt;&lt;&lt;-
 size()</panel_attributes><additional_attributes>520;20;10;20</additional_attributes></element><element><id>Relation</id><coordinates><x>1020</x><y>500</y><w>530</w><h>40</h></coordinates><panel_attributes>lt=&lt;.
@@ -95,6 +88,5 @@ removedAssignment</panel_attributes><additional_attributes>10;20;700;20</additio
 notifySummarySheetSorted(currentService)</panel_attributes><additional_attributes>10;40;50;40;50;10;10;10</additional_attributes></element><element><id>UMLFrame</id><coordinates><x>200</x><y>860</y><w>1590</w><h>100</h></coordinates><panel_attributes>for each
 rec in receivers
 fg=magenta</panel_attributes><additional_attributes></additional_attributes></element><element><id>Relation</id><coordinates><x>310</x><y>890</y><w>1450</w><h>40</h></coordinates><panel_attributes>lt=&lt;&lt;&lt;-
-updateSortedSummarySheet(currentService)</panel_attributes><additional_attributes>1430;20;10;20</additional_attributes></element><element><id>UMLGeneric</id><coordinates><x>1740</x><y>910</y><w>20</w><h>40</h></coordinates><panel_attributes>fg=magenta</panel_attributes><additional_attributes></additional_attributes></element><element><id>UMLObject</id><coordinates><x>0</x><y>310</y><w>120</w><h>30</h></coordinates><panel_attributes>[ !user.assignedEvents.
-contains(e) ]</panel_attributes><additional_attributes></additional_attributes></element><element><id>Relation</id><coordinates><x>110</x><y>340</y><w>210</w><h>40</h></coordinates><panel_attributes>lt=&lt;.
-throw UseCaseLogicException</panel_attributes><additional_attributes>10;20;190;20</additional_attributes></element><element><id>UMLGeneric</id><coordinates><x>320</x><y>810</y><w>20</w><h>30</h></coordinates><panel_attributes></panel_attributes><additional_attributes></additional_attributes></element></diagram>
+updateSortedSummarySheet(currentService)</panel_attributes><additional_attributes>1430;20;10;20</additional_attributes></element><element><id>UMLGeneric</id><coordinates><x>1740</x><y>910</y><w>20</w><h>40</h></coordinates><panel_attributes>fg=magenta</panel_attributes><additional_attributes></additional_attributes></element><element><id>UMLGeneric</id><coordinates><x>320</x><y>810</y><w>20</w><h>30</h></coordinates><panel_attributes></panel_attributes><additional_attributes></additional_attributes></element><element><id>Relation</id><coordinates><x>110</x><y>1000</y><w>220</w><h>40</h></coordinates><panel_attributes>lt=&lt;.
+throw UseCaseLogicException</panel_attributes><additional_attributes>10;20;200;20</additional_attributes></element></diagram>
