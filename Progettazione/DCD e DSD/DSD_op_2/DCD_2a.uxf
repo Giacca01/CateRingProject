@@ -1,0 +1,64 @@
+<diagram program="umletino" version="15.1"><zoom_level>10</zoom_level><element><id>UMLGeneric</id><coordinates><x>290</x><y>0</y><w>280</w><h>50</h></coordinates><panel_attributes>CatERingAppManager.AssignmentManagement.
+assignmentManager: AssignmentManager</panel_attributes><additional_attributes></additional_attributes></element><element><id>Relation</id><coordinates><x>190</x><y>40</y><w>30</w><h>800</h></coordinates><panel_attributes>lt=.</panel_attributes><additional_attributes>10;10;10;780</additional_attributes></element><element><id>Relation</id><coordinates><x>530</x><y>40</y><w>30</w><h>800</h></coordinates><panel_attributes>lt=.</panel_attributes><additional_attributes>10;10;10;780</additional_attributes></element><element><id>Relation</id><coordinates><x>190</x><y>80</y><w>360</w><h>40</h></coordinates><panel_attributes>lt=&lt;&lt;&lt;-
+deleteAssignment(kt, a)</panel_attributes><additional_attributes>340;20;10;20</additional_attributes></element><element><id>UMLGeneric</id><coordinates><x>530</x><y>90</y><w>20</w><h>700</h></coordinates><panel_attributes></panel_attributes><additional_attributes></additional_attributes></element><element><id>UMLGeneric</id><coordinates><x>710</x><y>0</y><w>160</w><h>50</h></coordinates><panel_attributes>CatERingAppManager.
+userManager:
+UserManager
+</panel_attributes><additional_attributes></additional_attributes></element><element><id>Relation</id><coordinates><x>770</x><y>40</y><w>30</w><h>800</h></coordinates><panel_attributes>lt=.</panel_attributes><additional_attributes>10;10;10;780</additional_attributes></element><element><id>UMLFrame</id><coordinates><x>10</x><y>170</y><w>1770</w><h>650</h></coordinates><panel_attributes>alt 
+[!user.isChef()]
+
+--
+
+-.
+
+
+
+
+-.
+
+
+
+-.
+
+
+
+-.
+fontsize=11
+
+</panel_attributes><additional_attributes></additional_attributes></element><element><id>Relation</id><coordinates><x>540</x><y>90</y><w>260</w><h>40</h></coordinates><panel_attributes>lt=&lt;&lt;&lt;-
+getCurrentUser( )</panel_attributes><additional_attributes>240;20;10;20</additional_attributes></element><element><id>Relation</id><coordinates><x>540</x><y>110</y><w>260</w><h>40</h></coordinates><panel_attributes>lt=&lt;.
+user</panel_attributes><additional_attributes>10;20;240;20</additional_attributes></element><element><id>UMLGeneric</id><coordinates><x>1310</x><y>0</y><w>120</w><h>30</h></coordinates><panel_attributes>a: Assignment
+</panel_attributes><additional_attributes></additional_attributes></element><element><id>Relation</id><coordinates><x>1360</x><y>20</y><w>30</w><h>820</h></coordinates><panel_attributes>lt=.</panel_attributes><additional_attributes>10;10;10;800</additional_attributes></element><element><id>UMLGeneric</id><coordinates><x>770</x><y>110</y><w>20</w><h>20</h></coordinates><panel_attributes></panel_attributes><additional_attributes></additional_attributes></element><element><id>Relation</id><coordinates><x>1720</x><y>40</y><w>30</w><h>800</h></coordinates><panel_attributes>lt=.
+fg=magenta</panel_attributes><additional_attributes>10;10;10;780</additional_attributes></element><element><id>UMLGeneric</id><coordinates><x>1720</x><y>710</y><w>20</w><h>40</h></coordinates><panel_attributes>
+fg=magenta</panel_attributes><additional_attributes></additional_attributes></element><element><id>UMLGeneric</id><coordinates><x>1700</x><y>0</y><w>120</w><h>50</h></coordinates><panel_attributes>receivers:
+EVEventReceiver
+
+fg=magenta</panel_attributes><additional_attributes></additional_attributes></element><element><id>Relation</id><coordinates><x>190</x><y>180</y><w>360</w><h>40</h></coordinates><panel_attributes>lt=&lt;.
+throw UseCaseLogicException</panel_attributes><additional_attributes>10;20;340;20</additional_attributes></element><element><id>UMLGeneric</id><coordinates><x>940</x><y>0</y><w>300</w><h>50</h></coordinates><panel_attributes>CatERingAppManager.AssignmentManagement.
+assignmentManager.currentService: Service</panel_attributes><additional_attributes></additional_attributes></element><element><id>Relation</id><coordinates><x>1080</x><y>40</y><w>30</w><h>710</h></coordinates><panel_attributes>lt=.</panel_attributes><additional_attributes>10;10;10;690;10;670</additional_attributes></element><element><id>UMLGeneric</id><coordinates><x>1360</x><y>480</y><w>20</w><h>80</h></coordinates><panel_attributes></panel_attributes><additional_attributes></additional_attributes></element><element><id>Relation</id><coordinates><x>540</x><y>440</y><w>560</w><h>40</h></coordinates><panel_attributes>lt=&lt;&lt;&lt;-
+deleteAssignment(kt, a)</panel_attributes><additional_attributes>540;20;10;20</additional_attributes></element><element><id>UMLGeneric</id><coordinates><x>1550</x><y>460</y><w>20</w><h>80</h></coordinates><panel_attributes></panel_attributes><additional_attributes></additional_attributes></element><element><id>UMLFrame</id><coordinates><x>420</x><y>690</y><w>1350</w><h>80</h></coordinates><panel_attributes>for each
+rec in receivers
+fg=magenta</panel_attributes><additional_attributes></additional_attributes></element><element><id>Relation</id><coordinates><x>530</x><y>710</y><w>1210</w><h>40</h></coordinates><panel_attributes>lt=&lt;&lt;&lt;-
+updateDeletedAssignment(currentService, a)</panel_attributes><additional_attributes>1190;20;10;20</additional_attributes></element><element><id>UMLGeneric</id><coordinates><x>1440</x><y>0</y><w>250</w><h>90</h></coordinates><panel_attributes>a.tasks:
+List&lt;KitchenTask&gt;
+
+</panel_attributes><additional_attributes></additional_attributes></element><element><id>Relation</id><coordinates><x>1550</x><y>80</y><w>30</w><h>760</h></coordinates><panel_attributes>lt=.</panel_attributes><additional_attributes>10;10;10;740</additional_attributes></element><element><id>Relation</id><coordinates><x>540</x><y>620</y><w>230</w><h>60</h></coordinates><panel_attributes>lt=&lt;&lt;&lt;-
+notifyDeletedAssignment(a)</panel_attributes><additional_attributes>10;40;50;40;50;10;10;10</additional_attributes></element><element><id>Relation</id><coordinates><x>1360</x><y>480</y><w>210</w><h>40</h></coordinates><panel_attributes>lt=&lt;&lt;&lt;-
+remove(kt)</panel_attributes><additional_attributes>190;20;10;20</additional_attributes></element><element><id>Relation</id><coordinates><x>1360</x><y>500</y><w>210</w><h>40</h></coordinates><panel_attributes>lt=&lt;&lt;&lt;-
+size()</panel_attributes><additional_attributes>190;20;10;20</additional_attributes></element><element><id>Relation</id><coordinates><x>1360</x><y>520</y><w>210</w><h>40</h></coordinates><panel_attributes>lt=&lt;.
+numberOfRecipes</panel_attributes><additional_attributes>10;20;190;20</additional_attributes></element><element><id>UMLFrame</id><coordinates><x>890</x><y>560</y><w>740</w><h>90</h></coordinates><panel_attributes>alt
+fg=magenta
+
+--
+
+--
+
+
+group=group-0</panel_attributes><additional_attributes></additional_attributes></element><element><id>UMLGeneric</id><coordinates><x>930</x><y>570</y><w>140</w><h>20</h></coordinates><panel_attributes>[numberOfRecipes == 0]
+valign=center
+group=group-0</panel_attributes><additional_attributes></additional_attributes></element><element><id>UMLSpecialState</id><coordinates><x>1350</x><y>570</y><w>40</w><h>20</h></coordinates><panel_attributes>type=termination</panel_attributes><additional_attributes></additional_attributes></element><element><id>UMLGeneric</id><coordinates><x>930</x><y>620</y><w>140</w><h>20</h></coordinates><panel_attributes>[else]
+valign=center
+group=group-0</panel_attributes><additional_attributes></additional_attributes></element><element><id>UMLPackage</id><coordinates><x>160</x><y>0</y><w>100</w><h>50</h></coordinates><panel_attributes>UI</panel_attributes><additional_attributes></additional_attributes></element><element><id>UMLObject</id><coordinates><x>10</x><y>230</y><w>190</w><h>30</h></coordinates><panel_attributes>[!user.assignedEvents.contains(e)]</panel_attributes><additional_attributes></additional_attributes></element><element><id>UMLObject</id><coordinates><x>0</x><y>300</y><w>190</w><h>40</h></coordinates><panel_attributes>[ currentService == Null ]</panel_attributes><additional_attributes></additional_attributes></element><element><id>UMLObject</id><coordinates><x>10</x><y>340</y><w>120</w><h>30</h></coordinates><panel_attributes>[ !a.tasks.contains(kt) ]</panel_attributes><additional_attributes></additional_attributes></element><element><id>Relation</id><coordinates><x>190</x><y>250</y><w>360</w><h>40</h></coordinates><panel_attributes>lt=&lt;.
+throw UseCaseLogicException</panel_attributes><additional_attributes>10;20;340;20</additional_attributes></element><element><id>Relation</id><coordinates><x>190</x><y>300</y><w>360</w><h>40</h></coordinates><panel_attributes>lt=&lt;.
+throw UseCaseLogicException</panel_attributes><additional_attributes>10;20;340;20</additional_attributes></element><element><id>Relation</id><coordinates><x>190</x><y>350</y><w>360</w><h>40</h></coordinates><panel_attributes>lt=&lt;.
+throw UseCaseLogicException</panel_attributes><additional_attributes>10;20;340;20</additional_attributes></element><element><id>UMLGeneric</id><coordinates><x>1080</x><y>460</y><w>20</w><h>210</h></coordinates><panel_attributes></panel_attributes><additional_attributes></additional_attributes></element><element><id>Relation</id><coordinates><x>1090</x><y>460</y><w>290</w><h>40</h></coordinates><panel_attributes>lt=&lt;&lt;&lt;-
+deleteKitchenTask(kt)</panel_attributes><additional_attributes>270;20;10;20</additional_attributes></element></diagram>
