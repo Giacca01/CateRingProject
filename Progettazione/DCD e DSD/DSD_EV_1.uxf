@@ -1,0 +1,104 @@
+<diagram program="umletino" version="15.1"><zoom_level>8</zoom_level><element><id>UMLGeneric</id><coordinates><x>384</x><y>16</y><w>216</w><h>40</h></coordinates><panel_attributes>CatERingAppManager.eventManager:
+EventManager</panel_attributes><additional_attributes></additional_attributes></element><element><id>UMLActor</id><coordinates><x>280</x><y>0</y><w>48</w><h>88</h></coordinates><panel_attributes></panel_attributes><additional_attributes></additional_attributes></element><element><id>Relation</id><coordinates><x>296</x><y>48</y><w>24</w><h>1144</h></coordinates><panel_attributes>lt=.</panel_attributes><additional_attributes>10;10;10;1410</additional_attributes></element><element><id>Relation</id><coordinates><x>568</x><y>48</y><w>24</w><h>1144</h></coordinates><panel_attributes>lt=.</panel_attributes><additional_attributes>10;10;10;1410</additional_attributes></element><element><id>Relation</id><coordinates><x>296</x><y>80</y><w>288</w><h>32</h></coordinates><panel_attributes>lt=&lt;&lt;&lt;-
+createEvent(n, c, id, p, oc, fd)</panel_attributes><additional_attributes>340;20;10;20</additional_attributes></element><element><id>UMLGeneric</id><coordinates><x>568</x><y>88</y><w>16</w><h>1080</h></coordinates><panel_attributes></panel_attributes><additional_attributes></additional_attributes></element><element><id>UMLGeneric</id><coordinates><x>704</x><y>272</y><w>136</w><h>40</h></coordinates><panel_attributes>e:
+:Event</panel_attributes><additional_attributes></additional_attributes></element><element><id>Relation</id><coordinates><x>760</x><y>304</y><w>24</w><h>888</h></coordinates><panel_attributes>lt=.</panel_attributes><additional_attributes>10;10;10;1090</additional_attributes></element><element><id>UMLFrame</id><coordinates><x>152</x><y>144</y><w>1416</w><h>1032</h></coordinates><panel_attributes>alt 
+[!user.isOrganizer()]
+
+--
+
+
+
+-.
+
+
+
+-.
+
+fontsize=11
+</panel_attributes><additional_attributes></additional_attributes></element><element><id>Relation</id><coordinates><x>296</x><y>168</y><w>288</w><h>32</h></coordinates><panel_attributes>lt=&lt;.
+throw UseCaseLogicException</panel_attributes><additional_attributes>10;20;340;20</additional_attributes></element><element><id>Relation</id><coordinates><x>576</x><y>88</y><w>704</w><h>32</h></coordinates><panel_attributes>lt=&lt;&lt;&lt;-
+getCurrentUser( )</panel_attributes><additional_attributes>860;20;10;20</additional_attributes></element><element><id>Relation</id><coordinates><x>576</x><y>104</y><w>688</w><h>32</h></coordinates><panel_attributes>lt=&lt;.
+user</panel_attributes><additional_attributes>10;20;840;20</additional_attributes></element><element><id>UMLGeneric</id><coordinates><x>1160</x><y>16</y><w>128</w><h>48</h></coordinates><panel_attributes>CatERingAppManager.
+userManager:
+UserManager
+</panel_attributes><additional_attributes></additional_attributes></element><element><id>Relation</id><coordinates><x>1256</x><y>56</y><w>24</w><h>1136</h></coordinates><panel_attributes>lt=.</panel_attributes><additional_attributes>10;10;10;1400</additional_attributes></element><element><id>UMLGeneric</id><coordinates><x>1256</x><y>104</y><w>16</w><h>16</h></coordinates><panel_attributes></panel_attributes><additional_attributes></additional_attributes></element><element><id>Relation</id><coordinates><x>1520</x><y>48</y><w>24</w><h>1144</h></coordinates><panel_attributes>lt=.
+fg=magenta</panel_attributes><additional_attributes>10;10;10;1410</additional_attributes></element><element><id>UMLGeneric</id><coordinates><x>1520</x><y>1104</y><w>16</w><h>24</h></coordinates><panel_attributes>
+fg=magenta</panel_attributes><additional_attributes></additional_attributes></element><element><id>UMLGeneric</id><coordinates><x>1504</x><y>16</y><w>96</w><h>40</h></coordinates><panel_attributes>receivers:
+EVEventReceiver
+
+fg=magenta</panel_attributes><additional_attributes></additional_attributes></element><element><id>UMLGeneric</id><coordinates><x>896</x><y>16</y><w>240</w><h>40</h></coordinates><panel_attributes>CatERingAppManager.eventManager.
+currentEvent.summarySheet:SummarySheet
+
+</panel_attributes><additional_attributes></additional_attributes></element><element><id>Relation</id><coordinates><x>1008</x><y>48</y><w>24</w><h>1144</h></coordinates><panel_attributes>lt=.</panel_attributes><additional_attributes>10;10;10;1410</additional_attributes></element><element><id>UMLFrame</id><coordinates><x>480</x><y>1096</y><w>1080</w><h>40</h></coordinates><panel_attributes>for each
+rec in receivers
+fg=magenta</panel_attributes><additional_attributes></additional_attributes></element><element><id>Relation</id><coordinates><x>576</x><y>1104</y><w>960</w><h>32</h></coordinates><panel_attributes>lt=&lt;&lt;&lt;-
+updateEventCreated(e)</panel_attributes><additional_attributes>1180;20;10;20</additional_attributes></element><element><id>UMLGeneric</id><coordinates><x>1296</x><y>16</y><w>200</w><h>72</h></coordinates><panel_attributes>CatERingAppManager.
+eventManager.currentEvent.
+summarySheet.assignments:
+List&lt;Assignments&gt;
+
+</panel_attributes><additional_attributes></additional_attributes></element><element><id>Relation</id><coordinates><x>1384</x><y>80</y><w>24</w><h>1112</h></coordinates><panel_attributes>lt=.</panel_attributes><additional_attributes>10;10;10;1370</additional_attributes></element><element><id>Relation</id><coordinates><x>576</x><y>1056</y><w>152</w><h>48</h></coordinates><panel_attributes>lt=&lt;&lt;&lt;-
+notifyEventCreated(e)</panel_attributes><additional_attributes>10;40;50;40;50;10;10;10</additional_attributes></element><element><id>Text</id><coordinates><x>152</x><y>224</y><w>128</w><h>48</h></coordinates><panel_attributes>[c==null]
+style=wordwrap
+fontsize=11</panel_attributes><additional_attributes></additional_attributes></element><element><id>Relation</id><coordinates><x>296</x><y>232</y><w>288</w><h>32</h></coordinates><panel_attributes>lt=&lt;.
+throw UseCaseLogicException</panel_attributes><additional_attributes>10;20;340;20</additional_attributes></element><element><id>Relation</id><coordinates><x>576</x><y>328</y><w>200</w><h>32</h></coordinates><panel_attributes>lt=&lt;.
+create(n, c, id, p, oc, fd)</panel_attributes><additional_attributes>230;20;10;20</additional_attributes></element><element><id>UMLGeneric</id><coordinates><x>760</x><y>344</y><w>16</w><h>648</h></coordinates><panel_attributes></panel_attributes><additional_attributes></additional_attributes></element><element><id>Relation</id><coordinates><x>768</x><y>344</y><w>112</w><h>48</h></coordinates><panel_attributes>lt=&lt;&lt;&lt;-
+this.notes = n</panel_attributes><additional_attributes>10;40;50;40;50;10;10;10</additional_attributes></element><element><id>Relation</id><coordinates><x>768</x><y>376</y><w>112</w><h>48</h></coordinates><panel_attributes>lt=&lt;&lt;&lt;-
+this.client = c</panel_attributes><additional_attributes>10;40;50;40;50;10;10;10</additional_attributes></element><element><id>Relation</id><coordinates><x>768</x><y>408</y><w>136</w><h>48</h></coordinates><panel_attributes>lt=&lt;&lt;&lt;-
+this.initialDate = id</panel_attributes><additional_attributes>10;40;50;40;50;10;10;10</additional_attributes></element><element><id>Relation</id><coordinates><x>768</x><y>504</y><w>120</w><h>48</h></coordinates><panel_attributes>lt=&lt;&lt;&lt;-
+this.period = p</panel_attributes><additional_attributes>10;40;50;40;50;10;10;10</additional_attributes></element><element><id>UMLFrame</id><coordinates><x>656</x><y>496</y><w>896</w><h>416</h></coordinates><panel_attributes>opt
+[p!=null]
+
+--
+
+
+
+
+
+
+
+
+fontsize=11
+</panel_attributes><additional_attributes></additional_attributes></element><element><id>UMLFrame</id><coordinates><x>664</x><y>552</y><w>880</w><h>352</h></coordinates><panel_attributes>opt 
+[oc!=null]
+
+--
+
+
+fontsize=11
+</panel_attributes><additional_attributes></additional_attributes></element><element><id>Relation</id><coordinates><x>768</x><y>552</y><w>176</w><h>48</h></coordinates><panel_attributes>lt=&lt;&lt;&lt;-
+this.occurencyNumber = oc</panel_attributes><additional_attributes>10;40;50;40;50;10;10;10</additional_attributes></element><element><id>Relation</id><coordinates><x>576</x><y>968</y><w>200</w><h>32</h></coordinates><panel_attributes>lt=&lt;.
+e</panel_attributes><additional_attributes>10;20;230;20</additional_attributes></element><element><id>Relation</id><coordinates><x>768</x><y>448</y><w>152</w><h>48</h></coordinates><panel_attributes>lt=&lt;&lt;&lt;-
+this.state = "making"</panel_attributes><additional_attributes>10;40;50;40;50;10;10;10</additional_attributes></element><element><id>Relation</id><coordinates><x>576</x><y>1008</y><w>144</w><h>48</h></coordinates><panel_attributes>lt=&lt;&lt;&lt;-
+setCurrentEvent(e)</panel_attributes><additional_attributes>10;40;50;40;50;10;10;10</additional_attributes></element><element><id>UMLFrame</id><coordinates><x>672</x><y>632</y><w>864</w><h>256</h></coordinates><panel_attributes>loop oc
+
+--
+
+
+fontsize=11
+</panel_attributes><additional_attributes></additional_attributes></element><element><id>UMLGeneric</id><coordinates><x>1104</x><y>584</y><w>136</w><h>40</h></coordinates><panel_attributes>occurrences:
+:ArrayList&lt;Occurency&gt;</panel_attributes><additional_attributes></additional_attributes></element><element><id>Relation</id><coordinates><x>768</x><y>592</y><w>352</w><h>32</h></coordinates><panel_attributes>lt=&lt;.
+create()</panel_attributes><additional_attributes>420;20;10;20</additional_attributes></element><element><id>Relation</id><coordinates><x>1160</x><y>616</y><w>24</w><h>576</h></coordinates><panel_attributes>lt=.</panel_attributes><additional_attributes>10;10;10;700</additional_attributes></element><element><id>UMLGeneric</id><coordinates><x>872</x><y>640</y><w>136</w><h>40</h></coordinates><panel_attributes>o:
+:Occurency</panel_attributes><additional_attributes></additional_attributes></element><element><id>Relation</id><coordinates><x>928</x><y>672</y><w>24</w><h>520</h></coordinates><panel_attributes>lt=.</panel_attributes><additional_attributes>10;10;10;630</additional_attributes></element><element><id>Relation</id><coordinates><x>768</x><y>680</y><w>184</w><h>32</h></coordinates><panel_attributes>lt=&lt;.
+create(n, c, id)</panel_attributes><additional_attributes>210;20;10;20</additional_attributes></element><element><id>Relation</id><coordinates><x>928</x><y>704</y><w>112</w><h>48</h></coordinates><panel_attributes>lt=&lt;&lt;&lt;-
+this.notes = n</panel_attributes><additional_attributes>10;40;50;40;50;10;10;10</additional_attributes></element><element><id>Relation</id><coordinates><x>928</x><y>736</y><w>112</w><h>48</h></coordinates><panel_attributes>lt=&lt;&lt;&lt;-
+this.client = c</panel_attributes><additional_attributes>10;40;50;40;50;10;10;10</additional_attributes></element><element><id>Relation</id><coordinates><x>928</x><y>768</y><w>136</w><h>48</h></coordinates><panel_attributes>lt=&lt;&lt;&lt;-
+this.initialDate = id</panel_attributes><additional_attributes>10;40;50;40;50;10;10;10</additional_attributes></element><element><id>Relation</id><coordinates><x>928</x><y>800</y><w>152</w><h>48</h></coordinates><panel_attributes>lt=&lt;&lt;&lt;-
+this.state = "making"</panel_attributes><additional_attributes>10;40;50;40;50;10;10;10</additional_attributes></element><element><id>Relation</id><coordinates><x>768</x><y>832</y><w>184</w><h>32</h></coordinates><panel_attributes>lt=&lt;.
+o</panel_attributes><additional_attributes>10;20;210;20</additional_attributes></element><element><id>Relation</id><coordinates><x>768</x><y>856</y><w>416</w><h>32</h></coordinates><panel_attributes>lt=&lt;.
+add(o)</panel_attributes><additional_attributes>500;20;10;20</additional_attributes></element><element><id>UMLFrame</id><coordinates><x>656</x><y>920</y><w>896</w><h>48</h></coordinates><panel_attributes>opt
+[fd!=null]
+
+--
+
+
+
+
+
+
+
+
+fontsize=11
+</panel_attributes><additional_attributes></additional_attributes></element><element><id>Relation</id><coordinates><x>768</x><y>920</y><w>136</w><h>48</h></coordinates><panel_attributes>lt=&lt;&lt;&lt;-
+this.finalDate = fd</panel_attributes><additional_attributes>10;40;50;40;50;10;10;10</additional_attributes></element><element><id>Relation</id><coordinates><x>296</x><y>1136</y><w>288</w><h>32</h></coordinates><panel_attributes>lt=&lt;.
+e</panel_attributes><additional_attributes>10;20;340;20</additional_attributes></element><element><id>UMLGeneric</id><coordinates><x>576</x><y>1040</y><w>16</w><h>16</h></coordinates><panel_attributes></panel_attributes><additional_attributes></additional_attributes></element><element><id>UMLGeneric</id><coordinates><x>576</x><y>1056</y><w>16</w><h>88</h></coordinates><panel_attributes></panel_attributes><additional_attributes></additional_attributes></element></diagram>
