@@ -68,6 +68,25 @@ Ok
     
 4) ricontrollare tutto, soprattutto aggregazioni e composizioni, e dettagliare aggiungendo tutti gli attributi necessari
 
+5) In evento, data inizio e data fine sono la data di inizio e la data di fine del singolo evento.
+In caso di evento ricorrente, riguardano la singola occorrenza, non l'evento complessivo.
+Ovviamente le date dei servizi dovranno essere incluse in tale range.
+
+6) L'attrtibuto stato di evento può valere
+    -"Creazione": evento di cui stiamo svolgendo la parte "amministrativa" (nomina
+    del personale, scelta dei menù, ecc...)
+    
+    -"In Corso": evento che si sta svolgendo. Sono consentite modifiche limitate.
+    
+    -"Terminato"
+    
+    -"Annullato"
+    
+7) Sempre sugli eventi ricorrenti:
+    -il periodo c'è sempre
+    -poi c'è sempre uno tra
+        -numero di occorrenze
+        -data di fine
 
 
 Cose da aggiungere:

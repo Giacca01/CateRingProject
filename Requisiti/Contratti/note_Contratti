@@ -44,3 +44,12 @@ fare proposte è lo chef
 alla proposta di modifica, lasciando che se la veda lo chef.
 
 19) Al passo 4, può aver senso propagare la modifica a tutti gli eventi ricorrenti??
+
+20) L'evento è ricorrente se e solo se periodo è specificato
+
+20) Per definire la semantica delle creazione dell'evento ricorrente, si è assunto che il periodo sia in giorni.
+È impreciso, perchè potrebbe non esserlo, ma rende l'idea di cosa dovrebbe succedere.
+
+21) Per quanto rigurda l'annullamento dell'evento: lo fanno entrambi, quindi va messo, ma non è troppo chiaro cosa
+accada quando viene annullato (probabilmente c'è una deallocazione di risorse, tipo menù e personale).
+Deallochiamo il personale, pur non essendo condivisa, sembra un'azione sensata.

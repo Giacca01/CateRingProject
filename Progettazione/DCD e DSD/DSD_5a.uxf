@@ -1,0 +1,62 @@
+<diagram program="umletino" version="15.1"><zoom_level>11</zoom_level><element><id>UMLGeneric</id><coordinates><x>583</x><y>210</y><w>297</w><h>55</h></coordinates><panel_attributes>CatERingAppManager.eventManager:
+EventManager</panel_attributes><additional_attributes></additional_attributes></element><element><id>Relation</id><coordinates><x>275</x><y>254</y><w>33</w><h>891</h></coordinates><panel_attributes>lt=.</panel_attributes><additional_attributes>10;10;10;790</additional_attributes></element><element><id>Relation</id><coordinates><x>726</x><y>254</y><w>33</w><h>1056</h></coordinates><panel_attributes>lt=.</panel_attributes><additional_attributes>10;10;10;940</additional_attributes></element><element><id>Relation</id><coordinates><x>275</x><y>298</y><w>473</w><h>44</h></coordinates><panel_attributes>lt=&lt;&lt;&lt;-
+variationProposal(srv, rcp, cm)</panel_attributes><additional_attributes>410;20;10;20</additional_attributes></element><element><id>UMLGeneric</id><coordinates><x>726</x><y>309</y><w>22</w><h>979</h></coordinates><panel_attributes></panel_attributes><additional_attributes></additional_attributes></element><element><id>UMLFrame</id><coordinates><x>0</x><y>397</y><w>2057</w><h>913</h></coordinates><panel_attributes>alt 
+[!user.isOrganizer()]
+
+--
+
+-.
+
+
+
+-.
+
+
+-.
+
+
+-.
+
+fontsize=11
+</panel_attributes><additional_attributes></additional_attributes></element><element><id>Relation</id><coordinates><x>286</x><y>419</y><w>462</w><h>44</h></coordinates><panel_attributes>lt=&lt;.
+throw UseCaseLogicException</panel_attributes><additional_attributes>10;20;400;20</additional_attributes></element><element><id>Relation</id><coordinates><x>737</x><y>309</y><w>1045</w><h>44</h></coordinates><panel_attributes>lt=&lt;&lt;&lt;-
+getCurrentUser( )</panel_attributes><additional_attributes>930;20;10;20</additional_attributes></element><element><id>Relation</id><coordinates><x>737</x><y>331</y><w>1056</w><h>44</h></coordinates><panel_attributes>lt=&lt;.
+user</panel_attributes><additional_attributes>10;20;940;20</additional_attributes></element><element><id>UMLGeneric</id><coordinates><x>1650</x><y>210</y><w>231</w><h>55</h></coordinates><panel_attributes>CatERingAppManager.userManager:
+UserManager
+</panel_attributes><additional_attributes></additional_attributes></element><element><id>Relation</id><coordinates><x>1760</x><y>254</y><w>33</w><h>825</h></coordinates><panel_attributes>lt=.</panel_attributes><additional_attributes>10;10;10;730</additional_attributes></element><element><id>UMLGeneric</id><coordinates><x>1760</x><y>331</y><w>22</w><h>22</h></coordinates><panel_attributes></panel_attributes><additional_attributes></additional_attributes></element><element><id>Relation</id><coordinates><x>1980</x><y>254</y><w>33</w><h>1045</h></coordinates><panel_attributes>lt=.
+fg=magenta</panel_attributes><additional_attributes>10;10;10;930</additional_attributes></element><element><id>UMLGeneric</id><coordinates><x>1980</x><y>1244</y><w>22</w><h>33</h></coordinates><panel_attributes>
+fg=magenta</panel_attributes><additional_attributes></additional_attributes></element><element><id>UMLGeneric</id><coordinates><x>1892</x><y>210</y><w>209</w><h>55</h></coordinates><panel_attributes>receivers:
+EVEventReceiver
+
+fg=magenta</panel_attributes><additional_attributes></additional_attributes></element><element><id>Text</id><coordinates><x>0</x><y>474</y><w>154</w><h>33</h></coordinates><panel_attributes>[ currentEvent == NULL ]
+style=wordwrap
+fontsize=11</panel_attributes><additional_attributes></additional_attributes></element><element><id>Relation</id><coordinates><x>286</x><y>474</y><w>462</w><h>44</h></coordinates><panel_attributes>lt=&lt;.
+throw EventException</panel_attributes><additional_attributes>10;20;400;20</additional_attributes></element><element><id>UMLGeneric</id><coordinates><x>968</x><y>210</y><w>99</w><h>55</h></coordinates><panel_attributes>s:
+:Service</panel_attributes><additional_attributes></additional_attributes></element><element><id>Relation</id><coordinates><x>1001</x><y>254</y><w>33</w><h>726</h></coordinates><panel_attributes>lt=.</panel_attributes><additional_attributes>10;10;10;640</additional_attributes></element><element><id>UMLFrame</id><coordinates><x>605</x><y>1211</y><w>1430</w><h>77</h></coordinates><panel_attributes>for each
+rec in receivers
+fg=magenta</panel_attributes><additional_attributes></additional_attributes></element><element><id>Relation</id><coordinates><x>737</x><y>1233</y><w>1265</w><h>44</h></coordinates><panel_attributes>lt=&lt;&lt;&lt;-
+updateVariationProposed(srv, rcp, cm)</panel_attributes><additional_attributes>1130;20;10;20</additional_attributes></element><element><id>Relation</id><coordinates><x>737</x><y>1123</y><w>308</w><h>66</h></coordinates><panel_attributes>lt=&lt;&lt;&lt;-
+notifyVariationProposed(srv, rcp, cm)</panel_attributes><additional_attributes>10;40;50;40;50;10;10;10</additional_attributes></element><element><id>UMLGeneric</id><coordinates><x>1210</x><y>617</y><w>154</w><h>44</h></coordinates><panel_attributes>vp:
+:varationProposal</panel_attributes><additional_attributes></additional_attributes></element><element><id>Relation</id><coordinates><x>1276</x><y>650</y><w>33</w><h>231</h></coordinates><panel_attributes>lt=.</panel_attributes><additional_attributes>10;10;10;190</additional_attributes></element><element><id>UMLGeneric</id><coordinates><x>1408</x><y>210</y><w>220</w><h>55</h></coordinates><panel_attributes>ric.involvedIn
+:List&lt;VariationProposal&gt;</panel_attributes><additional_attributes></additional_attributes></element><element><id>Relation</id><coordinates><x>1496</x><y>254</y><w>33</w><h>726</h></coordinates><panel_attributes>lt=.</panel_attributes><additional_attributes>10;10;10;640</additional_attributes></element><element><id>Relation</id><coordinates><x>737</x><y>661</y><w>561</w><h>44</h></coordinates><panel_attributes>lt=&lt;&lt;&lt;-
+create(c)</panel_attributes><additional_attributes>490;20;10;20</additional_attributes></element><element><id>Relation</id><coordinates><x>737</x><y>837</y><w>561</w><h>44</h></coordinates><panel_attributes>lt=&lt;.
+vp</panel_attributes><additional_attributes>10;20;490;20</additional_attributes></element><element><id>Relation</id><coordinates><x>737</x><y>903</y><w>286</w><h>44</h></coordinates><panel_attributes>lt=&lt;&lt;&lt;-
+variationProposal(vp)</panel_attributes><additional_attributes>240;20;10;20</additional_attributes></element><element><id>UMLGeneric</id><coordinates><x>1276</x><y>672</y><w>22</w><h>187</h></coordinates><panel_attributes></panel_attributes><additional_attributes></additional_attributes></element><element><id>Relation</id><coordinates><x>1287</x><y>694</y><w>187</w><h>66</h></coordinates><panel_attributes>lt=&lt;&lt;&lt;-
+this.comment = cm</panel_attributes><additional_attributes>10;40;40;40;40;10;10;10</additional_attributes></element><element><id>Relation</id><coordinates><x>1287</x><y>749</y><w>187</w><h>66</h></coordinates><panel_attributes>lt=&lt;&lt;&lt;-
+this.accepted = false</panel_attributes><additional_attributes>10;40;40;40;40;10;10;10</additional_attributes></element><element><id>UMLGeneric</id><coordinates><x>1111</x><y>210</y><w>99</w><h>55</h></coordinates><panel_attributes>ric
+:Recipe</panel_attributes><additional_attributes></additional_attributes></element><element><id>Relation</id><coordinates><x>1144</x><y>254</y><w>33</w><h>836</h></coordinates><panel_attributes>lt=.</panel_attributes><additional_attributes>10;10;10;740</additional_attributes></element><element><id>Relation</id><coordinates><x>1287</x><y>804</y><w>165</w><h>66</h></coordinates><panel_attributes>lt=&lt;&lt;&lt;-
+this.recipe = rcp</panel_attributes><additional_attributes>10;40;40;40;40;10;10;10</additional_attributes></element><element><id>UMLPackage</id><coordinates><x>242</x><y>188</y><w>110</w><h>77</h></coordinates><panel_attributes>UI</panel_attributes><additional_attributes></additional_attributes></element><element><id>Text</id><coordinates><x>0</x><y>518</y><w>231</w><h>33</h></coordinates><panel_attributes>[ currentEvent.state != "Creation" ]
+style=wordwrap
+fontsize=11</panel_attributes><additional_attributes></additional_attributes></element><element><id>Relation</id><coordinates><x>286</x><y>518</y><w>462</w><h>44</h></coordinates><panel_attributes>lt=&lt;.
+throw EventException</panel_attributes><additional_attributes>10;20;400;20</additional_attributes></element><element><id>Text</id><coordinates><x>0</x><y>562</y><w>275</w><h>33</h></coordinates><panel_attributes>[ !currentEvent.relatedServices.contains(srv) ]
+style=wordwrap
+fontsize=11</panel_attributes><additional_attributes></additional_attributes></element><element><id>Relation</id><coordinates><x>286</x><y>562</y><w>462</w><h>44</h></coordinates><panel_attributes>lt=&lt;.
+throw EventException</panel_attributes><additional_attributes>10;20;400;20</additional_attributes></element><element><id>Relation</id><coordinates><x>1012</x><y>914</y><w>506</w><h>44</h></coordinates><panel_attributes>lt=&lt;&lt;&lt;-
+add(vp)</panel_attributes><additional_attributes>440;20;10;20</additional_attributes></element><element><id>UMLGeneric</id><coordinates><x>1001</x><y>925</y><w>22</w><h>44</h></coordinates><panel_attributes></panel_attributes><additional_attributes></additional_attributes></element><element><id>UMLGeneric</id><coordinates><x>1496</x><y>936</y><w>22</w><h>22</h></coordinates><panel_attributes></panel_attributes><additional_attributes></additional_attributes></element><element><id>Relation</id><coordinates><x>1012</x><y>936</y><w>506</w><h>44</h></coordinates><panel_attributes>lt=&lt;.
+wasAdded</panel_attributes><additional_attributes>10;20;440;20</additional_attributes></element><element><id>Relation</id><coordinates><x>737</x><y>947</y><w>286</w><h>44</h></coordinates><panel_attributes>lt=&lt;.
+wasAdded</panel_attributes><additional_attributes>10;20;240;20</additional_attributes></element><element><id>UMLGeneric</id><coordinates><x>1144</x><y>1024</y><w>22</w><h>44</h></coordinates><panel_attributes></panel_attributes><additional_attributes></additional_attributes></element><element><id>Relation</id><coordinates><x>737</x><y>1002</y><w>429</w><h>44</h></coordinates><panel_attributes>lt=&lt;&lt;&lt;-
+variationProposal(vp)</panel_attributes><additional_attributes>370;20;10;20</additional_attributes></element><element><id>UMLGeneric</id><coordinates><x>1760</x><y>1035</y><w>22</w><h>22</h></coordinates><panel_attributes></panel_attributes><additional_attributes></additional_attributes></element><element><id>Relation</id><coordinates><x>1155</x><y>1013</y><w>627</w><h>44</h></coordinates><panel_attributes>lt=&lt;&lt;&lt;-
+add(vp)</panel_attributes><additional_attributes>550;20;10;20</additional_attributes></element><element><id>Relation</id><coordinates><x>1155</x><y>1035</y><w>627</w><h>44</h></coordinates><panel_attributes>lt=&lt;.
+wasAdded</panel_attributes><additional_attributes>10;20;550;20</additional_attributes></element><element><id>Relation</id><coordinates><x>737</x><y>1046</y><w>429</w><h>44</h></coordinates><panel_attributes>lt=&lt;.
+wasAdded</panel_attributes><additional_attributes>10;20;370;20</additional_attributes></element><element><id>Relation</id><coordinates><x>275</x><y>1090</y><w>473</w><h>44</h></coordinates><panel_attributes>lt=&lt;.
+vp</panel_attributes><additional_attributes>10;20;410;20</additional_attributes></element><element><id>UMLGeneric</id><coordinates><x>275</x><y>320</y><w>22</w><h>803</h></coordinates><panel_attributes></panel_attributes><additional_attributes></additional_attributes></element></diagram>
