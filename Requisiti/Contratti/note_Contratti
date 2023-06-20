@@ -53,3 +53,27 @@ alla proposta di modifica, lasciando che se la veda lo chef.
 21) Per quanto rigurda l'annullamento dell'evento: lo fanno entrambi, quindi va messo, ma non è troppo chiaro cosa
 accada quando viene annullato (probabilmente c'è una deallocazione di risorse, tipo menù e personale).
 Deallochiamo il personale, pur non essendo condivisa, sembra un'azione sensata.
+
+22) Il passo 1 fissa l'evento su cui lavorare, creandolo, modificandolo, oppure semplicemente "aprendolo"
+
+23) Per quanto rigurda la modifica, non è ben chiaro cosa si possa cambiare anche ad evento in corso.
+Nel dubbio, consentiamo di modificare tutto, limitando soltando la cancellazione e l'annullamento dell'evento.
+
+24) Dalle user stories, sembrerebbe che l'annullamento preveda il mantenimento delle informazioni, mentre l'eliminazione
+la cancellazione totale. Scegliamo di adottare questa prospettiva.
+Scegliamo di non consentire la cancellazione di eventi terminati: avrebbe poco senso.
+
+25) Propagazione
+
+26) Anche per i servizi, solo l'eliminazione cancella tutte le informazioni
+
+27) I servizi si possono annullare??
+
+28) ATTENZIONE!!! La verifica sullo stato dell'evento fa fatta comunque, potrebbero averne aperto uno qualsiasi.
+
+29) Modifica di menù ed evento di un servizio: Quando vengono cambiate queste cose il servizio esistente
+diventa abbastanza inutile. Cambiando il menù cambiano anche i compiti, e, quindi probabilmente anche il personale.
+Similmente cambiando l'evento cambiano le date e, quindi, il personale disponibile. LO stesso discorso vale per la modifica della data.
+D'altro canto, un'operazione di modifica va fornita: non ha senso dover ricreare da zero l'evento solo per cambiarne
+la data oppure il valore pubblicato.
+Il miglior compromesso è consentire la modifica di questi dati, cancellando e ricreando l'evento per gli altri.
