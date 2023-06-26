@@ -41,3 +41,19 @@ La classe CatERing consentirà quindi di accedere ai controller ed effettuare i 
 
 
 Conviene usare IntelliJ
+
+
+Sviluppo del DB
+
+Anche questa attività viene eseguita in modo iterativo, in particolare, dettagliamo
+prima e principalmente le tabelle relative all'Uc preso in esame durante l'iterazione corrente.
+
+Per connettersi, bisogna avviare il container docker descritto da docker-compose nella cartella database.
+Questo lancia due server, uno (adminer) per gestire il db ed uno (mysql) con il db vero e proprio.
+Connettendosi a http://localhost:8080/ viene lanciato il db
+
+Password temporanea: 4321test
+
+Si procede
+    1) Creando il db catering
+    2) importando ed eseguendo lo script presente nella cartella db

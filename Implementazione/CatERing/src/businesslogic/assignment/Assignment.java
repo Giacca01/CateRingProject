@@ -86,9 +86,12 @@ public class Assignment {
     }
 
     public static Assignment loadAssignmentById(int assignment_id) {
-        if (loadedAssignments.containsKey(assignment_id)) return loadedAssignments.get(assignment_id);
+        // qualora il compito sia già stato caricato evito di rileggerlo
+        if (loadedAssignments.containsKey(assignment_id))
+            return loadedAssignments.get(assignment_id);
 
         Assignment a = new Assignment();
+        // costruisce la rappresentazione del singolo compito
         String assignmentQuery = "SELECT * FROM Assignments WHERE id='" + assignment_id + "'";
         PersistenceManager.executeQuery(assignmentQuery, new ResultHandler() {
             @Override
@@ -101,6 +104,7 @@ public class Assignment {
         });
         if (a.id > 0) {
             loadedAssignments.put(a.id, a);
+            // recupero l'elenco di mansioni associate al compito
             String featQ = "SELECT kitchentask_id FROM AssignmentKitchenTasks WHERE assignment_id = " + a.id;
             PersistenceManager.executeQuery(featQ, new ResultHandler() {
                 @Override
@@ -188,7 +192,8 @@ public class Assignment {
 
     public static void saveSummarySheet(ServiceInfo srv) {
         ObservableList<Assignment> a = srv.getAssignments();
-        // Save assignments
+        // Registrare il foglio riepilogativo vuol dire registrare gli assignment
+        // che lo compongono
         String assignmentInsert = "INSERT INTO Assignments (toBePrepared) VALUES (true)";
         int[] result = PersistenceManager.executeBatchUpdate(assignmentInsert, a.size(), new BatchUpdateHandler() {
             @Override
@@ -201,13 +206,15 @@ public class Assignment {
                 rs.beforeFirst();
                 int index = 0;
                 while (rs.next()) {
-                    a.get(index).setId(rs.getInt(1));
+                    a.get(index).setId(rs.getInt(1)); // salvo l'id del nuovo assignment nel vettore
                     index++;
                 }
             }
         });
 
         if (result[0] > 0) {
+            // registrare un assignment vuol dire registrare le mansioni di cucina
+            // che lo formano
             for (Assignment as : a) {
                 as.saveKitchenTasks(as.getId(), as.getTasks());
             }
@@ -231,8 +238,10 @@ public class Assignment {
         }
     }
 
-    public static void saveNewAssignment(ServiceInfo srv, Assignment a, KitchenTask kt) {
+    public static void saveNewAssignment(Assignment a, KitchenTask kt) {
         a.saveKitchenTask(a.getId(), kt);
+        // aggiorniamo la rappresentazione del compito interna al programma
+        // in modo che tenga conto delle nuove info registrate su db
         loadedAssignments.get(a.id).tasks.removeAll();
         loadedAssignments.get(a.id).tasks = a.getTasks();
     }
@@ -277,16 +286,22 @@ public class Assignment {
     }
 
     public void saveChangedAssociation(Assignment a, Shift cs, Shift ns, PersonnelMember cc, PersonnelMember nc) {
-        cs.changeAssociation(a, cs, ns);
-        cc.changeAssociation(a, cc, nc);
+        if (ns != null)
+            cs.changeAssociation(a, cs, ns);
+
+        if (cc != null)
+            cc.changeAssociation(a, cc, nc);
     }
 
     public void saveDeletedAssociation(Assignment a, Shift s, PersonnelMember c) {
         s.removeAssociation(a, s);
-        c.removeAssociation(a, c);
+
+        if (c != null)
+            c.removeAssociation(a, c);
     }
 
     public void saveAssignedDetails(Assignment a) {
+        // Esecuzione query
         String upd = "UPDATE Assignments SET timeEstimate = ?, quantity = ? WHERE id = ?";
         PersistenceManager.executeBatchUpdate(upd, 1, new BatchUpdateHandler() {
             @Override
@@ -301,6 +316,8 @@ public class Assignment {
                 // no generated ids to handle
             }
         });
+
+        // Aggiornamento rappresentazione interna al programma
         loadedAssignments.get(a.id).timeEstimate = a.timeEstimate;
         loadedAssignments.get(a.id).quantity = a.quantity;
     }

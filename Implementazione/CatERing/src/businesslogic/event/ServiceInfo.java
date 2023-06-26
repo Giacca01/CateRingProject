@@ -1,5 +1,6 @@
 package businesslogic.event;
 
+import businesslogic.UseCaseLogicException;
 import businesslogic.assignment.Assignment;
 import businesslogic.menu.Menu;
 import businesslogic.recipe.KitchenTask;
@@ -38,6 +39,9 @@ public class ServiceInfo implements EventItemInfo {
     public void createSummarySheet(EventInfo e, Menu m){
         ObservableList<Recipe> recipes = m.getRecipes();
         for (Recipe r: recipes) {
+            // recupero la lista di attività da svolgere
+            // nell'ambito del compito (tutte quelle
+            // che servono per completare una ricetta)
             Assignment a = new Assignment(r.getKitchenTasks());
             assignments.add(a);
         }
@@ -102,6 +106,7 @@ public class ServiceInfo implements EventItemInfo {
 
     public void deleteAssignment(KitchenTask kt, Assignment a) {
         a.deleteKitchenTask(kt);
+        // non ci sono più mansioni da svolgere nel compito, quindi lo eliminiamo
         if(a.getTasksSize() != 0){
 
         }
@@ -111,12 +116,13 @@ public class ServiceInfo implements EventItemInfo {
         Assignment.saveSummarySheet(srv);
     }
 
-    public void sortSommarySheet(Assignment a, int position) {
+    public void sortSommarySheet(Assignment a, int position) throws UseCaseLogicException {
         int assignmentsSize = this.assignments.size();
-        if(assignmentsSize >= position && position >= 0){
+        if(assignmentsSize >= position){
             this.assignments.remove(a);
             this.assignments.add(position, a);
-        }
+        } else
+            throw new UseCaseLogicException();
     }
 
     public Assignment addAssignmentDetails(Assignment a, Integer time, Integer amount) {

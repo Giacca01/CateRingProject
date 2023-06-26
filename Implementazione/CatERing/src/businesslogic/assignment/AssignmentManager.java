@@ -28,7 +28,11 @@ public class AssignmentManager {
     public void createSummarySheet(EventInfo e, ServiceInfo srv, Menu m) throws UseCaseLogicException {
         User user = CatERing.getInstance().getUserManager().getCurrentUser();
 
-        if (!user.isChef() || !user.getAssignedEvents().contains(e) || !e.getRelatedServices().contains(srv)) { //|| !m.getUsedIn().contains(srv)) {
+        if (!user.isChef() ||
+                !user.getAssignedEvents().contains(e) ||
+                !e.getRelatedServices().contains(srv) ||
+                !m.getUsedIn().contains(srv)
+        ) {
             throw new UseCaseLogicException();
         }
 
@@ -49,27 +53,27 @@ public class AssignmentManager {
         }
 
         this.openedServices.add(srv);
-        this.setCurrentEvent(e);
-        this.setCurrentService(srv);
-
+        this.currentService = srv;
         this.notifySummarySheetOpened(this.currentService);
     }
 
-    public void addAssignment(Assignment a, KitchenTask kt) throws UseCaseLogicException {
+    public void addAssignment(KitchenTask kt) throws UseCaseLogicException {
+        Assignment a;
         User user = CatERing.getInstance().getUserManager().getCurrentUser();
 
-        if (!user.isChef() || !user.getAssignedEvents().contains(this.currentEvent)) {
+
+        if (!user.isChef() || this.currentService == null) {
             throw new UseCaseLogicException();
         }
 
-        a.addTask(kt);
+        a = this.currentService.addAssignment(kt);
         this.notifyAddedAssignment(a, kt);
     }
 
     public void deleteAssignment(KitchenTask kt, Assignment a) throws UseCaseLogicException {
         User user = CatERing.getInstance().getUserManager().getCurrentUser();
 
-        if (!user.isChef() || !user.getAssignedEvents().contains(this.currentEvent) || currentService == null || !a.getTasks().contains(kt)) {
+        if (!user.isChef() || currentService == null || !a.getTasks().contains(kt)) {
             throw new UseCaseLogicException();
         }
 
@@ -80,7 +84,7 @@ public class AssignmentManager {
     public void sortSummarySheet(Assignment a, int position) throws UseCaseLogicException {
         User user = CatERing.getInstance().getUserManager().getCurrentUser();
 
-        if (!user.isChef()) {
+        if (!user.isChef() || currentService == null) {
             throw new UseCaseLogicException();
         }
 
@@ -94,23 +98,25 @@ public class AssignmentManager {
 
     public ObservableList<Shift> showShiftTable() throws UseCaseLogicException {
         User user = CatERing.getInstance().getUserManager().getCurrentUser();
+        ObservableList<Shift> result = null;
 
-        if (!user.isChef() || !user.getAssignedEvents().contains(this.currentEvent)) {
+        if (!user.isChef()) {
             throw new UseCaseLogicException();
         }
 
-        if (CatERing.getInstance().getShiftManager().getAllShifts() != null) {
-            this.notifyShiftsTablePrinted();
-            return CatERing.getInstance().getShiftManager().getAllShifts();
-        } else {
-            this.notifyShiftsTablePrinted();
-            return FXCollections.observableArrayList();
-        }
+
+        if (CatERing.getInstance().getShiftManager().getAllShifts() != null)
+            result = CatERing.getInstance().getShiftManager().getAllShifts();
+        else
+            result = FXCollections.observableArrayList();
+
+        this.notifyShiftsTablePrinted();
+        return result;
     }
 
     public void assignTask(Assignment a, Shift s, PersonnelMember c) throws UseCaseLogicException {
         User user = CatERing.getInstance().getUserManager().getCurrentUser();
-        if (!user.isChef() || !this.currentService.getAssignments().contains(a) || s.isFull() || !a.hasToBePrepared()) {
+        if (!user.isChef() || this.currentService == null || !this.currentService.getAssignments().contains(a) || s.isFull() || !a.hasToBePrepared()) {
             throw new UseCaseLogicException();
         }
 
@@ -118,15 +124,13 @@ public class AssignmentManager {
 
         if (c != null)
             c.addAssignment(a);
-        else
-            throw new UseCaseLogicException();
 
         this.notifyAssignmentAdded(this.currentService, s, a, c);
     }
 
     public Assignment markAsDone(Assignment a, Shift s, PersonnelMember c) throws UseCaseLogicException {
         User user = CatERing.getInstance().getUserManager().getCurrentUser();
-        if (!user.isChef() || !this.currentService.getAssignments().contains(a)) {
+        if (!user.isChef() || this.currentService == null || !this.currentService.getAssignments().contains(a)) {
             throw new UseCaseLogicException();
         }
 
@@ -143,19 +147,20 @@ public class AssignmentManager {
 
     public void changeAssociation(Assignment a, Shift currS, Shift newS, PersonnelMember currC, PersonnelMember newC) throws UseCaseLogicException {
         User user = CatERing.getInstance().getUserManager().getCurrentUser();
-        if (!user.isChef() || !this.currentService.getAssignments().contains(a) || currS == null || !currS.getTasksToComplete().contains(a)) {
+        if (!user.isChef() || this.currentService == null || !this.currentService.getAssignments().contains(a) || currS == null || !currS.getTasksToComplete().contains(a)) {
             throw new UseCaseLogicException();
         }
 
         if (newS != null) {
             currS.deleteAssociation(a);
             newS.addAssignment(a);
-        }
+        } else
+            throw new UseCaseLogicException();
 
         if (currC != null && newC != null) {
             currC.deleteAssociation(a);
             newC.addAssignment(a);
-        } else
+        } else if (currC != null && newC == null)
             throw new UseCaseLogicException();
 
         this.notifyAssociationChanged(a, currS, newS, currC, newC);
@@ -163,7 +168,12 @@ public class AssignmentManager {
 
     public Assignment deleteAssociation(Assignment a, Shift s, PersonnelMember c) throws UseCaseLogicException {
         User user = CatERing.getInstance().getUserManager().getCurrentUser();
-        if (!user.isChef() || !this.currentService.getAssignments().contains(a) || s == null || !s.getTasksToComplete().contains(a)) {
+        if (!user.isChef() ||
+                this.currentService == null ||
+                !this.currentService.getAssignments().contains(a) ||
+                s == null ||
+                !s.getTasksToComplete().contains(a)
+        ) {
             throw new UseCaseLogicException();
         }
 
@@ -224,6 +234,7 @@ public class AssignmentManager {
     }
 
     private void notifySummarySheetOpened(ServiceInfo srv) {
+        // non sappiamo chi sia il ricevente: l'interfaccia garantisce basso accoppiamento
         for (AssignmentEventReceiver ar : this.eventReceivers) {
             ar.updateSummarySheetOpened(this.currentService);
         }

@@ -322,6 +322,7 @@ public class Menu {
     public static void saveNewMenu(Menu m) {
         String menuInsert = "INSERT INTO catering.Menus (title, owner_id, published) VALUES (?, ?, ?);";
         int[] result = PersistenceManager.executeBatchUpdate(menuInsert, 1, new BatchUpdateHandler() {
+            // assegna valori ai parametri indicati con ?
             @Override
             public void handleBatchItem(PreparedStatement ps, int batchCount) throws SQLException {
                 ps.setString(1, PersistenceManager.escapeString(m.title));
@@ -329,6 +330,7 @@ public class Menu {
                 ps.setBoolean(3, m.published);
             }
 
+            // trattamento nuovi id creati durante esecuzione query
             @Override
             public void handleGeneratedIds(ResultSet rs, int count) throws SQLException {
                 // should be only one
@@ -344,6 +346,9 @@ public class Menu {
 
             // salva le sezioni
             if (m.sections.size() > 0) {
+                // è cruciale che vengano aggiunte tante cose
+                // in un colpo solo, per non vanificare
+                // l'esecuzione batch
                 Section.saveAllNewSections(m.id, m.sections);
             }
 
@@ -381,6 +386,7 @@ public class Menu {
         String featureInsert = "INSERT INTO catering.MenuFeatures (menu_id, name, value) VALUES (?, ?, ?)";
         String[] features = m.featuresMap.keySet().toArray(new String[0]);
         PersistenceManager.executeBatchUpdate(featureInsert, features.length, new BatchUpdateHandler() {
+            // viene richiamata una volta per ogni feature
             @Override
             public void handleBatchItem(PreparedStatement ps, int batchCount) throws SQLException {
                 ps.setInt(1, m.id);

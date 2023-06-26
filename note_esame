@@ -1,0 +1,97 @@
+Pattern codice:
+    -low coupling (abbiamo un metodo generico per eseguire le query, in modo da ridurre le dipendenze
+    tra il persistence manager ed il resto), a tal fine si usano anche le due interfacce presenti in persistence
+    
+    -in assignment persistance abbiamo usato information expert, perchè, ad esempio, il compito di registrare
+    l'aggiunta di un compito nel turno spetta al turno stesso, cioè a chi possiede le info per fare ciò
+    
+    -in realtà, la generica classe viene implementata traducedo
+        -il dcd, per le proprietà strutturali e le operazioni
+        -il dsd, per quanto riguarda il corpo dei metodi
+        
+        
+DSD/DCD
+
+Per quanto riguarda l'architettura logica, abbiamo organizzato le classi (e, quindi, il codice) in packages, cercando
+il più possibile di ottenere alta coesione e basso accoppiamento.
+Quindi nei package ci sono tutte le classi che servono per modellare via software un concetto significativo della realtà
+(ad esempio, MenùManagement contiene tutte le classi inserite (principalmente) per modellare il concetto di Menù).
+Ogni package ha un manager, cioè una classe che fa da controller grasp.
+Esso riceve richieste di esecuzione di operazioni di sistema, corrispondenti ad eventi di sistema e generati dal
+controller mvc, e ne coordina l'esecuzione, ripartendo i compiti tra i vari oggetti necessari.
+Abbiamo scelto di dotarci di un controller diverso per ogni package, evitando un'unica classe che sarebbe risultata poco
+coese e fortemente accoppiata: in questo progetto vi sono infatti molte operazioni di sistema).
+Il controller fa anche da unico punto di ingresso al package, dispensando altre classe dal conoscere i dettagli implementativi
+delle operazioni (ad es. lo user manager evita che tutti sappiano come venga realizzato un utente)
+
+
+DSD 1
+
+Registriamo il servizio nella lista, perchè consentiamo l'apertura di più fogli riepilogativo.
+Il foglio di lavoro è quello creato/aperto per ultimo.
+Deleghiamo la creazione del foglio al servizio, perchè il primo è una vista del secondo, che quindi lo contiene strettamente.
+Menù item rappresenta la singola voce di menù. GetItemRecipe restituisce la ricetta associata alla voce di menù.
+HandleBatchItem imposta il valore dei parametri
+
+DSD 1a
+La lista dei servizi aperti è del manager, in modo consistente al fatto che quest'ultimo deve memorizzare lo stato dell'uc.
+
+
+DSD 2
+Gli unici dettagli del compito che impostiamo in fase di creazione sono la mansione da svolgere ed il fatto che vada effettivamente eseguita.
+Il resto verrà specificato in fase di modifica/aggiunta dettagli.
+In generale, salvare le cose su db significa:
+    1) registrare, con delega opportuna, gli oggetti che compogono quello corrente sul db
+    2) aggiornare la rappresentazione interna al programma dell'oggetto salvato
+    
+In generale, nel processamento dei risultati di qualsiasi query aggiorniamo/costruiamo/cancelliamo la rappresentazione dei dati interna al programma.
+    
+    
+DSD 2a
+La cancellazione del compito significa:
+    -eliminare l'associazione compito-kitchen task
+    -eliminare l'assignment (propagare la modifica, in modo da sganciarlo da tutto il resto)
+    
+DSD 3:
+La lista degli assignment viene impostata durante la creazione del servizio. 
+(In caso di apertura, il servizio che riceviamo dall'utente è già stato creato, quindi
+c'è già stata la fase di lettura dei compiti)
+   
+DSD 4:
+L'apertura del tabellone dei turni porta all'aggiornamento della rappresentazione dei turni interna al programma.
+Ricordare che foglio riepilogativo e tabellone sono due viste dei compiti, con la differenza che:
+    -il foglio li raggruppa per servizio
+    -il tabellone li raggruppa per turno
+Non c'è salvataggio su db, perchè si tratta di un'interrogazione.
+Nella lettura da db dei compiti, si poteva fare una join tra compiti, mansioni e turni.
+Sarebbe stato (forse) più veloce, rispetto a fare query separate, ma avrebbe comportato
+una duplicazione del codice, visto che il recupero dei dati del singolo compito serve anche in altre parti.   
+
+DSD 5b
+IMponiamo che lo shift sia impostato: senza, contando che potrebbe mancare, legittimamente anche il cuoco, non ci sarebbe
+nulla da modificare.
+ !this.currentService.getAssignments().contains(a)  serve a controllare che lo chef non modifichi roba non sua.
+    
+DSD 6:
+Eliminiamo l'assignment dalla lista per evitare la presenza di copie diverse dello stesso oggetto.
+    
+In tutti i dsd:
+    -sistemare la restituzione di valori all'UI    
+    
+    -rivedere currentEvent
+    
+    -notify segnala il verificarsi dell'evento: è un po' come un interrupt, che "interrompe" il flusso di esecuzione
+    -update invece notifica a tutti i listener il verificarsi dell'evento
+    
+    -rivedere cancellazione assignment
+    
+    -ha senso l'apertura del servizio? Così come l'abbiamo implementata serve solo ad impostare il servizio di lavoro
+     che però esiste già, non c'è alcuna lettura di informazioni.
+     
+     -rivedere l'apertura del foglio: bisogna modificarla in modo da passare solo l'id del servizio e non tutto il servizio.
+     Questo significa anche leggere da db gli assignment
+     
+     -Eseguire, e vedere come si usi e come vengano gestite le eccezioni
+     
+     -Nel dsd 5, Sostituire PersonelMember con Cook nelle signature, in modo che non venga passato per sbaglio un cuoco.
+      In generale, aggiungere le le classi cook e service personnel.

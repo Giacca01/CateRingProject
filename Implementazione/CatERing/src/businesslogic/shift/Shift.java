@@ -60,10 +60,17 @@ public class Shift {
         ArrayList<Shift> oldShifts = new ArrayList<>();
         ArrayList<Shift> newShifts = new ArrayList<>();
 
+        // con le prossime tre query costruiamo la rappresentazione
+        // dei turni interna al programma, composta da:
+        //      1) dati generali del turno
+        //      2) compiti associati al turno
         PersistenceManager.executeQuery(query, new ResultHandler() {
             @Override
             public void handle(ResultSet rs) throws SQLException {
                 int id = rs.getInt("id");
+                // distinguiamo tra servizi nuovi e quelli già noti
+                // per cancellare eliminare, dalla rappresentazione
+                // di questi ultimi, la lista dei compiti e ricrearla
                 if (loadedShifts.containsKey(id)) {
                     Shift s = loadedShifts.get(id);
                     s.full = rs.getBoolean("full");
@@ -79,11 +86,12 @@ public class Shift {
 
         for (int i = 0; i < newShifts.size(); i++) {
             Shift s = newShifts.get(i);
-
+            // recuperiamo i compiti associati al turno
             String featQ = "SELECT assignment_id FROM ShiftAssignment WHERE shift_id = " + s.id;
             PersistenceManager.executeQuery(featQ, new ResultHandler() {
                 @Override
                 public void handle(ResultSet rs) throws SQLException {
+                    // recuperiamo i dettagli del compito
                     s.tasksToComplete.add(Assignment.loadAssignmentById(rs.getInt("assignment_id")));
                 }
             });
@@ -122,7 +130,7 @@ public class Shift {
             }
         });
 
-        if (result[0] > 0) { // assignment effettivamente inserito
+        if (result[0] > 0) { // assignment effettivamente inserito ==> aggiorno la rappresentazione interna al programma
             loadedShifts.get(shift.id).tasksToComplete.add(a);
         }
     }

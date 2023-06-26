@@ -6,6 +6,11 @@ import businesslogic.menu.MenuEventReceiver;
 import businesslogic.menu.MenuItem;
 import businesslogic.menu.Section;
 
+/*
+* È un listener degli eventi di Menù.
+* Il suo scopo è reagire ai cambi di stato di quest'ultimo per salvare le informazioni
+* permanenti
+* */
 public class MenuPersistence implements MenuEventReceiver {
 
     @Override

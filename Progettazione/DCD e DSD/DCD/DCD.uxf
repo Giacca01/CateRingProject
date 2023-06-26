@@ -54,13 +54,14 @@ description: String
 --
 +create(rec: Recipe, desc?: String)
 +create(mi: MenuItem)
++getItemRecipe()
 
 fg=gray</panel_attributes><additional_attributes></additional_attributes></element><element><id>UMLClass</id><coordinates><x>824</x><y>104</y><w>96</w><h>56</h></coordinates><panel_attributes>Recipe
 fg=gray
 --
 -name
 --
-</panel_attributes><additional_attributes></additional_attributes></element><element><id>Relation</id><coordinates><x>728</x><y>112</y><w>112</w><h>336</h></coordinates><panel_attributes>lt=&lt;-
++getKitchenTasks()</panel_attributes><additional_attributes></additional_attributes></element><element><id>Relation</id><coordinates><x>728</x><y>112</y><w>112</w><h>336</h></coordinates><panel_attributes>lt=&lt;-
 itemRecipe
 fg=gray</panel_attributes><additional_attributes>120;10;10;70;10;400</additional_attributes></element><element><id>Relation</id><coordinates><x>600</x><y>304</y><w>64</w><h>144</h></coordinates><panel_attributes>lt=&lt;-
 m1=0..n
@@ -72,6 +73,7 @@ name: String
 +create(name: String)
 +create(sec: Section)
 +addItem(mi: MenuItem)
++getSectionRecipes()
 
 fg=gray</panel_attributes><additional_attributes></additional_attributes></element><element><id>Relation</id><coordinates><x>424</x><y>264</y><w>56</w><h>120</h></coordinates><panel_attributes>lt=&lt;-
 m1=0..n

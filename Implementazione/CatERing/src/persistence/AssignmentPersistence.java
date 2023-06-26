@@ -7,9 +7,15 @@ import businesslogic.event.ServiceInfo;
 import businesslogic.recipe.KitchenTask;
 import businesslogic.shift.Shift;
 
+/*
+* Listener della classe AssignmentManager: reagisce
+* ai cambiamenti di quest'ultimo, per salvare su db
+* le informazioni relative ai compiti che vogliamo memorizzare
+* in modo permanente*/
 public class AssignmentPersistence implements AssignmentEventReceiver {
     @Override
     public void updateSummarySheetCreated(ServiceInfo srv) {
+        // per noi summary sheet e servizio si equivalgono
         srv.saveSummarySheet(srv);
     }
 
@@ -20,7 +26,10 @@ public class AssignmentPersistence implements AssignmentEventReceiver {
 
     @Override
     public void updateAddedAssignment(ServiceInfo currentService, Assignment a, KitchenTask kt) {
-        a.saveNewAssignment(currentService, a, kt);
+        // il salvataggio dell'assignment è implementato dall'assignment stesso
+        // per applicazione di information expert e per evitare che la classe della persistenza
+        // diventi poco coesa
+        a.saveNewAssignment(a, kt);
     }
 
     @Override
@@ -40,14 +49,20 @@ public class AssignmentPersistence implements AssignmentEventReceiver {
 
     @Override
     public void updateAssignmentAdded(ServiceInfo currentService, Shift shift, Assignment a, PersonnelMember c) {
+        // registra il compito nel turno
         shift.saveNewAssignment(currentService, shift, a);
-        c.saveNewMemberAssignment(currentService, a, c);
+        // registra l'assegnazione del compito al membro del personale
+        if (c != null)
+            c.saveNewMemberAssignment(currentService, a, c);
     }
 
     @Override
     public void updateAssignmentMarkedDone(Assignment a, Shift s, PersonnelMember c) {
-        s.removeAssociation(a, s);
-        c.removeAssociation(a, c);
+        if (s != null)
+            s.removeAssociation(a, s);
+
+        if (c != null)
+            c.removeAssociation(a, c);
         a.saveMarkAsDone(a);
     }
 
