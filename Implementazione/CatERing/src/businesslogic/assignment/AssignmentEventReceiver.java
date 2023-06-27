@@ -1,6 +1,6 @@
 package businesslogic.assignment;
 
-import businesslogic.employee.PersonnelMember;
+import businesslogic.employee.Cook;
 import businesslogic.event.ServiceInfo;
 import businesslogic.recipe.KitchenTask;
 import businesslogic.shift.Shift;
@@ -15,13 +15,13 @@ public interface AssignmentEventReceiver {
 
     void updateShiftsTablePrinted();
 
-    void updateAssignmentAdded(ServiceInfo currentService, Shift shift, Assignment a, PersonnelMember c);
+    void updateAssignmentAdded(ServiceInfo currentService, Shift shift, Assignment a, Cook c);
 
-    void updateAssignmentMarkedDone(Assignment a, Shift s, PersonnelMember c);
+    void updateAssignmentMarkedDone(Assignment a, Shift s, Cook c);
 
-    void updateAssociationChanged(Assignment a, Shift cs, Shift ns, PersonnelMember cc, PersonnelMember nc);
+    void updateAssociationChanged(Assignment a, Shift cs, Shift ns, Cook cc, Cook nc);
 
-    void updateAssociationRemoved(Assignment a, Shift s, PersonnelMember c);
+    void updateAssociationRemoved(Assignment a, Shift s, Cook c);
 
     void updateAssignmentDetailsSet(Assignment a);
 

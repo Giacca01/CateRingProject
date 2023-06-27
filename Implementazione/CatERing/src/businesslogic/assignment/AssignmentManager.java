@@ -2,7 +2,7 @@ package businesslogic.assignment;
 
 import businesslogic.CatERing;
 import businesslogic.UseCaseLogicException;
-import businesslogic.employee.PersonnelMember;
+import businesslogic.employee.Cook;
 import businesslogic.event.EventInfo;
 import businesslogic.event.ServiceInfo;
 import businesslogic.menu.Menu;
@@ -31,6 +31,7 @@ public class AssignmentManager {
         if (!user.isChef() ||
                 !user.getAssignedEvents().contains(e) ||
                 !e.getRelatedServices().contains(srv) ||
+                //TODO: getUsedIn non funziona
                 !m.getUsedIn().contains(srv)
         ) {
             throw new UseCaseLogicException();
@@ -45,8 +46,10 @@ public class AssignmentManager {
         this.notifySummarySheetCreated(this.currentService);
     }
 
-    public void openSummarySheet(EventInfo e, ServiceInfo srv) throws UseCaseLogicException {
+    public void openSummarySheet(EventInfo e, int srv_id) throws UseCaseLogicException {
         User user = CatERing.getInstance().getUserManager().getCurrentUser();
+
+        ServiceInfo srv = CatERing.getInstance().getEventManager().getServiceById(srv_id);
 
         if (!user.isChef() || !user.getAssignedEvents().contains(e) || !e.getRelatedServices().contains(srv)) {
             throw new UseCaseLogicException();
@@ -114,7 +117,7 @@ public class AssignmentManager {
         return result;
     }
 
-    public void assignTask(Assignment a, Shift s, PersonnelMember c) throws UseCaseLogicException {
+    public void assignTask(Assignment a, Shift s, Cook c) throws UseCaseLogicException {
         User user = CatERing.getInstance().getUserManager().getCurrentUser();
         if (!user.isChef() || this.currentService == null || !this.currentService.getAssignments().contains(a) || s.isFull() || !a.hasToBePrepared()) {
             throw new UseCaseLogicException();
@@ -128,7 +131,7 @@ public class AssignmentManager {
         this.notifyAssignmentAdded(this.currentService, s, a, c);
     }
 
-    public Assignment markAsDone(Assignment a, Shift s, PersonnelMember c) throws UseCaseLogicException {
+    public Assignment markAsDone(Assignment a, Shift s, Cook c) throws UseCaseLogicException {
         User user = CatERing.getInstance().getUserManager().getCurrentUser();
         if (!user.isChef() || this.currentService == null || !this.currentService.getAssignments().contains(a)) {
             throw new UseCaseLogicException();
@@ -145,7 +148,7 @@ public class AssignmentManager {
         return a;
     }
 
-    public void changeAssociation(Assignment a, Shift currS, Shift newS, PersonnelMember currC, PersonnelMember newC) throws UseCaseLogicException {
+    public void changeAssociation(Assignment a, Shift currS, Shift newS, Cook currC, Cook newC) throws UseCaseLogicException {
         User user = CatERing.getInstance().getUserManager().getCurrentUser();
         if (!user.isChef() || this.currentService == null || !this.currentService.getAssignments().contains(a) || currS == null || !currS.getTasksToComplete().contains(a)) {
             throw new UseCaseLogicException();
@@ -166,7 +169,7 @@ public class AssignmentManager {
         this.notifyAssociationChanged(a, currS, newS, currC, newC);
     }
 
-    public Assignment deleteAssociation(Assignment a, Shift s, PersonnelMember c) throws UseCaseLogicException {
+    public Assignment deleteAssociation(Assignment a, Shift s, Cook c) throws UseCaseLogicException {
         User user = CatERing.getInstance().getUserManager().getCurrentUser();
         if (!user.isChef() ||
                 this.currentService == null ||
@@ -264,25 +267,25 @@ public class AssignmentManager {
         }
     }
 
-    private void notifyAssignmentAdded(ServiceInfo s, Shift shift, Assignment a, PersonnelMember c) {
+    private void notifyAssignmentAdded(ServiceInfo s, Shift shift, Assignment a, Cook c) {
         for (AssignmentEventReceiver ar : this.eventReceivers) {
             ar.updateAssignmentAdded(this.currentService, shift, a, c);
         }
     }
 
-    private void notifyAssignmentMarkedDone(Assignment a, Shift s, PersonnelMember c) {
+    private void notifyAssignmentMarkedDone(Assignment a, Shift s, Cook c) {
         for (AssignmentEventReceiver ar : this.eventReceivers) {
             ar.updateAssignmentMarkedDone(a, s, c);
         }
     }
 
-    private void notifyAssociationChanged(Assignment a, Shift cs, Shift ns, PersonnelMember cc, PersonnelMember nc) {
+    private void notifyAssociationChanged(Assignment a, Shift cs, Shift ns, Cook cc, Cook nc) {
         for (AssignmentEventReceiver ar : this.eventReceivers) {
             ar.updateAssociationChanged(a, cs, ns, cc, nc);
         }
     }
 
-    private void notifyAssociationRemoved(Assignment a, Shift s, PersonnelMember c) {
+    private void notifyAssociationRemoved(Assignment a, Shift s, Cook c) {
         for (AssignmentEventReceiver ar : this.eventReceivers) {
             ar.updateAssociationRemoved(a, s, c);
         }

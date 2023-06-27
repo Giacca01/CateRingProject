@@ -384,39 +384,39 @@ CREATE TABLE `ShiftAvailability` (
 );
 
 --
--- Table structure for table `PersonnelMember`
+-- Table structure for table `Cook`
 --
-DROP TABLE IF EXISTS `PersonnelMember`;
-CREATE TABLE `PersonnelMember` (
+DROP TABLE IF EXISTS `Cook`;
+CREATE TABLE `Cook` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `name` varchar(128) NOT NULL DEFAULT '',
   `surname` varchar(128) NOT NULL DEFAULT '',
   PRIMARY KEY (`id`)
 );
 
-LOCK TABLES `PersonnelMember` WRITE;
-/*!40000 ALTER TABLE `PersonnelMember` DISABLE KEYS */;
-INSERT INTO `PersonnelMember` VALUES (1, 'Pierpa', 'Greco'),(2, 'Alessio', 'Piane');
-/*!40000 ALTER TABLE `PersonnelMember` ENABLE KEYS */;
+LOCK TABLES `Cook` WRITE;
+/*!40000 ALTER TABLE `Cook` DISABLE KEYS */;
+INSERT INTO `Cook` VALUES (1, 'Pierpa', 'Greco'),(2, 'Alessio', 'Piane');
+/*!40000 ALTER TABLE `Cook` ENABLE KEYS */;
 UNLOCK TABLES;
 
 --
--- Table structure for table `PersonnelMemberAvailability`
+-- Table structure for table `Cook`
 --
-DROP TABLE IF EXISTS `PersonnelMemberAvailability`;
-CREATE TABLE `PersonnelMemberAvailability` (
+DROP TABLE IF EXISTS `CookAvailability`;
+CREATE TABLE `CookAvailability` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
-  `personnelmember_id` int(11) NOT NULL,
+  `cook_id` int(11) NOT NULL,
   `availability_id` int(11) NOT NULL,
   PRIMARY KEY (`id`)
 );
 
-create table PersonnelMemberAssignment
+create table CookAssignment
 (
 	id int auto_increment,
-	member_id int not null,
+	cook_id int not null,
 	assignment_id int not null,
-	constraint PersonnelMemberAssignment_pk
+	constraint CookAssignment_pk
 		primary key (id)
 );
 

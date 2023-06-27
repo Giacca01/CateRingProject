@@ -3,7 +3,6 @@ package businesslogic.employee;
 import businesslogic.assignment.Assignment;
 import businesslogic.availability.Availability;
 import businesslogic.event.ServiceInfo;
-import businesslogic.shift.Shift;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import persistence.BatchUpdateHandler;
@@ -14,21 +13,20 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.Map;
 
-public class PersonnelMember {
-    private static Map<Integer, PersonnelMember> loadedPersonnelMember = FXCollections.observableHashMap();
+public class Cook {
+    private static Map<Integer, Cook> loadedCook = FXCollections.observableHashMap();
     private int id;
     private String name;
     private String surname;
 
-    public static PersonnelMember getMemById(int id) {
-        return loadedPersonnelMember.get(id);
+    public static Cook getCookById(int id) {
+        return loadedCook.get(id);
     }
 
-    public void saveNewMemberAssignment(ServiceInfo currentService, Assignment a, PersonnelMember c) {
-        String newA = "INSERT INTO PersonnelMemberAssignment (member_id, assignment_id) VALUES (?, ?)";
+    public void saveNewMemberAssignment(ServiceInfo currentService, Assignment a, Cook c) {
+        String newA = "INSERT INTO CookAssignment (cook_id, assignment_id) VALUES (?, ?)";
         int[] result = PersistenceManager.executeBatchUpdate(newA, 1, new BatchUpdateHandler() {
             @Override
             public void handleBatchItem(PreparedStatement ps, int batchCount) throws SQLException {
@@ -43,12 +41,12 @@ public class PersonnelMember {
         });
 
         if (result[0] > 0) { // assignment effettivamente inserito
-            loadedPersonnelMember.get(c.id).assignments.add(a);
+            loadedCook.get(c.id).assignments.add(a);
         }
     }
 
-    public void changeAssociation(Assignment a, PersonnelMember cc, PersonnelMember nc) {
-        String upd = "UPDATE PersonnelMemberAssignment SET member_id = ? WHERE assignment_id = ? AND member_id = ?";
+    public void changeAssociation(Assignment a, Cook cc, Cook nc) {
+        String upd = "UPDATE CookAssignment SET member_id = ? WHERE assignment_id = ? AND member_id = ?";
         PersistenceManager.executeBatchUpdate(upd, 1, new BatchUpdateHandler() {
             @Override
             public void handleBatchItem(PreparedStatement ps, int batchCount) throws SQLException {
@@ -62,21 +60,19 @@ public class PersonnelMember {
                 // no generated ids to handle
             }
         });
-        loadedPersonnelMember.get(cc.id).assignments.remove(a);
-        loadedPersonnelMember.get(nc.id).assignments.add(a);
+        loadedCook.get(cc.id).assignments.remove(a);
+        loadedCook.get(nc.id).assignments.add(a);
     }
 
-    public void removeAssociation(Assignment a, PersonnelMember c) {
-        String delSec = "DELETE FROM PersonnelMemberAssignment WHERE assignment_id = " + a.getId();
+    public void removeAssociation(Assignment a, Cook c) {
+        String delSec = "DELETE FROM CookAssignment WHERE assignment_id = " + a.getId();
         PersistenceManager.executeUpdate(delSec);
-        loadedPersonnelMember.get(c.id).assignments.remove(a);
+        loadedCook.get(c.id).assignments.remove(a);
     }
-
-    public static enum Role {SERVIZIO, CUOCO};
     private ArrayList<Availability> declaredAvailabilities;
     private ObservableList<Assignment> assignments;
 
-    public PersonnelMember(){
+    public Cook(){
         declaredAvailabilities = new ArrayList<>();
         assignments = FXCollections.observableArrayList();
     }
@@ -101,22 +97,22 @@ public class PersonnelMember {
         return "id: " + id + "; name: " + name + "; surname: " + surname;
     }
 
-    public static ObservableList<PersonnelMember> loadAllMembers() {
-        String query = "SELECT * FROM PersonnelMember WHERE " + true;
-        ArrayList<PersonnelMember> oldMembers = new ArrayList<>();
-        ArrayList<PersonnelMember> newMembers = new ArrayList<>();
+    public static ObservableList<Cook> loadAllCooks() {
+        String query = "SELECT * FROM Cook WHERE " + true;
+        ArrayList<Cook> oldMembers = new ArrayList<>();
+        ArrayList<Cook> newMembers = new ArrayList<>();
 
         PersistenceManager.executeQuery(query, new ResultHandler() {
             @Override
             public void handle(ResultSet rs) throws SQLException {
                 int id = rs.getInt("id");
-                if (loadedPersonnelMember.containsKey(id)) {
-                    PersonnelMember m = loadedPersonnelMember.get(id);
+                if (loadedCook.containsKey(id)) {
+                    Cook m = loadedCook.get(id);
                     m.name = rs.getString("name");
                     m.surname = rs.getString("surname");
                     oldMembers.add(m);
                 } else {
-                    PersonnelMember m = new PersonnelMember();
+                    Cook m = new Cook();
                     m.id = id;
                     m.name = rs.getString("name");
                     m.surname = rs.getString("surname");
@@ -126,9 +122,9 @@ public class PersonnelMember {
         });
 
         for (int i = 0; i < newMembers.size(); i++) {
-            PersonnelMember m = newMembers.get(i);
+            Cook m = newMembers.get(i);
 
-            String featQ = "SELECT assignment_id FROM PersonnelMemberAssignment WHERE member_id = " + m.id;
+            String featQ = "SELECT assignment_id FROM CookAssignment WHERE cook_id = " + m.id;
             PersistenceManager.executeQuery(featQ, new ResultHandler() {
                 @Override
                 public void handle(ResultSet rs) throws SQLException {
@@ -138,10 +134,10 @@ public class PersonnelMember {
         }
 
         for (int i = 0; i < oldMembers.size(); i++) {
-            PersonnelMember m = oldMembers.get(i);
+            Cook m = oldMembers.get(i);
 
             m.assignments.clear();
-            String featQ = "SELECT assignment_id FROM PersonnelMemberAssignment WHERE member_id = " + m.id;
+            String featQ = "SELECT assignment_id FROM CookAssignment WHERE cook_id = " + m.id;
             PersistenceManager.executeQuery(featQ, new ResultHandler() {
                 @Override
                 public void handle(ResultSet rs) throws SQLException {
@@ -149,9 +145,9 @@ public class PersonnelMember {
                 }
             });
         }
-        for (PersonnelMember s : newMembers) {
-            loadedPersonnelMember.put(s.id, s);
+        for (Cook s : newMembers) {
+            loadedCook.put(s.id, s);
         }
-        return FXCollections.observableArrayList(loadedPersonnelMember.values());
+        return FXCollections.observableArrayList(loadedCook.values());
     }
 }

@@ -13,8 +13,9 @@ public class TestAssignment6b {
             CatERing.getInstance().getUserManager().fakeLogin("Lidia");
             EventInfo e = events.get(0);
             ServiceInfo s = e.getRelatedServices().get(0);
+            int s_id = s.getId();
 
-            CatERing.getInstance().getAssignmentManager().openSummarySheet(e, s);
+            CatERing.getInstance().getAssignmentManager().openSummarySheet(e, s_id);
 
             System.out.println("TEST REMOVE TIME");
             Assignment a1 = s.getAssignments().get(1);

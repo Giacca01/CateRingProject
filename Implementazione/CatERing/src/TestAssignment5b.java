@@ -1,7 +1,7 @@
 import businesslogic.CatERing;
 import businesslogic.UseCaseLogicException;
 import businesslogic.assignment.Assignment;
-import businesslogic.employee.PersonnelMember;
+import businesslogic.employee.Cook;
 import businesslogic.event.EventInfo;
 import businesslogic.event.ServiceInfo;
 import businesslogic.shift.Shift;
@@ -15,15 +15,16 @@ public class TestAssignment5b {
             CatERing.getInstance().getUserManager().fakeLogin("Lidia");
             EventInfo e = events.get(0);
             ServiceInfo s = e.getRelatedServices().get(0);
+            int s_id = s.getId();
 
-            CatERing.getInstance().getAssignmentManager().openSummarySheet(e, s);
+            CatERing.getInstance().getAssignmentManager().openSummarySheet(e, s_id);
 
             ObservableList<Shift> shifts = CatERing.getInstance().getAssignmentManager().showShiftTable();
             Shift sh1 = shifts.get(0);
             Shift sh2 = shifts.get(1);
-            ObservableList<PersonnelMember> members = CatERing.getInstance().getEmployeesManager().getAllMembers();
-            PersonnelMember me1 = members.get(0);
-            PersonnelMember me2 = members.get(1);
+            ObservableList<Cook> members = CatERing.getInstance().getEmployeesManager().getAllMembers();
+            Cook me1 = members.get(0);
+            Cook me2 = members.get(1);
             System.out.println("TEST CHANGE ASSOCIATION");
             Assignment a = s.getAssignments().get(0);
             System.out.println(a);

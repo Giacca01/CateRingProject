@@ -1,7 +1,7 @@
 import businesslogic.CatERing;
 import businesslogic.UseCaseLogicException;
 import businesslogic.assignment.Assignment;
-import businesslogic.employee.PersonnelMember;
+import businesslogic.employee.Cook;
 import businesslogic.event.EventInfo;
 import businesslogic.event.ServiceInfo;
 import businesslogic.shift.Shift;
@@ -15,13 +15,14 @@ public class TestAssignment5a {
             CatERing.getInstance().getUserManager().fakeLogin("Lidia");
             EventInfo e = events.get(0);
             ServiceInfo s = e.getRelatedServices().get(0);
+            int s_id = s.getId();
 
-            CatERing.getInstance().getAssignmentManager().openSummarySheet(e, s);
+            CatERing.getInstance().getAssignmentManager().openSummarySheet(e, s_id);
 
             ObservableList<Shift> shifts = CatERing.getInstance().getAssignmentManager().showShiftTable();
             Shift sh = shifts.get(0);
-            ObservableList<PersonnelMember> members = CatERing.getInstance().getEmployeesManager().getAllMembers();
-            PersonnelMember me = members.get(0);
+            ObservableList<Cook> members = CatERing.getInstance().getEmployeesManager().getAllMembers();
+            Cook me = members.get(0);
             System.out.println("TEST MARK AS DONE");
             Assignment a = s.getAssignments().get(0);
             System.out.println("Assignment prima di essere segnato come fatto");

@@ -2,13 +2,11 @@ package businesslogic.employee;
 
 import javafx.collections.ObservableList;
 
-import java.util.ArrayList;
-
 public class EmployeesManager {
-    public ObservableList<PersonnelMember> getAllMembers(){
-        return PersonnelMember.loadAllMembers();
+    public ObservableList<Cook> getAllMembers(){
+        return Cook.loadAllCooks();
     }
-    public PersonnelMember getMemberById(int id){
-        return PersonnelMember.getMemById(id);
+    public Cook getMemberById(int id){
+        return Cook.getCookById(id);
     }
 }

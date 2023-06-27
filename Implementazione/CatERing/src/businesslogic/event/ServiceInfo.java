@@ -106,10 +106,6 @@ public class ServiceInfo implements EventItemInfo {
 
     public void deleteAssignment(KitchenTask kt, Assignment a) {
         a.deleteKitchenTask(kt);
-        // non ci sono più mansioni da svolgere nel compito, quindi lo eliminiamo
-        if(a.getTasksSize() != 0){
-
-        }
     }
 
     public static void saveSummarySheet(ServiceInfo srv) {

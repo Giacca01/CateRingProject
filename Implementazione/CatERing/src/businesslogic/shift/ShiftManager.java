@@ -1,10 +1,7 @@
 package businesslogic.shift;
 
-import businesslogic.employee.PersonnelMember;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
-
-import java.util.ArrayList;
 
 public class ShiftManager {
     private ObservableList<Shift> registeredShifts = FXCollections.observableArrayList();

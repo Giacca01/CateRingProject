@@ -1,6 +1,6 @@
 package businesslogic.assignment;
 
-import businesslogic.employee.PersonnelMember;
+import businesslogic.employee.Cook;
 import businesslogic.event.ServiceInfo;
 import businesslogic.recipe.KitchenTask;
 import businesslogic.shift.Shift;
@@ -285,7 +285,7 @@ public class Assignment {
         loadedAssignments.get(a.id).toBePrepared = false;
     }
 
-    public void saveChangedAssociation(Assignment a, Shift cs, Shift ns, PersonnelMember cc, PersonnelMember nc) {
+    public void saveChangedAssociation(Assignment a, Shift cs, Shift ns, Cook cc, Cook nc) {
         if (ns != null)
             cs.changeAssociation(a, cs, ns);
 
@@ -293,7 +293,7 @@ public class Assignment {
             cc.changeAssociation(a, cc, nc);
     }
 
-    public void saveDeletedAssociation(Assignment a, Shift s, PersonnelMember c) {
+    public void saveDeletedAssociation(Assignment a, Shift s, Cook c) {
         s.removeAssociation(a, s);
 
         if (c != null)

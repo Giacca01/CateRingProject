@@ -1,7 +1,7 @@
 import businesslogic.CatERing;
 import businesslogic.UseCaseLogicException;
 import businesslogic.assignment.Assignment;
-import businesslogic.employee.PersonnelMember;
+import businesslogic.employee.Cook;
 import businesslogic.event.EventInfo;
 import businesslogic.event.ServiceInfo;
 import businesslogic.menu.Menu;
@@ -50,8 +50,8 @@ public class TestAssignment {
             System.out.println("TEST ASSIGN TASK");
             a = s.getAssignments().get(0);
             Shift sh = shifts.get(0);
-            ObservableList<PersonnelMember> members = CatERing.getInstance().getEmployeesManager().getAllMembers();
-            PersonnelMember me = members.get(0);
+            ObservableList<Cook> members = CatERing.getInstance().getEmployeesManager().getAllMembers();
+            Cook me = members.get(0);
             CatERing.getInstance().getAssignmentManager().assignTask(a, sh, me);
             System.out.println("Assignment selezionato:");
             System.out.println(a);
