@@ -68,8 +68,8 @@ public class Assignment {
         return "id: " + id + "; timeEstimate: " + timeEstimate + "; quantity: " + quantity + "; toBePrepared: " + toBePrepared;
     }
 
-    public void deleteKitchenTask(KitchenTask kt) {
-        tasks.remove(kt);
+    public boolean deleteKitchenTask(KitchenTask kt) {
+        return tasks.remove(kt);
     }
 
     public int getTasksSize() {

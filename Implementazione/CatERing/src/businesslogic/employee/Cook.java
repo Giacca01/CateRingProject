@@ -40,9 +40,9 @@ public class Cook {
             }
         });
 
-        if (result[0] > 0) { // assignment effettivamente inserito
+        /* if (result[0] > 0) { // assignment effettivamente inserito
             loadedCook.get(c.id).assignments.add(a);
-        }
+        } */
     }
 
     public void changeAssociation(Assignment a, Cook cc, Cook nc) {
@@ -81,8 +81,8 @@ public class Cook {
         return this.assignments;
     }
 
-    public void addAssignment(Assignment a) {
-        this.assignments.add(a);
+    public boolean addAssignment(Assignment a) {
+        return this.assignments.add(a);
     }
 
     public void markAsDone(Assignment a) {

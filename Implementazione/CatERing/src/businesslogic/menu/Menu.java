@@ -469,7 +469,7 @@ public class Menu {
             m.freeItems = MenuItem.loadItemsFor(m.id, 0);
 
             // find if "in use"
-            String inuseQ = "SELECT * FROM Services WHERE approved_menu_id = " + m.id;
+            String inuseQ = "SELECT * FROM Services WHERE approved_menu_id = " + m.id + " OR proposed_menu_id = "+ m.id;
             PersistenceManager.executeQuery(inuseQ, new ResultHandler() {
                 @Override
                 public void handle(ResultSet rs) throws SQLException {
@@ -491,7 +491,7 @@ public class Menu {
                 @Override
                 public void handle(ResultSet rs) throws SQLException {
                     m.featuresMap.put(rs.getString("name"), rs.getBoolean("value"));
-                    m.usedIn.add(EventManager.getServiceById(rs.getInt("id")));
+                    // m.usedIn.add(EventManager.getServiceById(rs.getInt("id")));
                 }
             });
 

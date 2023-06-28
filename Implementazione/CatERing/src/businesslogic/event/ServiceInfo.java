@@ -36,15 +36,17 @@ public class ServiceInfo implements EventItemInfo {
         return name + ": " + date + " (" + timeStart + "-" + timeEnd + "), " + participants + " pp." + approvedMenu;
     }
 
-    public void createSummarySheet(EventInfo e, Menu m){
+    public boolean createSummarySheet(EventInfo e, Menu m){
+        boolean res = true;
         ObservableList<Recipe> recipes = m.getRecipes();
         for (Recipe r: recipes) {
             // recupero la lista di attività da svolgere
             // nell'ambito del compito (tutte quelle
             // che servono per completare una ricetta)
             Assignment a = new Assignment(r.getKitchenTasks());
-            assignments.add(a);
+            res = res && assignments.add(a);
         }
+        return res;
     }
 
     public int getId() {
@@ -104,8 +106,8 @@ public class ServiceInfo implements EventItemInfo {
         return loadedServices.get(id);
     }
 
-    public void deleteAssignment(KitchenTask kt, Assignment a) {
-        a.deleteKitchenTask(kt);
+    public boolean deleteAssignment(KitchenTask kt, Assignment a) {
+        return a.deleteKitchenTask(kt);
     }
 
     public static void saveSummarySheet(ServiceInfo srv) {

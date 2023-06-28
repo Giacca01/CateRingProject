@@ -16,7 +16,6 @@ import java.util.ArrayList;
 
 public class AssignmentManager {
     private ServiceInfo currentService;
-    private EventInfo currentEvent;
     private ObservableList<ServiceInfo> openedServices;
     private ArrayList<AssignmentEventReceiver> eventReceivers;
 
@@ -25,13 +24,13 @@ public class AssignmentManager {
         openedServices = FXCollections.observableArrayList();
     }
 
-    public void createSummarySheet(EventInfo e, ServiceInfo srv, Menu m) throws UseCaseLogicException {
+    public boolean createSummarySheet(EventInfo e, ServiceInfo srv, Menu m) throws UseCaseLogicException {
+        boolean operationCompleted;
         User user = CatERing.getInstance().getUserManager().getCurrentUser();
 
         if (!user.isChef() ||
                 !user.getAssignedEvents().contains(e) ||
                 !e.getRelatedServices().contains(srv) ||
-                //TODO: getUsedIn non funziona
                 !m.getUsedIn().contains(srv)
         ) {
             throw new UseCaseLogicException();
@@ -39,14 +38,15 @@ public class AssignmentManager {
 
         this.openedServices = FXCollections.observableArrayList();
         this.openedServices.add(srv);
-        this.setCurrentEvent(e);
         this.setCurrentService(srv);
 
-        this.currentService.createSummarySheet(e, m);
+        operationCompleted = this.currentService.createSummarySheet(e, m);
         this.notifySummarySheetCreated(this.currentService);
+        return operationCompleted;
     }
 
-    public void openSummarySheet(EventInfo e, int srv_id) throws UseCaseLogicException {
+    public boolean openSummarySheet(EventInfo e, int srv_id) throws UseCaseLogicException {
+        boolean operationCompleted = true;
         User user = CatERing.getInstance().getUserManager().getCurrentUser();
 
         ServiceInfo srv = CatERing.getInstance().getEventManager().getServiceById(srv_id);
@@ -55,12 +55,13 @@ public class AssignmentManager {
             throw new UseCaseLogicException();
         }
 
-        this.openedServices.add(srv);
+        operationCompleted = operationCompleted && this.openedServices.add(srv);
         this.currentService = srv;
         this.notifySummarySheetOpened(this.currentService);
+        return operationCompleted;
     }
 
-    public void addAssignment(KitchenTask kt) throws UseCaseLogicException {
+    public Assignment addAssignment(KitchenTask kt) throws UseCaseLogicException {
         Assignment a;
         User user = CatERing.getInstance().getUserManager().getCurrentUser();
 
@@ -71,17 +72,20 @@ public class AssignmentManager {
 
         a = this.currentService.addAssignment(kt);
         this.notifyAddedAssignment(a, kt);
+        return a;
     }
 
-    public void deleteAssignment(KitchenTask kt, Assignment a) throws UseCaseLogicException {
+    public boolean deleteAssignment(KitchenTask kt, Assignment a) throws UseCaseLogicException {
+        boolean operationCompleted;
         User user = CatERing.getInstance().getUserManager().getCurrentUser();
 
         if (!user.isChef() || currentService == null || !a.getTasks().contains(kt)) {
             throw new UseCaseLogicException();
         }
 
-        this.currentService.deleteAssignment(kt, a);
+        operationCompleted = this.currentService.deleteAssignment(kt, a);
         this.notifyDeletedAssignment(a, kt);
+        return operationCompleted;
     }
 
     public void sortSummarySheet(Assignment a, int position) throws UseCaseLogicException {
@@ -117,18 +121,20 @@ public class AssignmentManager {
         return result;
     }
 
-    public void assignTask(Assignment a, Shift s, Cook c) throws UseCaseLogicException {
+    public boolean assignTask(Assignment a, Shift s, Cook c) throws UseCaseLogicException {
+        boolean wasAdded;
         User user = CatERing.getInstance().getUserManager().getCurrentUser();
         if (!user.isChef() || this.currentService == null || !this.currentService.getAssignments().contains(a) || s.isFull() || !a.hasToBePrepared()) {
             throw new UseCaseLogicException();
         }
 
-        s.addAssignment(a);
+        wasAdded = s.addAssignment(a);
 
         if (c != null)
-            c.addAssignment(a);
+            wasAdded = wasAdded && c.addAssignment(a);
 
         this.notifyAssignmentAdded(this.currentService, s, a, c);
+        return wasAdded;
     }
 
     public Assignment markAsDone(Assignment a, Shift s, Cook c) throws UseCaseLogicException {
@@ -311,10 +317,6 @@ public class AssignmentManager {
 
     public void setCurrentService(ServiceInfo s) {
         this.currentService = s;
-    }
-
-    public void setCurrentEvent(EventInfo e) {
-        this.currentEvent = e;
     }
 
     public Assignment getAssignmentById(int id) {

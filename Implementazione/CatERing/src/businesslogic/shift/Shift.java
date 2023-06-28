@@ -35,8 +35,8 @@ public class Shift {
         return full;
     }
 
-    public void addAssignment(Assignment a) {
-        this.tasksToComplete.add(a);
+    public boolean addAssignment(Assignment a) {
+        return this.tasksToComplete.add(a);
     }
 
     public void markAsDone(Assignment a) {
@@ -130,9 +130,9 @@ public class Shift {
             }
         });
 
-        if (result[0] > 0) { // assignment effettivamente inserito ==> aggiorno la rappresentazione interna al programma
+        /* if (result[0] > 0) { // assignment effettivamente inserito ==> aggiorno la rappresentazione interna al programma
             loadedShifts.get(shift.id).tasksToComplete.add(a);
-        }
+        } */
     }
 
     public void changeAssociation(Assignment a, Shift cs, Shift ns) {
