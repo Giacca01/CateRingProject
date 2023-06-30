@@ -1,0 +1,135 @@
+public static ObservableList<ServiceInfo> loadServiceInfoForEvent(int event_id) {
+        String query = "SELECT id, name, approved_menu_id, service_date, time_start, time_end, expected_participants " +
+                "FROM Services WHERE event_id = " + event_id;
+        ArrayList<ServiceInfo> newServices = new ArrayList<>();
+        ArrayList<ServiceInfo> oldServices = new ArrayList<>();
+        PersistenceManager.executeQuery(query, new ResultHandler() {
+            @Override
+            public void handle(ResultSet rs) throws SQLException {
+                int serviceId = rs.getInt("id");
+                int approvedMenuId;
+                if(loadedServices.containsKey(serviceId)){
+                    ServiceInfo serv = loadedServices.get(serviceId);
+                    serv.name = rs.getString("name");
+                    serv.id = serviceId;
+                    approvedMenuId = rs.getInt("approved_menu_id");
+                    serv.date = rs.getDate("service_date");
+                    serv.timeStart = rs.getTime("time_start");
+                    serv.timeEnd = rs.getTime("time_end");
+                    serv.participants = rs.getInt("expected_participants");
+                    serv.approvedMenu = Menu.loadMenuById(approvedMenuId);
+                    oldServices.add(serv);
+                } else {
+                    String s = rs.getString("name");
+                    ServiceInfo serv = new ServiceInfo(s);
+                    serv.id = serviceId;
+                    approvedMenuId = rs.getInt("approved_menu_id");
+                    serv.date = rs.getDate("service_date");
+                    serv.timeStart = rs.getTime("time_start");
+                    serv.timeEnd = rs.getTime("time_end");
+                    serv.participants = rs.getInt("expected_participants");
+                    serv.approvedMenu = Menu.loadMenuById(approvedMenuId);
+                    newServices.add(serv);
+                }
+            }
+        });
+
+        for(int i = 0; i < newServices.size(); i++){
+            ServiceInfo si = newServices.get(i);
+
+            String featQ = "SELECT assignment_id FROM ServiceAssignment WHERE service_id = " + si.id + " ORDER BY position";
+            PersistenceManager.executeQuery(featQ, new ResultHandler() {
+                @Override
+                public void handle(ResultSet rs) throws SQLException {
+                    int assignment_id = rs.getInt("assignment_id");
+                    si.assignments.add(Assignment.loadAssignmentById(assignment_id));
+                }
+            });
+        }
+
+        for(int i = 0; i < oldServices.size(); i++){
+            ServiceInfo si = oldServices.get(i);
+
+            String featQ = "SELECT assignment_id FROM ServiceAssignment WHERE service_id = " + si.id + " ORDER BY position";
+            PersistenceManager.executeQuery(featQ, new ResultHandler() {
+                @Override
+                public void handle(ResultSet rs) throws SQLException {
+                    int assignment_id = rs.getInt("assignment_id");
+                    si.assignments.add(Assignment.loadAssignmentById(assignment_id));
+                }
+            });
+        }
+
+        for (ServiceInfo si: newServices) {
+            loadedServices.put(si.id, si);
+        }
+        return FXCollections.observableArrayList(loadedServices.values());
+    }
+
+    public static ObservableList<ServiceInfo> loadAllServices() {
+        String query = "SELECT id, name, approved_menu_id, service_date, time_start, time_end, expected_participants " +
+                "FROM Services";
+        ArrayList<ServiceInfo> newServices = new ArrayList<>();
+        ArrayList<ServiceInfo> oldServices = new ArrayList<>();
+        PersistenceManager.executeQuery(query, new ResultHandler() {
+            @Override
+            public void handle(ResultSet rs) throws SQLException {
+                int serviceId = rs.getInt("id");
+                int approvedMenuId;
+                if(loadedServices.containsKey(serviceId)){
+                    ServiceInfo serv = loadedServices.get(serviceId);
+                    serv.name = rs.getString("name");
+                    serv.id = serviceId;
+                    approvedMenuId = rs.getInt("approved_menu_id");
+                    serv.date = rs.getDate("service_date");
+                    serv.timeStart = rs.getTime("time_start");
+                    serv.timeEnd = rs.getTime("time_end");
+                    serv.participants = rs.getInt("expected_participants");
+                    serv.approvedMenu = Menu.loadMenuById(approvedMenuId);
+                    oldServices.add(serv);
+                } else {
+                    String s = rs.getString("name");
+                    ServiceInfo serv = new ServiceInfo(s);
+                    serv.id = serviceId;
+                    approvedMenuId = rs.getInt("approved_menu_id");
+                    serv.date = rs.getDate("service_date");
+                    serv.timeStart = rs.getTime("time_start");
+                    serv.timeEnd = rs.getTime("time_end");
+                    serv.participants = rs.getInt("expected_participants");
+                    serv.approvedMenu = Menu.loadMenuById(approvedMenuId);
+                    newServices.add(serv);
+                }
+            }
+        });
+
+        for(int i = 0; i < newServices.size(); i++){
+            ServiceInfo si = newServices.get(i);
+
+            String featQ = "SELECT assignment_id FROM ServiceAssignment WHERE service_id = " + si.id + " ORDER BY position";
+            PersistenceManager.executeQuery(featQ, new ResultHandler() {
+                @Override
+                public void handle(ResultSet rs) throws SQLException {
+                    int assignment_id = rs.getInt("assignment_id");
+                    si.assignments.add(Assignment.loadAssignmentById(assignment_id));
+                }
+            });
+        }
+
+        for(int i = 0; i < oldServices.size(); i++){
+            ServiceInfo si = oldServices.get(i);
+
+            String featQ = "SELECT assignment_id FROM ServiceAssignment WHERE service_id = " + si.id + " ORDER BY position";
+            PersistenceManager.executeQuery(featQ, new ResultHandler() {
+                @Override
+                public void handle(ResultSet rs) throws SQLException {
+                    int assignment_id = rs.getInt("assignment_id");
+                    si.assignments.add(Assignment.loadAssignmentById(assignment_id));
+                }
+            });
+        }
+
+        for (ServiceInfo si: newServices) {
+            loadedServices.put(si.id, si);
+        }
+        return FXCollections.observableArrayList(loadedServices.values());
+    }
