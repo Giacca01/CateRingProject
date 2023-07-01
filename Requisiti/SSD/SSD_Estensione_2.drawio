@@ -1,6 +1,6 @@
-<mxfile host="app.diagrams.net" modified="2023-05-29T15:36:17.282Z" agent="Mozilla/5.0 (X11; Linux x86_64; rv:108.0) Gecko/20100101 Firefox/108.0" etag="NPlPD5mhhjtZImVLMHaQ" version="21.3.5" type="device">
+<mxfile host="app.diagrams.net" modified="2023-06-30T21:06:50.963Z" agent="Mozilla/5.0 (X11; Linux x86_64; rv:108.0) Gecko/20100101 Firefox/108.0" etag="w43aDjC4n6L4FLnvP8wZ" version="21.5.2" type="device">
   <diagram name="Page-1" id="xS5e-kVt671PvOTFcU_v">
-    <mxGraphModel dx="954" dy="547" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="827" pageHeight="1169" math="0" shadow="0">
+    <mxGraphModel dx="954" dy="512" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="827" pageHeight="1169" math="0" shadow="0">
       <root>
         <mxCell id="0" />
         <mxCell id="1" parent="0" />
@@ -34,7 +34,7 @@
             </Array>
           </mxGeometry>
         </mxCell>
-        <mxCell id="4zyj_bGbnbERVUoL-T8D-5" value="aggiuntaServizio(Tipo, Data, Luogo, NumPersone, Menù, Evento)" style="html=1;verticalAlign=bottom;endArrow=block;edgeStyle=elbowEdgeStyle;elbow=vertical;curved=0;rounded=0;" parent="4zyj_bGbnbERVUoL-T8D-10" source="z1F8QRphNZERDpoR4OeI-1" target="z1F8QRphNZERDpoR4OeI-2" edge="1">
+        <mxCell id="4zyj_bGbnbERVUoL-T8D-5" value="aggiuntaServizio(Tipo, Data, Luogo, NumPersone, Menù, Evento, PropagaModifica)" style="html=1;verticalAlign=bottom;endArrow=block;edgeStyle=elbowEdgeStyle;elbow=vertical;curved=0;rounded=0;" parent="4zyj_bGbnbERVUoL-T8D-10" source="z1F8QRphNZERDpoR4OeI-1" target="z1F8QRphNZERDpoR4OeI-2" edge="1">
           <mxGeometry width="80" relative="1" as="geometry">
             <mxPoint x="-290" y="268.14141414141415" as="sourcePoint" />
             <mxPoint x="680" y="268.14141414141415" as="targetPoint" />
@@ -70,7 +70,7 @@
         <mxCell id="4zyj_bGbnbERVUoL-T8D-2" value="" style="group" parent="4zyj_bGbnbERVUoL-T8D-10" vertex="1" connectable="0">
           <mxGeometry x="20" y="250" width="520" height="160" as="geometry" />
         </mxCell>
-        <mxCell id="z1F8QRphNZERDpoR4OeI-4" value="modificaServizio(Servizio, Tipo?, Data?, Luogo?, NumPartecipanti?, Menù?, Evento?)" style="html=1;verticalAlign=bottom;endArrow=block;edgeStyle=elbowEdgeStyle;elbow=vertical;curved=0;rounded=0;" parent="4zyj_bGbnbERVUoL-T8D-2" source="z1F8QRphNZERDpoR4OeI-1" target="z1F8QRphNZERDpoR4OeI-2" edge="1">
+        <mxCell id="z1F8QRphNZERDpoR4OeI-4" value="modificaServizio(Servizio, Tipo?, Data?, Luogo?, NumPartecipanti?, PropagaModifica)" style="html=1;verticalAlign=bottom;endArrow=block;edgeStyle=elbowEdgeStyle;elbow=vertical;curved=0;rounded=0;" parent="4zyj_bGbnbERVUoL-T8D-2" source="z1F8QRphNZERDpoR4OeI-1" target="z1F8QRphNZERDpoR4OeI-2" edge="1">
           <mxGeometry width="80" relative="1" as="geometry">
             <mxPoint x="-310" y="103" as="sourcePoint" />
             <mxPoint x="660" y="103" as="targetPoint" />
@@ -131,19 +131,19 @@
             </Array>
           </mxGeometry>
         </mxCell>
-        <mxCell id="bs-JbXTgn5UyTioTZlNH-1" value="" style="endArrow=none;endFill=0;endSize=12;html=1;rounded=0;strokeColor=#0000FF;" edge="1" parent="1">
+        <mxCell id="bs-JbXTgn5UyTioTZlNH-1" value="" style="endArrow=none;endFill=0;endSize=12;html=1;rounded=0;strokeColor=#0000FF;" parent="1" edge="1">
           <mxGeometry width="160" relative="1" as="geometry">
             <mxPoint x="40" y="739" as="sourcePoint" />
             <mxPoint x="680" y="739" as="targetPoint" />
           </mxGeometry>
         </mxCell>
-        <mxCell id="bs-JbXTgn5UyTioTZlNH-3" value="recuperoElencoServizi(Evento, propagaModifica?)" style="html=1;verticalAlign=bottom;endArrow=block;edgeStyle=elbowEdgeStyle;elbow=vertical;curved=0;rounded=0;" edge="1" parent="1" target="z1F8QRphNZERDpoR4OeI-2">
+        <mxCell id="bs-JbXTgn5UyTioTZlNH-3" value="recuperoElencoServizi(Evento, PropagaModifica?)" style="html=1;verticalAlign=bottom;endArrow=block;edgeStyle=elbowEdgeStyle;elbow=vertical;curved=0;rounded=0;" parent="1" target="z1F8QRphNZERDpoR4OeI-2" edge="1">
           <mxGeometry width="80" relative="1" as="geometry">
             <mxPoint x="130" y="780" as="sourcePoint" />
             <mxPoint x="200" y="780" as="targetPoint" />
           </mxGeometry>
         </mxCell>
-        <mxCell id="bs-JbXTgn5UyTioTZlNH-4" value="elenco dei servizi dell&#39;evento indicato" style="html=1;verticalAlign=bottom;endArrow=block;edgeStyle=elbowEdgeStyle;elbow=vertical;curved=0;rounded=0;" edge="1" parent="1" source="z1F8QRphNZERDpoR4OeI-2" target="z1F8QRphNZERDpoR4OeI-1">
+        <mxCell id="bs-JbXTgn5UyTioTZlNH-4" value="elenco dei servizi dell&#39;evento indicato" style="html=1;verticalAlign=bottom;endArrow=block;edgeStyle=elbowEdgeStyle;elbow=vertical;curved=0;rounded=0;" parent="1" source="z1F8QRphNZERDpoR4OeI-2" target="z1F8QRphNZERDpoR4OeI-1" edge="1">
           <mxGeometry width="80" relative="1" as="geometry">
             <mxPoint x="370" y="690" as="sourcePoint" />
             <mxPoint x="450" y="690" as="targetPoint" />
