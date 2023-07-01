@@ -1,6 +1,6 @@
 <diagram program="umletino" version="15.1"><zoom_level>11</zoom_level><element><id>UMLGeneric</id><coordinates><x>583</x><y>33</y><w>297</w><h>55</h></coordinates><panel_attributes>CatERingAppManager.eventManager:
 EventManager</panel_attributes><additional_attributes></additional_attributes></element><element><id>Relation</id><coordinates><x>275</x><y>66</y><w>33</w><h>847</h></coordinates><panel_attributes>lt=.</panel_attributes><additional_attributes>10;10;10;750</additional_attributes></element><element><id>Relation</id><coordinates><x>726</x><y>77</y><w>33</w><h>836</h></coordinates><panel_attributes>lt=.</panel_attributes><additional_attributes>10;10;10;740</additional_attributes></element><element><id>Relation</id><coordinates><x>275</x><y>121</y><w>473</w><h>44</h></coordinates><panel_attributes>lt=&lt;&lt;&lt;-
-bookStaffMember(av, srv)</panel_attributes><additional_attributes>410;20;10;20</additional_attributes></element><element><id>UMLGeneric</id><coordinates><x>726</x><y>132</y><w>22</w><h>715</h></coordinates><panel_attributes></panel_attributes><additional_attributes></additional_attributes></element><element><id>UMLFrame</id><coordinates><x>0</x><y>209</y><w>2057</w><h>682</h></coordinates><panel_attributes>alt 
+bookStaffMember(av, srv)</panel_attributes><additional_attributes>410;20;10;20</additional_attributes></element><element><id>UMLGeneric</id><coordinates><x>726</x><y>132</y><w>22</w><h>715</h></coordinates><panel_attributes></panel_attributes><additional_attributes></additional_attributes></element><element><id>UMLFrame</id><coordinates><x>0</x><y>209</y><w>2321</w><h>682</h></coordinates><panel_attributes>alt 
 [!user.isOrganizer()]
 
 --
@@ -15,6 +15,9 @@ bookStaffMember(av, srv)</panel_attributes><additional_attributes>410;20;10;20</
 
 -.
 
+
+
+-.
 
 
 -.
@@ -43,10 +46,18 @@ throw EventException</panel_attributes><additional_attributes>10;20;410;20</addi
 throw EventException</panel_attributes><additional_attributes>10;20;410;20</additional_attributes></element><element><id>Text</id><coordinates><x>0</x><y>396</y><w>110</w><h>33</h></coordinates><panel_attributes>[ av.reserved ]
 style=wordwrap
 fontsize=11</panel_attributes><additional_attributes></additional_attributes></element><element><id>Relation</id><coordinates><x>737</x><y>473</y><w>286</w><h>44</h></coordinates><panel_attributes>lt=&lt;&lt;&lt;-
-bookStaffMember(sm, av, srv)</panel_attributes><additional_attributes>240;20;10;20</additional_attributes></element><element><id>Text</id><coordinates><x>0</x><y>352</y><w>286</w><h>33</h></coordinates><panel_attributes>[ !currentEvent.relatedServices.contains(srv)  ]
+bookStaffMember(av, srv)</panel_attributes><additional_attributes>240;20;10;20</additional_attributes></element><element><id>Text</id><coordinates><x>0</x><y>352</y><w>286</w><h>33</h></coordinates><panel_attributes>[ !currentEvent.relatedServices.contains(srv)  ]
 style=wordwrap
 fontsize=11</panel_attributes><additional_attributes></additional_attributes></element><element><id>UMLGeneric</id><coordinates><x>1001</x><y>495</y><w>22</w><h>176</h></coordinates><panel_attributes></panel_attributes><additional_attributes></additional_attributes></element><element><id>UMLGeneric</id><coordinates><x>1199</x><y>506</y><w>22</w><h>22</h></coordinates><panel_attributes></panel_attributes><additional_attributes></additional_attributes></element><element><id>Relation</id><coordinates><x>1012</x><y>506</y><w>209</w><h>44</h></coordinates><panel_attributes>lt=&lt;.
 av</panel_attributes><additional_attributes>10;20;170;20</additional_attributes></element><element><id>Relation</id><coordinates><x>1012</x><y>583</y><w>517</w><h>44</h></coordinates><panel_attributes>lt=&lt;&lt;&lt;-
 add(av)</panel_attributes><additional_attributes>450;20;10;20</additional_attributes></element><element><id>UMLGeneric</id><coordinates><x>1496</x><y>605</y><w>22</w><h>33</h></coordinates><panel_attributes></panel_attributes><additional_attributes></additional_attributes></element><element><id>Relation</id><coordinates><x>1012</x><y>616</y><w>506</w><h>44</h></coordinates><panel_attributes>lt=&lt;.
 wasAdded</panel_attributes><additional_attributes>10;20;440;20</additional_attributes></element><element><id>Relation</id><coordinates><x>737</x><y>649</y><w>308</w><h>44</h></coordinates><panel_attributes>lt=&lt;.
-wasAdded</panel_attributes><additional_attributes>10;20;260;20</additional_attributes></element></diagram>
+wasAdded</panel_attributes><additional_attributes>10;20;260;20</additional_attributes></element><element><id>Text</id><coordinates><x>0</x><y>440</y><w>154</w><h>33</h></coordinates><panel_attributes>[ ev.state = "Creation" ]
+style=wordwrap
+fontsize=11</panel_attributes><additional_attributes></additional_attributes></element><element><id>Relation</id><coordinates><x>275</x><y>429</y><w>473</w><h>44</h></coordinates><panel_attributes>lt=&lt;.
+throw EventException</panel_attributes><additional_attributes>10;20;410;20</additional_attributes></element><element><id>Relation</id><coordinates><x>1012</x><y>539</y><w>1243</w><h>44</h></coordinates><panel_attributes>lt=&lt;&lt;&lt;-
+addReservation(av)</panel_attributes><additional_attributes>1110;20;10;20</additional_attributes></element><element><id>UMLGeneric</id><coordinates><x>2123</x><y>33</y><w>231</w><h>55</h></coordinates><panel_attributes>currentUser: User</panel_attributes><additional_attributes></additional_attributes></element><element><id>Relation</id><coordinates><x>2222</x><y>77</y><w>33</w><h>836</h></coordinates><panel_attributes>lt=.</panel_attributes><additional_attributes>10;10;10;740</additional_attributes></element><element><id>UMLGeneric</id><coordinates><x>2398</x><y>33</y><w>231</w><h>55</h></coordinates><panel_attributes>currentUser.reservationsMade:
+List&lt;Availabilities&gt;</panel_attributes><additional_attributes></additional_attributes></element><element><id>Relation</id><coordinates><x>2508</x><y>77</y><w>33</w><h>836</h></coordinates><panel_attributes>lt=.</panel_attributes><additional_attributes>10;10;10;740</additional_attributes></element><element><id>UMLGeneric</id><coordinates><x>2222</x><y>561</y><w>22</w><h>33</h></coordinates><panel_attributes></panel_attributes><additional_attributes></additional_attributes></element><element><id>Relation</id><coordinates><x>2233</x><y>550</y><w>297</w><h>44</h></coordinates><panel_attributes>lt=&lt;&lt;&lt;-
+add(av)</panel_attributes><additional_attributes>250;20;10;20</additional_attributes></element><element><id>UMLGeneric</id><coordinates><x>2508</x><y>572</y><w>22</w><h>22</h></coordinates><panel_attributes></panel_attributes><additional_attributes></additional_attributes></element><element><id>Relation</id><coordinates><x>2233</x><y>572</y><w>308</w><h>44</h></coordinates><panel_attributes>lt=&lt;.
+wasAdded</panel_attributes><additional_attributes>10;20;260;20</additional_attributes></element><element><id>Relation</id><coordinates><x>1012</x><y>561</y><w>1243</w><h>55</h></coordinates><panel_attributes>lt=&lt;.
+wasAdded</panel_attributes><additional_attributes>10;20;1110;30</additional_attributes></element></diagram>
