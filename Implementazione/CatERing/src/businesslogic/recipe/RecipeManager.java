@@ -10,6 +10,6 @@ public class RecipeManager {
     }
 
     public ObservableList<Recipe> getRecipes() {
-        return FXCollections.unmodifiableObservableList(Recipe.getAllRecipes());
+        return Recipe.loadAllRecipes();
     }
 }

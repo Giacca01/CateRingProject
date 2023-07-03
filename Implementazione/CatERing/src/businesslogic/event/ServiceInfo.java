@@ -2,9 +2,11 @@ package businesslogic.event;
 
 import businesslogic.UseCaseLogicException;
 import businesslogic.assignment.Assignment;
+import businesslogic.employee.Cook;
 import businesslogic.menu.Menu;
 import businesslogic.recipe.KitchenTask;
 import businesslogic.recipe.Recipe;
+import businesslogic.shift.Shift;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import persistence.BatchUpdateHandler;
@@ -12,7 +14,6 @@ import persistence.PersistenceManager;
 import persistence.ResultHandler;
 
 import java.sql.*;
-import java.util.ArrayList;
 import java.util.Map;
 
 public class ServiceInfo implements EventItemInfo {
@@ -33,13 +34,13 @@ public class ServiceInfo implements EventItemInfo {
 
 
     public String toString() {
-        return name + ": " + date + " (" + timeStart + "-" + timeEnd + "), " + participants + " pp." + approvedMenu;
+        return name + ": " + date + " (" + timeStart + "-" + timeEnd + "), " + participants + " pp. " + approvedMenu;
     }
 
-    public boolean createSummarySheet(EventInfo e, Menu m){
+    public boolean createSummarySheet(EventInfo e, Menu m) {
         boolean res = true;
         ObservableList<Recipe> recipes = m.getRecipes();
-        for (Recipe r: recipes) {
+        for (Recipe r : recipes) {
             // recupero la lista di attività da svolgere
             // nell'ambito del compito (tutte quelle
             // che servono per completare una ricetta)
@@ -53,11 +54,11 @@ public class ServiceInfo implements EventItemInfo {
         return id;
     }
 
-    public Menu getApprovedMenu(){
+    public Menu getApprovedMenu() {
         return this.approvedMenu;
     }
 
-    public ObservableList<Assignment> getAssignments(){
+    public ObservableList<Assignment> getAssignments() {
         return this.assignments;
     }
 
@@ -84,7 +85,7 @@ public class ServiceInfo implements EventItemInfo {
             }
         });
 
-        for(int i = 0; i < result.size(); i++){
+        for (int i = 0; i < result.size(); i++) {
             ServiceInfo si = result.get(i);
 
             String featQ = "SELECT assignment_id FROM ServiceAssignment WHERE service_id = " + si.id + " ORDER BY position";
@@ -102,12 +103,12 @@ public class ServiceInfo implements EventItemInfo {
         return result;
     }
 
-    public static ServiceInfo loadServiceById(int id){
+    public static ServiceInfo loadServiceById(int id) {
         return loadedServices.get(id);
     }
 
-    public boolean deleteAssignment(KitchenTask kt, Assignment a) {
-        return a.deleteKitchenTask(kt);
+    public boolean deleteAssignment(Assignment a) {
+        return this.assignments.remove(a);
     }
 
     public static void saveSummarySheet(ServiceInfo srv) {
@@ -116,7 +117,7 @@ public class ServiceInfo implements EventItemInfo {
 
     public void sortSommarySheet(Assignment a, int position) throws UseCaseLogicException {
         int assignmentsSize = this.assignments.size();
-        if(assignmentsSize >= position){
+        if (assignmentsSize >= position) {
             this.assignments.remove(a);
             this.assignments.add(position, a);
         } else
@@ -125,11 +126,11 @@ public class ServiceInfo implements EventItemInfo {
 
     public Assignment addAssignmentDetails(Assignment a, Integer time, Integer amount) {
         int position = this.assignments.lastIndexOf(a);
-        if(position > -1){
+        if (position > -1) {
             this.assignments.remove(a);
-            if(time != null)
+            if (time != null)
                 a.setTimeEstimate(time);
-            if(amount != null)
+            if (amount != null)
                 a.setQuantity(amount);
             this.assignments.add(position, a);
             return a;
@@ -139,7 +140,7 @@ public class ServiceInfo implements EventItemInfo {
 
     public Assignment removeTimeEstimate(Assignment a) {
         int position = this.assignments.lastIndexOf(a);
-        if(position > -1){
+        if (position > -1) {
             this.assignments.remove(a);
             a.setTimeEstimate(null);
             this.assignments.add(position, a);
@@ -150,7 +151,7 @@ public class ServiceInfo implements EventItemInfo {
 
     public Assignment removeQuantityEstimate(Assignment a) {
         int position = this.assignments.lastIndexOf(a);
-        if(position > -1){
+        if (position > -1) {
             this.assignments.remove(a);
             a.setQuantity(null);
             this.assignments.add(position, a);

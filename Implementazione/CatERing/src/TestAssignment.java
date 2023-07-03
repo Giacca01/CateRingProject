@@ -5,6 +5,7 @@ import businesslogic.employee.Cook;
 import businesslogic.event.EventInfo;
 import businesslogic.event.ServiceInfo;
 import businesslogic.menu.Menu;
+import businesslogic.recipe.KitchenTask;
 import businesslogic.shift.Shift;
 import javafx.collections.ObservableList;
 
@@ -32,6 +33,23 @@ public class TestAssignment {
             Assignment a = s.getAssignments().get(0);
             CatERing.getInstance().getAssignmentManager().sortSummarySheet(a, 2);
             System.out.println("Sorted Summary Sheet:");
+            for (Assignment as : s.getAssignments()) {
+                System.out.println(as);
+            }
+
+            System.out.println();
+
+            System.out.println("TEST ADD ASSIGNMENT");
+            KitchenTask kt = m.getRecipes().get(0).getKitchenTasks().get(0);
+            Assignment newAssignment = CatERing.getInstance().getAssignmentManager().addAssignment(kt);
+            for (Assignment as : s.getAssignments()) {
+                System.out.println(as);
+            }
+
+            System.out.println();
+
+            System.out.println("TEST DELETE ASSIGNMENT");
+            CatERing.getInstance().getAssignmentManager().deleteAssignment(newAssignment, null);
             for (Assignment as : s.getAssignments()) {
                 System.out.println(as);
             }
@@ -67,10 +85,8 @@ public class TestAssignment {
             Assignment a1 = s.getAssignments().get(1);
             CatERing.getInstance().getAssignmentManager().addAssignmentDetails(a1, 2, 5);
             System.out.println(a1);
-
         } catch (UseCaseLogicException e) {
             System.out.println("Errore di logica nello use case");
         }
-
     }
 }

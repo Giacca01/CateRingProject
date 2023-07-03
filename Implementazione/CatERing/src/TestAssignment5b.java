@@ -28,9 +28,16 @@ public class TestAssignment5b {
             System.out.println("TEST CHANGE ASSOCIATION");
             Assignment a = s.getAssignments().get(0);
             System.out.println(a);
-            System.out.println(sh1.getTasksToComplete());
+            System.out.println("SHIFT1: " + sh1.getTasksToComplete());
+            System.out.println("SHIFT2: " + sh2.getTasksToComplete());
+            System.out.println("COOK1: " + me1.getAssignments());
+            System.out.println("COOK2: " + me2.getAssignments());
             CatERing.getInstance().getAssignmentManager().changeAssociation(a, sh1, sh2, me1, me2);
             System.out.println("Operazione effettuata con successo!");
+            System.out.println("SHIFT1: " + sh1.getTasksToComplete());
+            System.out.println("SHIFT2: " + sh2.getTasksToComplete());
+            System.out.println("COOK1: " + me1.getAssignments());
+            System.out.println("COOK2: " + me2.getAssignments());
         } catch (UseCaseLogicException e) {
             System.out.println("Errore di logica nello use case");
         }
