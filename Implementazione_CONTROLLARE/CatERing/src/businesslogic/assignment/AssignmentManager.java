@@ -75,16 +75,17 @@ public class AssignmentManager {
         return a;
     }
 
-    public boolean deleteAssignment(KitchenTask kt, Assignment a) throws UseCaseLogicException {
+    public boolean deleteAssignment(Assignment a, Shift s, Cook c) throws UseCaseLogicException {
         boolean operationCompleted;
         User user = CatERing.getInstance().getUserManager().getCurrentUser();
 
-        if (!user.isChef() || currentService == null || !a.getTasks().contains(kt)) {
+        if (!user.isChef() || currentService == null || !currentService.getAssignments().contains(a)) {
             throw new UseCaseLogicException();
         }
 
-        operationCompleted = this.currentService.deleteAssignment(kt, a);
-        this.notifyDeletedAssignment(a, kt);
+        operationCompleted = this.currentService.deleteAssignment(a, s, c);
+        this.deleteAssociation(a, s, c);
+        this.notifyDeletedAssignment(a);
         return operationCompleted;
     }
 
@@ -255,9 +256,9 @@ public class AssignmentManager {
         }
     }
 
-    private void notifyDeletedAssignment(Assignment a, KitchenTask kt) {
+    private void notifyDeletedAssignment(Assignment a) {
         for (AssignmentEventReceiver ar : this.eventReceivers) {
-            ar.updateDeletedAssignment(this.currentService, a, kt);
+            ar.updateDeletedAssignment(this.currentService, a);
         }
     }
 

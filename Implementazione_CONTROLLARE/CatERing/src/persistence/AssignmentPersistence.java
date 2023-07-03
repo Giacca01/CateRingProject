@@ -33,8 +33,8 @@ public class AssignmentPersistence implements AssignmentEventReceiver {
     }
 
     @Override
-    public void updateDeletedAssignment(ServiceInfo currentService, Assignment a, KitchenTask kt) {
-        a.removeAssignment(currentService, a, kt);
+    public void updateDeletedAssignment(ServiceInfo currentService, Assignment a) {
+        a.removeAssignment(currentService, a);
     }
 
     @Override

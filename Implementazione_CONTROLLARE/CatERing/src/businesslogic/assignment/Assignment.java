@@ -262,16 +262,13 @@ public class Assignment {
         });
     }
 
-    public void removeAssignment(ServiceInfo currentService, Assignment a, KitchenTask kt) {
-        String delAss = "DELETE FROM AssignmentKitchenTasks WHERE assignment_id = " + a.id;
+    public void removeAssignment(ServiceInfo currentService, Assignment a) {
+        String delAss = "DELETE FROM ServiceAssignment WHERE assignment_id = " + a.id + " and service_id = " + currentService.getId();
         PersistenceManager.executeUpdate(delAss);
 
-        loadedAssignments.get(a).getTasks().remove(kt);
-        if(loadedAssignments.get(a).getTasks().size() == 0){
-            delAss = "DELETE FROM Assignments WHERE id = " + a.id;
-            PersistenceManager.executeUpdate(delAss);
-            loadedAssignments.remove(a);
-        }
+        delAss = "DELETE FROM Assignments WHERE id = " + a.id;
+        PersistenceManager.executeUpdate(delAss);
+        loadedAssignments.remove(a);
     }
 
     public void saveMarkAsDone(Assignment a) {

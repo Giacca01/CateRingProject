@@ -2,9 +2,11 @@ package businesslogic.event;
 
 import businesslogic.UseCaseLogicException;
 import businesslogic.assignment.Assignment;
+import businesslogic.employee.Cook;
 import businesslogic.menu.Menu;
 import businesslogic.recipe.KitchenTask;
 import businesslogic.recipe.Recipe;
+import businesslogic.shift.Shift;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import persistence.BatchUpdateHandler;
@@ -105,13 +107,10 @@ public class ServiceInfo implements EventItemInfo {
         return loadedServices.get(id);
     }
 
-    public boolean deleteAssignment(KitchenTask kt, Assignment a) {
+    public boolean deleteAssignment(Assignment a, Shift s, Cook c) {
         boolean res;
-        res = a.deleteKitchenTask(kt);
-        if (a.getTasksSize() == 0) {
-            res = assignments.remove(a);
-        }
-        return res;
+
+        return this.assignments.remove(a);
     }
 
     public static void saveSummarySheet(ServiceInfo srv) {
