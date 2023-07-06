@@ -2,6 +2,8 @@ package businesslogic.assignment;
 
 import businesslogic.employee.Cook;
 import businesslogic.event.ServiceInfo;
+import businesslogic.menu.MenuItem;
+import businesslogic.menu.Section;
 import businesslogic.recipe.KitchenTask;
 import businesslogic.shift.Shift;
 import javafx.collections.FXCollections;
@@ -239,34 +241,55 @@ public class Assignment {
     }
 
     public static void saveNewAssignment(Assignment a, KitchenTask kt) {
-        a.saveKitchenTask(a.getId(), kt);
-        // aggiorniamo la rappresentazione del compito interna al programma
-        // in modo che tenga conto delle nuove info registrate su db
-        loadedAssignments.get(a.id).tasks.removeAll();
-        loadedAssignments.get(a.id).tasks = a.getTasks();
+        a.saveKitchenTask(a, kt);
     }
 
-    private void saveKitchenTask(int assignment_id, KitchenTask kt) {
-        String assKitchInsert = "INSERT INTO AssignmentKitchenTasks (assignment_id, kitchentask_id) VALUES (?, ?)";
-        int[] result = PersistenceManager.executeBatchUpdate(assKitchInsert, 1, new BatchUpdateHandler() {
+    private void saveKitchenTask(Assignment a, KitchenTask kt) {
+        String menuInsert = "INSERT INTO Assignments (toBePrepared) VALUES (true);";
+        int[] result = PersistenceManager.executeBatchUpdate(menuInsert, 1, new BatchUpdateHandler() {
+            // assegna valori ai parametri indicati con ?
             @Override
             public void handleBatchItem(PreparedStatement ps, int batchCount) throws SQLException {
-                ps.setInt(1, assignment_id);
-                ps.setInt(2, kt.getId());
+
             }
 
+            // trattamento nuovi id creati durante esecuzione query
             @Override
             public void handleGeneratedIds(ResultSet rs, int count) throws SQLException {
-
+                // should be only one
+                if (count == 0) {
+                    a.id = rs.getInt(1);
+                }
             }
         });
+
+        if (result[0] > 0) { // assignment effettivamente inserito
+            String assKitchInsert = "INSERT INTO AssignmentKitchenTasks (assignment_id, kitchentask_id) VALUES (?, ?)";
+            int[] result2 = PersistenceManager.executeBatchUpdate(assKitchInsert, 1, new BatchUpdateHandler() {
+                @Override
+                public void handleBatchItem(PreparedStatement ps, int batchCount) throws SQLException {
+                    ps.setInt(1, a.getId());
+                    ps.setInt(2, kt.getId());
+                }
+
+                @Override
+                public void handleGeneratedIds(ResultSet rs, int count) throws SQLException {
+
+                }
+            });
+            // aggiorniamo la rappresentazione del compito interna al programma
+            // in modo che tenga conto delle nuove info registrate su db
+            loadedAssignments.put(a.id, a);
+        }
     }
 
-    public void removeAssignment(ServiceInfo currentService, Assignment a, KitchenTask kt) {
-        String delAss = "DELETE FROM AssignmentKitchenTasks WHERE assignment_id = " + a.id;
+    public void removeAssignment(ServiceInfo currentService, Assignment a) {
+        String delAss = "DELETE FROM ServiceAssignment WHERE assignment_id = " + a.id + " and service_id = " + currentService.getId();
         PersistenceManager.executeUpdate(delAss);
 
-        loadedAssignments.get(a).getTasks().remove(kt);
+        delAss = "DELETE FROM Assignments WHERE id = " + a.id;
+        PersistenceManager.executeUpdate(delAss);
+        loadedAssignments.remove(a);
     }
 
     public void saveMarkAsDone(Assignment a) {

@@ -132,7 +132,7 @@ public class Menu {
     }
 
     public String toString() {
-        return title + " (autore: " + owner.getUserName() + ")," + (published ? " " : " non ") +
+        return "id: " + id + ", " +  title + " (autore: " + owner.getUserName() + ")," + (published ? " " : " non ") +
                 "pubblicato," + (inUse ? " " : " non ") + "in uso";
     }
 
@@ -520,7 +520,6 @@ public class Menu {
         return FXCollections.observableArrayList(loadedMenus.values());
     }
 
-    //TODO: completalo
     public static Menu loadMenuById(int mid) {
         return loadedMenus.get(mid);
     }

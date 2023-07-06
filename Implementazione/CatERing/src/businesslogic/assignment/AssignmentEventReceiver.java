@@ -9,7 +9,7 @@ public interface AssignmentEventReceiver {
     void updateSummarySheetCreated(ServiceInfo currentService);
     void updateSummarySheetOpened(ServiceInfo currentService);
 
-    void updateDeletedAssignment(ServiceInfo currentService, Assignment a, KitchenTask kt);
+    void updateDeletedAssignment(ServiceInfo currentService, Assignment a);
 
     void updateSortedSummarySheet(ServiceInfo currentService);
 

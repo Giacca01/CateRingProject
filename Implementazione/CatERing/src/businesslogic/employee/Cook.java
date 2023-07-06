@@ -46,7 +46,7 @@ public class Cook {
     }
 
     public void changeAssociation(Assignment a, Cook cc, Cook nc) {
-        String upd = "UPDATE CookAssignment SET member_id = ? WHERE assignment_id = ? AND member_id = ?";
+        String upd = "UPDATE CookAssignment SET cook_id = ? WHERE assignment_id = ? AND cook_id = ?";
         PersistenceManager.executeBatchUpdate(upd, 1, new BatchUpdateHandler() {
             @Override
             public void handleBatchItem(PreparedStatement ps, int batchCount) throws SQLException {

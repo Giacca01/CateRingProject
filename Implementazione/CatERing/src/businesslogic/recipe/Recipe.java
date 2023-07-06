@@ -10,7 +10,7 @@ import java.sql.SQLException;
 import java.util.*;
 
 public class Recipe {
-    private static Map<Integer, Recipe> all = new HashMap<>();
+    private static Map<Integer, Recipe> loadedRecipes = new HashMap<>();
 
     private int id;
     private String name;
@@ -35,7 +35,7 @@ public class Recipe {
     }
 
     public String toString() {
-        return name;
+        return name + " {" + kitchenTasks + "}";
     }
 
     public ObservableList<KitchenTask> getKitchenTasks(){
@@ -50,17 +50,17 @@ public class Recipe {
             @Override
             public void handle(ResultSet rs) throws SQLException {
                 int id = rs.getInt("id");
-                if (all.containsKey(id)) {
-                    Recipe rec = all.get(id);
+                if (loadedRecipes.containsKey(id)) {
+                    Recipe rec = loadedRecipes.get(id);
                     rec.name = rs.getString("name");
                 } else {
                     Recipe rec = new Recipe(rs.getString("name"));
                     rec.id = id;
-                    all.put(rec.id, rec);
+                    loadedRecipes.put(rec.id, rec);
                 }
             }
         });
-        ObservableList<Recipe> ret =  FXCollections.observableArrayList(all.values());
+        ObservableList<Recipe> ret =  FXCollections.observableArrayList(loadedRecipes.values());
         Collections.sort(ret, new Comparator<Recipe>() {
             @Override
             public int compare(Recipe o1, Recipe o2) {
@@ -81,11 +81,11 @@ public class Recipe {
     }
 
     public static ObservableList<Recipe> getAllRecipes() {
-        return FXCollections.observableArrayList(all.values());
+        return FXCollections.observableArrayList(loadedRecipes.values());
     }
 
     public static Recipe loadRecipeById(int id) {
-        if (all.containsKey(id)) return all.get(id);
+        if (loadedRecipes.containsKey(id)) return loadedRecipes.get(id);
         Recipe rec = new Recipe();
         String query = "SELECT * FROM Recipes WHERE id = " + id;
         PersistenceManager.executeQuery(query, new ResultHandler() {
@@ -93,7 +93,7 @@ public class Recipe {
             public void handle(ResultSet rs) throws SQLException {
                     rec.name = rs.getString("name");
                     rec.id = id;
-                    all.put(rec.id, rec);
+                    loadedRecipes.put(rec.id, rec);
             }
         });
         return rec;
