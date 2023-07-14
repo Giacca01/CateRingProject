@@ -480,6 +480,14 @@ Il passo 6 e 7 sono interessanti e ci consentono di introdurre una tecnica impor
 spesso la mappatura 1-1 degli uc sugli ssd è scomoda e genera un risultato verboso.
 Meglio affidarsi a tecniche per accorciare, tipo fondere le operazioni comuni.
 
+
+
+Cose da fare per esame:
+
+1) Guardare bene il codice
+2) Eseguire i test
+3) Ripassare i pattern
+
 NOTA IMPORTANTE:
 Il passo 2 è sbagliato: bisogna sganciare il compito dal menù
 
