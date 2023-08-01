@@ -1,0 +1,131 @@
+<mxfile host="app.diagrams.net" modified="2023-07-31T16:55:24.685Z" agent="Mozilla/5.0 (X11; Linux x86_64; rv:108.0) Gecko/20100101 Firefox/108.0" etag="tNiGT22YAFfywLR1Iafo" version="21.6.6" type="device">
+  <diagram name="Page-1" id="f5A6CDPiya6YqWZAvQuT">
+    <mxGraphModel dx="954" dy="-657" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="827" pageHeight="1169" math="0" shadow="0">
+      <root>
+        <mxCell id="0" />
+        <mxCell id="1" parent="0" />
+        <mxCell id="3oUJ_5gLEvu6R0pSqBkJ-33" value="LOOP" style="shape=umlFrame;tabWidth=110;tabHeight=30;tabPosition=left;html=1;boundedLbl=1;labelInHeader=1;width=40;height=20;swimlaneFillColor=#CCFFFF;fillColor=#CCFFFF;strokeColor=#00CCCC;fillOpacity=60;fontColor=#00CCCC;" parent="1" vertex="1">
+          <mxGeometry x="165" y="1572.5" width="470" height="645" as="geometry" />
+        </mxCell>
+        <mxCell id="3oUJ_5gLEvu6R0pSqBkJ-21" value="LOOP" style="shape=umlFrame;tabWidth=110;tabHeight=30;tabPosition=left;html=1;boundedLbl=1;labelInHeader=1;width=40;height=20;swimlaneFillColor=#DAE8FC;fillColor=#DAE8FC;strokeColor=#6c8ebf;fillOpacity=60;fontColor=#6C8EBF;" parent="1" vertex="1">
+          <mxGeometry x="190" y="1880" width="430" height="330" as="geometry" />
+        </mxCell>
+        <mxCell id="3oUJ_5gLEvu6R0pSqBkJ-22" value="OPT" style="shape=umlFrame;tabWidth=110;tabHeight=30;tabPosition=left;html=1;boundedLbl=1;labelInHeader=1;width=40;height=20;swimlaneFillColor=#D5E8D4;fillColor=#d5e8d4;strokeColor=#82b366;fillOpacity=60;fontColor=#82B366;" parent="1" vertex="1">
+          <mxGeometry x="200" y="1910" width="390" height="90" as="geometry" />
+        </mxCell>
+        <mxCell id="3oUJ_5gLEvu6R0pSqBkJ-23" value="4.consultaTabelloneTurni()" style="html=1;verticalAlign=bottom;endArrow=block;edgeStyle=elbowEdgeStyle;elbow=vertical;curved=0;rounded=0;labelBackgroundColor=none;" parent="1" edge="1">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="252" y="1950" as="sourcePoint" />
+            <Array as="points" />
+            <mxPoint x="539.5" y="1950" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="3oUJ_5gLEvu6R0pSqBkJ-24" value="tabellone turni" style="html=1;verticalAlign=bottom;endArrow=open;edgeStyle=elbowEdgeStyle;elbow=vertical;curved=0;rounded=0;labelBackgroundColor=none;endFill=0;dashed=1;" parent="1" target="3oUJ_5gLEvu6R0pSqBkJ-30" edge="1">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="542.5" y="1979.9999999999995" as="sourcePoint" />
+            <mxPoint x="257.5" y="1979.9999999999995" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="3oUJ_5gLEvu6R0pSqBkJ-1" value="LOOP" style="shape=umlFrame;tabWidth=110;tabHeight=30;tabPosition=left;html=1;boundedLbl=1;labelInHeader=1;width=40;height=20;swimlaneFillColor=#DAE8FC;fillColor=#DAE8FC;strokeColor=#6c8ebf;fillOpacity=60;fontColor=#6C8EBF;" parent="1" vertex="1">
+          <mxGeometry x="205" y="1430" width="390" height="420" as="geometry" />
+        </mxCell>
+        <mxCell id="3oUJ_5gLEvu6R0pSqBkJ-27" value="OPT" style="shape=umlFrame;tabWidth=110;tabHeight=30;tabPosition=left;html=1;boundedLbl=1;labelInHeader=1;width=40;height=20;swimlaneFillColor=#D5E8D4;fillColor=#d5e8d4;strokeColor=#82b366;fillOpacity=60;fontColor=#82B366;" parent="1" vertex="1">
+          <mxGeometry x="200" y="2110" width="390" height="90" as="geometry" />
+        </mxCell>
+        <mxCell id="3oUJ_5gLEvu6R0pSqBkJ-28" value="6.aggiuntaDettagliCompito(compito, stimaTempo?,quantità?, daPreparare?)" style="html=1;verticalAlign=bottom;endArrow=block;edgeStyle=elbowEdgeStyle;elbow=horizontal;curved=0;rounded=0;labelBackgroundColor=none;" parent="1" edge="1">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="255" y="2150" as="sourcePoint" />
+            <Array as="points">
+              <mxPoint x="350.5" y="2150.41" />
+            </Array>
+            <mxPoint x="540" y="2150.4099999999994" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="3oUJ_5gLEvu6R0pSqBkJ-29" value="foglio aggiornato" style="html=1;verticalAlign=bottom;endArrow=block;edgeStyle=elbowEdgeStyle;elbow=vertical;curved=0;rounded=0;labelBackgroundColor=none;" parent="1" edge="1">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="540" y="2179.9999999999995" as="sourcePoint" />
+            <mxPoint x="255" y="2179.9999999999995" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="3oUJ_5gLEvu6R0pSqBkJ-4" value="1.generaFoglioRiepilogativo(servizio)" style="html=1;verticalAlign=bottom;endArrow=block;edgeStyle=elbowEdgeStyle;elbow=vertical;curved=0;rounded=0;labelBackgroundColor=none;" parent="1" source="3oUJ_5gLEvu6R0pSqBkJ-30" edge="1">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="260" y="1510" as="sourcePoint" />
+            <Array as="points">
+              <mxPoint x="350.5" y="1510" />
+            </Array>
+            <mxPoint x="540" y="1510" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="3oUJ_5gLEvu6R0pSqBkJ-5" value="foglio riepilogativo" style="html=1;verticalAlign=bottom;endArrow=open;edgeStyle=elbowEdgeStyle;elbow=vertical;curved=0;rounded=0;labelBackgroundColor=none;dashed=1;endFill=0;" parent="1" target="3oUJ_5gLEvu6R0pSqBkJ-30" edge="1">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="540" y="1540" as="sourcePoint" />
+            <mxPoint x="260" y="1540" as="targetPoint" />
+            <mxPoint as="offset" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="3oUJ_5gLEvu6R0pSqBkJ-9" value="LOOP" style="shape=umlFrame;tabWidth=110;tabHeight=30;tabPosition=left;html=1;boundedLbl=1;labelInHeader=1;width=40;height=20;swimlaneFillColor=#CC99FF;fillColor=#CC99FF;strokeColor=#9933FF;fillOpacity=60;fontColor=#9933FF;" parent="1" vertex="1">
+          <mxGeometry x="220" y="1580" width="370" height="140" as="geometry" />
+        </mxCell>
+        <mxCell id="3oUJ_5gLEvu6R0pSqBkJ-13" value="OPT" style="shape=umlFrame;tabWidth=110;tabHeight=30;tabPosition=left;html=1;boundedLbl=1;labelInHeader=1;width=40;height=20;swimlaneFillColor=#D5E8D4;fillColor=#d5e8d4;strokeColor=#82b366;fillOpacity=60;fontColor=#82B366;container=1;" parent="1" vertex="1">
+          <mxGeometry x="225" y="1730" width="350" height="90" as="geometry" />
+        </mxCell>
+        <mxCell id="3oUJ_5gLEvu6R0pSqBkJ-18" value="foglio riepilogativo ordinato" style="html=1;verticalAlign=bottom;endArrow=open;edgeStyle=elbowEdgeStyle;elbow=vertical;curved=0;rounded=0;labelBackgroundColor=none;endFill=0;dashed=1;" parent="3oUJ_5gLEvu6R0pSqBkJ-13" edge="1">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="315.5" y="70.00041666666675" as="sourcePoint" />
+            <mxPoint x="25" y="70.06999999999994" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="3oUJ_5gLEvu6R0pSqBkJ-10" value="OPT" style="shape=umlFrame;tabWidth=110;tabHeight=30;tabPosition=left;html=1;boundedLbl=1;labelInHeader=1;width=40;height=20;swimlaneFillColor=#D5E8D4;fillColor=#d5e8d4;strokeColor=#82b366;fillOpacity=60;fontColor=#82B366;" parent="1" vertex="1">
+          <mxGeometry x="225" y="1610" width="350" height="90" as="geometry" />
+        </mxCell>
+        <mxCell id="3oUJ_5gLEvu6R0pSqBkJ-11" value="2.aggiungeCompito(mansione, compitoPrec?)" style="html=1;verticalAlign=bottom;endArrow=block;edgeStyle=elbowEdgeStyle;elbow=vertical;curved=0;rounded=0;labelBackgroundColor=none;" parent="1" edge="1">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="255" y="1649" as="sourcePoint" />
+            <Array as="points" />
+            <mxPoint x="540" y="1649.41" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="3oUJ_5gLEvu6R0pSqBkJ-12" value="foglio riepilogativo aggiornato" style="html=1;verticalAlign=bottom;endArrow=open;edgeStyle=elbowEdgeStyle;elbow=vertical;curved=0;rounded=0;labelBackgroundColor=none;endFill=0;dashed=1;" parent="1" edge="1">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="537" y="1680" as="sourcePoint" />
+            <mxPoint x="252" y="1680" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="3oUJ_5gLEvu6R0pSqBkJ-16" value="3.ordinaFoglioRiepilogativo(criterioOrdinamento)" style="html=1;verticalAlign=bottom;endArrow=block;edgeStyle=elbowEdgeStyle;elbow=vertical;curved=0;rounded=0;labelBackgroundColor=none;" parent="1" edge="1">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="255" y="1767.9166666666667" as="sourcePoint" />
+            <Array as="points">
+              <mxPoint x="350.5" y="1768.13875" />
+            </Array>
+            <mxPoint x="540" y="1768.1387499999998" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="3oUJ_5gLEvu6R0pSqBkJ-31" value="Sistema" style="shape=umlLifeline;perimeter=lifelinePerimeter;whiteSpace=wrap;html=1;container=0;collapsible=0;recursiveResize=0;outlineConnect=0;labelBackgroundColor=none;" parent="1" vertex="1">
+          <mxGeometry x="490" y="1340" width="100" height="1110" as="geometry" />
+        </mxCell>
+        <mxCell id="3oUJ_5gLEvu6R0pSqBkJ-30" value="Chef" style="shape=umlLifeline;participant=umlActor;perimeter=lifelinePerimeter;whiteSpace=wrap;html=1;container=1;collapsible=0;recursiveResize=0;verticalAlign=top;spacingTop=36;outlineConnect=0;labelBackgroundColor=default;" parent="1" vertex="1">
+          <mxGeometry x="240" y="1340" width="25" height="1090" as="geometry" />
+        </mxCell>
+        <mxCell id="3oUJ_5gLEvu6R0pSqBkJ-34" value="OPT" style="shape=umlFrame;tabWidth=110;tabHeight=30;tabPosition=left;html=1;boundedLbl=1;labelInHeader=1;width=40;height=20;swimlaneFillColor=#D5E8D4;fillColor=#d5e8d4;strokeColor=#82b366;fillOpacity=60;fontColor=#82B366;" parent="1" vertex="1">
+          <mxGeometry x="200" y="2010" width="390" height="90" as="geometry" />
+        </mxCell>
+        <mxCell id="3oUJ_5gLEvu6R0pSqBkJ-25" value="5.assegnaCompito(compito, turno, cuoco?)" style="html=1;verticalAlign=bottom;endArrow=block;edgeStyle=elbowEdgeStyle;elbow=vertical;curved=0;rounded=0;labelBackgroundColor=none;" parent="1" edge="1">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="250" y="2040" as="sourcePoint" />
+            <Array as="points">
+              <mxPoint x="355.5" y="2040.4099999999999" />
+            </Array>
+            <mxPoint x="545" y="2040.4099999999994" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="3oUJ_5gLEvu6R0pSqBkJ-26" value="foglio aggiornato" style="html=1;verticalAlign=bottom;endArrow=open;edgeStyle=elbowEdgeStyle;elbow=vertical;curved=0;rounded=0;labelBackgroundColor=none;endFill=0;dashed=1;" parent="1" edge="1">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="545" y="2069.9999999999995" as="sourcePoint" />
+            <mxPoint x="250" y="2070" as="targetPoint" />
+            <Array as="points" />
+          </mxGeometry>
+        </mxCell>
+      </root>
+    </mxGraphModel>
+  </diagram>
+</mxfile>
