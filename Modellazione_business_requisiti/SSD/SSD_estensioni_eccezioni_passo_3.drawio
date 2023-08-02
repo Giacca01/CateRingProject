@@ -1,4 +1,4 @@
-<mxfile host="app.diagrams.net" modified="2023-07-31T16:55:37.457Z" agent="Mozilla/5.0 (X11; Linux x86_64; rv:108.0) Gecko/20100101 Firefox/108.0" etag="_pIswBVxNrilVVDZzlfL" version="21.6.6" type="device">
+<mxfile host="app.diagrams.net" modified="2023-08-01T17:05:18.447Z" agent="Mozilla/5.0 (X11; Linux x86_64; rv:108.0) Gecko/20100101 Firefox/108.0" etag="F681GGzO0wA0j1Dz1yUj" version="21.6.6" type="device">
   <diagram name="Page-1" id="f5A6CDPiya6YqWZAvQuT">
     <mxGraphModel dx="954" dy="-657" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="827" pageHeight="1169" math="0" shadow="0">
       <root>
@@ -16,10 +16,10 @@
           </mxGeometry>
         </mxCell>
         <mxCell id="3oUJ_5gLEvu6R0pSqBkJ-33" value="LOOP" style="shape=umlFrame;tabWidth=110;tabHeight=30;tabPosition=left;html=1;boundedLbl=1;labelInHeader=1;width=40;height=20;swimlaneFillColor=#E6E6E6;fillColor=#f5f5f5;strokeColor=#666666;fillOpacity=60;fontColor=#333333;" parent="1" vertex="1">
-          <mxGeometry x="165" y="1540" width="470" height="740" as="geometry" />
+          <mxGeometry x="165" y="1540" width="470" height="850" as="geometry" />
         </mxCell>
         <mxCell id="3oUJ_5gLEvu6R0pSqBkJ-21" value="LOOP" style="shape=umlFrame;tabWidth=110;tabHeight=30;tabPosition=left;html=1;boundedLbl=1;labelInHeader=1;width=40;height=20;swimlaneFillColor=#E6E6E6;fillColor=#f5f5f5;strokeColor=#666666;fillOpacity=60;fontColor=#333333;" parent="1" vertex="1">
-          <mxGeometry x="185" y="1930" width="430" height="330" as="geometry" />
+          <mxGeometry x="185" y="1930" width="430" height="450" as="geometry" />
         </mxCell>
         <mxCell id="3oUJ_5gLEvu6R0pSqBkJ-22" value="OPT" style="shape=umlFrame;tabWidth=110;tabHeight=30;tabPosition=left;html=1;boundedLbl=1;labelInHeader=1;width=40;height=20;swimlaneFillColor=#E6E6E6;fillColor=#f5f5f5;strokeColor=#666666;fillOpacity=60;fontColor=#333333;" parent="1" vertex="1">
           <mxGeometry x="195" y="1960" width="390" height="90" as="geometry" />
@@ -59,7 +59,7 @@
             <Array as="points" />
           </mxGeometry>
         </mxCell>
-        <mxCell id="3oUJ_5gLEvu6R0pSqBkJ-28" value="6.aggiuntaDettagliCompito(compito, stimaTempo?,quantità?, daPreparare?)" style="html=1;verticalAlign=bottom;endArrow=block;edgeStyle=elbowEdgeStyle;elbow=horizontal;curved=0;rounded=0;labelBackgroundColor=none;fillColor=#f5f5f5;strokeColor=#666666;" parent="1" edge="1">
+        <mxCell id="3oUJ_5gLEvu6R0pSqBkJ-28" value="6.modificaDettagliCompito(compito, stimaTempo?,quantità?, daPreparare?)" style="html=1;verticalAlign=bottom;endArrow=block;edgeStyle=elbowEdgeStyle;elbow=horizontal;curved=0;rounded=0;labelBackgroundColor=none;fillColor=#f5f5f5;strokeColor=#666666;" parent="1" edge="1">
           <mxGeometry relative="1" as="geometry">
             <mxPoint x="252.5" y="2200" as="sourcePoint" />
             <Array as="points">
@@ -68,7 +68,7 @@
             <mxPoint x="539.5" y="2200.41" as="targetPoint" />
           </mxGeometry>
         </mxCell>
-        <mxCell id="3oUJ_5gLEvu6R0pSqBkJ-29" value="foglio aggiornato" style="html=1;verticalAlign=bottom;endArrow=block;edgeStyle=elbowEdgeStyle;elbow=vertical;curved=0;rounded=0;labelBackgroundColor=none;fillColor=#f5f5f5;strokeColor=#666666;" parent="1" edge="1">
+        <mxCell id="3oUJ_5gLEvu6R0pSqBkJ-29" value="foglio aggiornato" style="html=1;verticalAlign=bottom;endArrow=open;edgeStyle=elbowEdgeStyle;elbow=vertical;curved=0;rounded=0;labelBackgroundColor=none;fillColor=#f5f5f5;strokeColor=#666666;endFill=0;dashed=1;" parent="1" edge="1">
           <mxGeometry relative="1" as="geometry">
             <mxPoint x="539.5" y="2229.5" as="sourcePoint" />
             <mxPoint x="250" y="2229.9999999999995" as="targetPoint" />
@@ -113,13 +113,13 @@
         <mxCell id="23ODI-zVTMkxSb2Zl0f4-4" value="" style="shape=umlFrame;whiteSpace=wrap;html=1;swimlaneFillColor=#CC99FF;fillColor=#9673A6;strokeColor=#4C0099;fillOpacity=60;fontColor=#FF0000;width=10;height=15;" parent="23ODI-zVTMkxSb2Zl0f4-10" vertex="1">
           <mxGeometry y="60" width="320" height="50" as="geometry" />
         </mxCell>
-        <mxCell id="23ODI-zVTMkxSb2Zl0f4-5" value="foglio riepilogativo ordinato" style="html=1;verticalAlign=bottom;endArrow=block;edgeStyle=elbowEdgeStyle;elbow=vertical;curved=0;rounded=0;labelBackgroundColor=none;dashed=1;" parent="23ODI-zVTMkxSb2Zl0f4-10" edge="1">
+        <mxCell id="23ODI-zVTMkxSb2Zl0f4-5" value="foglio riepilogativo ordinato" style="html=1;verticalAlign=bottom;endArrow=open;edgeStyle=elbowEdgeStyle;elbow=vertical;curved=0;rounded=0;labelBackgroundColor=none;dashed=1;endFill=0;" parent="23ODI-zVTMkxSb2Zl0f4-10" edge="1">
           <mxGeometry relative="1" as="geometry">
             <mxPoint x="300" y="40" as="sourcePoint" />
             <mxPoint x="10" y="40.14000000000033" as="targetPoint" />
           </mxGeometry>
         </mxCell>
-        <mxCell id="23ODI-zVTMkxSb2Zl0f4-6" value="foglio riepilogativo ordinato" style="html=1;verticalAlign=bottom;endArrow=block;edgeStyle=elbowEdgeStyle;elbow=horizontal;curved=0;rounded=0;labelBackgroundColor=none;dashed=1;strokeColor=#1A1A1A;fontColor=#1A1A1A;" parent="23ODI-zVTMkxSb2Zl0f4-10" edge="1">
+        <mxCell id="23ODI-zVTMkxSb2Zl0f4-6" value="foglio riepilogativo ordinato" style="html=1;verticalAlign=bottom;endArrow=open;edgeStyle=elbowEdgeStyle;elbow=horizontal;curved=0;rounded=0;labelBackgroundColor=none;dashed=1;strokeColor=#1A1A1A;fontColor=#1A1A1A;endFill=0;" parent="23ODI-zVTMkxSb2Zl0f4-10" edge="1">
           <mxGeometry relative="1" as="geometry">
             <mxPoint x="300" y="84.5" as="sourcePoint" />
             <mxPoint x="10" y="84.64000000000033" as="targetPoint" />
@@ -128,11 +128,29 @@
         <mxCell id="23ODI-zVTMkxSb2Zl0f4-7" value="" style="shape=umlDestroy;whiteSpace=wrap;html=1;strokeWidth=3;targetShapes=umlLifeline;" parent="23ODI-zVTMkxSb2Zl0f4-10" vertex="1">
           <mxGeometry x="290" y="75" width="20" height="20" as="geometry" />
         </mxCell>
-        <mxCell id="3oUJ_5gLEvu6R0pSqBkJ-30" value="Chef" style="shape=umlLifeline;participant=umlActor;perimeter=lifelinePerimeter;whiteSpace=wrap;html=1;container=1;collapsible=0;recursiveResize=0;verticalAlign=top;spacingTop=36;outlineConnect=0;labelBackgroundColor=default;" parent="1" vertex="1">
-          <mxGeometry x="240" y="1340" width="25" height="1090" as="geometry" />
+        <mxCell id="PscH_xC_QWvuuTyh2n-l-1" value="OPT" style="shape=umlFrame;tabWidth=110;tabHeight=30;tabPosition=left;html=1;boundedLbl=1;labelInHeader=1;width=40;height=20;swimlaneFillColor=#E6E6E6;fillColor=#f6f5f4;strokeColor=#5e5c64;fillOpacity=60;fontColor=#1A1A1A;" vertex="1" parent="1">
+          <mxGeometry x="195" y="2260" width="390" height="90" as="geometry" />
+        </mxCell>
+        <mxCell id="PscH_xC_QWvuuTyh2n-l-2" value="7.modificaDaPreparare(compito, daPreparare)" style="html=1;verticalAlign=bottom;endArrow=block;edgeStyle=elbowEdgeStyle;elbow=horizontal;curved=0;rounded=0;labelBackgroundColor=none;" edge="1" parent="1">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="250" y="2300" as="sourcePoint" />
+            <Array as="points">
+              <mxPoint x="345.5" y="2300.41" />
+            </Array>
+            <mxPoint x="535" y="2300.4099999999994" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="PscH_xC_QWvuuTyh2n-l-3" value="compito aggiornato" style="html=1;verticalAlign=bottom;endArrow=open;edgeStyle=elbowEdgeStyle;elbow=vertical;curved=0;rounded=0;labelBackgroundColor=none;endFill=0;dashed=1;" edge="1" parent="1">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="535" y="2329.9999999999995" as="sourcePoint" />
+            <mxPoint x="250" y="2329.9999999999995" as="targetPoint" />
+          </mxGeometry>
         </mxCell>
         <mxCell id="3oUJ_5gLEvu6R0pSqBkJ-31" value="Sistema" style="shape=umlLifeline;perimeter=lifelinePerimeter;whiteSpace=wrap;html=1;container=0;collapsible=0;recursiveResize=0;outlineConnect=0;labelBackgroundColor=none;" parent="1" vertex="1">
-          <mxGeometry x="490" y="1340" width="100" height="1110" as="geometry" />
+          <mxGeometry x="490" y="1340" width="100" height="1140" as="geometry" />
+        </mxCell>
+        <mxCell id="3oUJ_5gLEvu6R0pSqBkJ-30" value="Chef" style="shape=umlLifeline;participant=umlActor;perimeter=lifelinePerimeter;whiteSpace=wrap;html=1;container=1;collapsible=0;recursiveResize=0;verticalAlign=top;spacingTop=36;outlineConnect=0;labelBackgroundColor=default;" parent="1" vertex="1">
+          <mxGeometry x="240" y="1340" width="25" height="1140" as="geometry" />
         </mxCell>
       </root>
     </mxGraphModel>
