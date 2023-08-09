@@ -22,7 +22,7 @@ fg=gray</panel_attributes><additional_attributes></additional_attributes></eleme
 +defineSection(name: String)
 +inserItem(r: Recipe, sec?: Section, desc?: String)
 +createMenu(title: String): Menu
-+getRecipeBook( ): ArrayList&lt;Recipe&gt;</panel_attributes><additional_attributes></additional_attributes></element><element><id>UMLClass</id><coordinates><x>584</x><y>216</y><w>304</w><h>208</h></coordinates><panel_attributes>Menu
++getRecipeBook( ): ArrayList&lt;Recipe&gt;</panel_attributes><additional_attributes></additional_attributes></element><element><id>UMLClass</id><coordinates><x>584</x><y>216</y><w>304</w><h>232</h></coordinates><panel_attributes>Menu
 --
 -title: String
 -published: boolean
@@ -33,14 +33,15 @@ fg=gray</panel_attributes><additional_attributes></additional_attributes></eleme
 +create(owner: User, title: String, features: String[])
 +getKitchenTasks(): List&lt;KitchenTask&gt;
 +addSection(name: String)
-+addItem(r: Recipe, sec?: Section,
-                                        desc?: String)
++addItem(r: Recipe, sec?: Section, desc?: String)
 +isOwner(user: User): boolean
 +isInUse(): boolean
 +hasSection(sec: Section): boolean
 +sectionsSize(): int
 +moveSection(sec: Section, pos: int)
-</panel_attributes><additional_attributes></additional_attributes></element><element><id>Relation</id><coordinates><x>464</x><y>336</y><w>136</w><h>48</h></coordinates><panel_attributes>lt=&lt;-
++getSecions(): List&lt;Section&gt;
++getFreeItems(): List&lt;MenuItem&gt;
++getRecipes(): List&lt;KitchenTask&gt;</panel_attributes><additional_attributes></additional_attributes></element><element><id>Relation</id><coordinates><x>464</x><y>336</y><w>136</w><h>48</h></coordinates><panel_attributes>lt=&lt;-
 currentMenu
 m1=0..1
 
@@ -50,25 +51,24 @@ description: String
 --
 +create(rec: Recipe, desc?: String)
 +create(mi: MenuItem)
-
-</panel_attributes><additional_attributes></additional_attributes></element><element><id>UMLClass</id><coordinates><x>1064</x><y>224</y><w>176</w><h>56</h></coordinates><panel_attributes>Recipe
++getItemRecipe(): Recipe</panel_attributes><additional_attributes></additional_attributes></element><element><id>UMLClass</id><coordinates><x>1064</x><y>224</y><w>176</w><h>56</h></coordinates><panel_attributes>Recipe
 fg=gray
 --
 -name: String
 --
 +getIngredients(): List&lt;KitchenTask&gt;</panel_attributes><additional_attributes></additional_attributes></element><element><id>Relation</id><coordinates><x>904</x><y>256</y><w>176</w><h>304</h></coordinates><panel_attributes>lt=&lt;-
 itemRecipe
-m1=1</panel_attributes><additional_attributes>200;10;10;10;10;360</additional_attributes></element><element><id>Relation</id><coordinates><x>776</x><y>416</y><w>64</w><h>144</h></coordinates><panel_attributes>lt=&lt;-
+m1=1</panel_attributes><additional_attributes>200;10;10;10;10;360</additional_attributes></element><element><id>Relation</id><coordinates><x>776</x><y>440</y><w>64</w><h>120</h></coordinates><panel_attributes>lt=&lt;-
 m1=0..n
 freeItems
-</panel_attributes><additional_attributes>10;160;10;10</additional_attributes></element><element><id>UMLClass</id><coordinates><x>520</x><y>504</y><w>168</w><h>96</h></coordinates><panel_attributes>Section
+</panel_attributes><additional_attributes>10;130;10;10</additional_attributes></element><element><id>UMLClass</id><coordinates><x>520</x><y>504</y><w>176</w><h>96</h></coordinates><panel_attributes>Section
 --
 name: String
 --
 +create(name: String)
 +create(sec: Section)
 +addItem(mi: MenuItem)
-</panel_attributes><additional_attributes></additional_attributes></element><element><id>Relation</id><coordinates><x>528</x><y>376</y><w>72</w><h>144</h></coordinates><panel_attributes>lt=&lt;-
++getSectionItems(): List&lt;MenuItem&gt;</panel_attributes><additional_attributes></additional_attributes></element><element><id>Relation</id><coordinates><x>528</x><y>376</y><w>72</w><h>144</h></coordinates><panel_attributes>lt=&lt;-
 m1=0..n
 sections
 </panel_attributes><additional_attributes>10;160;10;10;70;10</additional_attributes></element><element><id>Relation</id><coordinates><x>544</x><y>592</y><w>224</w><h>56</h></coordinates><panel_attributes>lt=&lt;-
@@ -114,9 +114,9 @@ fg=gray
 </panel_attributes><additional_attributes></additional_attributes></element><element><id>Relation</id><coordinates><x>1176</x><y>552</y><w>80</w><h>120</h></coordinates><panel_attributes>lt=&lt;-
 currentUser
 m1=0..1
-fg=gray</panel_attributes><additional_attributes>10;10;10;130</additional_attributes></element><element><id>Relation</id><coordinates><x>856</x><y>416</y><w>296</w><h>112</h></coordinates><panel_attributes>lt=&lt;-
+fg=gray</panel_attributes><additional_attributes>10;10;10;130</additional_attributes></element><element><id>Relation</id><coordinates><x>856</x><y>440</y><w>296</w><h>88</h></coordinates><panel_attributes>lt=&lt;-
 owner
-m1=1</panel_attributes><additional_attributes>350;110;10;110;10;10</additional_attributes></element><element><id>UMLClass</id><coordinates><x>1056</x><y>344</y><w>176</w><h>64</h></coordinates><panel_attributes>RecipeManager
+m1=1</panel_attributes><additional_attributes>350;80;10;80;10;10</additional_attributes></element><element><id>UMLClass</id><coordinates><x>1056</x><y>344</y><w>176</w><h>64</h></coordinates><panel_attributes>RecipeManager
 --
 
 --
@@ -341,7 +341,9 @@ m2=0..n</panel_attributes><additional_attributes>180;20;10;20;10;70</additional_
 -approved: bool
 --
 +getEvent(): Event
-+createSummarySheet(e: Event)
++getMenu(): Menu
++getAssignments(): List&lt;Assignment&gt;
++createSummarySheet()
 +addAssignment(kt: KitchenTask, prevKt: KitchenTask)
 +deleteAssignment(a: Assignment)
 +setShift(sh: Shift)
