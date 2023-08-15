@@ -1,6 +1,6 @@
-<mxfile host="app.diagrams.net" modified="2023-08-13T12:54:14.967Z" agent="Mozilla/5.0 (X11; Linux x86_64; rv:108.0) Gecko/20100101 Firefox/108.0" etag="6pfn00mnM1DC8P7atqXP" version="21.6.8" type="device">
+<mxfile host="app.diagrams.net" modified="2023-08-14T13:54:17.905Z" agent="Mozilla/5.0 (X11; Linux x86_64; rv:108.0) Gecko/20100101 Firefox/108.0" etag="dZrd9aEDUzEf9WAsIUCZ" version="21.6.8" type="device">
   <diagram id="CNQqmsxfFxIgaWTBAwi9" name="Page-1">
-    <mxGraphModel dx="3675" dy="1716" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="827" pageHeight="1169" math="0" shadow="0">
+    <mxGraphModel dx="4073" dy="1852" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="827" pageHeight="1169" math="0" shadow="0">
       <root>
         <mxCell id="0" />
         <mxCell id="1" parent="0" />
@@ -696,7 +696,7 @@
         <mxCell id="2kvXzeo1VE3nBPVikxWQ-1" value="" style="triangle;whiteSpace=wrap;html=1;rotation=-180;fillColor=#dae8fc;strokeColor=#6c8ebf;" parent="1" vertex="1">
           <mxGeometry x="-1320" y="521" width="10" height="24" as="geometry" />
         </mxCell>
-        <mxCell id="2kvXzeo1VE3nBPVikxWQ-2" value="Dipendente full time" style="swimlane;fontStyle=0;align=center;verticalAlign=top;childLayout=stackLayout;horizontal=1;startSize=26;horizontalStack=0;resizeParent=1;resizeLast=0;collapsible=1;marginBottom=0;rounded=0;shadow=0;strokeWidth=1;" parent="1" vertex="1">
+        <mxCell id="2kvXzeo1VE3nBPVikxWQ-2" value="Dipendente Full Time" style="swimlane;fontStyle=0;align=center;verticalAlign=top;childLayout=stackLayout;horizontal=1;startSize=26;horizontalStack=0;resizeParent=1;resizeLast=0;collapsible=1;marginBottom=0;rounded=0;shadow=0;strokeWidth=1;" parent="1" vertex="1">
           <mxGeometry x="-1820" y="200" width="160" height="160" as="geometry">
             <mxRectangle x="550" y="140" width="160" height="26" as="alternateBounds" />
           </mxGeometry>
