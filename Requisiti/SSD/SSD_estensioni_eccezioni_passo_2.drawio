@@ -1,4 +1,4 @@
-<mxfile host="app.diagrams.net" modified="2023-08-17T13:53:42.689Z" agent="Mozilla/5.0 (X11; Linux x86_64; rv:109.0) Gecko/20100101 Firefox/116.0" etag="nEZiDd2MUPn6DQzxkhlP" version="21.6.8" type="device">
+<mxfile host="app.diagrams.net" modified="2023-08-18T13:26:10.976Z" agent="Mozilla/5.0 (X11; Linux x86_64; rv:109.0) Gecko/20100101 Firefox/116.0" etag="nPWkB7PDWj0jToGqw9Uc" version="21.6.8" type="device">
   <diagram id="1we7CudybwBSkFUA2xfH" name="Pagina-1">
     <mxGraphModel dx="2233" dy="581" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="827" pageHeight="1169" math="0" shadow="0">
       <root>
@@ -511,7 +511,7 @@
         <mxCell id="dw13oickZ7nO7cdA16m0-67" value="" style="shape=umlFrame;whiteSpace=wrap;html=1;fontColor=#FFA89E;swimlaneFillColor=#FFE6CC;fillColor=#ffe6cc;strokeColor=#d79b00;fillOpacity=60;width=10;height=15;" parent="1" vertex="1">
           <mxGeometry x="-282.5" y="2140" width="1085" height="270" as="geometry" />
         </mxCell>
-        <mxCell id="dw13oickZ7nO7cdA16m0-68" value="modificaNumeroOccorrenze(evento, numeroOccorrenze)" style="html=1;verticalAlign=bottom;endArrow=block;edgeStyle=elbowEdgeStyle;elbow=vertical;curved=0;rounded=0;strokeColor=#666666;labelBackgroundColor=none;" parent="1" edge="1">
+        <mxCell id="dw13oickZ7nO7cdA16m0-68" value="modificaNumeroOccorrenze(numeroOccorrenze)" style="html=1;verticalAlign=bottom;endArrow=block;edgeStyle=elbowEdgeStyle;elbow=vertical;curved=0;rounded=0;strokeColor=#666666;labelBackgroundColor=none;" parent="1" edge="1">
           <mxGeometry width="80" relative="1" as="geometry">
             <mxPoint x="-210" y="2170.0003030303037" as="sourcePoint" />
             <mxPoint x="760.2499999999995" y="2170.0003030303037" as="targetPoint" />
@@ -521,57 +521,15 @@
             </Array>
           </mxGeometry>
         </mxCell>
-        <mxCell id="dw13oickZ7nO7cdA16m0-69" value="" style="group" parent="1" vertex="1" connectable="0">
-          <mxGeometry x="-260" y="2180" width="1050" height="110" as="geometry" />
-        </mxCell>
-        <mxCell id="dw13oickZ7nO7cdA16m0-70" value="ALT" style="shape=umlFrame;whiteSpace=wrap;html=1;swimlaneFillColor=#FF9999;fillColor=#f8cecc;strokeColor=#FF3333;fillOpacity=60;fontColor=#FF0000;" parent="dw13oickZ7nO7cdA16m0-69" vertex="1">
-          <mxGeometry width="1050" height="60" as="geometry" />
-        </mxCell>
-        <mxCell id="dw13oickZ7nO7cdA16m0-71" value="evento modificato" style="html=1;verticalAlign=bottom;endArrow=none;edgeStyle=elbowEdgeStyle;elbow=vertical;curved=0;rounded=0;startArrow=open;startFill=0;endFill=0;dashed=1;strokeColor=#666666;labelBackgroundColor=none;" parent="dw13oickZ7nO7cdA16m0-69" edge="1">
-          <mxGeometry width="80" relative="1" as="geometry">
-            <mxPoint x="50.00000000000023" y="40.000606060606174" as="sourcePoint" />
-            <mxPoint x="1020.2499999999995" y="40.000606060606174" as="targetPoint" />
-            <Array as="points">
-              <mxPoint x="745.75" y="40.00060606060606" />
-              <mxPoint x="535.75" y="17.980404040403982" />
-            </Array>
-          </mxGeometry>
-        </mxCell>
-        <mxCell id="dw13oickZ7nO7cdA16m0-72" value="" style="shape=umlFrame;whiteSpace=wrap;html=1;swimlaneFillColor=#FF9999;fillColor=#f8cecc;strokeColor=#FF3333;fillOpacity=60;fontColor=#FF0000;width=10;height=15;" parent="1" vertex="1">
-          <mxGeometry x="-260" y="2240" width="1050" height="50" as="geometry" />
-        </mxCell>
-        <mxCell id="dw13oickZ7nO7cdA16m0-73" value="" style="shape=umlDestroy;whiteSpace=wrap;html=1;strokeWidth=3;targetShapes=umlLifeline;" parent="1" vertex="1">
-          <mxGeometry x="750" y="2260" width="20" height="20" as="geometry" />
-        </mxCell>
-        <mxCell id="dw13oickZ7nO7cdA16m0-74" value="2i.1a.1 L&#39;evento non è ricorrente, quindi non esiste il concetto di numero di occorrenze" style="html=1;verticalAlign=bottom;endArrow=open;edgeStyle=elbowEdgeStyle;elbow=vertical;curved=0;rounded=0;labelBackgroundColor=none;dashed=1;strokeColor=#FF0000;fontColor=#FF0000;endFill=0;exitX=0.343;exitY=0.536;exitDx=0;exitDy=0;exitPerimeter=0;" parent="1" edge="1">
-          <mxGeometry relative="1" as="geometry">
-            <mxPoint x="756.8599999999997" y="2269.7200000000003" as="sourcePoint" />
-            <mxPoint x="-210.30000000000018" y="2269.6" as="targetPoint" />
-          </mxGeometry>
-        </mxCell>
-        <mxCell id="dw13oickZ7nO7cdA16m0-75" value="" style="shape=umlFrame;whiteSpace=wrap;html=1;swimlaneFillColor=#FF9999;fillColor=#f8cecc;strokeColor=#FF3333;fillOpacity=60;fontColor=#FF0000;width=10;height=15;" parent="1" vertex="1">
-          <mxGeometry x="-260" y="2290" width="1050" height="50" as="geometry" />
-        </mxCell>
-        <mxCell id="dw13oickZ7nO7cdA16m0-76" value="2i.1b.1 La conclusione della ricorrenza è determinata tramite la data di fine associata all&#39;evento capofila" style="html=1;verticalAlign=bottom;endArrow=open;edgeStyle=elbowEdgeStyle;elbow=vertical;curved=0;rounded=0;labelBackgroundColor=none;dashed=1;strokeColor=#FF0000;fontColor=#FF0000;endFill=0;exitX=0.343;exitY=0.536;exitDx=0;exitDy=0;exitPerimeter=0;" parent="1" edge="1">
-          <mxGeometry relative="1" as="geometry">
-            <mxPoint x="757.8599999999997" y="2318.7200000000007" as="sourcePoint" />
-            <mxPoint x="-209.30000000000018" y="2318.6" as="targetPoint" />
-          </mxGeometry>
-        </mxCell>
-        <mxCell id="dw13oickZ7nO7cdA16m0-77" value="" style="shape=umlDestroy;whiteSpace=wrap;html=1;strokeWidth=3;targetShapes=umlLifeline;" parent="1" vertex="1">
-          <mxGeometry x="750" y="2308" width="20" height="20" as="geometry" />
-        </mxCell>
         <mxCell id="dw13oickZ7nO7cdA16m0-78" value="" style="shape=umlFrame;whiteSpace=wrap;html=1;swimlaneFillColor=#FF9999;fillColor=#f8cecc;strokeColor=#FF3333;fillOpacity=60;fontColor=#FF0000;width=10;height=15;" parent="1" vertex="1">
-          <mxGeometry x="-260" y="2340" width="1050" height="50" as="geometry" />
+          <mxGeometry x="-261" y="2310" width="1050" height="50" as="geometry" />
         </mxCell>
-        <mxCell id="dw13oickZ7nO7cdA16m0-79" value="2i.1c.1 L&#39;evento è termianto oppure annullato" style="html=1;verticalAlign=bottom;endArrow=open;edgeStyle=elbowEdgeStyle;elbow=vertical;curved=0;rounded=0;labelBackgroundColor=none;dashed=1;strokeColor=#FF0000;fontColor=#FF0000;endFill=0;exitX=0.343;exitY=0.536;exitDx=0;exitDy=0;exitPerimeter=0;" parent="1" edge="1">
-          <mxGeometry relative="1" as="geometry">
-            <mxPoint x="757.8599999999997" y="2368.7200000000003" as="sourcePoint" />
-            <mxPoint x="-209.30000000000018" y="2368.6" as="targetPoint" />
+        <mxCell id="dw13oickZ7nO7cdA16m0-79" value="2i.1b.1 L&#39;evento è termianto oppure annullato" style="html=1;verticalAlign=bottom;endArrow=open;edgeStyle=elbowEdgeStyle;elbow=vertical;curved=0;rounded=0;labelBackgroundColor=none;dashed=1;strokeColor=#FF0000;fontColor=#FF0000;endFill=0;exitX=0.343;exitY=0.536;exitDx=0;exitDy=0;exitPerimeter=0;" parent="1" edge="1">
+          <mxGeometry x="0.0002" relative="1" as="geometry">
+            <mxPoint x="756.8599999999997" y="2338.7200000000003" as="sourcePoint" />
+            <mxPoint x="-210.30000000000018" y="2338.6" as="targetPoint" />
+            <mxPoint as="offset" />
           </mxGeometry>
-        </mxCell>
-        <mxCell id="dw13oickZ7nO7cdA16m0-80" value="" style="shape=umlDestroy;whiteSpace=wrap;html=1;strokeWidth=3;targetShapes=umlLifeline;" parent="1" vertex="1">
-          <mxGeometry x="750" y="2358" width="20" height="20" as="geometry" />
         </mxCell>
         <mxCell id="gWuSnun9fz6hFMY-ybAo-110" value="" style="shape=umlLifeline;perimeter=lifelinePerimeter;whiteSpace=wrap;html=1;container=1;dropTarget=0;collapsible=0;recursiveResize=0;outlineConnect=0;portConstraint=eastwest;newEdgeStyle={&quot;edgeStyle&quot;:&quot;elbowEdgeStyle&quot;,&quot;elbow&quot;:&quot;vertical&quot;,&quot;curved&quot;:0,&quot;rounded&quot;:0};participant=umlActor;" parent="1" vertex="1">
           <mxGeometry x="-220" y="170" width="20" height="3150" as="geometry" />
@@ -584,6 +542,46 @@
             <mxPoint x="758.3599999999988" y="928.7200000000003" as="sourcePoint" />
             <mxPoint x="-208.80000000000018" y="928.5999999999997" as="targetPoint" />
           </mxGeometry>
+        </mxCell>
+        <mxCell id="dw13oickZ7nO7cdA16m0-70" value="ALT" style="shape=umlFrame;whiteSpace=wrap;html=1;swimlaneFillColor=#FF9999;fillColor=#f8cecc;strokeColor=#FF3333;fillOpacity=60;fontColor=#FF0000;" parent="1" vertex="1">
+          <mxGeometry x="-261" y="2200" width="1050" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="dw13oickZ7nO7cdA16m0-71" value="evento modificato" style="html=1;verticalAlign=bottom;endArrow=none;edgeStyle=elbowEdgeStyle;elbow=vertical;curved=0;rounded=0;startArrow=open;startFill=0;endFill=0;dashed=1;strokeColor=#666666;labelBackgroundColor=none;" parent="1" edge="1">
+          <mxGeometry width="80" relative="1" as="geometry">
+            <mxPoint x="-210.99999999999977" y="2240.000606060606" as="sourcePoint" />
+            <mxPoint x="759.2499999999995" y="2240.000606060606" as="targetPoint" />
+            <Array as="points">
+              <mxPoint x="484.75" y="2240.000606060606" />
+              <mxPoint x="274.75" y="2217.980404040404" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="dw13oickZ7nO7cdA16m0-75" value="" style="shape=umlFrame;whiteSpace=wrap;html=1;swimlaneFillColor=#FF9999;fillColor=#f8cecc;strokeColor=#FF3333;fillOpacity=60;fontColor=#FF0000;width=10;height=15;" parent="1" vertex="1">
+          <mxGeometry x="-261" y="2260" width="1050" height="50" as="geometry" />
+        </mxCell>
+        <mxCell id="dw13oickZ7nO7cdA16m0-76" value="2i.1a.1 È già stata specificata la data di fine ricorrenza" style="html=1;verticalAlign=bottom;endArrow=open;edgeStyle=elbowEdgeStyle;elbow=vertical;curved=0;rounded=0;labelBackgroundColor=none;dashed=1;strokeColor=#FF0000;fontColor=#FF0000;endFill=0;exitX=0.343;exitY=0.536;exitDx=0;exitDy=0;exitPerimeter=0;" parent="1" edge="1">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="756.8599999999997" y="2288.7200000000007" as="sourcePoint" />
+            <mxPoint x="-210.30000000000018" y="2288.6" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="dw13oickZ7nO7cdA16m0-73" value="" style="shape=umlDestroy;whiteSpace=wrap;html=1;strokeWidth=3;targetShapes=umlLifeline;" parent="1" vertex="1">
+          <mxGeometry x="749" y="2280" width="20" height="20" as="geometry" />
+        </mxCell>
+        <mxCell id="dw13oickZ7nO7cdA16m0-77" value="" style="shape=umlDestroy;whiteSpace=wrap;html=1;strokeWidth=3;targetShapes=umlLifeline;" parent="1" vertex="1">
+          <mxGeometry x="749" y="2328" width="20" height="20" as="geometry" />
+        </mxCell>
+        <mxCell id="uW3dDPQiBf4IIEj1fz49-1" value="" style="shape=umlFrame;whiteSpace=wrap;html=1;swimlaneFillColor=#FF9999;fillColor=#f8cecc;strokeColor=#FF3333;fillOpacity=60;fontColor=#FF0000;width=10;height=15;" vertex="1" parent="1">
+          <mxGeometry x="-260" y="2060" width="1050" height="50" as="geometry" />
+        </mxCell>
+        <mxCell id="uW3dDPQiBf4IIEj1fz49-2" value="2i.1b.1 È già stata specificata la data di fine ricorrenza" style="html=1;verticalAlign=bottom;endArrow=open;edgeStyle=elbowEdgeStyle;elbow=vertical;curved=0;rounded=0;labelBackgroundColor=none;dashed=1;strokeColor=#FF0000;fontColor=#FF0000;endFill=0;exitX=0.343;exitY=0.536;exitDx=0;exitDy=0;exitPerimeter=0;" edge="1" parent="1">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="757.8599999999997" y="2088.7200000000007" as="sourcePoint" />
+            <mxPoint x="-209.30000000000018" y="2088.6" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="uW3dDPQiBf4IIEj1fz49-3" value="" style="shape=umlDestroy;whiteSpace=wrap;html=1;strokeWidth=3;targetShapes=umlLifeline;" vertex="1" parent="1">
+          <mxGeometry x="750" y="2080" width="20" height="20" as="geometry" />
         </mxCell>
       </root>
     </mxGraphModel>

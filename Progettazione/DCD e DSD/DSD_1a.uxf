@@ -1,0 +1,130 @@
+<diagram program="umletino" version="15.1"><zoom_level>8</zoom_level><element><id>UMLGeneric</id><coordinates><x>392</x><y>24</y><w>184</w><h>40</h></coordinates><panel_attributes>eventManager: EventManager</panel_attributes><additional_attributes></additional_attributes></element><element><id>Relation</id><coordinates><x>200</x><y>48</y><w>24</w><h>1488</h></coordinates><panel_attributes>lt=.</panel_attributes><additional_attributes>10;10;10;1840</additional_attributes></element><element><id>Relation</id><coordinates><x>472</x><y>56</y><w>24</w><h>1600</h></coordinates><panel_attributes>lt=.</panel_attributes><additional_attributes>10;10;10;1980</additional_attributes></element><element><id>Relation</id><coordinates><x>176</x><y>88</y><w>344</w><h>32</h></coordinates><panel_attributes>lt=&lt;&lt;&lt;-
+createRecurrentEvent(cl, startDate, desc,  period, occNum?, recEndDate?)</panel_attributes><additional_attributes>370;20;50;20</additional_attributes></element><element><id>UMLGeneric</id><coordinates><x>472</x><y>96</y><w>16</w><h>1544</h></coordinates><panel_attributes></panel_attributes><additional_attributes></additional_attributes></element><element><id>UMLGeneric</id><coordinates><x>776</x><y>24</y><w>80</w><h>40</h></coordinates><panel_attributes>e: MainEvent</panel_attributes><additional_attributes></additional_attributes></element><element><id>Relation</id><coordinates><x>808</x><y>56</y><w>24</w><h>1440</h></coordinates><panel_attributes>lt=.</panel_attributes><additional_attributes>10;10;10;1780</additional_attributes></element><element><id>UMLFrame</id><coordinates><x>0</x><y>144</y><w>1696</w><h>1528</h></coordinates><panel_attributes>alt 
+[ !user.isOrganizer() ]
+fg=red
+--
+
+-.
+
+
+
+
+-.
+
+fontsize=11
+</panel_attributes><additional_attributes></additional_attributes></element><element><id>Relation</id><coordinates><x>208</x><y>152</y><w>280</w><h>32</h></coordinates><panel_attributes>lt=&lt;.
+throw UseCaseLogicException</panel_attributes><additional_attributes>10;20;330;20</additional_attributes></element><element><id>Relation</id><coordinates><x>480</x><y>96</y><w>512</w><h>32</h></coordinates><panel_attributes>lt=&lt;&lt;&lt;-
+getCurrentUser( )</panel_attributes><additional_attributes>620;20;10;20</additional_attributes></element><element><id>Relation</id><coordinates><x>480</x><y>112</y><w>512</w><h>32</h></coordinates><panel_attributes>lt=&lt;.
+user</panel_attributes><additional_attributes>10;20;620;20</additional_attributes></element><element><id>UMLGeneric</id><coordinates><x>920</x><y>24</y><w>144</w><h>40</h></coordinates><panel_attributes>userManager: UserManager
+</panel_attributes><additional_attributes></additional_attributes></element><element><id>Relation</id><coordinates><x>976</x><y>56</y><w>24</w><h>72</h></coordinates><panel_attributes>lt=.</panel_attributes><additional_attributes>10;10;10;70</additional_attributes></element><element><id>UMLGeneric</id><coordinates><x>976</x><y>112</y><w>16</w><h>16</h></coordinates><panel_attributes></panel_attributes><additional_attributes></additional_attributes></element><element><id>Relation</id><coordinates><x>1424</x><y>56</y><w>24</w><h>1592</h></coordinates><panel_attributes>lt=.
+fg=magenta</panel_attributes><additional_attributes>10;10;10;1970</additional_attributes></element><element><id>UMLGeneric</id><coordinates><x>1424</x><y>1608</y><w>16</w><h>24</h></coordinates><panel_attributes>
+fg=magenta</panel_attributes><additional_attributes></additional_attributes></element><element><id>UMLGeneric</id><coordinates><x>1408</x><y>24</y><w>96</w><h>40</h></coordinates><panel_attributes>receivers:
+EVEventReceiver
+
+fg=magenta</panel_attributes><additional_attributes></additional_attributes></element><element><id>UMLFrame</id><coordinates><x>376</x><y>1600</y><w>1080</w><h>40</h></coordinates><panel_attributes>for each
+rec in receivers
+fg=magenta</panel_attributes><additional_attributes></additional_attributes></element><element><id>Relation</id><coordinates><x>480</x><y>1600</y><w>960</w><h>32</h></coordinates><panel_attributes>lt=&lt;&lt;&lt;-
+updateEventCreated(e)</panel_attributes><additional_attributes>1180;20;10;20</additional_attributes></element><element><id>Relation</id><coordinates><x>480</x><y>1552</y><w>144</w><h>48</h></coordinates><panel_attributes>lt=&lt;&lt;&lt;-
+notifyEventCreated(e)</panel_attributes><additional_attributes>10;40;40;40;40;10;10;10</additional_attributes></element><element><id>Relation</id><coordinates><x>480</x><y>240</y><w>344</w><h>32</h></coordinates><panel_attributes>lt=&lt;.
+create(user, cl, startDate, desc,  period, occNum?, recEndDate?)</panel_attributes><additional_attributes>410;20;10;20</additional_attributes></element><element><id>UMLGeneric</id><coordinates><x>808</x><y>256</y><w>16</w><h>1232</h></coordinates><panel_attributes></panel_attributes><additional_attributes></additional_attributes></element><element><id>Relation</id><coordinates><x>816</x><y>256</y><w>152</w><h>48</h></coordinates><panel_attributes>lt=&lt;&lt;&lt;-
+this.description = desc</panel_attributes><additional_attributes>10;40;50;40;50;10;10;10</additional_attributes></element><element><id>Relation</id><coordinates><x>816</x><y>296</y><w>168</w><h>48</h></coordinates><panel_attributes>lt=&lt;&lt;&lt;-
+this.commissionedBy = cl</panel_attributes><additional_attributes>10;40;50;40;50;10;10;10</additional_attributes></element><element><id>Relation</id><coordinates><x>816</x><y>336</y><w>176</w><h>48</h></coordinates><panel_attributes>lt=&lt;&lt;&lt;-
+this.initialDate = startDate</panel_attributes><additional_attributes>10;40;50;40;50;10;10;10</additional_attributes></element><element><id>Relation</id><coordinates><x>816</x><y>512</y><w>144</w><h>48</h></coordinates><panel_attributes>lt=&lt;&lt;&lt;-
+this.period = period</panel_attributes><additional_attributes>10;40;50;40;50;10;10;10</additional_attributes></element><element><id>UMLFrame</id><coordinates><x>536</x><y>560</y><w>1080</w><h>920</h></coordinates><panel_attributes>opt 
+[ numOc != null ]
+fg=green
+--
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+-.
+
+fontsize=11
+</panel_attributes><additional_attributes></additional_attributes></element><element><id>Relation</id><coordinates><x>816</x><y>560</y><w>192</w><h>48</h></coordinates><panel_attributes>lt=&lt;&lt;&lt;-
+this.numOccurrences = numOc</panel_attributes><additional_attributes>10;40;50;40;50;10;10;10</additional_attributes></element><element><id>Relation</id><coordinates><x>480</x><y>1480</y><w>344</w><h>40</h></coordinates><panel_attributes>lt=&lt;.
+e</panel_attributes><additional_attributes>10;10;410;30</additional_attributes></element><element><id>Relation</id><coordinates><x>816</x><y>368</y><w>152</w><h>48</h></coordinates><panel_attributes>lt=&lt;&lt;&lt;-
+this.state = "Creation"</panel_attributes><additional_attributes>10;40;50;40;50;10;10;10</additional_attributes></element><element><id>Relation</id><coordinates><x>480</x><y>1512</y><w>144</w><h>48</h></coordinates><panel_attributes>lt=&lt;&lt;&lt;-
+setCurrentEvent(e)</panel_attributes><additional_attributes>10;40;50;40;50;10;10;10</additional_attributes></element><element><id>UMLFrame</id><coordinates><x>696</x><y>640</y><w>896</w><h>368</h></coordinates><panel_attributes>for i = 0; i &lt; numOc; i++
+fg=blue
+--
+
+
+fontsize=11
+</panel_attributes><additional_attributes></additional_attributes></element><element><id>UMLGeneric</id><coordinates><x>1152</x><y>592</y><w>136</w><h>40</h></coordinates><panel_attributes>ocList: ArrayList&lt;Occurence&gt;</panel_attributes><additional_attributes></additional_attributes></element><element><id>Relation</id><coordinates><x>816</x><y>592</y><w>352</w><h>32</h></coordinates><panel_attributes>lt=&lt;.
+create()</panel_attributes><additional_attributes>420;20;10;20</additional_attributes></element><element><id>Relation</id><coordinates><x>1208</x><y>624</y><w>24</w><h>392</h></coordinates><panel_attributes>lt=.</panel_attributes><additional_attributes>10;10;10;470</additional_attributes></element><element><id>UMLGeneric</id><coordinates><x>920</x><y>648</y><w>136</w><h>40</h></coordinates><panel_attributes>oc: Occurence</panel_attributes><additional_attributes></additional_attributes></element><element><id>Relation</id><coordinates><x>976</x><y>680</y><w>24</w><h>296</h></coordinates><panel_attributes>lt=.</panel_attributes><additional_attributes>10;10;10;350</additional_attributes></element><element><id>Relation</id><coordinates><x>816</x><y>688</y><w>184</w><h>32</h></coordinates><panel_attributes>lt=&lt;.
+create(user, cl, startDate, desc)</panel_attributes><additional_attributes>210;20;10;20</additional_attributes></element><element><id>Relation</id><coordinates><x>984</x><y>704</y><w>152</w><h>48</h></coordinates><panel_attributes>lt=&lt;&lt;&lt;-
+this.description = desc</panel_attributes><additional_attributes>10;40;50;40;50;10;10;10</additional_attributes></element><element><id>Relation</id><coordinates><x>984</x><y>736</y><w>168</w><h>48</h></coordinates><panel_attributes>lt=&lt;&lt;&lt;-
+this.commissionedBy = cl</panel_attributes><additional_attributes>10;40;50;40;50;10;10;10</additional_attributes></element><element><id>Relation</id><coordinates><x>984</x><y>768</y><w>232</w><h>48</h></coordinates><panel_attributes>lt=&lt;&lt;&lt;-
+this.initialDate = startDate + (period * i)</panel_attributes><additional_attributes>10;40;50;40;50;10;10;10</additional_attributes></element><element><id>Relation</id><coordinates><x>984</x><y>848</y><w>152</w><h>48</h></coordinates><panel_attributes>lt=&lt;&lt;&lt;-
+this.state = "Creation"</panel_attributes><additional_attributes>10;40;50;40;50;10;10;10</additional_attributes></element><element><id>Relation</id><coordinates><x>816</x><y>944</y><w>176</w><h>32</h></coordinates><panel_attributes>lt=&lt;.
+oc</panel_attributes><additional_attributes>10;20;200;20</additional_attributes></element><element><id>Relation</id><coordinates><x>816</x><y>968</y><w>408</w><h>32</h></coordinates><panel_attributes>lt=&lt;.
+add(oc)</panel_attributes><additional_attributes>490;20;10;20</additional_attributes></element><element><id>Relation</id><coordinates><x>816</x><y>408</y><w>136</w><h>48</h></coordinates><panel_attributes>lt=&lt;&lt;&lt;-
+this.daysCount = 0</panel_attributes><additional_attributes>10;40;50;40;50;10;10;10</additional_attributes></element><element><id>Relation</id><coordinates><x>984</x><y>808</y><w>144</w><h>48</h></coordinates><panel_attributes>lt=&lt;&lt;&lt;-
+this.serviceCount = 0</panel_attributes><additional_attributes>10;40;50;40;50;10;10;10</additional_attributes></element><element><id>UMLGeneric</id><coordinates><x>976</x><y>712</y><w>16</w><h>248</h></coordinates><panel_attributes></panel_attributes><additional_attributes></additional_attributes></element><element><id>Relation</id><coordinates><x>816</x><y>1008</y><w>168</w><h>48</h></coordinates><panel_attributes>lt=&lt;&lt;&lt;-
+this.occurrences = ocList</panel_attributes><additional_attributes>10;40;50;40;50;10;10;10</additional_attributes></element><element><id>UMLGeneric</id><coordinates><x>1208</x><y>984</y><w>16</w><h>16</h></coordinates><panel_attributes></panel_attributes><additional_attributes></additional_attributes></element><element><id>Relation</id><coordinates><x>816</x><y>1144</y><w>144</w><h>32</h></coordinates><panel_attributes>lt=&lt;.
+create(ntc, cl, id, fd)</panel_attributes><additional_attributes>160;20;10;20</additional_attributes></element><element><id>UMLGeneric</id><coordinates><x>976</x><y>1176</y><w>16</w><h>216</h></coordinates><panel_attributes></panel_attributes><additional_attributes></additional_attributes></element><element><id>Relation</id><coordinates><x>984</x><y>1200</y><w>160</w><h>48</h></coordinates><panel_attributes>lt=&lt;&lt;&lt;-
+this.commissionedBy = cl</panel_attributes><additional_attributes>10;40;40;40;40;10;10;10</additional_attributes></element><element><id>Relation</id><coordinates><x>984</x><y>1168</y><w>144</w><h>48</h></coordinates><panel_attributes>lt=&lt;&lt;&lt;-
+this.description = desc</panel_attributes><additional_attributes>10;40;40;40;40;10;10;10</additional_attributes></element><element><id>Relation</id><coordinates><x>984</x><y>1232</y><w>144</w><h>48</h></coordinates><panel_attributes>lt=&lt;&lt;&lt;-
+this.initialDate = date</panel_attributes><additional_attributes>10;40;40;40;40;10;10;10</additional_attributes></element><element><id>Relation</id><coordinates><x>984</x><y>1264</y><w>136</w><h>48</h></coordinates><panel_attributes>lt=&lt;&lt;&lt;-
+this.serviceCount = 0</panel_attributes><additional_attributes>10;40;40;40;40;10;10;10</additional_attributes></element><element><id>Relation</id><coordinates><x>984</x><y>1296</y><w>144</w><h>48</h></coordinates><panel_attributes>lt=&lt;&lt;&lt;-
+this.state = "Creation"</panel_attributes><additional_attributes>10;40;40;40;40;10;10;10</additional_attributes></element><element><id>Relation</id><coordinates><x>984</x><y>1360</y><w>136</w><h>48</h></coordinates><panel_attributes>lt=&lt;&lt;&lt;-
+this.organizer = user</panel_attributes><additional_attributes>10;40;40;40;40;10;10;10</additional_attributes></element><element><id>Relation</id><coordinates><x>816</x><y>1376</y><w>176</w><h>32</h></coordinates><panel_attributes>lt=&lt;.
+o</panel_attributes><additional_attributes>10;20;200;20</additional_attributes></element><element><id>Relation</id><coordinates><x>816</x><y>1400</y><w>408</w><h>32</h></coordinates><panel_attributes>lt=&lt;.
+add(oc)</panel_attributes><additional_attributes>490;20;10;20</additional_attributes></element><element><id>UMLGeneric</id><coordinates><x>1208</x><y>1416</y><w>16</w><h>16</h></coordinates><panel_attributes></panel_attributes><additional_attributes></additional_attributes></element><element><id>Relation</id><coordinates><x>816</x><y>1440</y><w>168</w><h>48</h></coordinates><panel_attributes>lt=&lt;&lt;&lt;-
+this.occurrences = ocList</panel_attributes><additional_attributes>10;40;50;40;50;10;10;10</additional_attributes></element><element><id>Relation</id><coordinates><x>816</x><y>1080</y><w>360</w><h>32</h></coordinates><panel_attributes>lt=&lt;.
+create()</panel_attributes><additional_attributes>430;20;10;20</additional_attributes></element><element><id>Relation</id><coordinates><x>816</x><y>1048</y><w>192</w><h>48</h></coordinates><panel_attributes>lt=&lt;&lt;&lt;-
+this.dateEndRec = recEndDate</panel_attributes><additional_attributes>10;40;50;40;50;10;10;10</additional_attributes></element><element><id>UMLGeneric</id><coordinates><x>1160</x><y>1088</y><w>144</w><h>24</h></coordinates><panel_attributes>ocList: ArrayList&lt;Occurence&gt;</panel_attributes><additional_attributes></additional_attributes></element><element><id>Relation</id><coordinates><x>1208</x><y>1112</y><w>24</w><h>336</h></coordinates><panel_attributes>lt=.</panel_attributes><additional_attributes>10;10;10;400</additional_attributes></element><element><id>UMLPackage</id><coordinates><x>168</x><y>0</y><w>80</w><h>56</h></coordinates><panel_attributes>UI</panel_attributes><additional_attributes></additional_attributes></element><element><id>UMLGeneric</id><coordinates><x>200</x><y>104</y><w>16</w><h>1416</h></coordinates><panel_attributes></panel_attributes><additional_attributes></additional_attributes></element><element><id>Relation</id><coordinates><x>208</x><y>1488</y><w>280</w><h>32</h></coordinates><panel_attributes>lt=&lt;.
+e</panel_attributes><additional_attributes>10;20;330;20</additional_attributes></element><element><id>Relation</id><coordinates><x>816</x><y>480</y><w>144</w><h>48</h></coordinates><panel_attributes>lt=&lt;&lt;&lt;-
+this.organizer = user</panel_attributes><additional_attributes>10;40;50;40;50;10;10;10</additional_attributes></element><element><id>Relation</id><coordinates><x>984</x><y>888</y><w>136</w><h>48</h></coordinates><panel_attributes>lt=&lt;&lt;&lt;-
+this.daysCount = 0</panel_attributes><additional_attributes>10;40;50;40;50;10;10;10</additional_attributes></element><element><id>Text</id><coordinates><x>0</x><y>192</y><w>208</w><h>40</h></coordinates><panel_attributes>[ occNum != NULL &amp;&amp;  recEndDate != NULL || 
+occNum == NULL &amp;&amp; recEndDate == NULL ]
+style=wordwrap
+fontsize=11</panel_attributes><additional_attributes></additional_attributes></element><element><id>Relation</id><coordinates><x>208</x><y>192</y><w>280</w><h>32</h></coordinates><panel_attributes>lt=&lt;.
+throw EventException</panel_attributes><additional_attributes>10;20;330;20</additional_attributes></element><element><id>Relation</id><coordinates><x>816</x><y>448</y><w>144</w><h>48</h></coordinates><panel_attributes>lt=&lt;&lt;&lt;-
+this.serviceCount = 0</panel_attributes><additional_attributes>10;40;50;40;50;10;10;10</additional_attributes></element><element><id>Relation</id><coordinates><x>984</x><y>928</y><w>144</w><h>48</h></coordinates><panel_attributes>lt=&lt;&lt;&lt;-
+this.organizer = user</panel_attributes><additional_attributes>10;40;50;40;50;10;10;10</additional_attributes></element><element><id>UMLFrame</id><coordinates><x>560</x><y>1128</y><w>1048</w><h>312</h></coordinates><panel_attributes>for date = startDate + pr; date &lt;= recEndDate; date += pr
+fg=blue
+--
+
+
+fontsize=11
+</panel_attributes><additional_attributes></additional_attributes></element><element><id>UMLGeneric</id><coordinates><x>944</x><y>1144</y><w>104</w><h>24</h></coordinates><panel_attributes>oc: Occurence</panel_attributes><additional_attributes></additional_attributes></element><element><id>Relation</id><coordinates><x>976</x><y>1160</y><w>24</w><h>248</h></coordinates><panel_attributes>lt=.</panel_attributes><additional_attributes>10;10;10;290</additional_attributes></element><element><id>Relation</id><coordinates><x>984</x><y>1328</y><w>128</w><h>48</h></coordinates><panel_attributes>lt=&lt;&lt;&lt;-
+this.daysCount = 0</panel_attributes><additional_attributes>10;40;40;40;40;10;10;10</additional_attributes></element></diagram>
