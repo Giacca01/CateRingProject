@@ -390,8 +390,10 @@ menu</panel_attributes><additional_attributes>10;110;10;20;1010;20;1010;630</add
 +addService(type: String, date: String, location: String, timeSlot: String, attendance: Integer, prop: bool): Service
 +getState(): String
 +getDate(): Date
++setDate(newDate: Date)
 +delayEvent(newDate: Date, prop: bool)
 +changePeriod(newPeriod: Integer)
++deleteService(srv: Service, prop: bool)
 
 
 
@@ -424,7 +426,8 @@ m2=0..n</panel_attributes><additional_attributes>460;10;470;510;10;510</addition
 -period: Integer
 --
 +create(user: User, cl: Client, startDate: Date, desc: String,  period: Integer, occNum: Integer, recEndDate: Date): MainEvent
-+getOccurrences(): List&lt;Occurrence&gt;</panel_attributes><additional_attributes></additional_attributes></element><element><id>UMLClass</id><coordinates><x>2664</x><y>568</y><w>600</w><h>112</h></coordinates><panel_attributes>Occurrence
++getOccurrences(): List&lt;Occurrence&gt;
++getPeriod(): Integer</panel_attributes><additional_attributes></additional_attributes></element><element><id>UMLClass</id><coordinates><x>2664</x><y>568</y><w>600</w><h>112</h></coordinates><panel_attributes>Occurrence
 --
 
 --
