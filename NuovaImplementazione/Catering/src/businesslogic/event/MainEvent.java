@@ -12,10 +12,20 @@ import persistence.ResultHandler;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 
-public class RecurrentEvent extends Event {
+public class MainEvent extends Event {
     private int numOccurences;
     private String dateEndRec;
     private int period;
+
+    public MainEvent() {
+    }
+
+    public MainEvent(int id, String initialNotes, boolean recurrent, String initialDate, String endDate, String state, Organizer organizer, Chef chef, int numOccurences, String dateEndRec, int period) {
+        super(id, initialNotes, recurrent, initialDate, endDate, state, organizer, chef);
+        this.numOccurences = numOccurences;
+        this.dateEndRec = dateEndRec;
+        this.period = period;
+    }
 
     public int getNumOccurences() {
         return numOccurences;
@@ -41,23 +51,12 @@ public class RecurrentEvent extends Event {
         this.period = period;
     }
 
-    public RecurrentEvent() {
-        super();
-    }
-
-    public RecurrentEvent(int id, String initialNotes, boolean recurrent, String initialDate, String endDate, String state, Organizer organizer, Chef chef, int numOccurences, String dateEndRec, int period) {
-        super(id, initialNotes, recurrent, initialDate, endDate, state, organizer, chef);
-        this.numOccurences = numOccurences;
-        this.dateEndRec = dateEndRec;
-        this.period = period;
-    }
-
     public void printDetails() {
         System.out.println("Event " + getId() + ": " + getInitialNotes() + ", " + getInitialDate() + " - " + getEndDate() + ", Organizer: " + getOrganizer().getUsername() + ", Chef: " + getChef().getUsername());
     }
 
-    public static ObservableList<RecurrentEvent> fetchRecurrentEvents() {
-        ObservableList<RecurrentEvent> events = FXCollections.observableArrayList();
+    public static ObservableList<MainEvent> fetchMainEvents() {
+        ObservableList<MainEvent> events = FXCollections.observableArrayList();
         String query = "SELECT * FROM Events";
         PersistenceManager.executeQuery(query, new ResultHandler() {
             @Override
@@ -74,15 +73,15 @@ public class RecurrentEvent extends Event {
                 String dateEndRec = rs.getString("dateEndRec");
                 int period = rs.getInt("period");
 
-                RecurrentEvent event = new RecurrentEvent(id, initial_notes, recurrent, initial_date, end_date, state, (Organizer) organizer, (Chef) chef, num_occurences, dateEndRec, period);
+                MainEvent event = new MainEvent(id, initial_notes, recurrent, initial_date, end_date, state, (Organizer) organizer, (Chef) chef, num_occurences, dateEndRec, period);
                 events.add(event);
             }
         });
         return events;
     }
 
-    public static RecurrentEvent fetchRecurrentEventById(int id) {
-        RecurrentEvent event = new RecurrentEvent();
+    public static MainEvent fetchMainEventById(int id) {
+        MainEvent event = new MainEvent();
         String query = "SELECT * FROM Events where id='" + id + "'";
         PersistenceManager.executeQuery(query, new ResultHandler() {
             @Override
