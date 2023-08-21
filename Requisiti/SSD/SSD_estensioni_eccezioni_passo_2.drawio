@@ -1,6 +1,6 @@
-<mxfile host="app.diagrams.net" modified="2023-08-18T13:26:10.976Z" agent="Mozilla/5.0 (X11; Linux x86_64; rv:109.0) Gecko/20100101 Firefox/116.0" etag="nPWkB7PDWj0jToGqw9Uc" version="21.6.8" type="device">
+<mxfile host="app.diagrams.net" modified="2023-08-21T15:31:30.872Z" agent="Mozilla/5.0 (X11; Linux x86_64; rv:109.0) Gecko/20100101 Firefox/116.0" etag="wOMllR0J9_ulAma3_GOV" version="21.6.8" type="device">
   <diagram id="1we7CudybwBSkFUA2xfH" name="Pagina-1">
-    <mxGraphModel dx="2233" dy="581" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="827" pageHeight="1169" math="0" shadow="0">
+    <mxGraphModel dx="2021" dy="510" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="827" pageHeight="1169" math="0" shadow="0">
       <root>
         <mxCell id="0" />
         <mxCell id="1" parent="0" />
@@ -172,7 +172,7 @@
             </Array>
           </mxGeometry>
         </mxCell>
-        <mxCell id="gWuSnun9fz6hFMY-ybAo-117" value="2.1a.1 L&#39;evento associato al servizio è in corso, terminato o eliminato, quindi non è possibile aggiungere ulteriori servizi" style="html=1;verticalAlign=bottom;endArrow=open;edgeStyle=elbowEdgeStyle;elbow=vertical;curved=0;rounded=0;labelBackgroundColor=none;dashed=1;strokeColor=#FF0000;fontColor=#FF0000;endFill=0;exitX=0.343;exitY=0.536;exitDx=0;exitDy=0;exitPerimeter=0;" parent="gWuSnun9fz6hFMY-ybAo-124" edge="1">
+        <mxCell id="gWuSnun9fz6hFMY-ybAo-117" value="2.1a.1 L&#39;evento associato al servizio è terminato o eliminato, quindi non è possibile aggiungere ulteriori servizi" style="html=1;verticalAlign=bottom;endArrow=open;edgeStyle=elbowEdgeStyle;elbow=vertical;curved=0;rounded=0;labelBackgroundColor=none;dashed=1;strokeColor=#FF0000;fontColor=#FF0000;endFill=0;exitX=0.343;exitY=0.536;exitDx=0;exitDy=0;exitPerimeter=0;" parent="gWuSnun9fz6hFMY-ybAo-124" edge="1">
           <mxGeometry relative="1" as="geometry">
             <mxPoint x="1017.1599999999999" y="90.05953488372131" as="sourcePoint" />
             <mxPoint x="50" y="89.8893023255813" as="targetPoint" />
@@ -192,7 +192,7 @@
         <mxCell id="gWuSnun9fz6hFMY-ybAo-129" value="" style="shape=umlFrame;whiteSpace=wrap;html=1;fontColor=#FFA89E;swimlaneFillColor=#FFE6CC;fillColor=#ffe6cc;strokeColor=#d79b00;fillOpacity=60;width=10;height=15;" parent="1" vertex="1">
           <mxGeometry x="-283" y="629" width="1085" height="170" as="geometry" />
         </mxCell>
-        <mxCell id="gWuSnun9fz6hFMY-ybAo-130" value="modificaServizio(servizio, tipo, luogo, numeroPartecipanti, propaga)" style="html=1;verticalAlign=bottom;endArrow=block;edgeStyle=elbowEdgeStyle;elbow=vertical;curved=0;rounded=0;strokeColor=#666666;labelBackgroundColor=none;" parent="1" edge="1">
+        <mxCell id="gWuSnun9fz6hFMY-ybAo-130" value="modificaServizio(servizio, tipo?, luogo?, numeroPartecipanti?, propaga)" style="html=1;verticalAlign=bottom;endArrow=block;edgeStyle=elbowEdgeStyle;elbow=vertical;curved=0;rounded=0;strokeColor=#666666;labelBackgroundColor=none;" parent="1" edge="1">
           <mxGeometry width="80" relative="1" as="geometry">
             <mxPoint x="-210.49999999999977" y="659.000303030303" as="sourcePoint" />
             <mxPoint x="759.7499999999995" y="659.000303030303" as="targetPoint" />
@@ -274,7 +274,7 @@
         <mxCell id="gWuSnun9fz6hFMY-ybAo-140" value="" style="shape=umlFrame;whiteSpace=wrap;html=1;fontColor=#FFA89E;swimlaneFillColor=#FFE6CC;fillColor=#ffe6cc;strokeColor=#d79b00;fillOpacity=60;width=10;height=15;" parent="1" vertex="1">
           <mxGeometry x="-283" y="799" width="1085" height="170" as="geometry" />
         </mxCell>
-        <mxCell id="gWuSnun9fz6hFMY-ybAo-141" value="rimandaServizio(servizio, data, fasciaOraria, propaga)" style="html=1;verticalAlign=bottom;endArrow=block;edgeStyle=elbowEdgeStyle;elbow=vertical;curved=0;rounded=0;strokeColor=#666666;labelBackgroundColor=none;" parent="1" edge="1">
+        <mxCell id="gWuSnun9fz6hFMY-ybAo-141" value="rimandaServizio(servizio, data?, fasciaOraria?, propaga)" style="html=1;verticalAlign=bottom;endArrow=block;edgeStyle=elbowEdgeStyle;elbow=vertical;curved=0;rounded=0;strokeColor=#666666;labelBackgroundColor=none;" parent="1" edge="1">
           <mxGeometry width="80" relative="1" as="geometry">
             <mxPoint x="-210.5" y="829.000303030303" as="sourcePoint" />
             <mxPoint x="759.7499999999995" y="829.000303030303" as="targetPoint" />
@@ -571,16 +571,16 @@
         <mxCell id="dw13oickZ7nO7cdA16m0-77" value="" style="shape=umlDestroy;whiteSpace=wrap;html=1;strokeWidth=3;targetShapes=umlLifeline;" parent="1" vertex="1">
           <mxGeometry x="749" y="2328" width="20" height="20" as="geometry" />
         </mxCell>
-        <mxCell id="uW3dDPQiBf4IIEj1fz49-1" value="" style="shape=umlFrame;whiteSpace=wrap;html=1;swimlaneFillColor=#FF9999;fillColor=#f8cecc;strokeColor=#FF3333;fillOpacity=60;fontColor=#FF0000;width=10;height=15;" vertex="1" parent="1">
+        <mxCell id="uW3dDPQiBf4IIEj1fz49-1" value="" style="shape=umlFrame;whiteSpace=wrap;html=1;swimlaneFillColor=#FF9999;fillColor=#f8cecc;strokeColor=#FF3333;fillOpacity=60;fontColor=#FF0000;width=10;height=15;" parent="1" vertex="1">
           <mxGeometry x="-260" y="2060" width="1050" height="50" as="geometry" />
         </mxCell>
-        <mxCell id="uW3dDPQiBf4IIEj1fz49-2" value="2i.1b.1 È già stata specificata la data di fine ricorrenza" style="html=1;verticalAlign=bottom;endArrow=open;edgeStyle=elbowEdgeStyle;elbow=vertical;curved=0;rounded=0;labelBackgroundColor=none;dashed=1;strokeColor=#FF0000;fontColor=#FF0000;endFill=0;exitX=0.343;exitY=0.536;exitDx=0;exitDy=0;exitPerimeter=0;" edge="1" parent="1">
+        <mxCell id="uW3dDPQiBf4IIEj1fz49-2" value="2h.1b.1 È già stato specificato il numero di occorrenze" style="html=1;verticalAlign=bottom;endArrow=open;edgeStyle=elbowEdgeStyle;elbow=vertical;curved=0;rounded=0;labelBackgroundColor=none;dashed=1;strokeColor=#FF0000;fontColor=#FF0000;endFill=0;exitX=0.343;exitY=0.536;exitDx=0;exitDy=0;exitPerimeter=0;" parent="1" edge="1">
           <mxGeometry relative="1" as="geometry">
             <mxPoint x="757.8599999999997" y="2088.7200000000007" as="sourcePoint" />
             <mxPoint x="-209.30000000000018" y="2088.6" as="targetPoint" />
           </mxGeometry>
         </mxCell>
-        <mxCell id="uW3dDPQiBf4IIEj1fz49-3" value="" style="shape=umlDestroy;whiteSpace=wrap;html=1;strokeWidth=3;targetShapes=umlLifeline;" vertex="1" parent="1">
+        <mxCell id="uW3dDPQiBf4IIEj1fz49-3" value="" style="shape=umlDestroy;whiteSpace=wrap;html=1;strokeWidth=3;targetShapes=umlLifeline;" parent="1" vertex="1">
           <mxGeometry x="750" y="2080" width="20" height="20" as="geometry" />
         </mxCell>
       </root>

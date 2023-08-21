@@ -1,6 +1,6 @@
-<mxfile host="app.diagrams.net" modified="2023-08-15T11:37:03.114Z" agent="Mozilla/5.0 (X11; Linux x86_64; rv:108.0) Gecko/20100101 Firefox/108.0" etag="YeXIkafZZp-3UbNLXiq1" version="21.6.8" type="device">
+<mxfile host="app.diagrams.net" modified="2023-08-21T18:06:15.724Z" agent="Mozilla/5.0 (X11; Linux x86_64; rv:109.0) Gecko/20100101 Firefox/116.0" etag="cVKWv-TklTFHVn1bmDvf" version="21.6.8" type="device">
   <diagram name="Page-1" id="aDgRZFvFXDjg_jGfRXhe">
-    <mxGraphModel dx="2702" dy="775" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="827" pageHeight="1169" math="0" shadow="0">
+    <mxGraphModel dx="2021" dy="510" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="827" pageHeight="1169" math="0" shadow="0">
       <root>
         <mxCell id="0" />
         <mxCell id="1" parent="0" />
@@ -65,7 +65,7 @@
         <mxCell id="LqKblC7Wvc4Bk4WyccNA-160" value="" style="shape=umlFrame;whiteSpace=wrap;html=1;fontColor=#FFA89E;swimlaneFillColor=#FFE6CC;fillColor=#ffe6cc;strokeColor=#d79b00;fillOpacity=60;width=10;height=15;" parent="en180CTn0l9zymGrBvhz-40" vertex="1">
           <mxGeometry x="30" y="830" width="1070" height="280" as="geometry" />
         </mxCell>
-        <mxCell id="LqKblC7Wvc4Bk4WyccNA-161" value="5a.1 modificaMenu(mansione, commento, servizio)" style="html=1;verticalAlign=bottom;endArrow=block;edgeStyle=elbowEdgeStyle;elbow=horizontal;curved=0;rounded=0;labelBackgroundColor=none;" parent="en180CTn0l9zymGrBvhz-40" edge="1">
+        <mxCell id="LqKblC7Wvc4Bk4WyccNA-161" value="5a.1 modificaMenu(ricetta, commento, servizio)" style="html=1;verticalAlign=bottom;endArrow=block;edgeStyle=elbowEdgeStyle;elbow=horizontal;curved=0;rounded=0;labelBackgroundColor=none;" parent="en180CTn0l9zymGrBvhz-40" edge="1">
           <mxGeometry relative="1" as="geometry">
             <mxPoint x="92.15666666666651" y="870" as="sourcePoint" />
             <Array as="points">
@@ -160,16 +160,16 @@
         <mxCell id="en180CTn0l9zymGrBvhz-24" value="LOOP" style="shape=umlFrame;whiteSpace=wrap;html=1;pointerEvents=0;fillColor=#F5F5F5;strokeColor=#666666;" parent="en180CTn0l9zymGrBvhz-40" vertex="1">
           <mxGeometry x="20" y="1160" width="1090" height="103.59000000000003" as="geometry" />
         </mxCell>
-        <mxCell id="39amEWuPTjIiG9B2MTap-3" value="" style="shape=umlFrame;whiteSpace=wrap;html=1;swimlaneFillColor=#FF9999;fillColor=#f8cecc;strokeColor=#FF3333;fillOpacity=60;fontColor=#FF0000;width=10;height=15;" vertex="1" parent="en180CTn0l9zymGrBvhz-40">
+        <mxCell id="39amEWuPTjIiG9B2MTap-3" value="" style="shape=umlFrame;whiteSpace=wrap;html=1;swimlaneFillColor=#FF9999;fillColor=#f8cecc;strokeColor=#FF3333;fillOpacity=60;fontColor=#FF0000;width=10;height=15;" parent="en180CTn0l9zymGrBvhz-40" vertex="1">
           <mxGeometry x="49.72" y="1025" width="1030" height="50" as="geometry" />
         </mxCell>
-        <mxCell id="39amEWuPTjIiG9B2MTap-4" value="5a.1c.1&amp;nbsp; Non esiste alcun Menù associato al servizio" style="html=1;verticalAlign=bottom;endArrow=open;edgeStyle=elbowEdgeStyle;elbow=vertical;curved=0;rounded=0;labelBackgroundColor=none;dashed=1;strokeColor=#FF0000;fontColor=#FF0000;endFill=0;" edge="1" parent="en180CTn0l9zymGrBvhz-40">
+        <mxCell id="39amEWuPTjIiG9B2MTap-4" value="5a.1c.1&amp;nbsp; Non esiste alcun Menù associato al servizio" style="html=1;verticalAlign=bottom;endArrow=open;edgeStyle=elbowEdgeStyle;elbow=vertical;curved=0;rounded=0;labelBackgroundColor=none;dashed=1;strokeColor=#FF0000;fontColor=#FF0000;endFill=0;" parent="en180CTn0l9zymGrBvhz-40" edge="1">
           <mxGeometry relative="1" as="geometry">
             <mxPoint x="1059.72" y="1049.45" as="sourcePoint" />
             <mxPoint x="86.1702830188679" y="1049.8800000000003" as="targetPoint" />
           </mxGeometry>
         </mxCell>
-        <mxCell id="39amEWuPTjIiG9B2MTap-5" value="" style="shape=umlDestroy;whiteSpace=wrap;html=1;strokeWidth=3;targetShapes=umlLifeline;" vertex="1" parent="en180CTn0l9zymGrBvhz-40">
+        <mxCell id="39amEWuPTjIiG9B2MTap-5" value="" style="shape=umlDestroy;whiteSpace=wrap;html=1;strokeWidth=3;targetShapes=umlLifeline;" parent="en180CTn0l9zymGrBvhz-40" vertex="1">
           <mxGeometry x="1049.72" y="1040.5" width="20.6688679245283" height="18.999999999999996" as="geometry" />
         </mxCell>
         <mxCell id="DYl_nhM4-Qo1yMT7ztg8-2" value="aggiuntaServizio(tipo, data, luogo, fasciaOraria, numeroPartecipanti, propaga)" style="html=1;verticalAlign=bottom;endArrow=block;edgeStyle=elbowEdgeStyle;elbow=vertical;curved=0;rounded=0;strokeColor=#666666;labelBackgroundColor=none;" parent="1" source="ziAq5ncUOEXPv-bApJY8-1" target="ziAq5ncUOEXPv-bApJY8-2" edge="1">
