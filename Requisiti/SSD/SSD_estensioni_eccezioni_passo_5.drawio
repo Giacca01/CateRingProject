@@ -1,6 +1,6 @@
-<mxfile host="app.diagrams.net" modified="2023-08-01T17:05:21.464Z" agent="Mozilla/5.0 (X11; Linux x86_64; rv:108.0) Gecko/20100101 Firefox/108.0" etag="FtswkKZKEwJoUyF8GTkM" version="21.6.6" type="device">
+<mxfile host="app.diagrams.net" modified="2023-08-25T15:27:27.587Z" agent="Mozilla/5.0 (X11; Linux x86_64; rv:109.0) Gecko/20100101 Firefox/116.0" etag="Kv7P0aSkUE3y5ZYkWJwo" version="21.6.9" type="device">
   <diagram name="Page-1" id="f5A6CDPiya6YqWZAvQuT">
-    <mxGraphModel dx="954" dy="-657" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="827" pageHeight="1169" math="0" shadow="0">
+    <mxGraphModel dx="954" dy="-659" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="827" pageHeight="1169" math="0" shadow="0">
       <root>
         <mxCell id="0" />
         <mxCell id="1" parent="0" />
@@ -110,7 +110,7 @@
         <mxCell id="8e-te7Ogq6yMoprlRzKs-45" value="" style="shape=umlFrame;tabWidth=110;tabHeight=30;tabPosition=left;html=1;boundedLbl=1;labelInHeader=1;width=10;height=15;swimlaneFillColor=#FFE6CC;fillColor=#ffe6cc;strokeColor=#d79b00;fillOpacity=60;" parent="1" vertex="1">
           <mxGeometry x="230" y="2260" width="340" height="80" as="geometry" />
         </mxCell>
-        <mxCell id="8e-te7Ogq6yMoprlRzKs-46" value="5b.1modificaSaturazione(turno, completo)" style="html=1;verticalAlign=bottom;endArrow=block;edgeStyle=elbowEdgeStyle;elbow=vertical;curved=0;rounded=0;labelBackgroundColor=none;" parent="1" edge="1">
+        <mxCell id="8e-te7Ogq6yMoprlRzKs-46" value="5b.1.modificaSaturazione(turno, completo)" style="html=1;verticalAlign=bottom;endArrow=block;edgeStyle=elbowEdgeStyle;elbow=vertical;curved=0;rounded=0;labelBackgroundColor=none;" parent="1" edge="1">
           <mxGeometry relative="1" as="geometry">
             <mxPoint x="250" y="2289" as="sourcePoint" />
             <Array as="points">
@@ -128,7 +128,7 @@
         <mxCell id="8e-te7Ogq6yMoprlRzKs-48" value="" style="shape=umlFrame;tabWidth=110;tabHeight=30;tabPosition=left;html=1;boundedLbl=1;labelInHeader=1;width=10;height=15;swimlaneFillColor=#FFE6CC;fillColor=#ffe6cc;strokeColor=#d79b00;fillOpacity=60;" parent="1" vertex="1">
           <mxGeometry x="230" y="2340" width="340" height="80" as="geometry" />
         </mxCell>
-        <mxCell id="8e-te7Ogq6yMoprlRzKs-49" value="5c.1eliminaAssegnazione(compito)" style="html=1;verticalAlign=bottom;endArrow=block;edgeStyle=elbowEdgeStyle;elbow=vertical;curved=0;rounded=0;labelBackgroundColor=none;" parent="1" edge="1">
+        <mxCell id="8e-te7Ogq6yMoprlRzKs-49" value="5c.1.eliminaAssegnazione(compito)" style="html=1;verticalAlign=bottom;endArrow=block;edgeStyle=elbowEdgeStyle;elbow=vertical;curved=0;rounded=0;labelBackgroundColor=none;" parent="1" edge="1">
           <mxGeometry relative="1" as="geometry">
             <mxPoint x="250" y="2369" as="sourcePoint" />
             <Array as="points">
@@ -194,10 +194,10 @@
             <mxPoint x="250" y="2390.1400000000003" as="targetPoint" />
           </mxGeometry>
         </mxCell>
-        <mxCell id="dRs57TYROqj73aaHYJT0-1" value="OPT" style="shape=umlFrame;tabWidth=110;tabHeight=30;tabPosition=left;html=1;boundedLbl=1;labelInHeader=1;width=40;height=20;swimlaneFillColor=#E6E6E6;fillColor=#f6f5f4;strokeColor=#5e5c64;fillOpacity=60;fontColor=#1A1A1A;" vertex="1" parent="1">
+        <mxCell id="dRs57TYROqj73aaHYJT0-1" value="OPT" style="shape=umlFrame;tabWidth=110;tabHeight=30;tabPosition=left;html=1;boundedLbl=1;labelInHeader=1;width=40;height=20;swimlaneFillColor=#E6E6E6;fillColor=#f6f5f4;strokeColor=#5e5c64;fillOpacity=60;fontColor=#1A1A1A;" parent="1" vertex="1">
           <mxGeometry x="195" y="2560" width="390" height="90" as="geometry" />
         </mxCell>
-        <mxCell id="dRs57TYROqj73aaHYJT0-2" value="7.modificaDaPreparare(compito, daPreparare)" style="html=1;verticalAlign=bottom;endArrow=block;edgeStyle=elbowEdgeStyle;elbow=horizontal;curved=0;rounded=0;labelBackgroundColor=none;" edge="1" parent="1">
+        <mxCell id="dRs57TYROqj73aaHYJT0-2" value="7.modificaDaPreparare(compito, daPreparare)" style="html=1;verticalAlign=bottom;endArrow=block;edgeStyle=elbowEdgeStyle;elbow=horizontal;curved=0;rounded=0;labelBackgroundColor=none;" parent="1" edge="1">
           <mxGeometry relative="1" as="geometry">
             <mxPoint x="250" y="2600" as="sourcePoint" />
             <Array as="points">
@@ -206,7 +206,7 @@
             <mxPoint x="535" y="2600.4099999999994" as="targetPoint" />
           </mxGeometry>
         </mxCell>
-        <mxCell id="dRs57TYROqj73aaHYJT0-3" value="compito aggiornato" style="html=1;verticalAlign=bottom;endArrow=open;edgeStyle=elbowEdgeStyle;elbow=vertical;curved=0;rounded=0;labelBackgroundColor=none;endFill=0;dashed=1;" edge="1" parent="1">
+        <mxCell id="dRs57TYROqj73aaHYJT0-3" value="compito aggiornato" style="html=1;verticalAlign=bottom;endArrow=open;edgeStyle=elbowEdgeStyle;elbow=vertical;curved=0;rounded=0;labelBackgroundColor=none;endFill=0;dashed=1;" parent="1" edge="1">
           <mxGeometry relative="1" as="geometry">
             <mxPoint x="535" y="2629.9999999999995" as="sourcePoint" />
             <mxPoint x="250" y="2629.9999999999995" as="targetPoint" />

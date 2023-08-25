@@ -183,6 +183,8 @@ Serve quindi a cogliere la struttura della realtà che dovrà processare ed in c
 Come tutti gli elaborati di UP, serve a comprendere, non a documentare, quindi non possiamo aspettarci che sia subito
 corretto e completo e iper-dettagliato, questo spiega perchè alcune classi siano solo abbozzate e prive di ttributi.
 Qui usiamo uml dal punto di vista concettuale.
+È particolarmente importante, perchè in UP si usa l'object oriented analysis, quindi i requisiti sono espressi
+in termini di manipolazione di oggetti.
 
 Occorrenza-Evento Capofila non è una composizione perchè l'occorrenza ha senso anche senza il capofila, da cui potrebbe venir sganciata
 
