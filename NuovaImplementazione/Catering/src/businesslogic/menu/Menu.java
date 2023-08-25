@@ -1,15 +1,9 @@
 package businesslogic.menu;
 
-import businesslogic.assignment.Assignment;
-import businesslogic.event.Event;
-import businesslogic.event.RecurrentEvent;
-import businesslogic.event.Service;
 import businesslogic.recipe.KitchenTask;
-import businesslogic.shift.Shift;
 import businesslogic.user.User;
 import businesslogic.CatERing;
 import businesslogic.recipe.Recipe;
-import businesslogic.user.User;
 import businesslogic.user.UserManager;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;

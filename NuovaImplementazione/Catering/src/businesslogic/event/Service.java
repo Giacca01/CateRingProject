@@ -258,7 +258,7 @@ public class Service {
             int eventId = newEventIds.get(id);
             int menuId = newMenuIds.get(id);
 
-            s.event = RecurrentEvent.fetchRecurrentEventById(eventId);
+            s.event = MainEvent.fetchMainEventById(eventId);
             s.menu = Menu.loadMenuById(menuId);
 
             String featQ = "SELECT id FROM Assignments WHERE service_id = '" + id + "'";
@@ -277,7 +277,7 @@ public class Service {
             int eventId = oldEventIds.get(i);
             int menuId = oldMenuIds.get(i);
 
-            s.event = RecurrentEvent.fetchRecurrentEventById(eventId);
+            s.event = MainEvent.fetchMainEventById(eventId);
             s.menu = Menu.loadMenuById(menuId);
 
             String featQ = "SELECT id FROM Assignments WHERE service_id = '" + s.id + "'";

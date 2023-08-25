@@ -1,10 +1,5 @@
 package businesslogic.recipe;
 
-import businesslogic.assignment.Assignment;
-import businesslogic.event.Event;
-import businesslogic.event.RecurrentEvent;
-import businesslogic.event.Service;
-import businesslogic.menu.Menu;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import persistence.PersistenceManager;
