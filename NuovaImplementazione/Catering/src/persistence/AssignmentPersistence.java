@@ -38,10 +38,6 @@ public class AssignmentPersistence implements AssignmentEventReceiver {
         assignment.saveAssignmentAssociated(assignment);
     }
 
-    public void updateAssignmentMarkedDone(Assignment assignment) {
-        assignment.saveAssignmentMarkedDone(assignment);
-    }
-
     public void updateSaturationChanged(Shift shift) {
         shift.saveSaturationChanged(shift);
     }
@@ -54,15 +50,7 @@ public class AssignmentPersistence implements AssignmentEventReceiver {
         assignment.saveAssignmentDetailsChanged(assignment);
     }
 
-    public void updateTimeEstimateDeleted(Assignment assignment) {
-        assignment.saveTimeEstimateDeleted(assignment);
-    }
-
     public void updateToBePreparedSet(Assignment assignment) {
         assignment.saveToBePreparedSet(assignment);
-    }
-
-    public void updateQuantityEstimateDeleted(Assignment assignment) {
-        assignment.saveQuantityEstimateDeleted(assignment);
     }
 }

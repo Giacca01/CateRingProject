@@ -50,11 +50,6 @@ public class Shift {
         this.full = full;
     }
 
-    public boolean markAsDone(Assignment a){
-        loadedShifts.get(this.id).tasksToComplete.remove(a);
-        return this.tasksToComplete.remove(a);
-    }
-
     public void printDetails() {
         System.out.println("Shift " + this.id + "; full: " + this.full);
     }

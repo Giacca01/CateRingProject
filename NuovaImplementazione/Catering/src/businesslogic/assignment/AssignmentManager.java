@@ -81,13 +81,11 @@ public class AssignmentManager {
         if(this.currentService == null ||
                 this.currentService.getAssignments() == null ||
                 !this.currentService.getAssignments().contains(a)
-            // TODO: hanno senso questi controlli??
                 /*a.getShift() != null ||
                 a.getCook() != null*/){
             throw new AssignmentException();
         }
         Assignment removedAssignment = this.currentService.deleteAssignment(a);
-        // TODO: nel dsd nella notify non c'è l'assignment rimosso, ma è fondamentale per la persistenza
         this.notifyDeletedAssignment(a, currentService);
         return removedAssignment;
     }
@@ -154,24 +152,6 @@ public class AssignmentManager {
         a.associateAssignment(s, null);
     }
 
-    public boolean markAsDone(Assignment a, Shift shift, Cook cook) throws UseCaseLogicException, AssignmentException {
-        User user = getCurrentUser();
-        if (!user.isChef()) {
-            throw new UseCaseLogicException();
-        }
-        if(this.currentService == null ||
-                this.currentService.getAssignments() == null ||
-                !this.currentService.getAssignments().contains(a)){
-            throw new AssignmentException();
-        }
-        boolean wasDeleted = false;
-        wasDeleted = shift.markAsDone(a);
-        wasDeleted = wasDeleted && cook.markAsDone(a);
-        a.setToBePrepared(false);
-        this.notifyAssignmentMarkedDone(a);
-        return wasDeleted;
-    }
-
     public void setShiftSaturation(Shift shift, boolean full) throws UseCaseLogicException {
         User user = getCurrentUser();
         if(!user.isChef()) {
@@ -181,7 +161,6 @@ public class AssignmentManager {
         this.notifySaturationChanged(shift);
     }
 
-    // TODO: cook può essere ? perché nel dcd no
     public void deleteAssociation(Assignment a, Shift s, Cook c) throws UseCaseLogicException, AssignmentException {
         User user = getCurrentUser();
         if (!user.isChef()) {
@@ -242,22 +221,6 @@ public class AssignmentManager {
         a.changeAssignmentDetails(null, amount);
     }
 
-    public Assignment removeTimeEstimate(Assignment a) throws UseCaseLogicException, AssignmentException {
-        User user = getCurrentUser();
-        if (!user.isChef()) {
-            throw new UseCaseLogicException();
-        }
-        if(this.currentService == null ||
-                this.currentService.getAssignments() == null ||
-                !this.currentService.getAssignments().contains(a)) {
-            throw new AssignmentException();
-        }
-        Assignment returnAssignment = this.currentService.removeTimeEstimate(a);
-        this.notifyTimeEstimateDeleted(a);
-        return returnAssignment;
-    }
-
-    // TODO: controllare nel dcd i controlli (currentService.shift?? e currentService.cook ??)
     public void setToBePrepared(Assignment a, boolean toBePrepared) throws UseCaseLogicException, AssignmentException {
         User user = getCurrentUser();
         if (!user.isChef()) {
@@ -272,21 +235,6 @@ public class AssignmentManager {
         }
         a.setToBePrepared(toBePrepared);
         this.notifyToBePreparedSet(a);
-    }
-
-    public Assignment removeQuantityEstimate(Assignment a) throws UseCaseLogicException, AssignmentException {
-        User user = getCurrentUser();
-        if (!user.isChef()) {
-            throw new UseCaseLogicException();
-        }
-        if(this.currentService == null ||
-                this.currentService.getAssignments() == null ||
-                !this.currentService.getAssignments().contains(a)){
-            throw new AssignmentException();
-        }
-        Assignment returnAssignment = this.currentService.removeQuantityEstimate(a);
-        this.notifyQuantityEstimateDeleted(a);
-        return returnAssignment;
     }
 
     private User getCurrentUser() {
@@ -323,12 +271,6 @@ public class AssignmentManager {
         }
     }
 
-    private void notifyAssignmentMarkedDone(Assignment assignment) {
-        for (AssignmentEventReceiver ar : this.eventReceivers) {
-            ar.updateAssignmentMarkedDone(assignment);
-        }
-    }
-
     private void notifySaturationChanged(Shift s) {
         for (AssignmentEventReceiver ar : this.eventReceivers) {
             ar.updateSaturationChanged(s);
@@ -341,12 +283,6 @@ public class AssignmentManager {
         }
     }
 
-    private void notifyTimeEstimateDeleted(Assignment a) {
-        for (AssignmentEventReceiver ar : this.eventReceivers) {
-            ar.updateTimeEstimateDeleted(a);
-        }
-    }
-
     private void notifyAssignmentDetailsChanged(Assignment a) {
         for (AssignmentEventReceiver ar : this.eventReceivers) {
             ar.updateAssignmentDetailsChanged(a);
@@ -356,12 +292,6 @@ public class AssignmentManager {
     private void notifyToBePreparedSet(Assignment a) {
         for (AssignmentEventReceiver ar : this.eventReceivers) {
             ar.updateToBePreparedSet(a);
-        }
-    }
-
-    private void notifyQuantityEstimateDeleted(Assignment a) {
-        for (AssignmentEventReceiver ar : this.eventReceivers) {
-            ar.updateQuantityEstimateDeleted(a);
         }
     }
 

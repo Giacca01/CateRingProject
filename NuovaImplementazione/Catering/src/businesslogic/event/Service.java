@@ -117,28 +117,6 @@ public class Service {
         this.assignments = assignments;
     }
 
-    public Assignment removeTimeEstimate(Assignment a) throws UseCaseLogicException {
-        int position = this.assignments.lastIndexOf(a);
-        if(position > -1) {
-            boolean isPresent = this.assignments.remove(a);
-            a.setTimeEstimate(null);
-            this.assignments.add(position, a);
-        } else
-            throw new UseCaseLogicException();
-        return a;
-    }
-
-    public Assignment removeQuantityEstimate(Assignment a) throws UseCaseLogicException {
-        int position = this.assignments.lastIndexOf(a);
-        if(position > -1) {
-            boolean isPresent = this.assignments.remove(a);
-            a.setQuantity(null);
-            this.assignments.add(position, a);
-        } else
-            throw new UseCaseLogicException();
-        return a;
-    }
-
     public void printDetails() {
         System.out.println("Service " + this.id + "; event: " + this.event.getInitialNotes() + "; type: " + this.type + "; menu: " + this.menu.getTitle() + "; date: " + this.date + "; location: " + this.location + "; attendance: " + this.attendance + "; approved: " + this.approved);
     }
@@ -199,7 +177,6 @@ public class Service {
     public void sortSummarySheet(Assignment a, int position) {
         this.assignments.remove(a);
         this.assignments.add((position - 1), a);
-        // TODO: migliorare, ipoteticamente togliere la position da db e ragionare sull'index di assignments
         int index = 1;
         for(Assignment assignment: this.assignments){
             assignment.setPosition(index);

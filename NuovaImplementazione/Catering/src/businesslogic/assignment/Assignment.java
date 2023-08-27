@@ -158,7 +158,6 @@ public class Assignment {
     }
 
     public void associateAssignment(Shift s, Cook c) {
-        // TODO: non dovremmo cambiare lo stato dell'availability??
         this.shift = s;
         if(c != null)
             this.cook = c;
@@ -166,7 +165,6 @@ public class Assignment {
 
     public void deleteAssociation(Assignment a) {
         a.shift = null;
-        // TODO: perchè nel dcd c'è cu != null?
         a.cook = null;
     }
 
@@ -199,8 +197,6 @@ public class Assignment {
             int cookId = rs.getInt("cook_id");
             int continuationOf = rs.getInt("continuationOf");
 
-            // TODO: capire se si possa fare in modo diverso
-            // serve fare il controllo perché se il valore è null mette 0 e inserisce un elemento in più in realtà non esistente
             if (taskId != 0) a.task = Recipe.loadRecipeById(taskId);
             if (shiftId != 0) a.shift = Shift.loadShiftById(shiftId);
             if (cookId != 0) a.cook = Cook.loadCookById(cookId);

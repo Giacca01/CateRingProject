@@ -1,4 +1,3 @@
-import businesslogic.AssignmentException;
 import businesslogic.CatERing;
 import businesslogic.UseCaseLogicException;
 import businesslogic.assignment.Assignment;
@@ -27,6 +26,14 @@ public class TestAssignment5a {
             assignment.printDetails();
         }
     }
+
+    public static void printShiftsTable(ObservableList<Shift> shifts) {
+        System.out.println("Shifts Table:");
+        for(Shift shift: shifts){
+            shift.printDetails();
+        }
+    }
+
     public static void fetchAllData() {
         cooks = UserManager.getCooks();
         recipes = RecipeManager.getRecipes();
@@ -35,6 +42,7 @@ public class TestAssignment5a {
         services = Service.fetchServices();
         availabilities = Availability.fetchAvailabilities();
     }
+
     public static void main(String[] args) {
         try{
             fetchAllData();
@@ -42,28 +50,20 @@ public class TestAssignment5a {
             System.out.println("TEST LOGIN");
             CatERing.getInstance().getUserManager().fakeLogin("Lidia");
             System.out.println("Login eseguito con successo!");
-            Service s = services.get(0);
 
             System.out.println();
 
-            System.out.println("TEST OPEN SUMMARY SHEET");
-            CatERing.getInstance().getAssignmentManager().openSummarySheet(s);
-            Service currentService = CatERing.getInstance().getAssignmentManager().getCurrentService();
-            printSummarySheet(currentService.getAssignments());
+            ObservableList<Shift> shiftTable = CatERing.getInstance().getAssignmentManager().showShiftsTable();
+            printShiftsTable(shiftTable);
 
             System.out.println();
 
-            System.out.println("TEST MARK AS DONE");
-            Cook cook = (Cook) UserManager.getCookById(1);
-            Shift shift = ShiftManager.getShifts().get(0);
-            Assignment a = currentService.getAssignments().get(1);
-            CatERing.getInstance().getAssignmentManager().markAsDone(a, shift, cook);
-            printSummarySheet(currentService.getAssignments());
-
+            System.out.println("TEST SET SHIFT SATURATION");
+            Shift shiftToSaturate = ShiftManager.getShifts().get(0);
+            CatERing.getInstance().getAssignmentManager().setShiftSaturation(shiftToSaturate, true);
+            printShiftsTable(shiftTable);
         } catch (UseCaseLogicException e) {
             System.out.println("Errore di logica nello use case");
-        } catch (AssignmentException e) {
-            System.out.println("Errore assignment");
         }
     }
 }

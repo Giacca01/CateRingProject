@@ -4,9 +4,8 @@ import javafx.collections.ObservableList;
 
 public class UserManager {
     private User currentUser;
-    public void fakeLogin(String username) //TODO: bisogna implementare il login vero!
+    public void fakeLogin(String username)
     {
-        // TODO: sistemare
         this.currentUser = Chef.loadChef(username);
     }
 
@@ -16,7 +15,6 @@ public class UserManager {
     public static User getOrganizerById(int id) { return Organizer.loadOrganizerById(id); }
     public static User getChefById(int id) { return Chef.loadChefById(id); }
     public static User getCookById(int id) { return Cook.loadCookById(id); }
-    public static User getServicePersonnelById(int id) { return ServicePersonnel.loadServicePersonnelById(id); }
     public static ObservableList<Cook> getCooks() {
         return Cook.fetchCooks();
     }
