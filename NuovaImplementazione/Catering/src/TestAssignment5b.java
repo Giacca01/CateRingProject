@@ -1,3 +1,4 @@
+import businesslogic.AssignmentException;
 import businesslogic.CatERing;
 import businesslogic.UseCaseLogicException;
 import businesslogic.assignment.Assignment;
@@ -50,20 +51,27 @@ public class TestAssignment5b {
             System.out.println("TEST LOGIN");
             CatERing.getInstance().getUserManager().fakeLogin("Lidia");
             System.out.println("Login eseguito con successo!");
+            Service s = services.get(0);
 
             System.out.println();
 
-            ObservableList<Shift> shiftTable = CatERing.getInstance().getAssignmentManager().showShiftsTable();
-            printShiftsTable(shiftTable);
+            System.out.println("TEST OPEN SUMMARY SHEET");
+            CatERing.getInstance().getAssignmentManager().openSummarySheet(s);
+            Service currentService = CatERing.getInstance().getAssignmentManager().getCurrentService();
+            printSummarySheet(currentService.getAssignments());
 
             System.out.println();
 
-            System.out.println("TEST SET SHIFT SATURATION");
-            Shift shiftToSaturate = ShiftManager.getShifts().get(0);
-            CatERing.getInstance().getAssignmentManager().setShiftSaturation(shiftToSaturate, true);
-            printShiftsTable(shiftTable);
+            System.out.println("TEST DELETE ASSOCIATION");
+            Cook cook = (Cook) UserManager.getCookById(1);
+            Shift shift = ShiftManager.getShifts().get(0);
+            Assignment a = currentService.getAssignments().get(1);
+            CatERing.getInstance().getAssignmentManager().deleteAssociation(a, shift, cook);
+            printSummarySheet(currentService.getAssignments());
         } catch (UseCaseLogicException e) {
             System.out.println("Errore di logica nello use case");
+        } catch (AssignmentException e) {
+            System.out.println("Errore assignment");
         }
     }
 }

@@ -63,11 +63,6 @@ public class Cook implements Employee {
         this.declaredAvailabilities = declaredAvailabilities;
     }
 
-    public boolean markAsDone(Assignment a) {
-        loadedCooks.get(this.id).assignments.remove(a);
-        return this.assignments.remove(a);
-    }
-
     public void printDetails() {
         System.out.println("Cook " + this.id + "; username: " + this.username);
     }

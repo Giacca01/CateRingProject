@@ -12,11 +12,8 @@ public interface AssignmentEventReceiver {
     void updateDeletedAssignment(Assignment a, Service currentService);
     void updateSummarySheetSorted(Service currentService);
     void updateAssignmentAssociated(Assignment assignment);
-    void updateAssignmentMarkedDone(Assignment assignment);
     void updateSaturationChanged(Shift shift);
     void updateAssociationRemoved(Assignment a);
     void updateAssignmentDetailsChanged(Assignment a);
-    void updateTimeEstimateDeleted(Assignment a);
     void updateToBePreparedSet(Assignment a);
-    void updateQuantityEstimateDeleted(Assignment a);
 }
