@@ -1,511 +1,548 @@
-Pattern codice:
-    -low coupling (abbiamo un metodo generico per eseguire le query, in modo da ridurre le dipendenze
-    tra il persistence manager ed il resto), a tal fine si usano anche le due interfacce presenti in persistence
+Note metodologiche:
+    1) Pre e post condizioni dell'uc dettagliato descrivono lo stato del business, mentre quelle dei contratti
+    descrivono lo stato del sistema, ragion per cui alle volte differiscono (es. nell'uc gestione eventi una
+    pre-condizione è l'esistenza di un evento assegnato all'organizzatore, mentre nei contratti questa non
+    è una pre-condizione generale, perchè magari all'interno del business l'organizzatore ha già
+    ricevuto l'incarico, ma la scheda dell'evento, che consente di verificare ciò, non è ancora stata creata).
     
-    -in assignment persistance abbiamo usato information expert, perchè, ad esempio, il compito di registrare
-    l'aggiunta di un compito nel turno spetta al turno stesso, cioè a chi possiede le info per fare ciò
-    
-    -in realtà, la generica classe viene implementata traducedo
-        -il dcd, per le proprietà strutturali e le operazioni
-        -il dsd, per quanto riguarda il corpo dei metodi
-        
-    -Le ricette vengono richieste al menù per garantire accoppiamento minore. (Low copling).
-
-    -Un compito contiene tutte le mansioni necessarie per completare la richiesta, forniteci dalla richiesta stessa, secondo information expert.
-        
-        
-DSD/DCD
-
-Per quanto riguarda l'architettura logica, abbiamo organizzato le classi (e, quindi, il codice) in packages, cercando
-il più possibile di ottenere alta coesione e basso accoppiamento.
-Quindi nei package ci sono tutte le classi che servono per modellare via software un concetto significativo della realtà
-(ad esempio, MenùManagement contiene tutte le classi inserite (principalmente) per modellare il concetto di Menù).
-Ogni package ha un manager, cioè una classe che fa da controller grasp.
-Esso riceve richieste di esecuzione di operazioni di sistema, corrispondenti ad eventi di sistema e generati dal
-controller mvc, e ne coordina l'esecuzione, ripartendo i compiti tra i vari oggetti necessari.
-Abbiamo scelto di dotarci di un controller diverso per ogni package, evitando un'unica classe che sarebbe risultata poco
-coese e fortemente accoppiata: in questo progetto vi sono infatti molte operazioni di sistema).
-Il controller fa anche da unico punto di ingresso al package, dispensando altre classe dal conoscere i dettagli implementativi
-delle operazioni (ad es. lo user manager evita che tutti sappiano come venga realizzato un utente)
-
-
-DSD 1
-
-Registriamo il servizio nella lista, perchè consentiamo l'apertura di più fogli riepilogativo.
-Il foglio di lavoro è quello creato/aperto per ultimo.
-Deleghiamo la creazione del foglio al servizio, perchè il primo è una vista del secondo, che quindi lo contiene strettamente.
-Menù item rappresenta la singola voce di menù. GetItemRecipe restituisce la ricetta associata alla voce di menù.
-HandleBatchItem imposta il valore dei parametri
-
-DSD 1a
-La lista dei servizi aperti è del manager, in modo consistente al fatto che quest'ultimo deve memorizzare lo stato dell'uc.
-
-
-DSD 2
-Gli unici dettagli del compito che impostiamo in fase di creazione sono la mansione da svolgere ed il fatto che vada effettivamente eseguita.
-Il resto verrà specificato in fase di modifica/aggiunta dettagli.
-In generale, salvare le cose su db significa:
-    1) registrare, con delega opportuna, gli oggetti che compogono quello corrente sul db
-    2) aggiornare la rappresentazione interna al programma dell'oggetto salvato
-    
-In generale, nel processamento dei risultati di qualsiasi query aggiorniamo/costruiamo/cancelliamo la rappresentazione dei dati interna al programma.
-    
-    
-DSD 2a
-La cancellazione del compito significa:
-    -eliminare l'associazione compito-kitchen task
-    -eliminare l'assignment (propagare la modifica, in modo da sganciarlo da tutto il resto)
-    
-DSD 3:
-La lista degli assignment viene impostata durante la creazione del servizio. 
-(In caso di apertura, il servizio che riceviamo dall'utente è già stato creato, quindi
-c'è già stata la fase di lettura dei compiti)
-   
-DSD 4:
-L'apertura del tabellone dei turni porta all'aggiornamento della rappresentazione dei turni interna al programma.
-Ricordare che foglio riepilogativo e tabellone sono due viste dei compiti, con la differenza che:
-    -il foglio li raggruppa per servizio
-    -il tabellone li raggruppa per turno
-Non c'è salvataggio su db, perchè si tratta di un'interrogazione.
-Nella lettura da db dei compiti, si poteva fare una join tra compiti, mansioni e turni.
-Sarebbe stato (forse) più veloce, rispetto a fare query separate, ma avrebbe comportato
-una duplicazione del codice, visto che il recupero dei dati del singolo compito serve anche in altre parti.   
-
-DSD 5b
-IMponiamo che lo shift sia impostato: senza, contando che potrebbe mancare, legittimamente anche il cuoco, non ci sarebbe
-nulla da modificare.
- !this.currentService.getAssignments().contains(a)  serve a controllare che lo chef non modifichi roba non sua.
-    
-DSD 6:
-Eliminiamo l'assignment dalla lista per evitare la presenza di copie diverse dello stesso oggetto.
-    
-In tutti i dsd:
-    -sistemare la restituzione di valori all'UI    
-    
-    -rivedere currentEvent
-    
-    -notify segnala il verificarsi dell'evento: è un po' come un interrupt, che "interrompe" il flusso di esecuzione
-    -update invece notifica a tutti i listener il verificarsi dell'evento
-    
-    -rivedere cancellazione assignment
-    
-    -ha senso l'apertura del servizio? Così come l'abbiamo implementata serve solo ad impostare il servizio di lavoro
-     che però esiste già, non c'è alcuna lettura di informazioni.
-     
-     -rivedere l'apertura del foglio: bisogna modificarla in modo da passare solo l'id del servizio e non tutto il servizio.
-     Questo significa anche leggere da db gli assignment
-     
-     -Eseguire, e vedere come si usi e come vengano gestite le eccezioni
-     
-     -Nel dsd 5, Sostituire PersonelMember con Cook nelle signature, in modo che non venga passato per sbaglio un cuoco.
-      In generale, aggiungere le le classi cook e service personnel.
-
-
-
-
-Uc Dettagliati
-
-Breve introduzione agli UC
-Si tratta di un elaborato della disciplina dei requisiti, pensato per mettere in luce
-i requisiti funzionali del sistema tramite l'analisi di un suo utilizzo tipico.
-Si lavora sugli uc soprattutto nelle prime iterazioni del sistema, in special modo
-durante ideazione ed elaborazione, poichè queste sono le più orientate alla raccolta dei requisiti.
-Informalmente, si tratta di una descrizione testuale di un utilizzo tipo del sistema.
-Più formalmente, è un insieme di scenari, ciascuno dei quali consiste in una sequenza specifica
-di azioni di interazione tra attore e sistema.
-Abbiamo realizzato gli uc dettagliati con il template Cockburn, uno dei tanti possibili, perchè
-consente di chiarire, dal punto di vista visuale, l'associazione tra azione dell'utente e risposta
-del sistema, molto utile per capire il comportamento di quest'ultimo che, nei sistemi dotati
-di gui, è essenzialmente reattivo.
-
-Descrivere la struttura del caso d'uso, mettendo in luce lo spazio dato alla prospettiva utente.
-Le estensioni sono descritte per differenza rispetto allo scenario principale.
-
-Il passo 1 imposta le informazioni generali dell'evento, come la data, lo stato, le note iniziali.
-La lettura serve semplicemente ad indicare su quale, dei servizi esistenti, si intenda lavorare.
-Non è opzionale proprio per specificare l'evento su cui si lavorerà nel resto dell'UC.
-In generale, questo passo dell'UC tratta le informazioni generali dell'evento.
-Per questo motivo c'è anche la modifica: in quel punto l'uc procede senza salti perchè oltre alle info
-generali potrei voler modificare anche altro.
-È obbligatorio, anche se il secondo utente non lo cita, perchè ci sembrava poco sensato
-lavorare su un qualcosa di cui non si è fissata nemmeno l'intelaiatura.
-In generale, il passo 1 corrisponde un po' alla presa in carico: è sensato immaginare che per lavorare sull'evento
-serva riflettere almeno sulle sue caratteristiche generali, mentra lasciamo l'utente libero di scegliere
-in che ordine specificare il resto delle caratteristiche (e se specificarle subito o meno), tipo servizi e personale.
-Da qui in poi, è tutto opzionale, in modo da garantire la massima flessibilità, e consentire all'organizzatore
-di dettagliare l'evento come meglio crede.
-Questo è un prodotto del fatto che le user stories concordano su cosa fare ma non su come farlo.
-Notiamo come l'attività sulle occorrenze della ricorrenza sia un compito automatizzabile dal sistema.
-Inoltre, la struttura del processo richiede di tornare sullo stesso evento, facendo cose diverse.
-
-Passo 2
-Un evento in corso può essere annullato, ma non eliminato. In generale, non è possibile modificare
-le informazioni di un evento in corso.
-Abbiamo inserito qui la gestione dei servizi: contando che sono un concetto piuttosto rilevante
-della realtà, si potrebbe valutare la creazione di un UC separato.
-Visto che non c'è, abbiamo "applicato" information expert a livello concettuale, affidando
-la gestione dei servizi all'evento, che ne è una composizione.
-Nelle eccessioni qui si prosegue normalmente, perchè nello scenario principale c'è una ripetizione del passo 2.
-
-Qui c'è la possibilità di terminare il caso d'uso, se oltre alla presa in carico non vogliamo dettagliare l'evento.
-
-
-Passo 4
-Esempio dell'importanza della flessibilità: il primo utente sembra dirci che spesso nomina il personale prima
-del menù, mentre il secondo lascia intendere che si tratti di un evento raro.
-L'opzionalità mette tutti d'accordo.
-I requisiti erano ambigui sul poter o meno modificare personale e chef ad evento in corso, quindi nel dubbio
-non lo consentiamo, anche perchè questo richiederebbe potenzialmente la riapprovazione del menù
-ed il cambiamento dei compiti.
-
-Passo 5
-In caso di modifica di menù di evento in corso terminiamo il caso d'uso perchè il "problema" non si risolve
-cambiando menù: è "sbagliato" l'evento scelto.
-
-Passo 6
-Possiamo assegnare solo personale prenotato: non è molto restrittivo, nel caso basta tornare al passo 4, tanto il 5
-è saltabile, quindi si può comunque decidere se prenotare sul momento oppure prima.
-
-A fine caso d'uso diamo la possibilità di ripartire dalla prima attività, in modo da lavorare eventualmente su un altro evento.
-
-
-LA MODIFICA DI CHEF E PERSONALE NON È CONSENTITA A LAVORI IN CORSO
-
-Modello di dominio
-
-Introduzione
-Si tratta di un elaborato della disciplina di modellazione del business.
-È l'elaborato incrementale per definizione: ogni uc estende la rappresentazione con il proprio spicchio di realtà.
-Si tratta di un modello concettuale, volto a rappresentare i concetti di maggior interesse tra tutti quelli della realtà
-presa in esame, oltre ai legami tra di essi.
-Serve quindi a cogliere la struttura della realtà che dovrà processare ed in cui si innesterà il sistema.
-È un dizionario visuale della realtà.
-Come tutti gli elaborati di UP, serve a comprendere, non a documentare, quindi non possiamo aspettarci che sia subito
-corretto e completo e iper-dettagliato, questo spiega perchè alcune classi siano solo abbozzate e prive di ttributi.
-Qui usiamo uml dal punto di vista concettuale.
-È particolarmente importante, perchè in UP si usa l'object oriented analysis, quindi i requisiti sono espressi
-in termini di manipolazione di oggetti.
-
-Occorrenza-Evento Capofila non è una composizione perchè l'occorrenza ha senso anche senza il capofila, da cui potrebbe venir sganciata
-
-Organizzatore-Evento ci serve per la verifica dei permessi
-
-Un evento può avere più menù in uso: uno per ogni servizio
-
-Abbiamo deciso di inserire nei servizi alcune info che gli utenti ci danno parlando degli eventi, ad esempio, è poco utile
-sapere il numero di persone partecipanti a tutto l'evento: a fini organizzativi conta il numero di partecipanti al singolo servizio (da cui si può comunque ricavare l'altra informazione)
+    2) Le eccezioni servono a rappresentare le violazioni della logica di business.
 
-Il menù è diviso in sezioni: ogni sezione è composta da più voci.
+**** UC GESTIONE COMPITI ****
 
-Proposta di modifica è un'entità a parte, e non un dettagli dell'associazione ricetta-menù, per poter tener traccia del servizio che l'ha provocata
-(il servizio ha un solo menù associato, quindi non perdiamo l'informazione relativa al menù).
-Inoltre, il testo impone che la modifica sia locale al singolo evento, senza intaccare il menù principale.
+1) Una preparazione può NON essere associata ad alcuna ricetta. Ricetta e preparazione sono concetti COLLEGABILI, ma non per forza collegati.
 
-Nel menù possono esserci solo ricette: le preparazioni collegate alla singola ricetta si trovano nel ricettario.
+2) Ho tolto la possibilità di terminare l'uc subito dopo il primo passo: in effetti la user story che sembrava richiedere ciò ci dice che lo chef
+può fermarsi prima delle assegnazioni, non dice nulla sull'aggiunta di ricette fuori menù.
+A più senso fare così, in modo da racchiudere in unico blocco le operazioni correlate.
 
-Preparazione e ricetta sono una generalizzazione: si tratta di un'astrazione, basata sull'identificazione di caratteristiche
-comuni tra concetti.
-Ci interessa perchè ci sono associazioni (come quella con il ricettario) ed operazioni che valgono per entrambe.
-Serve soprattutto per avere un tipo comune nei contratti, grazie al principio di sostituibilità (*). Modifiche come queste evidenziano la natura iterativa di up.
+3) Non c'è la possibilità di segnare il compito come completato, perchè il testo dice che a farlo è il cuoco.
 
-Disponibilità è un'entità, invece che dettaglio di associazione tra membro del personale e turno, per tenere traccia del servizio a cui è riferita.
+4) Ho deciso di usare "termina il caso d'uso" come continuazione per la maggior parte delle eccezioni.
+In effetti, non ha molto senso complicarsi troppo la vita e soprattutto alle volte potrebbe non essere chiaro
+il motivo per cui si sta ripetendo: ad esempio, nella ecceione 1.1b di gestione compiti "Ripete il passo 1" potrebbe
+voler dire riprovare a creare il foglio per lo stesso servizio, cosa evidentemente inutile, visto che esiste già.
+Con condizioni più raffinate, tipo "torna al passo 5 e sceglie un altro compito" si rischia di complicare tutto il resto
+e di non poterle verificare (come fai a controllare che abbia scelto un altro compito? Certo, qualora non fosse così
+incapperebbe in un altro errore, ma non ha molto senso).
+Le cose di prima non erano sbagliate, però ci portano ad un applicativo non minimale, perchè anche terminare e riprendere
+produce lo stesso effetto.
 
-Servizio.approvato indica il fatto che il menù proposto per il servizio sia stato accettato o meno.
 
-Approvazione del menù:
-Quando lo chef propone il menù, questo viene associato al servizio, ma l'attributo approvato varrà no finchè
-l'organizzatore non deciderà altrimenti.
-Se l'organizzatore rifiuta, viene distrutto il collegamento tra menù e servizio.
+6) Relazione compito-ricetta: un compito contiene, come mansioni da svolgere al suo interno, la ricetta e tutte le preparazioni suoi ingredienti.
+NO, Ogni mansione di cucina è svolta in un compito diverso.
+Questo induce la necessità di recuperare le mansioni che compongono un menù. Ora, questo si potrebbe fare scorrendo le ricette che formano
+il menù e recuperando le mansioni loro ingrendienti, però è lento e scomodo da realizzare nei dsd, quindi conviene un'associazione derivabile.
+Quindi in questa associazione mettiamo solo le ricette oppure anche gli ingredienti ??? (*)
+In caso affermativo, ci sarà una lista lato menù con i riferimenti alle mansioni.
+ALtrimenti, il menù avrà una lista di ricette, ciascuna delle quali possiederà un elenco delle mansioni suoi ingredienti.
 
-Non abbiamo messo la scheda riepilogativa perchè, più che di un concetto, si tratta di una vista delle informazioni dell'evento.
+Probabilmente conviene la seconda soluzione, perchè ha granularità più fine, e consente di recuperare anche soltanto le ricette, senza ingredienti
 
-Non ho memorizzato il tipo di evento: è facilmente deducibile dal numero di servizi associati
+7) Al passo 5, bisogna anche controllare che il compito sia da svolgere e non completato??
+No, il completamento del compito riguarda un altro uc, quindi per il momento possiamo ometterlo.
 
-Chiarire il funzionamento di:
-    -Proposta modifica: L'idea è che l'organizzatore possa consultare un elenco di coppie della forma
-    Servizio - mansione di cuina, premere un pulsante modifica, ed inserire un commento che descrive cosa vada cambiato.
-    Lo chef dal canto suo visualizzerà a fianco di ogni coppia servizio-mansione un pulsante approva/respingi.
-    Sarà però lo chef ad eseguire manualmente (ad esempio usando le funzionalità parte dell'UC gestione ricette)
-    quanto contenuto nel commento (automatizzare questo sarebbe complicato, perchè bisognerebbe
-    analizzare il contenuto del campo, oppure consentire solo un elenco fisso di modifiche).
-    È un'entità, per tenere traccia del servizio a cui è riferita, e consentire di specificare come agire sulla preparazione.
-    
-    -disponibilità: L'idea è che lo chef/organizzatore possano accedere ad una lista dei turni (il tabellone).
-    Cliccando su un turno visualizzeranno l'elenco di disponiblità inserite ed avranno bottoni per prenotare/liberare/specificare il ruolo.
-    La prenotazione aggancia soltanto la disponibilità al turno (il membro del personale vede l'elenco dei turni e può premere su ciascuno
-    per rendersi disponibile).
-    L'aggancio al servizio avviene durante la prenotazione da parte dello chef/cuoco (che ovviamente può agganciare soltante ai suoi servizi).
-    È un'entità per tenere traccia del ruolo, un concetto associato all'attività del personale durante il servizio.
-    
-    -evento ricorrente: l'idea è che l'operazione di un evento porta alla creazione di un evento capofila.
-    Poi, l'utente può richiedere al sistema di creare in automatico delle occorrenze con le stesse info del capofila
-    oppure aggiungerle a mano. È possibile agire sull'occorrenza al passo 1: grazie alla generalizzazione quest'ultimo
-    tratta oggetti concettuali di tipo evento, che possono essere tanto occorrenze quanto eventi capofila.
-    Abbiamo usato la generalizzazione: rispetto all'associazione ricorsiva è più semplice da implementare, perchè
-    non richiede br e mette in luce il fatto che occorrenze ed eventi capofila siano dello stesso tipo.
+8) Le estensioni di modifica sono inutilmente complicate: se l'utente vuole cambiare qualcosa cancella e ricrea, così
+noi abbiamo un applicativo minimale.
 
-Differenze tra composizione ed aggregazione:
-    -l'aggregazione indica una relazione intero-parte, ma non ha una semantica specifica
-    -la composizione impone che una parte sia associata ad uno ed un solo composto
-    e che venga creata dopo (o durante) ed eliminata prima (o durante)
-(*) l'istanza della sottoclasse è anche istanza della sopraclasse.
+9) "Il compito scelto non fa parte del foglio riepilogativo su cui si sta lavorando" non è un'eccezzione molto sensata.
+Infatti, è improbabile che il sistema mostri anche i compiti che non fanno parte del foglio su cui si sta lavorando (più che altro
+non ne avrebbe motivo), quindi questo errore non può proprio verificarsi.
 
+10) Vedere questione della cucina satura: in effetti la saturazione della cucina, cioè il completamento del compito, è da fare qui (vedi punto 13).
 
+11) Impediamo l'inserimento di dettagli per compiti non da preparare/già completati: in quei casi infatti le indicazioni relative
+allo svolgimento non hanno senso, proprio perchè i compiti non sono da svolgere.
 
-Business rules:
+12) Ho tolto la modifca e l'eliminazione delle stime e delle quantità.
+Queste vengono inserite NON autonomamente, ma solo in fase di assegnazione, dove in effetti non ha molto senso che si vadano ad eliminare
+o modificare
 
-Introduzione: 
-Si tratta principalmente di frasi in linguaggio naturale che descrivono il funzionamento del dominio.
+13) La gestione della saturazione del turno conviene trattarla come estensione del passo 5, dato che essa dipende dai compiti assegnati al turno, operazione
+in effetti svolta al passo 5
 
-Evento.stato può essere in corso se e solo se per ogni Servizio srv tale che Evento prevede srv, srv.approvato = sì
+16) Valutare se serva l'associazione chef - possesso - foglio: forse serve per la verifica dei permessi.
+Non serve, basta controllare lo chef assegnato all'evento a cui fa riferimento il servizio.
 
-Evento.data inizio è minore di t
+17) Un compito viene svolto in un unico turno e prevede attività su di un'unica mansione
 
-Evento.stato può valere soltanto
-    -"Creazione": evento di cui stiamo svolgendo la parte "amministrativa" (nomina
-    del personale, scelta dei menù, ecc...)
-    
-    -"In Corso": evento che si sta svolgendo. Sono consentite modifiche limitate.
-    
-    -"Terminato"
-    
-    -"Annullato"
+18) Le uniche mansioni di cucina a poter fare da ingrendiente sono le preparazioni.
 
-Menù.approvato = sì se e solo se tutte le proposte di modifca associate sono accettate
+19) Vedere se la proposta di modifica vada collegata alla voce del menù: potrebbe essere più facile gestirne inserimento e cancellazione (*)
 
-Per un EventoCapofila ev, ev.NumeroOccorrenze è uguale al numero di Occorrenze o tali che ev composto da o
+20) Lo chef deve poter specificare che il compito vada preparato ma anche il contrario, quindi è meglio che quello diventi un passo indipendente
+(non ci sono nemmeno motivi per tenerlo come estensione del passo 5).
 
-Per un EventoCapofila ev, ev.DataFineRicorrenza è uguale alla più grande tra le date di fine di Occorrenze o tali che ev composto da o
+21) Il parametro compito nel passo due dell'ssd di gestione compiti serve ad indicare il compito di cui è continuazione quello appena creato.
 
-Per un Servizio srv, srv.approvato = sì se e solo se per ogni Proposta di Modifica pm è specificato l'attributo accettata
-
-Una Proposta di Modifica pm tale che pm menù di srv, può essere riferita soltanto a Ricette referenziate da Voci appartenenti al Menù in uso in srv
-
-Un menù è in uso in un Evento se e solo se esso prevede un Servizio srv tale che menù in uso in srv
-
-Uno Chef può possedere soltanto Fogli Riepilogativi di contenenti compiti di Eventi assegnatigli.
-
-Un Foglio Riepilogativo può essere composto soltanto da Compiti che consistono in Mansioni di Cucina che sono Ricette referenziate
-da voci del Menù in uso nel Servizio associato al foglio, oppure ingredienti di tali ricette [Questa fa proprio schifo, cercare di non metterla]
-
-Un Compito può essere svolto soltanto da un Membro del Personale che ha inserito una disponibilità nel Servizio a cui fa riferimento il 
-Foglio Riepilogativo che contiene il Compito.
-
-Se per un Evento e, e.stato = "In Corso"
-
-Un Compito può essere svolto soltanto da un Cuoco per cui esiste un Disponibilità d verso il Servizio associato al Compito
-in cui d.prenotato = Sì
-
-Se l'attributo "Da Preparare" di un compito vale No, allora questo non è associato ad alcun cuoco e turno
-
-Un compito non può essere prosecuzione di se stesso
-
-Se un compito c' è prosecuzione di un altro compito c, allora c' deve essere svolto durante un turno successivo a quello a cui è associato c'
-
-Un preparazione non può essere ingrediente di se stessa
-
-Solo una tra gli attributi "Numero occorrenze" e "Data di fine ricorrenza" di Evento Capofila può essere valorizzato
-
-Disponibilità.Ruolo è valorizzato solo se Disponibilità.Prenotato = Sì, Disponibilità è associata ad un servizio 
-ed il Membro del Personale associato alla Disponibilità è un Membro del Personale di Servizio
-
-La DataFine di un evento capofile è pari a quella dell'ultima delle sue ricorrenze
-
-Nella prenotazione del personale, non serve controllare che questo sia disponibile: l'utente può ricevere soltanto
-oggetti disponibilità già inseriti
-
-
-Note:
-Non abbiamo inserito cose come "il numero di partecipanti non deve differire di più del 30% a seguito di modifiche", perchè
- sono specifiche della singola azienda, infatti non sono condivise tra le user stories.
- 
- 
-SSD
-
-I system sequence diagram sono elaborati UP, realizzati durante la disciplina dei requisiti, al fine
-di stabilire quali operazioni debba offrire il sistema.
-L'idea fondamentale è che il comportamento del sistema è di tipo reattivo: l'interazione dell'utente
-con il sistema porta alla generazione di eventi da parte dell'UI.
-Tali eventi inducono un'operazione di sistema, che deve essere eseguita per gestirli.
-Si tratta quindi di una vista "sintetica" e schematica degli UC, che si focalizza eclusivamente sulle operazioni
-che deve offrire il sistema.
-L'insieme delle operazioni definisce il comportamento del sistema: ecco perchè ci interessa identificarle.
-
-Dire qualcosa sui principali costrutti utilizzati. 
- 
-Nella prima operazioni, non abbiamo un parametro organizzatore, perchè assumiamo che si tratti dell'utente che crea l'evento.
-
-Nella seconda operazione, propaga indica la volontà di replicare l'operazione su tutti gli eventi della ricorrenza
-
-Non passiamo l'evento come parametro; quello su cui lavorare è stato fissato al punto 1
-
-Per prenotare il membro del personale, specifichiamo disponibilità (recuperata tramite un altro uc) e servizio
-
-L'ultima estensione del passo 1, preve in realtà due operazioni di sistema: una che restituisce
-all'utente l'elenco degli eventi di cui è organizzatore e l'altra che consente di selezionare quello desiderato
-
-
-Note generali:
-    1) Controllare, in ogni dsd, che l'utente abbia le informazioni da passare
-    
-    2) Ho eliminato l'eccezione b del passo 3 (prenotazione chef), perchè dice la stessa cosa dalle a
-
-    3) NON passiamo più l'evento come parametro: l'evento di lavoro viene impostato al passo 1.
-    ATTENZIONE! Aggiungere l'apertura dell'evento
-
-    4) Ho aggiunto due eccezioni al passo 4 ed una al passo 6
-
-    5) Ha senso modificare chef e personale a lavori in corso??? No
-    
-    6) Nelle operazioni su occorrenze, ricordarsi di incrementare/decrementare i conteggi dell'evento capofila.
-    Nella modifica dell'evento, dare la possibilità di sganciare l'occorrenza dal capofila.
-    IN GENERALE, VERIFICARE I CONTRATTI DEL PASSO 1: prestare molta attenzione alle ricorrenze
-
-    7) Abbiamo aggiunto un'estensione al passo 5
-    
-    8) Vedere se l'operazione che restituisce l'elenco di servizi serva a qualcosa
-    Questo è parte di un ragionamento più ampio: le operazioni per recuperare elenchi di oggetti servono oppure no?
-    Sarebbe meglio chiedere a Polato, ha abbastanza senso che elenchi come quello delle disponibilità
-    vengano recuperati in altri uc
-    
-
-Contratti
-
-Si tratta di un elaborato di up, realizzato nell'ambito della disciplina dei requisiti, principalmente nella fase di ideazione ed elaborazione.
-Lo scopo di questo strumento è la definizione della semantica delle operazioni di sistema individuate con gli ssd.
-Tale descrizione viene effettuata in termini di pre e post condizioni. Le prima descrivono la parte rilevante dello stato
-prima dell'esecuzione dell'operazione, mentre le seconde descrivono l'effetto dell'operazione, in termini di variazione di stato di oggetti
-del modello di dominio.
-Sono quindi fondamentali per dare una prima descrizione formale del comportamento del sistema.
-
-Disclaimer per il contratto di modifica: Alcuni punti, come il ricalcolo in caso di modifica della data di inizio
-sono sritte in modo un po' troppo informale. Tuttavia, ha senso pensare che queste vengano precisate in iterazioni
-successive, man mano che diventa più chiaro cosa significhi modificare un evento.
-
-Nel nostro progetto, l'utente interviene sulle caratteristiche della ricorrenza modificando l'evento capofila.
-
-Lo stato di un'evento si modifica solo eliminandolo o annullandolo, non con l'operazione di modifica
-
-L'organizzatore non si può modificare
-
-Lo chef invece può essere modificato soltanto in fase di creazione.
-
-I menù non si possono modificare in fase di modifica, non avrebbe senso: l'unico a poterli
-proporre e lo chef. L'organizzatore può solo approvarli o confermali, eventualmente cambiando idea.
-
-"Se ev’ è composto da ev, per ogni Occorrenza oc tale che ev’ composto da oc" serve a propagare l'eliminazione
-a tutte le occorrenze dello stesso evento.
-
-In caso di annullamento dell'evento non cancelliamo tutte le info, ma solo tutto ciò che può essere riutilizzato
-in altri eventi, come le prentazioni del personale.
-
-CONTROLLARE FORMATTAZIONE!!!
-Sistemare modifiche eventi
-Valutare aggiunta operazioni
-
-Non c'è un'operazione di rifiuto del menù: non avrebbe senso, dato che l'accettazione avvia l'evento
-e non si può modificare il menù di un evento in corso.
-Quindi, di base, il menù proposto è rifutato.
-
-La data di fine del capofila deve essere 
-
-Bisogna controllare che lo stato dell'evento sia in corso: nulla garantisce che al passo 1 venga aperto un evento con tali caratteristiche
-
-Modifica dei servizi:
-Abbiamo deciso di vietare la modifica di evento e menù associati al servizio.
-Questo perchè si tratta di informazioni fondamentali, che ne muterebbero profondamente la natura (basti pensare
-al fatto che cambiando evento cambia, almeno potenzialmente, lo chef e, quindi, almeno potenzialmente, la suddivisione
-in compiti ed il personale necessario. Inoltre, non è detto che la data dell'servizio sia compatibile con quella dell'evento.
-Cambiando il menù dovremmo riapprovarlo, e non è detto che sia tra quelli scelti per l'evento)
-e una loro modifica è piuttosto complicata da implementare.
-Questa potrebbe sembrare una scelta restrittiva: rimane comunque la possibilità di cancellare e ricreare il servizio, cambiando
-le informazioni desiderate.
-Stesso discorso vale per la data: cosa succede se non è compatibile con la ricorrenza, cosa fare con il personale se non è disponibile?
-
-COn un ragionamento simile, abbiamo deciso di vietare la modifica dello chef associato all'evento
-
-DCD e DSD
-
-Precisazione: la use case logic exception è quella relativa alle precondizioni generali, mentre
-la event exception è per la violazione delle precondizioni di singoli contratti.
-
-Sono eleborati della disciplina di progettazione, che consentono di realizzare un modello software del sistema.
-In particolare, il DSD mette in luce le classi software necessarie, ed i collegamenti tra di esse, mentre il DSD
-rappresenta l'implementazione delle operazioni di sistema.
-    
-Passo 2
-Abbiamo applicato information expert: l'evento contiene una lista di servizi, quindi è lui quello competente in materia
-   
-Passo 3
-Il controllo delle date è responsabilità dell'oggetto chef, perchè richiede l'ispezione di tutti gli oggetti event da esso
-aggregati    
+22) Granularità dell'UC Dettagliato: deve essere abbastanza specifico da poter evincere, da esso, le seguenti informazioni:
+    -operazioni dell'ssd, con relativi parametri
+    -entità del modello di dominio, con annesse proprietà
     
     
-Passo 4:
-Non abbiamo mai usato le associazioni organizza e prenotazione: nel modello di dominio rimangono comunque, perchè aiutano
-a comprendere il funzionamento della realtà e magari saranno utili in altri uc.
+23) Valore di default di "Da preparare": ha senso preimpostarlo a sì, in fin dei conti, il sistema deve automatizzare il più possibile e qui
+la maggior parte dei compiti avrà si come valore di questo attributo. Quindi l'attributo non è più opzionale.
+Discorso diverso per quantità e tempistiche, dove non esiste un valore di default.
+
+24) Non ha senso mettere evento e menù come parametri di crea generaFoglioRiepilogativo: possono essere inferiti automaticamente dal servizio
+e non è logico che l'utente li specifichi, perchè il foglio riepilogativo è un concetto associato al servizio.
+
+25) Compiti presenti nel foglio riepilogativo: Di base, viene creato un compito per ogni mansione
+di cucina presente (direttamente oppure come ingrediente) nel menù scelto per il servizio.
+Tali compiti non si possono eliminare: al massimo sono contrassegnabili come da non preparare (semplicemente perchè
+nel testo tale operazione non è mai menzionata).
+AL passo 2, è possibile creare un compito corrispondente ad una mansione non presente nel menù.
+Esso può essere eliminato con l'estensione del passo 2.
+
+26) Se un compito è già pronto (da preparare = no) allora:
+    -non posso assegnarlo
+    -quindi non posso nemmeno eliminare l'assegnazione
+    -però posso eliminarlo (magari non voglio più offrirlo durante il servizio: non è ragionevole impedire ciò solo perchè è già pronto)
+    -non posso modificarne i dettagli (ha senso, magari sono già pronte 10 porzioni. Se io modifico la stime delle porzioni necessarie
+    in 15 non è vero che il compito non è più da preparare ed il sistema diventa inconsistente).
+
+
+DCD e DSD: 
+    
+27) "Ingrediente in" è tra preparazione e mansione perchè una preparazione può essere ingrediente di un'altra preparazione.
+Di conseguenza, il metodo getPreparation è presente in qualsiasi mansione di cucina.
+Invece "ingredients", nel dcd, è un collegamento tra ricetta e preparazione perchè gli ingredienti di ricette possono essere solo preparazioni
+
+28) Ho deciso di togliere le entità che dettagliavano i vari tipi di utenti dal dsd: in alcuni casi sono inutili, in altri servono solo
+perchè implementavano il collegamento con una lista, cosa però non obbligatoria e troppo complicata.
+Quindi implementiamo i collegamenti 1-n con il campo singolo dal lato n.
+GIUSTIFICARE BENE QUESTA COSA. Motivi vari:
+    -modellazione più naturale: ad esempio, l'evento è più importante del menù, quindi ha più senso
+    che sia il primo ad avere un riferimento al secondo, ed in effetti questa è la prima solzuione che viene in mente
+    
+    -soluzione più efficiente: supponendo che la lista venga implementata con array list, la complessità del contains è O(n),
+    contando che con questa soluzione si fanno tantissime contains il codice è poco efficiente.
+    Con l'attributo i controlli, come l'assegnazione dell'evento allo chef, si fanno in tempo costante.
+    Un'esempio di operazione che diventa molto più semplice è l'update del task: nella versione con lista bisogna
+    cercarlo, toglierlo dalla lista, modificarlo ed infine reinserirlo. Insomma tutto troppo lungo.
+    
+    -dsd e codice più semplice
+
+29) Cercare i doppi riferimenti (*)
+Evento-Servizio è un doppio riferimento: serve per velocizzare alcune operazioni, ad esempio:
+    -il recupero dell'evento assegnato ad un servizio, necessario per fare controlli iniziali come il fatto
+    che lo chef stiamo modificando un servizio assegnatogli
+
+Occorrenza-Evento capofila ha un doppio riferimento. Senza, per recuperare il capofila data un'occorrenza, dovremmo
+scorrere l'elenco degli eventi capofila e, per ciascuno, scorrere la lista delle occorrenze.
+Tutto ciò sarebbe molto lento, quindi conviene sprecare un po' di spazio, inserendo nell'occorrenza un
+riferimento al capofila, anche considerando che lo spazio è oggi più economico del tempo di calcolo.
+
+Disponibilità-Evento: stesso ragionamento di sopra, per recuperare il personale fatto per un evento, operazione
+necessaria per liberarlo, dovremmo scorrere tutto l'elenco delle prenotazioni, che, soprattutto se decidessimo
+di mantenere lo storico, potrebbe essere lunghissimo.
+In più, questa operazione è piuttosto frequente negli annullamenti di servizi/eventi, quindi il costo è facile da ammortizzare.
+
+
+30) La disponibilità viene spostata nel turno, perchè non ha senso mantenerla a parte. L'unico uc che le gestisce parla in realtà
+di "contrassegnare i turni", ed in effetti la disponibilità non ha senso senza turno
+
+31) Non ho messo il client che commissiona l'evento: non è utile in questi UC, inserendolo il dcd diventerebbe una copia del modello di dominio
+
+32) In alcuni punti usiamo le classi abstract e non le interfaccie perchè le ultime non possono avere attributi
+
+33) Ho rimosso alcune notify/update: se non c'è nulla da salvare su db non servono
+
+34) Il foglio riepilogativo su cui si lavora viene settato durante creazione/apertura (quindi al passo 1)
+
+35) I parametri di update e notify sono gli oggetti che abbiamo modificato durante l'operazione e di cui vogliamo
+notificare il cambiamento di stato (per poterli memorizzare)
+
+36) Per noi il foglio riepilogativo è la collezione di compiti associati ad un servizio, quindi consideriamo il foglio aperto/apribile
+se il servizio corrente è non nullo ed ha almeno un compito. In pratica la condizione "è in corso la gestione dei compiti
+relativi ad un foglio riepilogativo f" viene modellata come  [currentService != NULL && currentService.assignments != NULL]
+
+37) Vedere cosa restituire nei dsd (**): restituiamo l'oggetto modificato?
+Sì, attenzione però a non restituire oggetti già noti (nella prima operazione, ad esempio, seguendo
+questa logica dovremmo restituire il servizio, che però era già noto a tutti, quindi non restituiamo nulla
+(qui infatti non si crea niente, modifichiamo una copia condivisa)
+
+38) Chi può prenotare il personale di servizio ?
+Sia organizzatore che chef.
+
+39) Relazione turno-disponibilità: forse conviene il doppio riferimenti (per svolgere in tempi
+ragionevoli le operazioni di ambo gli UC) (*)
+
+40) Vedere come verificare la disponibilità del cuoco nel dsd 5 (*)
+
+41) Vedere come implementare sgancio da compito prosecuzione in dsd 2.a.
+È sufficiente osservare che in tal contesto eliminare significa sganciare dal foglio riepilogativo.
+
+42) Sostituire tutti gli accessi a proprietà private della classe con chiamate a metodi getter e setter
+(come si fa con il recupero dell'evento associato al servizio nel dsd 1) (ovviamente da questo discorso
+sono esclusi gli accessi fatti dalla classe stessa: quelli sono legali).
+Le chiamate a metodi getter e setter sono auto-esplicative: per evitare di rendere il dsd illeggibile le scriviamo in forma
+compatta, cioè come oggetto.getx(), invece di rappresentare tutta l'interazione tra oggetti
+
+43) Ricontrollare l'ssd, verificando che l'utente disponga delle informazioni da fornire al sistema
+
+44) Passo 2: predisponiamo automaticamente un compito per ogni ingrediente della mansione indicata dall'utente, questo perchè
+gli ingredienti vanno sicuramente indicati nel foglio riepilogativo; magari sono già pronti, però bisogna sapere quanti servirne.
+In fase di cancellazione invece non li eliminiamo automaticamente, perchè non è detto che cancellare un compito implichi
+l'inutilità di tutti i suoi ingredienti.
+
+Note per discussione:
+
+Usare le slide di Polato, sono abbastanza riassuntive
+
+33) Vedere cosa convenga fare con gli eventi: ha senso mettere due classi diverse, una per quello semplice ed una per quello composto?
+
+34) Esempio di note finali:
+    -il menù è piaciuto/non piaciuto
+    -il personale era troppo poco
+    (Insomma quanto citato nella user story di Viola)
+
+
+**** UC GESTIONE EVENTI ****
+1) L'evento è complesso quando si estende su più giorni. Il servizio occupa sempre un solo giorno.
+
+2) Sia lo chef che l'organizzatore possono prenotare cuochi e personale, per tipologie di turni diversi
+
+3) L'evento in corso può essere soltanto eliminato ma non annullato. Deve esserci la possibilità di modificare/annullare anche 
+solo il singolo servizio.
+
+4) La modifica di un elemento della ricorrenza viene propagata a tutti gli elementi della ricorrenza ancora modificabili
+
+5) Un'istanza, anche se modificata, rimane comunque parte della ricorrenza.
+
+6) Evento.tipologia può assumere valori come "elegante", "informale", "aziendale", "privato"
+
+7) Aggiunta dei servizi
+Da testo e user stories non emerge come un passo indipendente, cioè non c'è alcuna indicazione del tipo "prima compilo la scheda, poi
+aggiungi i servizi". Di fatto il servizio viene trattato come tutte le altre informazioni fornite al passo 1.
+Allo stesso tempo, si tratta di un'informazione più complessa e potremmo voler associare più d'un servizio allo stesso evento.
+Per questa ragione, scorporiamo la creazione dell'evento in un passo indipendente, il secondo.
+Bisogna altresì notare che in un'implementazione ragionevole le due operazioni avverrebbero una dopo l'altra, senza dare all'utente
+l'idea di star eseguendo un passo diverso. GIUSTIFICARE BENE (*)
+
+8) Non c'erano motivi per terminare il caso d'uso dopo il passo 2
+
+9) Passo 5: il singolo evento diventa "in corso" appena ne viene approvato il singolo menù. Se viene cancellato l'evento
+capofila, la prima occorrenza in corso diventa capofila? Oppure cancelliamo tutta la ricorrenza?
+
+10) Passi 4, 5, 6: delle tante formulazioni possibili di questa sequenza, abbiamo scelto questa, aderente a quanto
+descritto da Viola, perchè consente di riservare subito il personale che si presume utile per il servizio, senza
+dover aspettare la proposta del menù, che potrebbe arrivare magari dopo molto tempo, durante il quale i membri
+del personale necessari vengono prenotati da altri.
+Ad ogni modo, tutti i passi sono opzionali, quindi possiamo riprodurre anche la formulazione di Pierpaolo (prima aspetto
+il menù, e solo dopo prenoto il personale).
+Il salto "Ripete a partire dal passo 4 e fino alla selezione di tutto il personale desiderato" alla fine del passo 6
+serve proprio a questo: possiamo prenotare altro personale, oppure liberare quello in eccedenza, dopo la scelta del menù
+e l'assegnazione dei ruoli.
+
+11) Passo 5: per ora supponiamo che l'approvazione del menù dia il via all'evento, anche se elemento di
+una ricorrenza. Poi indagheremo se serva legare l'avvio degli eventi al capofila
+
+12) Per quanto riguarda le eccezioni, la cosa più semplice è sempre terminare il caso d'uso, anche perchè non ci sono
+molti motivi per fare diversamente.
+
+13) In fase di modellazione, identifichiamo la scheda dell'evento con l'entità evento,
+perchè la prima è una vista del secondo, che include le sue informazioni ed i suoi servizi.
+
+
+
+15) Per ora rimaniamo fedeli a quanto fatto fin ora: consentiamo soltanto creazione ed eliminazione, ma non modifica.
+Qui avrebbe senso fare un'eccezione solo perchè non è detto che io possa eliminare un evento (perchè in corso).
+Ho comunque la possibilità di annullarlo e crearne un'altro corretto. Non vorrei mettere la modifica
+perchè è un'operazione veramente troppo complessa.
+L'unica eccezione è la modifica delle informazioni della ricorrenza, esplicitamente richiesta dal testo.
+    
+Ulteriore variazione: così è troppo restrittivo. Alcune informazioni (tipo la descrizione) si possono modificare senza difficoltà.
+Vietiamo la modifica, ad evento in corso, delle informazioni sulla ricorrenza e della data degli eventi.
+Per quanto riguarda la data, vale il discorso fatto prima: l'evento diventerebbe inutile e l'implementazione è troppo complicata.
+Per le informazioni sulla ricorrenza, c'è il rischio di inconsistenze (ad esempio, 5 occorrenze con un periodo e 5 con un altro)
+mentre la cancellazione delle occorrenze in sovrapiù andrebbe fatta solo per le occorrenze non ancora in corso, e sarebbe un casino. (*)
+
+16) Modifica del numero di partecipanti: avrebbe senso implementarla per garantire il rispetto della business rule, che però viene
+menzionata solo da una user story, quindi si può anche ignorare.
+
+17) Eliminazione/Avvio degli eventi ricorrenti:
+Per quanto concerne l'avvio, non ha senso che l'avvio dell'occorrenza i-esima sia legato a quello delle occorrenze precedenti/successive
+(ad, esempio, non ha senso che per dichiarare in corso l'occorrenza di settembre io debba dichiarare in corso anche quella di dicembre, e viceversa).
+Tutto ciò deve però integrarsi con il fatto che io non posso eliminare un evento ricorrente di cui ho già fatto alcune giornate.
+La soluzione è trattare la ricorrenza come un blocco unico, che viene considerato in corso quando almeno uno delle sue occorrenze lo è.
+A quel punto, non è più eliminabile, ma posso ovviamente annullarlo (che nello scenario di prima è la cosa più sensata, perchè
+consente di rinunciare alle occorrenze ancora in programma senza cancellare quelle già passate).
+In pratica, la singola occorrenza viene trattata come un qualsiasi altro evento:
+    -se non è ancora in corso, indipendentemente dalle altre, può essere eliminata (non avrebbe senso
+    far pagare la penale all'utente per qualcosa che non ho ancora organizzato)
+    
+    -se è in corso può solo essere annullata
+
+
+18) Non c'è un'operazione di annullamento, perchè si tratta di una modifica particolare, che il sistema fa automaticamente quando
+l'evento da eliminare è in corso.
+
+19) Rimandare l'evento: per ora non lo includiamo, perchè è citata da una sola user story, anche perchè per non complicare
+troppo l'implementazione bisognorebbe cancellare il personale, lo chef, i compiti assegnati, il foglio riepilogativo
+e così via (rimarrebbero soltanto le informazioni generali): tanto vale ricreare l'evento da capo.
+
+20) Modifica del servizio: anche qui, consentirei tutto tranne la modifica della data.
+Il problema è sempre il solito, modificando data e menù, dovremmo cancellare un sacco di collegamenti.
+Questo, oltre ad essere complicato, renderebbe l'evento risultato ben poco utile (cioè se liberiamo
+il personale dobbiamo togliere anche le eventuali assegnazioni di compiti)
+
+21) L'evento sui cui lavorare nel prosieguo nel dsd è fissato al passo 1.
+
+22) Ho tolto le date dall'evento: quella è un'informazione che ha senso per il servizio, relativamente all'evento dice la stessa cosa (evento semplice)
+oppure nulla di utile (evento ricorrente).
+Però, per tenere traccia di "quanto lavoro" richieda un evento, ho aggiunto la durata ed il numero di servizi.
+La durata indica il numero di giorni richiesti dall'evento (es. per un evento che prevede due servizi al giorno e dura 5 giorni, avremo durata = 5, e numero servizi = 10)
+
+23) Ricordare che un servizio dura un giorno solo, mentre nella stessa giornata si possono fare più servizi.
+
+24) Gestione della disponibilità: un oggetto disponibilità viene creato quando un membro del personale si rende disponibile a lavorare in un certo turno.
+Quindi tale oggetto nasce già agganciato ad un turno, mentre viene agganciato ad un servizio solo a seguito della prenotazione da parte di uno chef/organizzatore.
+Non serve quindi alcun flag prenotato: la stessa informazione è deducibile verificando se esista un servizio collegato alla disponibilità.
+
+25) Il commento della proposta di modifica indica cosa fare con la ricetta associata (es. eliminarla, cambiare un ingrediente, ecc...)
+
+26) Servizio.FasciaOraria è una nota testuale che potrebbe contenere valori come “9-12” per indicare un servizio che inizia alle 9 e finisce alle 12.
+
+27) La data di inizio è specificata dall'utente. Diciamo che non è molto chiaro come procedere, nessuna delle due soluzioni (data scelta dall'utente
+ed assenza di data) hanno pienamente senso. Scegliamo questo, giusto perchè non ha moolto senso memorizzare un evento senza sapere quando
+inizia e perchè viene menzionato l'inserimento, da parte dell'utente, della data, e così possiamo rinviare in blocco tutto l'evento.
+
+28) L'associazione evento capofila-occorrenza deve essere ordinata, per consentire cose come il calcolo della data di inizio, che hanno
+bisogno di poter parlare di i-esima occorrenza.
+
+29) Una proposta di modifica può fare riferimento anche a ricette che non fanno parte del menù del servizio, ad esempio per richiederne l'aggiunta.
+
+30) L'elenco del personale, necessario al passo 3, viene verosimilmente recuperato tramite quanto offerto dall'uc "gestione del personale" oppure "gestione turni"
+
+31) Creazione evento ricorrente: ho scelto di non mettere la verifica della mutua eclusione di periodo e data di fine come eccezione, perchè è difficile immaginare
+come l'ui possa vietare di selezionare entrambe le cose (l'utente deve vedere la possibilità di inserire entrambe le informazioni).
+In sostanza, lo specificarle entrambe è più un utilizzo errato del software che una vìolazione della logica di business.
+
+32) I servi propagati, di base, si ripetono con lo stesso periodo degli eventi della ricorrenza
+
+33) Ho deciso di non cancellare il foglio riepilogativo quando si elimina il servizio: non è un'operazione di questo uc, ed in gestione compiti non
+c'è perchè s'era detto di non metterla.
+
+34) Nel nostro applicativo valgono le seguenti regole
+    -su un evento in fase di creazione si può far qualsiasi cosa
+    
+    -su un evento in corso il sistema consente tutte le operazioni e sta poi alla singola azienda valutare l'applicazione di penali
+    (la penale non si sembrava un elemento così condiviso da poterlo inserire dell'uc dettagliato)
+    
+    -un un evento terminato oppure annulato non si può far nulla, se non cambiare note finali e/o documentazione
+    
+35) I servizi associati ad un evento vengono eliminati anche se ques'ultimo viene soltanto annullato (ragione in più per consentire anche la cancellazione
+di servizi in corsi), perchè ci serve comunque un modo per segnalare che non vadano svolti. Si potrebbe pensare di introdurre il concetto di annullamento
+anche per essi, ma non viene citato da nessuna parte, quindi non so quanto abbia senso.
+
+36) Se viene eliminato (se viene annullato invece non vale, perchè le informazioni relative alla ci sono ancora). il capofila prendiamo come nuovo capofila la prima occorrenza, ragion per cui l'associazione "composto da" tra evento capofila
+ed occorrenza deve essere ordinata. Questo perchè le informazioni relative alla ricorrenza sono contenute nell'istanza di evento ricorrente.
+
+37) Rimandare un evento vuol dire traslarne tutti i servizi dello stesso numero di giorni.
+Rimandare un evento capofila vuol dire traslarne le occorrenze.
+
+38) Al di fuori di questo business, ha senso specificare sia data di fine ricorrenza che numero di occorrenze, quindi si tratta di una regola di business
+quindi va imposta come eccezione.
+
+39) Lo specificare il numero di occorrenze per un evento non ricorrente invece non è mai valido, non è qualcosa che dipende dal singolo business, quindi
+va segnalato con errori a livello di post-condizioni.
+
+40) Errori a livello di post-condizioni: li ho comunque tradotti con eccezioni, perchè l'utente deve sapere di aver utilizzato male
+il software e che, quindi, il risultato non sarà quello atteso.
 
 
 
 
-UC Gestione compiti (simulazione)
 
-Revisione UC dettagliato
+Cose che deve poter fare l'organizzatore
+-dettaglio evento, tramit costruzione scheda
 
-In generale, in questo uc, vogliamo
-    -creare il foglio riepilogativo, precompilandolo con un compito per ogni voce di menù (ricetta + preparazioni annesse)
-        -Ogni compito contiene una ricetta e tutte le preparazioni ad essa associate
-    -modificare i compiti nel foglio
-    -assegnare i compiti
-    -specificare i dettagli dei compiti
+-scelta chef
 
-Passo 1: Un ottimo esempio del fatto che nel definire le azioni di sistema il nostro obbiettivo è automatizzare
-il più possibile il processo utente.
-In caso di eccezione, ripetiamo il passo 1: senza fissare un foglio di lavoro non è possibile proseguire
+-prenotazione personale. Il personale viene prenotato per un turno di servizio associato all'evento.
+
+-indicazione ruolo
+
+-approvazione menù/proposta modifiche a menù scelto da chef.
+Probabilmente la cosa più sensata è dichiarare il singolo evento "in corso" appena ne viene approvato il menù, senza
+preoccuparsi dell'interazione con altri eventi. Certo non è molto chiaro cosa fare se elimino l'evento.
+In generale, il fatto che l'evento sia "in corso" significa che è iniziato il lavoro preparatorio.
+
+-a fine evento, chiusura e caricamento documentazione
 
 
-Passo 2: possiamo fermarci subito dopo l'uno, qualora non si vogliano assegnare i compiti.
 
-I passi 1 e 2 sono di inizializzazione del foglio riepilogativo.
 
-I passi 4, 5, 6, 7 formano invece la sequenza con cui si specificano i dettagli dei compitiù
-Qui mancano delle eccezioni: valutare se si possano aggiungere in modo umano, senza rompere todos.
-Si potrebbe anche scrivere che sono errori "di gioventù", che poi abbiamo sistemato nell'uc successivo
+
+Note per esame:
+
+
+Gestione Compiti
+
+UC Dettagliato:
+
+I requisiti stanno tutti qui dentro, gli altri elaborati servono soltanto a rappresentarli
+in modo più sintetico e formale, per facilità la progettazione, e la successiva implementazione
+in codice, di un sistema che li rispetti.
+
+Gli obbiettivi di questo UC sono due: fissare i compiti da svolgere in un servizio, raggruppandoli
+in un documento detto foglio riepilogativo (passi 1 e 3 dell'uc dettagliato) e
+poi assegnarli (passi 5-8), cioè associare ad ogni elemento del foglio (le prenotazioni sono
+registrate anche lì!) almeno il turno e potenzialmente anche altro.
+Compiti e prenotazioni venono registrate anche sul tabellone dei turni, che è sempre una vista dei
+compiti, divisi per turno di assegnazione.
+
+Noi immaginiamo il foglio riepilogativo come un recap di tutto ciò che serve per un servizio, quindi
+ci stanno anche i compiti da non preparare, perchè comunque di base servirebbero.
+
+Perchè non consentiamo l'eliminazione dei compiti "provenienti" dal menù??
+Perchè non è richiesto da nessuna parte, oltre al fatto che il passo 2 lavora su compiti aggiunti
+in sovrapiù, che sono logicamente diversi da quelli generati a partire dal menù
+(in pratica quell'eccezione serve soltanto a garantire che cancellazione ed inserimento
+al passo 2 abbiano lo stesso "scope").
+A parlare dell'aggiunta di compiti fuori menù è chef Claudio.
+
+Per far partire l'evento, attendiamo l'approvazione dei menù di tutti i servizi, perchè
+esplicitamente richiesto dal testo.
+
+Nota molta importante:
+Le eccezioni sono errori concettuali, cioè intenzioni valide, che falliscono per cause legate alla logica di business.
+NON devono invece essere segnalati gli errori nell'utilizzo del sistema (quello non è un punto di vista concettuale).
+
+Modello di dominio:
+
+Nell'evento, abbiamo durata e numero servizi perchè vengono citati in una user story e perchè
+ha senso che una società di catering voglia una misura dello sforzo da fare per organizzare
+un evento, sia in termini di giornate in cui il personale terrà occupato sia in termini di servizi da predisporre.
+
+Abbiamo messo il numero di partecipanti in servizio: dalla unica user story in cui viene citato (Viola) non si capisce
+bene se riguardi l'evento oppure il servizio. Ad ogni modo, Evento modella (anche) il concetto di scheda dell'evento, quindi
+contiene anche cose relative ai servizi. Associandolo al servizio si ha un'info più precisa ed utile per la
+pianificazione in un'azienda di catering.
+
+Sempre per sapere quando organizzarsi, abbiamo riportato la data di inizio dell'evento, ma non quella di fine: vedere sopra 
+perchè.
+
+Dipendente Full Time ci serve perchè a prenotare potrebbero essere sia lo chef che l'organizzatore.
+
+Un Evento potrebbe essere un Capofila, un'Occorrenza oppure nessuna delle due.
+Le informazioni generali sulla ricorrenza sono contenute nell'evento capofila, ragion per cui quando lo eliminiamo dobbiamo "eleggerne" un'altro.
+Il foglio riepilogativo è una composizione di compiti, quindi contiene le informazioni generali relative a questi ultimi e le assegnazioni.
+Il tabellone è una composizione di turni, quindi contiene le informazioni generali relative a questi ultimi, più i compiti assegnati e le disponibilità.
+
+Menù-composto da - Mansione di Cucina ci serve perchè in alcune operazioni (tipo la generazione del foglio riepilogativo) abbiamo
+bisogno di recuperare rapidamento ciò che compone il menù.
+È un'esempio di associazione derivata, perchè il suo contenuto è ricavabile dall'elenco di sezioni che formano il menù, dall'associazione menù-voce
+e da quella voce-ricetta, però così il contratto risultato più compatto e semplice.
+Inoltre, dato che il modello di dominio è un'ispirazione per il dcd, questa scelta si riverbera anche sul software, consentendo
+un'implementazione più efficiente di alcune operazioni (anche se ovviamente comporta una maggior occupazione di spazio).
+Perchè non contiene anche gli ingredienti? Perchè il vero "collo di bottiglia" è il recupero delle ricette che formano il menù: se riusciamo ad
+arrivarci in un passo, diventa immediato ottenere gli ingredienti.
+In pratica peggioreremmo notevolmente l'occupazione di spazio migliorando di poco la complessità tmeporale.
+
+Non distinguiamo tra turno di cucina e di servizio, perchè quello eventualmente spetta ad altri uc (gestione turni, disponibilità), che
+avranno più informazioni in merito.
+
+La stessa mansione di cucina può essere svolta in più compiti diversi e, quindi, da più cuochi diversi, come richiesto dal testo.
 
 SSD
 
-I loop alla fine del passo 3 sono invertiti, ma a livello logico non cambia nulla.
-Manca il loop del passo 2, ma basta quello più esterno: se vuole ripetere il 2 senza eseguire il
-3 può, perchè questo è opzionale.
-
-Il passo 6 e 7 sono interessanti e ci consentono di introdurre una tecnica importante:
-spesso la mappatura 1-1 degli uc sugli ssd è scomoda e genera un risultato verboso.
-Meglio affidarsi a tecniche per accorciare, tipo fondere le operazioni comuni.
-
-
-
-Cose da fare per esame:
-
-1) Guardare bene il codice
-2) Eseguire i test
-3) Ripassare i pattern
-
-NOTA IMPORTANTE:
-Il passo 2 è sbagliato: bisogna sganciare il compito dal menù
-
-
-
+Sono una rappresentazione, più sintetica e formale, dell'interazione tra attore e sistema, già espressa nell'uc dettagliato.
+Infatti, per realizzarli, cerchiamo di far corrispondere ogni passo dell'uc ad un evento di sistema.
+Il loop che contiene tutti i passi dal 2 all'8 serve perchè magari io non voglio cambiare foglio, ma eseguire quale operazione su diesso.
+Non è strettamente necessario(si potrebbe chiudere e riaprire il foglio, ma è più veloce).
 
 
 Contratti:
 
-Passo 1: che senso ha passare il menù? Rende un po' più veloce la query, ma non ne vale la pena
+Le pre-condizioni generali devono corrispondere a quelle dell'uc.
 
-Passo 2: per eliminare l'associazione tra compito e kitchentask (mansioni) è sufficiente
-dereferenziare il vettore dei kitchen tasks che verrà eliminato dal garbage collector.
+Le pre-condizioni sono legate alle eccezioni dell'uc dettagliato, perchè bisogna evitare
+fallimenti derivanti da errori concettuali.
+Però c'è di più: dobbiamo infatti segnalare anche gli utilizzi errati del sistema (tipo una posizione non valida
+nell'ordinamento del foglio riepilogativo).
+Ricordare infatti che le pre-condizioni del contratto servono ad evitare il fallimento per mancanza di premesse logiche:
+ne fanno parte tutte quelle condizioni in assenza delle quali l'utente non deve nemmeno sapere di poter fare l'operazione.
+Servono a segnalare ai progettisti UI i casi in cui l'operazione non va nemmeno mostrata.
+A livello business logic invece, si traducono in eccezioni, che segnalano che l'operazione non doveva essere chiamata.
+Le guardia a livello di post-condizioni invece, esprimono quei casi in cui vogliamo notificare all'utente il perchè
+non possa fare una certa operazione.
+Si traducono in messaggi d'errore dell'ui e in eccezioni oppure valori di ritorno particolari a livello business logic.
+Per capire come esprimere ciascuna condizione, dobbiamo domandarci se
+    -l'utente pensi di poter fare l'operazione, e quindi gli vada spiegato perchè non può
+    (l'utente non deve mai trovarsi a non capire perchè non possa fare un'operazione)
+    -il sistema ha le info che servono per nascondere un'operazione senza eseguirla.
 
-Passo 4: un'implementazione ben fatta dovrebbe restituire anche le disponibilità.
-Queste però sono completamente indentificate dai turni, quindi volendo si può estendere in altri uc.
-In realtà potrei anche metterci il recupero dell'elenco delle disponibilità, ma nulla garantirebbe che venga
-eseguito prima di prenotare il personale.
+Le post-condizioni si ottengono dettagliando e formalizzando la colonna sistema dell'uc dettagliato.
+È un esempio di come l'uc dettagliato sia una panoramica generale del comportaemtno del sistema, poi
+formalizzata da altri elaborati.
+
+
+Disciplina di progettazione: 
+Contiene attività ed elaborati che servono a definire l'architettura (moduli + struttura + interazione) del nostro sistema software.
+La maggior parte dei progetti, ivi compreso il nostro, utilizza un'architettura a livelli.
+Questi sono da intendersi come gruppi di moduli software, che interagiscono per fornire un servizio comune.
+Ogni livello può servirsi dei servizi di quello sottostante, ignorandone però l'implementazione.
+I vantaggi sono quelli soliti di un'architettura modulare:
+    -scomposizione di un sistema complesso in blocchi, più facili da comprendere, progettare e manutenere
+    -elevato potenziale di riuso: se il modello di servizio non cambia, posso sostituire il livello A con il B
+    senza modificare gli altri
+Insomma questa soluzione ci piace perchè applica il principio della progettazione modulare (pattern grasp high coesion e low coupling)
+che ci porta a sfotware facile da comprendere, mantenere ed estendere.
+ 
+La nostra architettura è composta da tre livelli:
+    -ui: contiene tutto ciò che serve per l'interazione con l'utente, quindi i file fxml che definiscono le view
+    ed i sorgenti java che definiscono i controller mvc.
+    
+    -domain: contiene tutti i moduli software che compongono il model mvc, cioè implementano la logica applicativa
+    
+    -technical services: strano che implementa servizi domain-agnostic, come login e persitenza, che di solito
+    provengono da librerie di terze parti e non vengono sviluppate da zero.
   
+I packages che formano ogni livello contengono tutti i moduli software che servono per implementare un UC: un ottimo
+esempio di come UP sia una metodologia use-case driven.
+
+L'interazione tra gli strati è più o meno la seguente:
+    -l'utente interagisce con l'ui, generando gli eventi descritti nell'ssd
+    -gli eventi sono notificati ai listener, che sono metodi del controller MVC, nei
+    quali viene richiesta una certa computazione al domain
+    -questa richiesta passa per il controller grasp, che fa da entry point al package,
+    consentendo l'incapsulamento dei suoi dettagli implementativi ed architetturali,
+    e riducendo la dipendenza tra ui e domain, e coordina l'esecuzione dell'operazione
+    di sistema corrispondente all'evento, distribuendo la computazione necessaria tra varie
+    classi, secondo il principio dell'assegnazione delle responsabilità, eseguita
+    tramite pattern grasp.
+    -una volta terminata l'esecuzione dell'operazione, il controller grasp notifica
+    le eventuali variazioni di stato agli osservatori, tramite i metodi
+    esposti da un'apposita interfaccia (pattern event-receiver).
+    
+Il DCD, un elaborato della disciplina di progettazione, su cui lavoriamo prevalentemente durante elaborazione e costruzione, serve
+proprio a fissare l'architettura dello strato domain.
+Tale architettura viene progettata usando l'OOD, quindi è composta da un'insieme di oggetti sfotware interagenti, la cui struttura ed i
+cui legami sono mostrati nel dcd.
+La princiaple fonte informativa per la progettazione del dcd è il modello di dominio: questo perchè le operazioni di sistema
+sono descritte in termini di manipolazione di concetti della realtà, quindi è naturale che gli oggetti software
+si ispirino a questi, pur non essendone una copia esatta. Inoltre, questo garantisce un salto rappresentazionale basso, che 
+velocizza e semplifica la scrittura di sfotware.
+Infine, le condizioni per applicare i pattern grasp vanno verificate tramite modello di dominio.
+Il DCD viene progettato applicando i pattern GOF: cercarli del dcd.
+
+I DSD sono sempre elaborati della disciplina di progettazione, su cui si lavora soprattutto durante elaborazione e costruzione.
+Servono a descrivere l'implementazione delle operazioni di sistema. Dato che abbiamo applicato l'OOD, come previsto da UP, tali
+operazioni vengono svolte tramite l'interazione tra oggetti software, che è ciò che in concreto viene rappresentato in un DSD.
+Come detto, i compiti previsti da un'operazione di sistema vengono ripartiti tra gli oggetti in base alle responsabilità
+che ognuno è in grado di assumersi. Per assegnarle efficacemente, utilizziamo i pattern grasp.
+
+Vedere pattern event-receiver da slide polato.
+
+Sia DCD che DSD sono rappresentati usando UML: un ottimo esempio di come sia applicabile tanto dal punto di vista concettuale che da quello software.
+
+Vedere pre-condizioni uc
+
+Cose da vedere
+
+
+Vedere se Menù-composto da-mansione di cucina si possa trasformare in
+Menù-composto da-ricetta
+
+Togliere il riferimento al tabellone nei primi passi dell'uc.
