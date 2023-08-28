@@ -468,6 +468,7 @@ A livello business logic invece, si traducono in eccezioni, che segnalano che l'
 Le guardia a livello di post-condizioni invece, esprimono quei casi in cui vogliamo notificare all'utente il perchè
 non possa fare una certa operazione.
 Si traducono in messaggi d'errore dell'ui e in eccezioni oppure valori di ritorno particolari a livello business logic.
+Ovviamente i messaggi d'errore nei contratti non ci sono, perchè non hanno effetto sugli oggetti concettuali.
 Per capire come esprimere ciascuna condizione, dobbiamo domandarci se
     -l'utente pensi di poter fare l'operazione, e quindi gli vada spiegato perchè non può
     (l'utente non deve mai trovarsi a non capire perchè non possa fare un'operazione)
@@ -476,6 +477,15 @@ Per capire come esprimere ciascuna condizione, dobbiamo domandarci se
 Le post-condizioni si ottengono dettagliando e formalizzando la colonna sistema dell'uc dettagliato.
 È un esempio di come l'uc dettagliato sia una panoramica generale del comportaemtno del sistema, poi
 formalizzata da altri elaborati.
+
+Contratto operazione 2a:
+La verifica della non assegnazione del compito viene fatta a livello di guardia delle post-condizioni,
+perchè magari poi l'utente non si ricorda di aver già assegnato il compito e dobbiamo spiegargli
+perchè sia fallita l'operazione.
+
+In tutti i contratti, la verifica dell'appartenenza del compito è una pre-condizione, perchè
+se un compito non fa parte del foglio di lavoro non mi viene nemmeno in mente di fare un'operazione su di esso.
+Nelle precondizioni ci sono anche tutte quelle proposizioni che servono a riferirsi ad elementi dello stato.
 
 
 Disciplina di progettazione: 
