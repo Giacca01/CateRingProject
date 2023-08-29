@@ -458,9 +458,7 @@ Contratti:
 Le pre-condizioni generali devono corrispondere a quelle dell'uc.
 
 Le pre-condizioni sono legate alle eccezioni dell'uc dettagliato, perchè bisogna evitare
-fallimenti derivanti da errori concettuali.
-Però c'è di più: dobbiamo infatti segnalare anche gli utilizzi errati del sistema (tipo una posizione non valida
-nell'ordinamento del foglio riepilogativo).
+fallimenti derivanti da errori concettuali, che sono proprio segnalati in tale documento.
 Ricordare infatti che le pre-condizioni del contratto servono ad evitare il fallimento per mancanza di premesse logiche:
 ne fanno parte tutte quelle condizioni in assenza delle quali l'utente non deve nemmeno sapere di poter fare l'operazione.
 Servono a segnalare ai progettisti UI i casi in cui l'operazione non va nemmeno mostrata.
@@ -468,7 +466,6 @@ A livello business logic invece, si traducono in eccezioni, che segnalano che l'
 Le guardia a livello di post-condizioni invece, esprimono quei casi in cui vogliamo notificare all'utente il perchè
 non possa fare una certa operazione.
 Si traducono in messaggi d'errore dell'ui e in eccezioni oppure valori di ritorno particolari a livello business logic.
-Ovviamente i messaggi d'errore nei contratti non ci sono, perchè non hanno effetto sugli oggetti concettuali.
 Per capire come esprimere ciascuna condizione, dobbiamo domandarci se
     -l'utente pensi di poter fare l'operazione, e quindi gli vada spiegato perchè non può
     (l'utente non deve mai trovarsi a non capire perchè non possa fare un'operazione)
@@ -477,15 +474,6 @@ Per capire come esprimere ciascuna condizione, dobbiamo domandarci se
 Le post-condizioni si ottengono dettagliando e formalizzando la colonna sistema dell'uc dettagliato.
 È un esempio di come l'uc dettagliato sia una panoramica generale del comportaemtno del sistema, poi
 formalizzata da altri elaborati.
-
-Contratto operazione 2a:
-La verifica della non assegnazione del compito viene fatta a livello di guardia delle post-condizioni,
-perchè magari poi l'utente non si ricorda di aver già assegnato il compito e dobbiamo spiegargli
-perchè sia fallita l'operazione.
-
-In tutti i contratti, la verifica dell'appartenenza del compito è una pre-condizione, perchè
-se un compito non fa parte del foglio di lavoro non mi viene nemmeno in mente di fare un'operazione su di esso.
-Nelle precondizioni ci sono anche tutte quelle proposizioni che servono a riferirsi ad elementi dello stato.
 
 
 Disciplina di progettazione: 
@@ -543,11 +531,69 @@ operazioni vengono svolte tramite l'interazione tra oggetti software, che è ci�
 Come detto, i compiti previsti da un'operazione di sistema vengono ripartiti tra gli oggetti in base alle responsabilità
 che ognuno è in grado di assumersi. Per assegnarle efficacemente, utilizziamo i pattern grasp.
 
+Nota super importante: il foglio riepilogativo è rappresentato dalla lista dei compiti associata al servizio.
+Il che ha senso, visto che il foglio riepilogativo è proprio una vista che raggruppa i compiti per servizio.
+
 Vedere pattern event-receiver da slide polato.
 
 Sia DCD che DSD sono rappresentati usando UML: un ottimo esempio di come sia applicabile tanto dal punto di vista concettuale che da quello software.
 
+CERCARE I DOPPI RIFERIMENTI! (e giustificarli)
+
+I controller grasp sono esempi di classi progettate secondo high cohesion, perchè sono tante (una per uc, e, quindi per funzionalità) e perchè
+coordinano, senza eseguirle in prima persona, le operazioni di sistema.
+Più precisamente, li abbiamo progettati come segue:
+    -abbiamo applicato la variante controller di caso d'uso del pattern controller, perchè presente coesione maggiore
+    (e, quindi, secondo high cohesion, è da preferire)
+    
+    -ogni controller supervisiona l'esecuzione dell'operazione di sistema, ma non vi prende parte (sempre per high cohesion, questa
+    soluzione è preferibile al far eseguire le operazioni direttamente dal controller).
+
+DSD 1a: È un esempio di come il controller serva anche per memorizzare informazioni sullo stato del caso
+d'uso (in questo caso la lista di fogli riepilogativi aperti). Tali informazioni però
+non vanno salvate su db, infatti non c'è la notify.   
+   
+DSD 3: viene implementato ordinando un compito alla volta.   
+    
+Esempi di applicazione pattern grasp:
+    -il controller grasp è un esempio di applicazione di controller ed high cohesion
+    
+    -createSummarySheet assegnato al servizio è un esempio di information expert, perchè è il servizio ad avere il riferimento
+    al menù che serve per creare i compiti, ma anche di creator, perchè creare il foglio significa, in buona sostanza, creare
+    dei compiti, e noi affidiamo questa responsabilità a chi già dipende dal compito (è una dipendenza concettuale, catturata già nel modello di dominio).
+    Queste soluzioni non aumentano l'accoppiamento complessivo del sistema, evitando di aggiungere nuove dipendenze.
+    (Attenzione! Non è la presenza della variabile menu in Service a determinare la responsabilità, ma il viceversa! Si
+    tratta quindi di un ottimo esempio di come siano le responsabilità a determinare variabili e metodi delle classi software).
+
+    -getRecipes è un esempio di responsabilità indotta da un'altra responsabilità, perchè la individuiamo riflettendo
+    su come faccia Service a soddisfare la responsabilità di creare il foglio riepilogativo capiamo che avrà bisogno
+    dell'elenco di ricette. È anche un esempio di information expert, perchè viene demandata al Menù, che possiede l'elenco
+    di ricette necessarie.
+    
+    -Apertura foglio riepilogativo: analizzando la realtà, emerge la necessità di memorizzare l'informazione relativa ai
+    fogli aperti dall'attore durante il caso d'uso. Questo è una variabile di caso d'uso, quindi per il pattern controller, spetta
+    all'assignment manager. Per soddisfare tale responsabilità, aggiungiamo la variabile openedServices all'assignment manager.
+    
+    -la classe servizio è un esempio di high cohesion, perchè tale classi contiene solo reponsabilità afferenti all'uc gestione compiti
+    
+    -aggiunta compito è un esempio di creator, perchè la affidiamo al service, che già dipende dall'assignment, evitando così di peggiorare
+    l'accoppiamento complessivo
+    
+    -la cancellazione del compito è un esempio di information expert, perchè a cancellare il compito è il servizio, che possiede la lista
+    da cui cancellare.
+    
+    -ordinamento del foglio riepilogativo è un esempio di information expert, perchè lo fa il servizio, che contiene la lista da ordinare
+    
+    -il recupero del tabellone dei turni è un esempio di high cohesion: demandando il recupero del tabellone al manager di gestione
+    turni, facciamo in modo che il package dei compiti contenga solo metodi e variabili che servono per implementare solo le funzionalità
+    relative a gestione compiti.
+    
+    -l'assegnazione del compito è una responsabilità che spetta al compito: analizzando la realtà, vediamo che esso dipende CONCETTUALMENTE
+    da compito e turno di svolgimento, quindi, per information expert spetta a lui questa incombenza.
+    Affinchè l'oggetto software del nostro sistema che modella il compito possa soddisfarla, mettiamo le variabili chef e shift in assignment.
+    
 Vedere pre-condizioni uc
+
 
 Cose da vedere
 
