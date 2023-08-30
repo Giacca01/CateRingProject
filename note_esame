@@ -521,9 +521,18 @@ cui legami sono mostrati nel dcd.
 La princiaple fonte informativa per la progettazione del dcd è il modello di dominio: questo perchè le operazioni di sistema
 sono descritte in termini di manipolazione di concetti della realtà, quindi è naturale che gli oggetti software
 si ispirino a questi, pur non essendone una copia esatta. Inoltre, questo garantisce un salto rappresentazionale basso, che 
-velocizza e semplifica la scrittura di sfotware.
+velocizza e semplifica la scrittura di sfotware (quindi l'ispirarsi al modello di dominio è un'applicazione del principio lrg).
 Infine, le condizioni per applicare i pattern grasp vanno verificate tramite modello di dominio.
-Il DCD viene progettato applicando i pattern GOF: cercarli del dcd.
+Il DCD viene progettato applicando i pattern GOF, poichè questi ci aiutano nel definire creazione, struttura e comportamento
+di oggetti, che è proprio ciò che dobbiamo fare con questo elaborato.
+GOF presenti nel nostro dcd:
+    -gli eventi ricorrenti usano un pattern simile a composite. Non è proprio composite puro, perchè
+    l'evento ricorrente (il composto) non è formato da eventi (interfaccia comune a composto ed atomo), ma solo
+    da atomi. Però l'idea è la stessa: trattare un oggetto allo stesso modo, indipendentemente dal fatto che sia 
+    atomico o composto.
+    
+    -non abbiamo usato molti pattern, ma abbiamo cercato di applicare l'idea di base dei pattern gof, cioè evitare 
+    l'ereditarietà preferendo il polimorfismo (rivedere ed espandere).
 
 I DSD sono sempre elaborati della disciplina di progettazione, su cui si lavora soprattutto durante elaborazione e costruzione.
 Servono a descrivere l'implementazione delle operazioni di sistema. Dato che abbiamo applicato l'OOD, come previsto da UP, tali
@@ -554,6 +563,11 @@ d'uso (in questo caso la lista di fogli riepilogativi aperti). Tali informazioni
 non vanno salvate su db, infatti non c'è la notify.   
    
 DSD 3: viene implementato ordinando un compito alla volta.   
+
+DSD 5a: la saturazione viene modificata qui perchè è conseguenza dell'assegnazione. Avrebbe poco senso chiedere
+di fermare il caso d'suo per aprirne un altro e registrarla.
+    
+Precisazione per capire questo affare: le responsabilità sono assegnate ad oggetti software, ma ispirate dal mondo reale.
     
 Esempi di applicazione pattern grasp:
     -il controller grasp è un esempio di applicazione di controller ed high cohesion
@@ -591,6 +605,7 @@ Esempi di applicazione pattern grasp:
     -l'assegnazione del compito è una responsabilità che spetta al compito: analizzando la realtà, vediamo che esso dipende CONCETTUALMENTE
     da compito e turno di svolgimento, quindi, per information expert spetta a lui questa incombenza.
     Affinchè l'oggetto software del nostro sistema che modella il compito possa soddisfarla, mettiamo le variabili chef e shift in assignment.
+    
     
 Vedere pre-condizioni uc
 
