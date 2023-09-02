@@ -1,8 +1,8 @@
-<diagram program="umletino" version="15.1"><zoom_level>9</zoom_level><element><id>UMLPackage</id><coordinates><x>171</x><y>0</y><w>90</w><h>63</h></coordinates><panel_attributes>UI</panel_attributes><additional_attributes></additional_attributes></element><element><id>Relation</id><coordinates><x>189</x><y>54</y><w>45</w><h>2088</h></coordinates><panel_attributes>lt=.</panel_attributes><additional_attributes>30;10;10;2300</additional_attributes></element><element><id>UMLGeneric</id><coordinates><x>333</x><y>18</y><w>171</w><h>45</h></coordinates><panel_attributes>eventManager: EventManager</panel_attributes><additional_attributes></additional_attributes></element><element><id>Relation</id><coordinates><x>396</x><y>54</y><w>36</w><h>2115</h></coordinates><panel_attributes>lt=.</panel_attributes><additional_attributes>20;10;10;2330</additional_attributes></element><element><id>UMLGeneric</id><coordinates><x>396</x><y>99</y><w>27</w><h>2052</h></coordinates><panel_attributes></panel_attributes><additional_attributes></additional_attributes></element><element><id>Relation</id><coordinates><x>207</x><y>81</y><w>216</w><h>36</h></coordinates><panel_attributes>lt=&lt;&lt;&lt;-
-delayEvent(newDate, prop)</panel_attributes><additional_attributes>220;20;10;20</additional_attributes></element><element><id>UMLGeneric</id><coordinates><x>540</x><y>18</y><w>162</w><h>45</h></coordinates><panel_attributes>userManager: UserManager
-</panel_attributes><additional_attributes></additional_attributes></element><element><id>Relation</id><coordinates><x>612</x><y>54</y><w>27</w><h>126</h></coordinates><panel_attributes>lt=.</panel_attributes><additional_attributes>10;10;10;120</additional_attributes></element><element><id>UMLGeneric</id><coordinates><x>612</x><y>135</y><w>18</w><h>27</h></coordinates><panel_attributes></panel_attributes><additional_attributes></additional_attributes></element><element><id>Relation</id><coordinates><x>414</x><y>117</y><w>216</w><h>36</h></coordinates><panel_attributes>lt=&lt;&lt;&lt;-
-getCurrentUser( )</panel_attributes><additional_attributes>220;20;10;20</additional_attributes></element><element><id>Relation</id><coordinates><x>414</x><y>144</y><w>216</w><h>36</h></coordinates><panel_attributes>lt=&lt;.
-user</panel_attributes><additional_attributes>10;20;220;20</additional_attributes></element><element><id>UMLFrame</id><coordinates><x>0</x><y>180</y><w>2718</w><h>2007</h></coordinates><panel_attributes>ALT
+<diagram program="umletino" version="15.1"><zoom_level>6</zoom_level><element><id>UMLPackage</id><coordinates><x>120</x><y>0</y><w>60</w><h>42</h></coordinates><panel_attributes>UI</panel_attributes><additional_attributes></additional_attributes></element><element><id>UMLGeneric</id><coordinates><x>324</x><y>12</y><w>114</w><h>30</h></coordinates><panel_attributes>eventManager: EventManager</panel_attributes><additional_attributes></additional_attributes></element><element><id>UMLGeneric</id><coordinates><x>450</x><y>12</y><w>108</w><h>30</h></coordinates><panel_attributes>userManager: UserManager
+</panel_attributes><additional_attributes></additional_attributes></element><element><id>Relation</id><coordinates><x>144</x><y>36</y><w>18</w><h>516</h></coordinates><panel_attributes>lt=.</panel_attributes><additional_attributes>10;10;10;840</additional_attributes></element><element><id>Relation</id><coordinates><x>372</x><y>36</y><w>18</w><h>1926</h></coordinates><panel_attributes>lt=.</panel_attributes><additional_attributes>10;10;10;3190</additional_attributes></element><element><id>Relation</id><coordinates><x>498</x><y>36</y><w>18</w><h>84</h></coordinates><panel_attributes>lt=.</panel_attributes><additional_attributes>10;10;10;120</additional_attributes></element><element><id>UMLGeneric</id><coordinates><x>372</x><y>66</y><w>12</w><h>1878</h></coordinates><panel_attributes></panel_attributes><additional_attributes></additional_attributes></element><element><id>Relation</id><coordinates><x>144</x><y>60</y><w>240</w><h>24</h></coordinates><panel_attributes>lt=&lt;&lt;&lt;-
+addService(type, date, location, timeSlot, attendance, prop)</panel_attributes><additional_attributes>380;20;10;20</additional_attributes></element><element><id>Relation</id><coordinates><x>378</x><y>78</y><w>132</w><h>24</h></coordinates><panel_attributes>lt=&lt;&lt;&lt;-
+getCurrentUser( )</panel_attributes><additional_attributes>200;20;10;20</additional_attributes></element><element><id>UMLGeneric</id><coordinates><x>498</x><y>90</y><w>12</w><h>18</h></coordinates><panel_attributes></panel_attributes><additional_attributes></additional_attributes></element><element><id>Relation</id><coordinates><x>378</x><y>96</y><w>132</w><h>24</h></coordinates><panel_attributes>lt=&lt;.
+user</panel_attributes><additional_attributes>10;20;200;20</additional_attributes></element><element><id>UMLFrame</id><coordinates><x>0</x><y>120</y><w>1794</w><h>1854</h></coordinates><panel_attributes>ALT
 [ !user.isOrganizer() ]
 fg=red
 --
@@ -21,35 +21,101 @@ fg=red
 
 
 -.
+
+
+
+
+-.
 fontsize=11
-</panel_attributes><additional_attributes></additional_attributes></element><element><id>Relation</id><coordinates><x>207</x><y>189</y><w>207</w><h>36</h></coordinates><panel_attributes>lt=&lt;.
-throw UseCaseLogicException</panel_attributes><additional_attributes>10;20;210;20</additional_attributes></element><element><id>Text</id><coordinates><x>0</x><y>243</y><w>126</w><h>27</h></coordinates><panel_attributes>[ currentEvent != NULL ]
+</panel_attributes><additional_attributes></additional_attributes></element><element><id>Relation</id><coordinates><x>144</x><y>126</y><w>240</w><h>24</h></coordinates><panel_attributes>lt=&lt;.
+throw UseCaseLogicException</panel_attributes><additional_attributes>10;20;380;20</additional_attributes></element><element><id>Text</id><coordinates><x>12</x><y>162</y><w>84</w><h>18</h></coordinates><panel_attributes>[ currentEvent != NULL ]
 style=wordwrap
-fontsize=11</panel_attributes><additional_attributes></additional_attributes></element><element><id>Text</id><coordinates><x>0</x><y>288</y><w>216</w><h>36</h></coordinates><panel_attributes>[ currentEvent.getState() != "Creation"
+fontsize=11</panel_attributes><additional_attributes></additional_attributes></element><element><id>Text</id><coordinates><x>12</x><y>192</y><w>144</w><h>24</h></coordinates><panel_attributes>[ currentEvent.getState() != "Creation"
 &amp;&amp; currentEvent.getState() != "Ongoing" ]
 style=wordwrap
-fontsize=11</panel_attributes><additional_attributes></additional_attributes></element><element><id>Relation</id><coordinates><x>207</x><y>243</y><w>207</w><h>36</h></coordinates><panel_attributes>lt=&lt;.
-throw EventException</panel_attributes><additional_attributes>10;20;210;20</additional_attributes></element><element><id>Relation</id><coordinates><x>207</x><y>288</y><w>207</w><h>36</h></coordinates><panel_attributes>lt=&lt;.
-throw EventException</panel_attributes><additional_attributes>10;20;210;20</additional_attributes></element><element><id>Text</id><coordinates><x>0</x><y>324</y><w>216</w><h>54</h></coordinates><panel_attributes>[ prop 
+fontsize=11</panel_attributes><additional_attributes></additional_attributes></element><element><id>Relation</id><coordinates><x>144</x><y>162</y><w>240</w><h>24</h></coordinates><panel_attributes>lt=&lt;.
+throw EventException</panel_attributes><additional_attributes>10;20;380;20</additional_attributes></element><element><id>Relation</id><coordinates><x>144</x><y>192</y><w>240</w><h>24</h></coordinates><panel_attributes>lt=&lt;.
+throw EventException</panel_attributes><additional_attributes>10;20;380;20</additional_attributes></element><element><id>Text</id><coordinates><x>12</x><y>222</y><w>132</w><h>12</h></coordinates><panel_attributes>[ currentEvent.initialDate &gt; date ]
+style=wordwrap
+fontsize=11</panel_attributes><additional_attributes></additional_attributes></element><element><id>Relation</id><coordinates><x>144</x><y>222</y><w>240</w><h>24</h></coordinates><panel_attributes>lt=&lt;.
+throw EventException</panel_attributes><additional_attributes>10;20;380;20</additional_attributes></element><element><id>Text</id><coordinates><x>12</x><y>246</y><w>144</w><h>36</h></coordinates><panel_attributes>[ prop 
 &amp;&amp; !currentEvent instanceof Occurrence  
 &amp;&amp; !currentEvent instanceof MainEvent ]
 
 style=wordwrap
-fontsize=11</panel_attributes><additional_attributes></additional_attributes></element><element><id>Relation</id><coordinates><x>207</x><y>333</y><w>207</w><h>36</h></coordinates><panel_attributes>lt=&lt;.
-throw EventException</panel_attributes><additional_attributes>10;20;210;20</additional_attributes></element><element><id>UMLGeneric</id><coordinates><x>756</x><y>18</y><w>135</w><h>45</h></coordinates><panel_attributes>currentEvent: Event</panel_attributes><additional_attributes></additional_attributes></element><element><id>Relation</id><coordinates><x>801</x><y>54</y><w>27</w><h>1971</h></coordinates><panel_attributes>lt=.</panel_attributes><additional_attributes>10;10;10;2170</additional_attributes></element><element><id>UMLGeneric</id><coordinates><x>801</x><y>468</y><w>18</w><h>1539</h></coordinates><panel_attributes></panel_attributes><additional_attributes></additional_attributes></element><element><id>Relation</id><coordinates><x>414</x><y>450</y><w>423</w><h>36</h></coordinates><panel_attributes>lt=&lt;&lt;&lt;-
-delayEvent(newDate, prop)</panel_attributes><additional_attributes>450;20;10;20</additional_attributes></element><element><id>UMLGeneric</id><coordinates><x>981</x><y>18</y><w>135</w><h>45</h></coordinates><panel_attributes>srv: Service</panel_attributes><additional_attributes></additional_attributes></element><element><id>UMLFrame</id><coordinates><x>630</x><y>477</y><w>1179</w><h>288</h></coordinates><panel_attributes>for each srv in
-currentEvent.relatedServices
-fg=blue</panel_attributes><additional_attributes></additional_attributes></element><element><id>Relation</id><coordinates><x>1035</x><y>54</y><w>27</w><h>711</h></coordinates><panel_attributes>lt=.</panel_attributes><additional_attributes>10;10;10;770</additional_attributes></element><element><id>UMLGeneric</id><coordinates><x>1035</x><y>495</y><w>18</w><h>252</h></coordinates><panel_attributes></panel_attributes><additional_attributes></additional_attributes></element><element><id>Relation</id><coordinates><x>810</x><y>477</y><w>243</w><h>36</h></coordinates><panel_attributes>lt=&lt;&lt;&lt;-
-delayEvent(newDate, currentEvent)</panel_attributes><additional_attributes>250;20;10;20</additional_attributes></element><element><id>Relation</id><coordinates><x>1044</x><y>504</y><w>351</w><h>54</h></coordinates><panel_attributes>lt=&lt;&lt;&lt;-
-this.date = this.date - currentEvent.getDate() + newDate</panel_attributes><additional_attributes>10;40;60;40;60;10;10;10</additional_attributes></element><element><id>UMLFrame</id><coordinates><x>846</x><y>549</y><w>909</w><h>198</h></coordinates><panel_attributes>for each av in
-srv.bookedAvailabilities
-fg=blue</panel_attributes><additional_attributes></additional_attributes></element><element><id>UMLGeneric</id><coordinates><x>1413</x><y>18</y><w>135</w><h>45</h></coordinates><panel_attributes>av: Availability</panel_attributes><additional_attributes></additional_attributes></element><element><id>Relation</id><coordinates><x>1467</x><y>54</y><w>27</w><h>648</h></coordinates><panel_attributes>lt=.</panel_attributes><additional_attributes>10;10;10;700</additional_attributes></element><element><id>UMLGeneric</id><coordinates><x>1467</x><y>576</y><w>18</w><h>108</h></coordinates><panel_attributes></panel_attributes><additional_attributes></additional_attributes></element><element><id>Relation</id><coordinates><x>1044</x><y>558</y><w>441</w><h>36</h></coordinates><panel_attributes>lt=&lt;&lt;&lt;-
-freeAvailability()</panel_attributes><additional_attributes>470;20;10;20</additional_attributes></element><element><id>UMLGeneric</id><coordinates><x>1584</x><y>18</y><w>243</w><h>45</h></coordinates><panel_attributes>srv.bookedAvailabilities: List&lt;Availability&gt;</panel_attributes><additional_attributes></additional_attributes></element><element><id>Relation</id><coordinates><x>1692</x><y>54</y><w>27</w><h>693</h></coordinates><panel_attributes>lt=.</panel_attributes><additional_attributes>10;10;10;750</additional_attributes></element><element><id>UMLGeneric</id><coordinates><x>1692</x><y>711</y><w>18</w><h>18</h></coordinates><panel_attributes></panel_attributes><additional_attributes></additional_attributes></element><element><id>Relation</id><coordinates><x>1044</x><y>693</y><w>666</w><h>36</h></coordinates><panel_attributes>lt=&lt;&lt;&lt;-
-remove(av)</panel_attributes><additional_attributes>720;20;10;20</additional_attributes></element><element><id>Relation</id><coordinates><x>1476</x><y>585</y><w>135</w><h>54</h></coordinates><panel_attributes>lt=&lt;&lt;&lt;-
-this.role = ""</panel_attributes><additional_attributes>10;40;60;40;60;10;10;10</additional_attributes></element><element><id>Relation</id><coordinates><x>1476</x><y>639</y><w>162</w><h>54</h></coordinates><panel_attributes>lt=&lt;&lt;&lt;-
-this.service = NULL</panel_attributes><additional_attributes>10;40;60;40;60;10;10;10</additional_attributes></element><element><id>UMLFrame</id><coordinates><x>477</x><y>792</y><w>1782</w><h>1161</h></coordinates><panel_attributes>ALT
-prop
-fg=green</panel_attributes><additional_attributes></additional_attributes></element><element><id>UMLFrame</id><coordinates><x>495</x><y>837</y><w>1737</w><h>1089</h></coordinates><panel_attributes>ALT
+fontsize=11</panel_attributes><additional_attributes></additional_attributes></element><element><id>Relation</id><coordinates><x>144</x><y>246</y><w>240</w><h>24</h></coordinates><panel_attributes>lt=&lt;.
+throw EventException</panel_attributes><additional_attributes>10;20;380;20</additional_attributes></element><element><id>UMLGeneric</id><coordinates><x>576</x><y>12</y><w>90</w><h>30</h></coordinates><panel_attributes>currentEvent: Event</panel_attributes><additional_attributes></additional_attributes></element><element><id>Relation</id><coordinates><x>618</x><y>36</y><w>18</w><h>1824</h></coordinates><panel_attributes>lt=.</panel_attributes><additional_attributes>10;10;10;3020</additional_attributes></element><element><id>UMLGeneric</id><coordinates><x>612</x><y>300</y><w>18</w><h>1548</h></coordinates><panel_attributes></panel_attributes><additional_attributes></additional_attributes></element><element><id>Relation</id><coordinates><x>378</x><y>288</y><w>252</w><h>24</h></coordinates><panel_attributes>lt=&lt;&lt;&lt;-
+addService(type, date, location, timeSlot, attendance, prop)</panel_attributes><additional_attributes>400;20;10;20</additional_attributes></element><element><id>UMLGeneric</id><coordinates><x>888</x><y>294</y><w>90</w><h>30</h></coordinates><panel_attributes>srv: Service</panel_attributes><additional_attributes></additional_attributes></element><element><id>Relation</id><coordinates><x>624</x><y>300</y><w>276</w><h>24</h></coordinates><panel_attributes>lt=&lt;.
+create(type, date, location, timeSlot, attendance, prop, currentEvent)</panel_attributes><additional_attributes>440;20;10;20</additional_attributes></element><element><id>Relation</id><coordinates><x>924</x><y>318</y><w>18</w><h>210</h></coordinates><panel_attributes>lt=.</panel_attributes><additional_attributes>10;10;10;330</additional_attributes></element><element><id>UMLGeneric</id><coordinates><x>924</x><y>330</y><w>12</w><h>186</h></coordinates><panel_attributes></panel_attributes><additional_attributes></additional_attributes></element><element><id>Relation</id><coordinates><x>930</x><y>330</y><w>90</w><h>36</h></coordinates><panel_attributes>lt=&lt;&lt;&lt;-
+this.type = type</panel_attributes><additional_attributes>10;40;50;40;50;10;10;10</additional_attributes></element><element><id>Relation</id><coordinates><x>930</x><y>354</y><w>96</w><h>36</h></coordinates><panel_attributes>lt=&lt;&lt;&lt;-
+this.date = date</panel_attributes><additional_attributes>10;40;50;40;50;10;10;10</additional_attributes></element><element><id>Relation</id><coordinates><x>930</x><y>378</y><w>114</w><h>36</h></coordinates><panel_attributes>lt=&lt;&lt;&lt;-
+this.location = location</panel_attributes><additional_attributes>10;40;50;40;50;10;10;10</additional_attributes></element><element><id>Relation</id><coordinates><x>930</x><y>402</y><w>138</w><h>36</h></coordinates><panel_attributes>lt=&lt;&lt;&lt;-
+this.attendance = attendance</panel_attributes><additional_attributes>10;40;50;40;50;10;10;10</additional_attributes></element><element><id>Relation</id><coordinates><x>930</x><y>432</y><w>132</w><h>36</h></coordinates><panel_attributes>lt=&lt;&lt;&lt;-
+this.menuApproved = false</panel_attributes><additional_attributes>10;40;50;40;50;10;10;10</additional_attributes></element><element><id>Relation</id><coordinates><x>930</x><y>462</y><w>120</w><h>36</h></coordinates><panel_attributes>lt=&lt;&lt;&lt;-
+this.timeSlot = timeSlot</panel_attributes><additional_attributes>10;40;50;40;50;10;10;10</additional_attributes></element><element><id>Relation</id><coordinates><x>624</x><y>504</y><w>312</w><h>24</h></coordinates><panel_attributes>lt=&lt;.
+srv</panel_attributes><additional_attributes>10;20;500;20</additional_attributes></element><element><id>Relation</id><coordinates><x>930</x><y>492</y><w>126</w><h>36</h></coordinates><panel_attributes>lt=&lt;&lt;&lt;-
+this.event = currentEvent</panel_attributes><additional_attributes>10;40;50;40;50;10;10;10</additional_attributes></element><element><id>Relation</id><coordinates><x>624</x><y>636</y><w>138</w><h>36</h></coordinates><panel_attributes>lt=&lt;&lt;&lt;-
+this.relatedServices.add(srv)</panel_attributes><additional_attributes>10;40;50;40;50;10;10;10</additional_attributes></element><element><id>Relation</id><coordinates><x>624</x><y>534</y><w>108</w><h>36</h></coordinates><panel_attributes>lt=&lt;&lt;&lt;-
+this.serviceCount++</panel_attributes><additional_attributes>10;40;50;40;50;10;10;10</additional_attributes></element><element><id>UMLFrame</id><coordinates><x>456</x><y>570</y><w>396</w><h>54</h></coordinates><panel_attributes>ALT
+[ this.relatedServices.stream()
+.filter(srv -&gt; srv.getDate().equals(date))
+.count() == 0 ]
+fg=green</panel_attributes><additional_attributes></additional_attributes></element><element><id>Relation</id><coordinates><x>624</x><y>582</y><w>102</w><h>36</h></coordinates><panel_attributes>lt=&lt;&lt;&lt;-
+this.daysCount++</panel_attributes><additional_attributes>10;40;50;40;50;10;10;10</additional_attributes></element><element><id>UMLFrame</id><coordinates><x>432</x><y>684</y><w>1098</w><h>1164</h></coordinates><panel_attributes>ALT
+[ prop ]
+fg=green
+--
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+</panel_attributes><additional_attributes></additional_attributes></element><element><id>UMLFrame</id><coordinates><x>450</x><y>708</y><w>1068</w><h>1110</h></coordinates><panel_attributes>ALT
 [ currentEvent instanceof MainEvent ]
 fg=green
 --
@@ -89,45 +155,78 @@ fg=green
 
 
 
--.</panel_attributes><additional_attributes></additional_attributes></element><element><id>UMLFrame</id><coordinates><x>513</x><y>882</y><w>1692</w><h>459</h></coordinates><panel_attributes>foreach oc in 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+-.</panel_attributes><additional_attributes></additional_attributes></element><element><id>UMLFrame</id><coordinates><x>468</x><y>738</y><w>1038</w><h>510</h></coordinates><panel_attributes>foreach oc in 
 currentEvent.occurrences
-fg=blue</panel_attributes><additional_attributes></additional_attributes></element><element><id>UMLFrame</id><coordinates><x>540</x><y>918</y><w>1638</w><h>405</h></coordinates><panel_attributes>ALT
+fg=blue</panel_attributes><additional_attributes></additional_attributes></element><element><id>UMLFrame</id><coordinates><x>492</x><y>768</y><w>996</w><h>456</h></coordinates><panel_attributes>ALT
 fg=green
 oc.getState() == "Creation" 
-|| oc.getState() == "Ongoing"</panel_attributes><additional_attributes></additional_attributes></element><element><id>UMLGeneric</id><coordinates><x>963</x><y>936</y><w>135</w><h>45</h></coordinates><panel_attributes>oc: Occurrence</panel_attributes><additional_attributes></additional_attributes></element><element><id>Relation</id><coordinates><x>1017</x><y>972</y><w>27</w><h>216</h></coordinates><panel_attributes>lt=.</panel_attributes><additional_attributes>10;10;10;220</additional_attributes></element><element><id>Relation</id><coordinates><x>810</x><y>990</y><w>225</w><h>36</h></coordinates><panel_attributes>lt=&lt;&lt;&lt;-
-delayEvent(newDate, currentEvent)</panel_attributes><additional_attributes>230;20;10;20</additional_attributes></element><element><id>UMLGeneric</id><coordinates><x>1017</x><y>1008</y><w>18</w><h>171</h></coordinates><panel_attributes></panel_attributes><additional_attributes></additional_attributes></element><element><id>UMLGeneric</id><coordinates><x>1206</x><y>936</y><w>135</w><h>45</h></coordinates><panel_attributes>srv: Service</panel_attributes><additional_attributes></additional_attributes></element><element><id>UMLFrame</id><coordinates><x>846</x><y>1035</y><w>1305</w><h>270</h></coordinates><panel_attributes>for each srv in
-oc.relatedServices
-fg=blue</panel_attributes><additional_attributes></additional_attributes></element><element><id>Relation</id><coordinates><x>1260</x><y>972</y><w>27</w><h>324</h></coordinates><panel_attributes>lt=.</panel_attributes><additional_attributes>10;10;10;340</additional_attributes></element><element><id>UMLGeneric</id><coordinates><x>1260</x><y>1053</y><w>18</w><h>225</h></coordinates><panel_attributes></panel_attributes><additional_attributes></additional_attributes></element><element><id>Relation</id><coordinates><x>1026</x><y>1035</y><w>252</w><h>36</h></coordinates><panel_attributes>lt=&lt;&lt;&lt;-
-delayEvent(newDate, oc)</panel_attributes><additional_attributes>260;20;10;20</additional_attributes></element><element><id>Relation</id><coordinates><x>1269</x><y>1071</y><w>297</w><h>54</h></coordinates><panel_attributes>lt=&lt;&lt;&lt;-
-this.date = this.date - oc.getDate() + newDate</panel_attributes><additional_attributes>10;40;60;40;60;10;10;10</additional_attributes></element><element><id>UMLFrame</id><coordinates><x>1098</x><y>1125</y><w>1026</w><h>171</h></coordinates><panel_attributes>for each av in
-srv.bookedAvailabilities
-fg=blue</panel_attributes><additional_attributes></additional_attributes></element><element><id>UMLGeneric</id><coordinates><x>1593</x><y>936</y><w>135</w><h>45</h></coordinates><panel_attributes>av: Availability</panel_attributes><additional_attributes></additional_attributes></element><element><id>Relation</id><coordinates><x>1647</x><y>972</y><w>27</w><h>288</h></coordinates><panel_attributes>lt=.</panel_attributes><additional_attributes>10;10;10;300</additional_attributes></element><element><id>UMLGeneric</id><coordinates><x>1647</x><y>1143</y><w>18</w><h>99</h></coordinates><panel_attributes></panel_attributes><additional_attributes></additional_attributes></element><element><id>Relation</id><coordinates><x>1269</x><y>1125</y><w>396</w><h>36</h></coordinates><panel_attributes>lt=&lt;&lt;&lt;-
-freeAvailability()</panel_attributes><additional_attributes>420;20;10;20</additional_attributes></element><element><id>Relation</id><coordinates><x>1656</x><y>1152</y><w>135</w><h>54</h></coordinates><panel_attributes>lt=&lt;&lt;&lt;-
-this.role = ""</panel_attributes><additional_attributes>10;40;60;40;60;10;10;10</additional_attributes></element><element><id>Relation</id><coordinates><x>1656</x><y>1197</y><w>162</w><h>54</h></coordinates><panel_attributes>lt=&lt;&lt;&lt;-
-this.service = NULL</panel_attributes><additional_attributes>10;40;60;40;60;10;10;10</additional_attributes></element><element><id>UMLGeneric</id><coordinates><x>1881</x><y>936</y><w>243</w><h>45</h></coordinates><panel_attributes>srv.bookedAvailabilities: List&lt;Availability&gt;</panel_attributes><additional_attributes></additional_attributes></element><element><id>Relation</id><coordinates><x>1989</x><y>972</y><w>27</w><h>333</h></coordinates><panel_attributes>lt=.</panel_attributes><additional_attributes>10;10;10;350</additional_attributes></element><element><id>UMLGeneric</id><coordinates><x>1989</x><y>1260</y><w>18</w><h>27</h></coordinates><panel_attributes></panel_attributes><additional_attributes></additional_attributes></element><element><id>Relation</id><coordinates><x>1269</x><y>1251</y><w>738</w><h>36</h></coordinates><panel_attributes>lt=&lt;&lt;&lt;-
-remove(av)</panel_attributes><additional_attributes>800;20;10;20</additional_attributes></element><element><id>UMLFrame</id><coordinates><x>513</x><y>1386</y><w>1692</w><h>513</h></coordinates><panel_attributes>foreach oc in 
+|| oc.getState() == "Ongoing"</panel_attributes><additional_attributes></additional_attributes></element><element><id>UMLGeneric</id><coordinates><x>1212</x><y>828</y><w>90</w><h>30</h></coordinates><panel_attributes>srv: Service</panel_attributes><additional_attributes></additional_attributes></element><element><id>Relation</id><coordinates><x>618</x><y>822</y><w>324</w><h>24</h></coordinates><panel_attributes>lt=&lt;.
+addService(type, date, location, timeSlot, attendance, prop, currentEvent)</panel_attributes><additional_attributes>520;20;10;20</additional_attributes></element><element><id>Relation</id><coordinates><x>1254</x><y>864</y><w>90</w><h>36</h></coordinates><panel_attributes>lt=&lt;&lt;&lt;-
+this.type = type</panel_attributes><additional_attributes>10;40;50;40;50;10;10;10</additional_attributes></element><element><id>UMLGeneric</id><coordinates><x>1248</x><y>864</y><w>12</w><h>186</h></coordinates><panel_attributes></panel_attributes><additional_attributes></additional_attributes></element><element><id>Relation</id><coordinates><x>1248</x><y>852</y><w>18</w><h>210</h></coordinates><panel_attributes>lt=.</panel_attributes><additional_attributes>10;10;10;330</additional_attributes></element><element><id>Relation</id><coordinates><x>1254</x><y>888</y><w>234</w><h>36</h></coordinates><panel_attributes>lt=&lt;&lt;&lt;-
+this.date = (date - currentEvent.getDate()) + oc.getDate()</panel_attributes><additional_attributes>10;40;50;40;50;10;10;10</additional_attributes></element><element><id>Relation</id><coordinates><x>1254</x><y>912</y><w>114</w><h>36</h></coordinates><panel_attributes>lt=&lt;&lt;&lt;-
+this.location = location</panel_attributes><additional_attributes>10;40;50;40;50;10;10;10</additional_attributes></element><element><id>Relation</id><coordinates><x>1254</x><y>936</y><w>138</w><h>36</h></coordinates><panel_attributes>lt=&lt;&lt;&lt;-
+this.attendance = attendance</panel_attributes><additional_attributes>10;40;50;40;50;10;10;10</additional_attributes></element><element><id>Relation</id><coordinates><x>1254</x><y>966</y><w>132</w><h>36</h></coordinates><panel_attributes>lt=&lt;&lt;&lt;-
+this.menuApproved = false</panel_attributes><additional_attributes>10;40;50;40;50;10;10;10</additional_attributes></element><element><id>Relation</id><coordinates><x>1254</x><y>996</y><w>120</w><h>36</h></coordinates><panel_attributes>lt=&lt;&lt;&lt;-
+this.timeSlot = timeSlot</panel_attributes><additional_attributes>10;40;50;40;50;10;10;10</additional_attributes></element><element><id>Relation</id><coordinates><x>1254</x><y>1026</y><w>90</w><h>36</h></coordinates><panel_attributes>lt=&lt;&lt;&lt;-
+this.event = oc</panel_attributes><additional_attributes>10;40;50;40;50;10;10;10</additional_attributes></element><element><id>Relation</id><coordinates><x>936</x><y>1038</y><w>324</w><h>24</h></coordinates><panel_attributes>lt=&lt;.
+srv</panel_attributes><additional_attributes>10;20;520;20</additional_attributes></element><element><id>Relation</id><coordinates><x>936</x><y>1056</y><w>108</w><h>36</h></coordinates><panel_attributes>lt=&lt;&lt;&lt;-
+this.serviceCount++</panel_attributes><additional_attributes>10;40;50;40;50;10;10;10</additional_attributes></element><element><id>UMLGeneric</id><coordinates><x>894</x><y>786</y><w>90</w><h>30</h></coordinates><panel_attributes>oc: Occurrence</panel_attributes><additional_attributes></additional_attributes></element><element><id>UMLFrame</id><coordinates><x>708</x><y>1092</y><w>426</w><h>54</h></coordinates><panel_attributes>ALT
+[ oc.relatedServices.stream()
+.filter(tmp -&gt; tmp.getDate().equals(srv.getDate()))
+.count() == 0 ]
+fg=green</panel_attributes><additional_attributes></additional_attributes></element><element><id>Relation</id><coordinates><x>936</x><y>1110</y><w>102</w><h>36</h></coordinates><panel_attributes>lt=&lt;&lt;&lt;-
+this.daysCount++</panel_attributes><additional_attributes>10;40;50;40;50;10;10;10</additional_attributes></element><element><id>Relation</id><coordinates><x>936</x><y>1164</y><w>138</w><h>36</h></coordinates><panel_attributes>lt=&lt;&lt;&lt;-
+this.relatedServices.add(srv)</panel_attributes><additional_attributes>10;40;50;40;50;10;10;10</additional_attributes></element><element><id>Relation</id><coordinates><x>930</x><y>810</y><w>18</w><h>414</h></coordinates><panel_attributes>lt=.</panel_attributes><additional_attributes>10;10;10;670</additional_attributes></element><element><id>Relation</id><coordinates><x>936</x><y>834</y><w>288</w><h>24</h></coordinates><panel_attributes>lt=&lt;.
+create(type, date, location, timeSlot, attendance, prop, oc, currentEvent)</panel_attributes><additional_attributes>460;20;10;20</additional_attributes></element><element><id>UMLGeneric</id><coordinates><x>930</x><y>834</y><w>12</w><h>378</h></coordinates><panel_attributes></panel_attributes><additional_attributes></additional_attributes></element><element><id>UMLFrame</id><coordinates><x>462</x><y>1284</y><w>1044</w><h>510</h></coordinates><panel_attributes>foreach oc in 
 currentEvent.mainEvent.getOccurrence()
-fg=blue</panel_attributes><additional_attributes></additional_attributes></element><element><id>UMLFrame</id><coordinates><x>540</x><y>1458</y><w>1638</w><h>405</h></coordinates><panel_attributes>ALT
+fg=blue</panel_attributes><additional_attributes></additional_attributes></element><element><id>UMLFrame</id><coordinates><x>480</x><y>1320</y><w>996</w><h>456</h></coordinates><panel_attributes>ALT
 fg=green
 oc.getState() == "Creation" 
-|| oc.getState() == "Ongoing"</panel_attributes><additional_attributes></additional_attributes></element><element><id>Relation</id><coordinates><x>810</x><y>1530</y><w>225</w><h>36</h></coordinates><panel_attributes>lt=&lt;&lt;&lt;-
-delayEvent(newDate, currentEvent)</panel_attributes><additional_attributes>230;20;10;20</additional_attributes></element><element><id>UMLGeneric</id><coordinates><x>963</x><y>1476</y><w>135</w><h>45</h></coordinates><panel_attributes>oc: Occurrence</panel_attributes><additional_attributes></additional_attributes></element><element><id>UMLGeneric</id><coordinates><x>1206</x><y>1476</y><w>135</w><h>45</h></coordinates><panel_attributes>srv: Service</panel_attributes><additional_attributes></additional_attributes></element><element><id>UMLGeneric</id><coordinates><x>1017</x><y>1548</y><w>18</w><h>171</h></coordinates><panel_attributes></panel_attributes><additional_attributes></additional_attributes></element><element><id>UMLFrame</id><coordinates><x>846</x><y>1575</y><w>1305</w><h>270</h></coordinates><panel_attributes>for each srv in
-oc.relatedServices
-fg=blue</panel_attributes><additional_attributes></additional_attributes></element><element><id>Relation</id><coordinates><x>1026</x><y>1575</y><w>252</w><h>36</h></coordinates><panel_attributes>lt=&lt;&lt;&lt;-
-delayEvent(newDate, oc)</panel_attributes><additional_attributes>260;20;10;20</additional_attributes></element><element><id>Relation</id><coordinates><x>1269</x><y>1611</y><w>297</w><h>54</h></coordinates><panel_attributes>lt=&lt;&lt;&lt;-
-this.date = this.date - oc.getDate() + newDate</panel_attributes><additional_attributes>10;40;60;40;60;10;10;10</additional_attributes></element><element><id>Relation</id><coordinates><x>1260</x><y>1512</y><w>27</w><h>324</h></coordinates><panel_attributes>lt=.</panel_attributes><additional_attributes>10;10;10;340</additional_attributes></element><element><id>UMLGeneric</id><coordinates><x>1260</x><y>1593</y><w>18</w><h>225</h></coordinates><panel_attributes></panel_attributes><additional_attributes></additional_attributes></element><element><id>UMLGeneric</id><coordinates><x>1593</x><y>1476</y><w>135</w><h>45</h></coordinates><panel_attributes>av: Availability</panel_attributes><additional_attributes></additional_attributes></element><element><id>Relation</id><coordinates><x>1647</x><y>1512</y><w>27</w><h>288</h></coordinates><panel_attributes>lt=.</panel_attributes><additional_attributes>10;10;10;300</additional_attributes></element><element><id>Relation</id><coordinates><x>1269</x><y>1665</y><w>396</w><h>36</h></coordinates><panel_attributes>lt=&lt;&lt;&lt;-
-freeAvailability()</panel_attributes><additional_attributes>420;20;10;20</additional_attributes></element><element><id>Relation</id><coordinates><x>1656</x><y>1692</y><w>135</w><h>54</h></coordinates><panel_attributes>lt=&lt;&lt;&lt;-
-this.role = ""</panel_attributes><additional_attributes>10;40;60;40;60;10;10;10</additional_attributes></element><element><id>Relation</id><coordinates><x>1656</x><y>1737</y><w>162</w><h>54</h></coordinates><panel_attributes>lt=&lt;&lt;&lt;-
-this.service = NULL</panel_attributes><additional_attributes>10;40;60;40;60;10;10;10</additional_attributes></element><element><id>UMLGeneric</id><coordinates><x>1647</x><y>1683</y><w>18</w><h>99</h></coordinates><panel_attributes></panel_attributes><additional_attributes></additional_attributes></element><element><id>UMLFrame</id><coordinates><x>1098</x><y>1665</y><w>1026</w><h>171</h></coordinates><panel_attributes>for each av in
-srv.bookedAvailabilities
-fg=blue</panel_attributes><additional_attributes></additional_attributes></element><element><id>Relation</id><coordinates><x>1269</x><y>1791</y><w>738</w><h>36</h></coordinates><panel_attributes>lt=&lt;&lt;&lt;-
-remove(av)</panel_attributes><additional_attributes>800;20;10;20</additional_attributes></element><element><id>UMLGeneric</id><coordinates><x>1989</x><y>1800</y><w>18</w><h>27</h></coordinates><panel_attributes></panel_attributes><additional_attributes></additional_attributes></element><element><id>Relation</id><coordinates><x>1989</x><y>1512</y><w>27</w><h>333</h></coordinates><panel_attributes>lt=.</panel_attributes><additional_attributes>10;10;10;350</additional_attributes></element><element><id>UMLGeneric</id><coordinates><x>1881</x><y>1476</y><w>243</w><h>45</h></coordinates><panel_attributes>srv.bookedAvailabilities: List&lt;Availability&gt;</panel_attributes><additional_attributes></additional_attributes></element><element><id>UMLGeneric</id><coordinates><x>2394</x><y>18</y><w>243</w><h>45</h></coordinates><panel_attributes>rcv: EventManagementReceiver
-</panel_attributes><additional_attributes></additional_attributes></element><element><id>Relation</id><coordinates><x>2502</x><y>54</y><w>36</w><h>2061</h></coordinates><panel_attributes>lt=.
-</panel_attributes><additional_attributes>20;10;10;2270</additional_attributes></element><element><id>Relation</id><coordinates><x>414</x><y>2016</y><w>234</w><h>54</h></coordinates><panel_attributes>lt=&lt;&lt;&lt;-
-notifyEventDelayed(currentEvent)</panel_attributes><additional_attributes>20;40;50;40;50;10;10;10</additional_attributes></element><element><id>UMLGeneric</id><coordinates><x>414</x><y>2052</y><w>18</w><h>54</h></coordinates><panel_attributes></panel_attributes><additional_attributes></additional_attributes></element><element><id>UMLFrame</id><coordinates><x>243</x><y>2061</y><w>2304</w><h>54</h></coordinates><panel_attributes>for each
-rcv in eventReceivers
-fg=blue</panel_attributes><additional_attributes></additional_attributes></element><element><id>Relation</id><coordinates><x>423</x><y>2061</y><w>2097</w><h>36</h></coordinates><panel_attributes>lt=&lt;&lt;&lt;-
-updateEventDelayed(currentEvent)</panel_attributes><additional_attributes>2310;20;10;20</additional_attributes></element><element><id>UMLGeneric</id><coordinates><x>2502</x><y>2079</y><w>18</w><h>18</h></coordinates><panel_attributes></panel_attributes><additional_attributes></additional_attributes></element><element><id>Relation</id><coordinates><x>1026</x><y>1071</y><w>351</w><h>54</h></coordinates><panel_attributes>lt=&lt;&lt;&lt;-
-this.date = this.date - currentEvent.getDate() + newDate</panel_attributes><additional_attributes>10;40;60;40;60;10;10;10</additional_attributes></element><element><id>Relation</id><coordinates><x>1017</x><y>1512</y><w>27</w><h>225</h></coordinates><panel_attributes>lt=.</panel_attributes><additional_attributes>10;10;10;230</additional_attributes></element><element><id>Relation</id><coordinates><x>1026</x><y>1611</y><w>351</w><h>54</h></coordinates><panel_attributes>lt=&lt;&lt;&lt;-
-this.date = this.date - currentEvent.getDate() + newDate</panel_attributes><additional_attributes>10;40;60;40;60;10;10;10</additional_attributes></element><element><id>Relation</id><coordinates><x>810</x><y>1962</y><w>171</w><h>54</h></coordinates><panel_attributes>lt=&lt;&lt;&lt;-
-this.date = newDate</panel_attributes><additional_attributes>10;40;60;40;60;10;10;10</additional_attributes></element></diagram>
+|| oc.getState() == "Ongoing"</panel_attributes><additional_attributes></additional_attributes></element><element><id>UMLGeneric</id><coordinates><x>888</x><y>1338</y><w>90</w><h>30</h></coordinates><panel_attributes>oc: Occurrence</panel_attributes><additional_attributes></additional_attributes></element><element><id>Relation</id><coordinates><x>924</x><y>1362</y><w>18</w><h>414</h></coordinates><panel_attributes>lt=.</panel_attributes><additional_attributes>10;10;10;670</additional_attributes></element><element><id>UMLGeneric</id><coordinates><x>924</x><y>1386</y><w>12</w><h>378</h></coordinates><panel_attributes></panel_attributes><additional_attributes></additional_attributes></element><element><id>Relation</id><coordinates><x>618</x><y>1374</y><w>318</w><h>24</h></coordinates><panel_attributes>lt=&lt;.
+addService(type, date, location, timeSlot, attendance, prop, currentEvent)</panel_attributes><additional_attributes>510;20;10;20</additional_attributes></element><element><id>Relation</id><coordinates><x>930</x><y>1386</y><w>288</w><h>24</h></coordinates><panel_attributes>lt=&lt;.
+create(type, date, location, timeSlot, attendance, prop, oc, currentEvent)</panel_attributes><additional_attributes>460;20;10;20</additional_attributes></element><element><id>UMLGeneric</id><coordinates><x>1206</x><y>1380</y><w>90</w><h>30</h></coordinates><panel_attributes>srv: Service</panel_attributes><additional_attributes></additional_attributes></element><element><id>UMLGeneric</id><coordinates><x>1242</x><y>1416</y><w>12</w><h>186</h></coordinates><panel_attributes></panel_attributes><additional_attributes></additional_attributes></element><element><id>Relation</id><coordinates><x>1248</x><y>1416</y><w>90</w><h>36</h></coordinates><panel_attributes>lt=&lt;&lt;&lt;-
+this.type = type</panel_attributes><additional_attributes>10;40;50;40;50;10;10;10</additional_attributes></element><element><id>Relation</id><coordinates><x>1248</x><y>1440</y><w>234</w><h>36</h></coordinates><panel_attributes>lt=&lt;&lt;&lt;-
+this.date = (date - currentEvent.getDate()) + oc.getDate()</panel_attributes><additional_attributes>10;40;50;40;50;10;10;10</additional_attributes></element><element><id>Relation</id><coordinates><x>1248</x><y>1464</y><w>114</w><h>36</h></coordinates><panel_attributes>lt=&lt;&lt;&lt;-
+this.location = location</panel_attributes><additional_attributes>10;40;50;40;50;10;10;10</additional_attributes></element><element><id>Relation</id><coordinates><x>1248</x><y>1488</y><w>138</w><h>36</h></coordinates><panel_attributes>lt=&lt;&lt;&lt;-
+this.attendance = attendance</panel_attributes><additional_attributes>10;40;50;40;50;10;10;10</additional_attributes></element><element><id>Relation</id><coordinates><x>1248</x><y>1518</y><w>132</w><h>36</h></coordinates><panel_attributes>lt=&lt;&lt;&lt;-
+this.menuApproved = false</panel_attributes><additional_attributes>10;40;50;40;50;10;10;10</additional_attributes></element><element><id>Relation</id><coordinates><x>1248</x><y>1548</y><w>120</w><h>36</h></coordinates><panel_attributes>lt=&lt;&lt;&lt;-
+this.timeSlot = timeSlot</panel_attributes><additional_attributes>10;40;50;40;50;10;10;10</additional_attributes></element><element><id>Relation</id><coordinates><x>1248</x><y>1578</y><w>90</w><h>36</h></coordinates><panel_attributes>lt=&lt;&lt;&lt;-
+this.event = oc</panel_attributes><additional_attributes>10;40;50;40;50;10;10;10</additional_attributes></element><element><id>Relation</id><coordinates><x>930</x><y>1590</y><w>324</w><h>24</h></coordinates><panel_attributes>lt=&lt;.
+srv</panel_attributes><additional_attributes>10;20;520;20</additional_attributes></element><element><id>Relation</id><coordinates><x>930</x><y>1608</y><w>108</w><h>36</h></coordinates><panel_attributes>lt=&lt;&lt;&lt;-
+this.serviceCount++</panel_attributes><additional_attributes>10;40;50;40;50;10;10;10</additional_attributes></element><element><id>UMLFrame</id><coordinates><x>702</x><y>1644</y><w>426</w><h>66</h></coordinates><panel_attributes>ALT
+[ oc.relatedServices.stream()
+.filter(tmp -&gt; tmp.getDate().equals(srv.getDate()))
+.count() == 0 ]
+fg=green</panel_attributes><additional_attributes></additional_attributes></element><element><id>Relation</id><coordinates><x>930</x><y>1668</y><w>102</w><h>36</h></coordinates><panel_attributes>lt=&lt;&lt;&lt;-
+this.daysCount++</panel_attributes><additional_attributes>10;40;50;40;50;10;10;10</additional_attributes></element><element><id>Relation</id><coordinates><x>930</x><y>1716</y><w>138</w><h>36</h></coordinates><panel_attributes>lt=&lt;&lt;&lt;-
+this.relatedServices.add(srv)</panel_attributes><additional_attributes>10;40;50;40;50;10;10;10</additional_attributes></element><element><id>Relation</id><coordinates><x>378</x><y>516</y><w>246</w><h>24</h></coordinates><panel_attributes>lt=&lt;.
+srv</panel_attributes><additional_attributes>10;20;390;20</additional_attributes></element><element><id>Relation</id><coordinates><x>144</x><y>528</y><w>240</w><h>24</h></coordinates><panel_attributes>lt=&lt;.
+srv</panel_attributes><additional_attributes>10;20;380;20</additional_attributes></element><element><id>UMLGeneric</id><coordinates><x>1596</x><y>24</y><w>162</w><h>30</h></coordinates><panel_attributes>rcv: EventManagementReceiver
+</panel_attributes><additional_attributes></additional_attributes></element><element><id>Relation</id><coordinates><x>1668</x><y>48</y><w>24</w><h>1896</h></coordinates><panel_attributes>lt=.
+</panel_attributes><additional_attributes>20;10;10;3140</additional_attributes></element><element><id>Relation</id><coordinates><x>378</x><y>1872</y><w>120</w><h>36</h></coordinates><panel_attributes>lt=&lt;&lt;&lt;-
+notifyServiceAdded(srv)</panel_attributes><additional_attributes>20;40;50;40;50;10;10;10</additional_attributes></element><element><id>UMLGeneric</id><coordinates><x>378</x><y>1896</y><w>12</w><h>36</h></coordinates><panel_attributes></panel_attributes><additional_attributes></additional_attributes></element><element><id>UMLFrame</id><coordinates><x>288</x><y>1908</y><w>1434</w><h>36</h></coordinates><panel_attributes>for each
+rcv in eventReceivers</panel_attributes><additional_attributes></additional_attributes></element><element><id>Relation</id><coordinates><x>384</x><y>1908</y><w>1302</w><h>24</h></coordinates><panel_attributes>lt=&lt;&lt;&lt;-
+updateServiceAdded(srv)</panel_attributes><additional_attributes>2150;20;10;20</additional_attributes></element><element><id>UMLGeneric</id><coordinates><x>1668</x><y>1920</y><w>12</w><h>12</h></coordinates><panel_attributes></panel_attributes><additional_attributes></additional_attributes></element></diagram>
