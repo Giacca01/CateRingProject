@@ -31,7 +31,7 @@ public class AssignmentManager {
         if (!user.isChef()) {
             throw new UseCaseLogicException();
         }
-        if(assignments == null ||
+        if(assignments.size() > 0 ||
                 ev == null ||
                 menu == null ||
                 ev.getChef().getId() != user.getId()){
@@ -80,9 +80,9 @@ public class AssignmentManager {
         }
         if(this.currentService == null ||
                 this.currentService.getAssignments() == null ||
-                !this.currentService.getAssignments().contains(a)
-                /*a.getShift() != null ||
-                a.getCook() != null*/){
+                !this.currentService.getAssignments().contains(a) ||
+                a.getShift() != null ||
+                a.getCook() != null){
             throw new AssignmentException();
         }
         Assignment removedAssignment = this.currentService.deleteAssignment(a);

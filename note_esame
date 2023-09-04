@@ -125,18 +125,24 @@ GIUSTIFICARE BENE QUESTA COSA. Motivi vari:
 29) Cercare i doppi riferimenti (*)
 Evento-Servizio è un doppio riferimento: serve per velocizzare alcune operazioni, ad esempio:
     -il recupero dell'evento assegnato ad un servizio, necessario per fare controlli iniziali come il fatto
-    che lo chef stiamo modificando un servizio assegnatogli
+    che lo chef stiamo modificando un servizio parte di un evento assegnatogli.
+    Conviene inserirlo perchè questa operazione compare in molti passi di gestione compiti.
+    
+    -rinvio di evento e servizio: senza dovremmo scorrere tutti i servizi, prendendo solo quelli associati
+    all'evento corrente. Questa lista potrebbe essere molto lunga.
 
 Occorrenza-Evento capofila ha un doppio riferimento. Senza, per recuperare il capofila data un'occorrenza, dovremmo
 scorrere l'elenco degli eventi capofila e, per ciascuno, scorrere la lista delle occorrenze.
 Tutto ciò sarebbe molto lento, quindi conviene sprecare un po' di spazio, inserendo nell'occorrenza un
 riferimento al capofila, anche considerando che lo spazio è oggi più economico del tempo di calcolo.
 
-Disponibilità-Evento: stesso ragionamento di sopra, per recuperare il personale fatto per un evento, operazione
+Disponibilità-Servizio: stesso ragionamento di sopra, per recuperare il personale fatto per un evento, operazione
 necessaria per liberarlo, dovremmo scorrere tutto l'elenco delle prenotazioni, che, soprattutto se decidessimo
 di mantenere lo storico, potrebbe essere lunghissimo.
 In più, questa operazione è piuttosto frequente negli annullamenti di servizi/eventi, quindi il costo è facile da ammortizzare.
 
+In generale, le ridondanze complicano il processo di modifica e peggiorano l'occupazione di spazio.
+Occorre quindi inserirle soltanto quando l'operazione che velocizzano è molto lenta e/o molto frequente.
 
 30) La disponibilità viene spostata nel turno, perchè non ha senso mantenerla a parte. L'unico uc che le gestisce parla in realtà
 di "contrassegnare i turni", ed in effetti la disponibilità non ha senso senza turno
@@ -607,13 +613,89 @@ Esempi di applicazione pattern grasp:
     Affinchè l'oggetto software del nostro sistema che modella il compito possa soddisfarla, mettiamo le variabili chef e shift in assignment.
     
     
-Vedere pre-condizioni uc
+Implementazione
 
+Anzitutto, l'applicazione è strutturata seguendo l'architettura a livelli, infatti abbiamo un package per la logica di dominio
+ed uno per il technical service di interesse, la persistenza.
+Ricordando che UP incoraggia lo sviluppo test-driven, abbia iniziato pensando a quali test avrebbe dovuto generare il nostro programma.
+Si tratta principalmente di implementare alcuni passi dell'uc dettagliato, per accertarsi
+che il sistema si comporti come descritto nei requisiti, stampando il risultato su console.
+Sono quindi test unitari (responsabilità più semplici, implementate da un singolo oggetto, come la restituzione del tabellone dei turni)
+oppure di integrazione (responsabilità più complesse, realizzate collaborativamente da più oggetti).
 
-Cose da vedere
+Successivamente, abbiamo realizzato lo strato della application logic: a dimostrazione dell'importanza di una buona fase di progettazione, questo
+passo è stata una traduzione in Java (quasi) automatica del DCD.
+Ricordiamo infatti che lo scopo di tale elaborato è il fissare gli oggetti che, con la loro interazione, realizzeranno la logica applicativa desiderata
+evidenziandone nomi, variabili di stato e metodi.
+Il corpo di questi ultimi invece, viene generato a partire dal DSD, ovvio visto che questo è l'elaborato volto a descrivere
+l'interazione tra oggetti che serve a soddisfare una certa responsabilità. Normalmente infatti, la sequenza di operazioni
+immortalata in un dsd si traduce in una sequenza di istruzioni, corpo di un metodo.
+Nota: non è proprio soltanto una traduzione meccanica. Ad esempio, vanno aggiunte funzioni per la stampa, necessarie
+per i test, metodi getter e setter che dal dsd non emergevano, ecc...
+Altra cosa importante, alle volte, come nel caso dei parametri opzionali, la limitata espressività del linguaggio usato ci costringe
+a fare cose come l'overloading, che ovviamente non compaiono nel dsd.
 
+Dopodichè, abbiamo realizzato il servizio di persistenza.
+Siamo partiti dal database: lì non c'è molto da dire, se non che abbiamo preso spunto dal dcd, ovviamente considerando solo variabili
+di istanza ed associazioni, e cercando di darne un'implementazione sql, quindi usando cose come le chiavi esterne.
+L'idea è quella di racchiudere in un solo package tutte le classi deputate all'interazione con il db: in questo modo
+si ottiene un modulo fortemente coeso (le sua classi hanno responsabilità in una sola area funzionale), che consente anche ai livelli
+superiori di esserlo, e di avere basso accoppiamento con il db.
+In concreto, il salvataggio funziona come segue:
+    -tramite event receiver, il controller grasp notifica ad un'apposita classe, che contiene gli handlers
+    per i cambiamenti di stato che possono verificarsi nel caso d'uso.
+    Gli handlers vengono agganciati nella classe principale CatERing.
+    
+    -questa classe richiama metodi statici, offerti da classi della business logic, per salvare effettivamente su db.
+    Volendo, è un'applicazione di information expert, perchè per salvare bisogna conoscere la struttura dell'informazione,
+    che sta proprio in tali classi.
+    In generale, queste classi scrivono la query, specificano il valore di eventuali parametri (è un esempio di information
+    expert, sono proprio loro le uniche ad avere queste info), demandano l'esecuzione al persistance mananger, e poi
+    processano il risultato, cosa che di fatto si riduce ad aggiornare la lista dei dati (es, in caso di inserimento, registrare
+    i nuovi id e caricare i servizi corrispondenti).
+    
+    -questa classi demandano al persistance manager l'effettiva interazione con il db, per mantenere low coupling
+    and high cohesion.
 
-Vedere se Menù-composto da-mansione di cucina si possa trasformare in
-Menù-composto da-ricetta
+Note sparse:
+    -ad execute query passiamo il codice che processa i record del risultato uno ad uno
+    
+    -execute query è un'applicazione di strategy. Il contesto, cioè il metodo che esegue la query, deve poter
+    applicare tanti metodi di processamento dei risultati (però gli elementi del singolo recordset sono
+    omogenei) diversi ma simili, senza cambiare il proprio codice. In questo modo conosce solo l'interfaccia, e non
+    i dettagli implementativi di tutto l'algoritmo, risultato meno accoppiato.
 
-Togliere il riferimento al tabellone nei primi passi dell'uc.
+    -executeBatchUpdate è un'altro esempio della stessa cosa: il persistance manager non deve conoscere tutti
+    gli algoritmi di processamento dei nuovi id, ma solo l'interfaccia, cosa che riduce l'accoppiamento.
+    In generale, esegue un aggiornamento in cui specifichiamo il valore di alcuni parametri.
+    L'inserimento è un'esempio di query eseguita in questo modo.
+    Quindi HandleBatchItem è la strategia per impostare i parametri, mentre HandleGeneratedIds è la strategia
+    per processare i nuovi elementi introdotti dalla query.
+    
+    -CatERing, la classe che rappresenta  tutto il progetto, e viene usata per inizializzare l'applicazione, è
+    un'esempio di singleton.
+    
+    -fetch assignment carica in memoria principale compiti e dati associati (tipo turno e cuoco).
+    
+    -Tutti i passi iniziano con il login, che infatti è precondizione generale
+    
+    -Test Assignment verifica che il sistema si comporti come desiderato nello scenario principale
+    di successo. Inizia creando un foglio riepilogativo, aggiunge un compito con continuazione, lo cambia di posto
+    prova ad associarlo ad un cuoco ed un compito tra quelli caricati nel db.
+    Scambia di posto i croissant, li assegna a Carlin e modifica le stime.
+    
+    -TestAssignment1a testa l'apertura del foglio riepilogativo creato per il servizio precedente.
+    Serve soprattutto a vedere che il compito 0 è tornato da preparare, per effetto dell'ultima istruzione.
+    
+    
+    -TestAssignment2a apre il foglio riepilogativo, ed elimina il secondo compito, che risultava duplicato
+    (quindi l'idea è di mostrare che il sistema consente di sistemare i propri errori, tipo dire che il salmone continua i croissant).
+    
+    -TestAssignment5a modifica la saturazione del primo turno. Non apre il foglio riepilogativo, perchè
+    il contratto non lo richiede. Il turno dichiarato saturo è quello a cui assegnamo il compito nello scenario principale.
+    
+    -TestAssignment5b elimina l'assegnazione che prima impediva il successo del caso d'uso principale.
+    Esegue il passo 1, che in effetti è l'unico obbligatorio, e poi subito il 5, saltando tutti quelli intermedi, senza problemi.
+    È un esempio di come il sistema fornisca la flessibilità a cui puntavamo in fase di modellazione del processo.
+    
+Infine, abbiamo implementato i test di cui sopra.
