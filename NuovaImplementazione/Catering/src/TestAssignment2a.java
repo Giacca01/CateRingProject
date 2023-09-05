@@ -1,5 +1,6 @@
 import businesslogic.AssignmentException;
 import businesslogic.CatERing;
+import businesslogic.NoSummarySheetException;
 import businesslogic.UseCaseLogicException;
 import businesslogic.assignment.Assignment;
 import businesslogic.assignment.AssignmentManager;
@@ -62,6 +63,8 @@ public class TestAssignment2a {
             System.out.println("Errore di logica nello use case");
         } catch (AssignmentException e) {
             System.out.println("Errore assignment");
+        } catch (NoSummarySheetException e) {
+            System.out.println("Non è stato creato il summary sheet");
         }
     }
 }

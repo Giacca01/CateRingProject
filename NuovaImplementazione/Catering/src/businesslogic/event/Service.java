@@ -27,6 +27,7 @@ public class Service {
     private String location;
     private int attendance;
     private boolean approved;
+    private String timeSlot;
     private Event event;
     private Menu menu;
     private ObservableList<Assignment> assignments = FXCollections.observableArrayList();
@@ -34,13 +35,14 @@ public class Service {
     public Service() {
     }
 
-    public Service(int id, String type, String date, String location, int attendance, boolean approved, Event event, Menu menu) {
+    public Service(int id, String type, String date, String location, int attendance, boolean approved, String timeSlot, Event event, Menu menu) {
         this.id = id;
         this.type = type;
         this.date = date;
         this.location = location;
         this.attendance = attendance;
         this.approved = approved;
+        this.timeSlot = timeSlot;
         this.event = event;
         this.menu = menu;
     }
@@ -117,8 +119,16 @@ public class Service {
         this.assignments = assignments;
     }
 
+    public String getTimeSlot() {
+        return timeSlot;
+    }
+
+    public void setTimeSlot(String timeSlot) {
+        this.timeSlot = timeSlot;
+    }
+
     public void printDetails() {
-        System.out.println("Service " + this.id + "; event: " + this.event.getInitialNotes() + "; type: " + this.type + "; menu: " + this.menu.getTitle() + "; date: " + this.date + "; location: " + this.location + "; attendance: " + this.attendance + "; approved: " + this.approved);
+        System.out.println("Service " + this.id + "; event: " + this.event.getDescription() + "; type: " + this.type + "; menu: " + this.menu.getTitle() + "; date: " + this.date + "; location: " + this.location + "; attendance: " + this.attendance + "; approved: " + this.approved + "; timeSlot: " + this.timeSlot);
     }
 
     public void createSummarySheet(Event e) {
@@ -185,7 +195,7 @@ public class Service {
     }
 
     public static ObservableList<Service> fetchServices() {
-        String query = "SELECT id, event_id, type, menu_id, service_date, location, attendance, approved FROM Services";
+        String query = "SELECT id, event_id, type, menu_id, service_date, location, attendance, approved, timeSlot FROM Services";
         Map<Integer, Service> newServicesMap = new HashMap<>();
         Map<Integer, Integer> newEventIds = new HashMap<>();
         Map<Integer, Integer> newMenuIds = new HashMap<>();
@@ -202,6 +212,7 @@ public class Service {
             String location = rs.getString("location");
             int attendance = rs.getInt("attendance");
             boolean approved = rs.getBoolean("approved");
+            String timeSlot = rs.getString("timeSlot");
 
             if (loadedServices.containsKey(id)) {
                 Service s = loadedServices.get(id);
@@ -212,6 +223,7 @@ public class Service {
                 s.location = location;
                 s.attendance = attendance;
                 s.approved = approved;
+                s.timeSlot = timeSlot;
 
                 oldServices.add(s);
             } else {
@@ -224,6 +236,7 @@ public class Service {
                 s.location = location;
                 s.attendance = attendance;
                 s.approved = approved;
+                s.timeSlot = timeSlot;
 
                 newServicesMap.put(id, s);
             }
@@ -290,6 +303,7 @@ public class Service {
                 service.location = rs.getString("location");
                 service.attendance = rs.getInt("attendance");
                 service.approved = rs.getBoolean("approved");
+                service.timeSlot = rs.getString("timeSlot");
             }
         });
 

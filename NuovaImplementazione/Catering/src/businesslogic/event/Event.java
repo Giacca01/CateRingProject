@@ -16,28 +16,32 @@ import java.util.ArrayList;
 
 public abstract class Event {
     private int id;
-    private String initialNotes;
-    private boolean recurrent;
-    private ArrayList<Menu> pastMenus;
-    private String initialDate;
-    private String endDate;
     private String state;
+    private int duration;
+    private int serviceNumber;
+    private String documentation;
+    private String description;
+    private String initialDate;
+    private String finalNotes;
     private Organizer organizer;
     private Chef chef;
+    private Client commisionedBy;
     private ObservableList<Service> relatedServices;
 
     public Event() {
     }
 
-    public Event(int id, String initialNotes, boolean recurrent, String initialDate, String endDate, String state, Organizer organizer, Chef chef) {
+    public Event(int id, String state, int duration, int serviceNumber, String documentation, String description, String initialDate, String finalNotes, Organizer organizer, Chef chef, Client commisionedBy) {
         this.id = id;
-        this.initialNotes = initialNotes;
-        this.recurrent = recurrent;
+        this.duration = duration;
+        this.serviceNumber = serviceNumber;
+        this.documentation = documentation;
+        this.description = description;
         this.initialDate = initialDate;
-        this.endDate = endDate;
-        this.state = state;
+        this.finalNotes = finalNotes;
         this.organizer = organizer;
         this.chef = chef;
+        this.commisionedBy = commisionedBy;
     }
 
     public int getId() {
@@ -48,52 +52,60 @@ public abstract class Event {
         this.id = id;
     }
 
-    public String getInitialNotes() {
-        return initialNotes;
-    }
-
-    public void setInitialNotes(String initialNotes) {
-        this.initialNotes = initialNotes;
-    }
-
-    public boolean isRecurrent() {
-        return recurrent;
-    }
-
-    public void setRecurrent(boolean recurrent) {
-        this.recurrent = recurrent;
-    }
-
-    public ArrayList<Menu> getPastMenus() {
-        return pastMenus;
-    }
-
-    public void setPastMenus(ArrayList<Menu> pastMenus) {
-        this.pastMenus = pastMenus;
-    }
-
-    public String getInitialDate() {
-        return initialDate;
-    }
-
-    public void setInitialDate(String initialDate) {
-        this.initialDate = initialDate;
-    }
-
-    public String getEndDate() {
-        return endDate;
-    }
-
-    public void setEndDate(String endDate) {
-        this.endDate = endDate;
-    }
-
     public String getState() {
         return state;
     }
 
     public void setState(String state) {
         this.state = state;
+    }
+
+    public int getDuration() {
+        return duration;
+    }
+
+    public void setDuration(int duration) {
+        this.duration = duration;
+    }
+
+    public int getServiceNumber() {
+        return serviceNumber;
+    }
+
+    public void setServiceNumber(int serviceNumber) {
+        this.serviceNumber = serviceNumber;
+    }
+
+    public String getDocumentation() {
+        return documentation;
+    }
+
+    public void setDocumentation(String documentation) {
+        this.documentation = documentation;
+    }
+
+    public String getDescription() {
+        return description;
+    }
+
+    public void setDescription(String description) {
+        this.description = description;
+    }
+
+    public String getInitialDate() {
+        return initialDate;
+    }
+
+    public void setInitialDate(String finalNotes) {
+        this.initialDate = initialDate;
+    }
+
+    public String getFinalNotes() {
+        return finalNotes;
+    }
+
+    public void setFinalNotes(String finalNotes) {
+        this.finalNotes = finalNotes;
     }
 
     public Organizer getOrganizer() {
@@ -106,6 +118,14 @@ public abstract class Event {
 
     public Chef getChef() {
         return chef;
+    }
+
+    public Client getCommisionedBy() {
+        return commisionedBy;
+    }
+
+    public void setCommisionedBy(Client commisionedBy) {
+        this.commisionedBy = commisionedBy;
     }
 
     public void setChef(Chef chef) {

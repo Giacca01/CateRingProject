@@ -54,40 +54,6 @@ public class Shift {
         System.out.println("Shift " + this.id + "; full: " + this.full);
     }
 
-    /*public static ObservableList<Shift> fetchShifts() {
-        if(!loadedShifts.isEmpty()){
-            return FXCollections.observableArrayList(loadedShifts.values());
-        }
-
-        String query = "SELECT * FROM Shift WHERE " + true;
-        ArrayList<Shift> newShifts = new ArrayList<>();
-        ArrayList<Shift> oldShifts = new ArrayList<>();
-
-        PersistenceManager.executeQuery(query, new ResultHandler() {
-            @Override
-            public void handle(ResultSet rs) throws SQLException {
-                int id = rs.getInt("id");
-                if (loadedShifts.containsKey(id)) {
-                    Shift s = loadedShifts.get(id);
-                    s.full = rs.getBoolean("full");
-
-                    oldShifts.add(s);
-                } else {
-                    Shift s = new Shift();
-                    s.id = id;
-                    s.full = rs.getBoolean("full");
-
-                    newShifts.add(s);
-                }
-            }
-        });
-
-        for (Shift s: newShifts) {
-            loadedShifts.put(s.id, s);
-        }
-        return FXCollections.observableArrayList(loadedShifts.values());
-    }*/
-
     public static ObservableList<Shift> fetchShifts() {
         if (!loadedShifts.isEmpty()) {
             return FXCollections.observableArrayList(loadedShifts.values());

@@ -24,13 +24,16 @@ DROP TABLE IF EXISTS `Events`;
 /*!40101 SET character_set_client = utf8 */;
 CREATE TABLE `Events` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
-  `initial_notes` varchar(128) DEFAULT NULL,
-  `recurrent` boolean not null,
-  `initial_date` varchar(128) DEFAULT NULL,
-  `end_date` varchar(128) DEFAULT NULL,
   `state` varchar(128) DEFAULT NULL,
+  `duration` int(11),
+  `servicesNumber` int(11),
+  `documentation` varchar(128) DEFAULT NULL,
+  `description` varchar(128) DEFAULT NULL,
+  `initial_date` varchar(128) DEFAULT NULL,
+  `final_notes` varchar(128) DEFAULT NULL,
   `organizer_id` int NOT NULL,
   `chef_id` int not null,
+  `client_id` int not null,
   `num_occurences` int default null,
   `dateEndRec` varchar(128) DEFAULT NULL,
   `period` int default null,
@@ -44,8 +47,33 @@ CREATE TABLE `Events` (
 
 LOCK TABLES `Events` WRITE;
 /*!40000 ALTER TABLE `Events` DISABLE KEYS */;
-INSERT INTO `Events` VALUES (1,'Note Evento 1', false, '2020-09-25','2020-09-25', 'state', 3, 2, null, null, null),(2,'Note Evento 2', false, '2021-08-12','2021-08-15', 'state', 7, 6, null, null, null),(3,'Note Evento 3', false, '2021-10-04','2021-04-05', 'state', 3, 10, null, null, null);
+INSERT INTO `Events` VALUES (1,'state', 1, 0, 'documentation', 'evento1', '2020-09-25', 'Note Evento 1', 3, 2, 1, null, null, null),(2,'state', 1, 0, 'documentation2', 'evento2', '2020-09-29', 'Note Evento 2', 7, 6, 2, null, null, null),(3,'state', 1, 0, 'documentation3', 'evento3', '2021-10-04', 'Note Evento 3', 3, 10, 1, null, null, null);
 /*!40000 ALTER TABLE `Events` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Table structure for table `Users`
+--
+
+DROP TABLE IF EXISTS `Clients`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `Clients` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `nome` varchar(128) NOT NULL DEFAULT '',
+  `cognome` varchar(128) NOT NULL DEFAULT '',
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=11 DEFAULT CHARSET=utf8;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `Users`
+--
+
+LOCK TABLES `Clients` WRITE;
+/*!40000 ALTER TABLE `Clients` DISABLE KEYS */;
+INSERT INTO `Clients` VALUES (1,'Michael', 'Urru'),(2,'Federico', 'Giacardi');
+/*!40000 ALTER TABLE `Clients` ENABLE KEYS */;
 UNLOCK TABLES;
 
 --
@@ -193,6 +221,7 @@ CREATE TABLE `Services` (
   `location` varchar(128) DEFAULT NULL,
   `attendance` int(11) DEFAULT NULL,
   `approved` tinyint(1) not null,
+  `timeSlot` varchar(128) DEFAULT NULL,
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=9 DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
@@ -203,7 +232,7 @@ CREATE TABLE `Services` (
 
 LOCK TABLES `Services` WRITE;
 /*!40000 ALTER TABLE `Services` DISABLE KEYS */;
-INSERT INTO `Services` VALUES (1,1,'Cena',1,'2020-08-13','Torino',20, 0),(2,1,'Pranzo',2,'2020-08-14','Torino',20, 0),(3,2,'Coffee break',3,'2020-08-15','Torino',20, 0),(4,1,'Coffee break pomeriggio',2,'2020-09-25','Torino',20, 0),(5,3,'Cena sociale',3,'2020-09-25','Torino',20, 0),(6,2,'Pranzo giorno 1',2,'2020-10-02','Torino',20, 0);
+INSERT INTO `Services` VALUES (1,1,'Cena',1,'2020-08-13','Torino',20, 0, '18:00-23:00'),(2,1,'Pranzo',2,'2020-08-14','Torino',20, 0, '10:00-15:00'),(3,2,'Coffee break',3,'2020-08-15','Torino',20, 0, '09:00-12:00'),(4,1,'Coffee break pomeriggio',2,'2020-09-25','Torino',20, 0, '15:00-18:00'),(5,3,'Cena sociale',3,'2020-09-25','Torino',20, 0, '18:00-23:00'),(6,2,'Pranzo giorno 1',2,'2020-10-02','Torino',20, 0, '10:00-15:00');
 /*!40000 ALTER TABLE `Services` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -303,6 +332,8 @@ CREATE TABLE `VariationProposal` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `comment` varchar(128) NOT NULL DEFAULT '',
   `accepted` tinyint(1) NOT NULL,
+  `service_id` int not null,
+  `recipe_id` int not null,
   PRIMARY KEY (`id`)
 );
 

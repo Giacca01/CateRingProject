@@ -38,34 +38,6 @@ public class Recipe extends KitchenTask {
         return name;
     }
 
-    // STATIC METHODS FOR PERSISTENCE
-
-    /*public static ObservableList<Recipe> loadAllRecipes() {
-        String query = "SELECT * FROM KitchenTasks where type = 'r'";
-        PersistenceManager.executeQuery(query, new ResultHandler() {
-            @Override
-            public void handle(ResultSet rs) throws SQLException {
-                int id = rs.getInt("id");
-                if (all.containsKey(id)) {
-                    Recipe rec = all.get(id);
-                    rec.name = rs.getString("name");
-                } else {
-                    Recipe rec = new Recipe(rs.getString("name"));
-                    rec.id = id;
-                    all.put(rec.id, rec);
-                }
-            }
-        });
-        ObservableList<Recipe> ret =  FXCollections.observableArrayList(all.values());
-        Collections.sort(ret, new Comparator<Recipe>() {
-            @Override
-            public int compare(Recipe o1, Recipe o2) {
-                return (o1.getName().compareTo(o2.getName()));
-            }
-        });
-        return ret;
-    }*/
-
     public static ObservableList<Recipe> fetchRecipes() {
         ObservableList<Recipe> recipes = FXCollections.observableArrayList();
         String query = "SELECT * FROM KitchenTasks where type = 'r'";

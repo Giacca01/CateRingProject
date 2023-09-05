@@ -2,6 +2,7 @@ package businesslogic.assignment;
 
 import businesslogic.AssignmentException;
 import businesslogic.CatERing;
+import businesslogic.NoSummarySheetException;
 import businesslogic.UseCaseLogicException;
 import businesslogic.event.Event;
 import businesslogic.event.Service;
@@ -24,221 +25,198 @@ public class AssignmentManager {
     private ArrayList<AssignmentEventReceiver> eventReceivers = new ArrayList<>();
 
     public Service createSummarySheet(Service srv) throws UseCaseLogicException, AssignmentException {
-        User user = getCurrentUser();
-        Event ev = srv.getEvent();
-        Menu menu = srv.getMenu();
-        ObservableList<Assignment> assignments = srv.getAssignments();
-        if (!user.isChef()) {
-            throw new UseCaseLogicException();
-        }
-        if(assignments.size() > 0 ||
-                ev == null ||
-                menu == null ||
-                ev.getChef().getId() != user.getId()){
-            throw new AssignmentException();
-        }
-        srv.createSummarySheet(ev);
-        this.setCurrentService(srv);
-        this.notifySummarySheetCreated(srv);
+        validateUserIsChef();
+        validateServiceForCreation(srv);
+
+        srv.createSummarySheet(srv.getEvent());
+        setCurrentService(srv);
+        notifySummarySheetCreated(srv);
         return srv;
     }
 
-    public boolean openSummarySheet(Service srv) throws UseCaseLogicException, AssignmentException {
-        User user = getCurrentUser();
-        Event ev = srv.getEvent();
-        if (!user.isChef()) {
-            throw new UseCaseLogicException();
-        }
-        if(srv.getAssignments() == null ||
-                ev == null ||
-                ev.getChef().getId() != user.getId()){
-            throw new AssignmentException();
-        }
-        boolean operationCompleted = this.openedServices.add(srv);
-        this.setCurrentService(srv);
+    public boolean openSummarySheet(Service srv) throws UseCaseLogicException, NoSummarySheetException {
+        validateUserIsChef();
+        validateServiceForOpening(srv);
+
+        boolean operationCompleted = openedServices.add(srv);
+        setCurrentService(srv);
         return operationCompleted;
     }
 
     public ObservableList<Assignment> addAssignment(KitchenTask task, Assignment prevKt) throws UseCaseLogicException, AssignmentException {
-        User user = getCurrentUser();
-        Service currentService = this.currentService;
-        if (!user.isChef()) {
-            throw new UseCaseLogicException();
-        }
-        if(this.currentService.getAssignments() == null){
-            throw new AssignmentException();
-        }
-        ObservableList<Assignment> newAssignments = this.currentService.addAssignment(task, prevKt);
-        this.notifyAddedAssignment(newAssignments, currentService);
+        validateUserIsChef();
+        validateCurrentServiceForAssignment();
+
+        ObservableList<Assignment> newAssignments = currentService.addAssignment(task, prevKt);
+        notifyAddedAssignment(newAssignments, currentService);
         return newAssignments;
     }
 
     public Assignment deleteAssignment(Assignment a) throws UseCaseLogicException, AssignmentException {
-        User user = getCurrentUser();
-        if (!user.isChef()) {
-            throw new UseCaseLogicException();
-        }
-        if(this.currentService == null ||
-                this.currentService.getAssignments() == null ||
-                !this.currentService.getAssignments().contains(a) ||
-                a.getShift() != null ||
-                a.getCook() != null){
-            throw new AssignmentException();
-        }
-        Assignment removedAssignment = this.currentService.deleteAssignment(a);
-        this.notifyDeletedAssignment(a, currentService);
+        validateUserIsChef();
+        validateCurrentServiceForAssignment();
+
+        Assignment removedAssignment = currentService.deleteAssignment(a);
+        notifyDeletedAssignment(a, currentService);
         return removedAssignment;
     }
 
     public void sortSummarySheet(Assignment a, int position) throws UseCaseLogicException, AssignmentException {
-        User user = getCurrentUser();
-        if(!user.isChef()) {
-            throw new UseCaseLogicException();
-        }
-        if(this.currentService == null ||
-                this.currentService.getAssignments() == null ||
-                position <= 0 || position > this.currentService.getAssignments().size()) {
-            throw new AssignmentException();
-        }
+        validateUserIsChef();
+        validateCurrentServiceForSorting(position);
 
-        this.currentService.sortSummarySheet(a, position);
-        this.notifySummarySheetSorted(currentService);
+        currentService.sortSummarySheet(a, position);
+        notifySummarySheetSorted(currentService);
     }
 
     public ObservableList<Shift> showShiftsTable() throws UseCaseLogicException {
-        User user = getCurrentUser();
-        if(!user.isChef()) {
-            throw new UseCaseLogicException();
-        }
+        validateUserIsChef();
         return ShiftManager.getShifts();
     }
 
     public void associateAssignment(Assignment a, Shift s, Cook c) throws UseCaseLogicException, AssignmentException {
-        User user = getCurrentUser();
-        ObservableList<Availability> availabilities = c.getDeclaredAvailabilities();
-        boolean isAvailable = true;
-        for(Availability av: availabilities) {
-            isAvailable = av.getService().getId() == currentService.getId() && av.getShift().getId() == s.getId() && isAvailable;
-        }
+        validateUserIsChef();
+        validateAssignmentForAssociation(a, s, c);
 
-        if (!user.isChef() || !isAvailable) {
-            throw new UseCaseLogicException();
-        }
-        if(this.currentService == null ||
-                this.currentService.getAssignments() == null ||
-                !this.currentService.getAssignments().contains(a) ||
-                s == null ||
-                s.isFull() ||
-                !a.hasToBePrepared()){
-            throw new AssignmentException();
-        }
         a.associateAssignment(s, c);
-        this.notifyAssignmentAssociated(a);
+        notifyAssignmentAssociated(a);
     }
 
     public void associateAssignment(Assignment a, Shift s) throws UseCaseLogicException, AssignmentException {
-        User user = getCurrentUser();
-        if (!user.isChef()) {
-            throw new UseCaseLogicException();
-        }
-        if(this.currentService == null ||
-                this.currentService.getAssignments() == null ||
-                !this.currentService.getAssignments().contains(a) ||
-                s == null ||
-                s.isFull() ||
-                !a.hasToBePrepared()) {
-            throw new AssignmentException();
-        }
+        validateUserIsChef();
+        validateAssignmentForAssociation(a, s, null);
+
         a.associateAssignment(s, null);
     }
 
     public void setShiftSaturation(Shift shift, boolean full) throws UseCaseLogicException {
-        User user = getCurrentUser();
-        if(!user.isChef()) {
-            throw new UseCaseLogicException();
-        }
+        validateUserIsChef();
         shift.setFull(full);
-        this.notifySaturationChanged(shift);
+        notifySaturationChanged(shift);
     }
 
     public void deleteAssociation(Assignment a, Shift s, Cook c) throws UseCaseLogicException, AssignmentException {
-        User user = getCurrentUser();
-        if (!user.isChef()) {
-            throw new UseCaseLogicException();
-        }
-        if(this.currentService == null ||
-                this.currentService.getAssignments() == null ||
-                !this.currentService.getAssignments().contains(a) ||
-                a.getShift().getId() != s.getId() ||
-                c == null ||
-                a.getCook().getId() != c.getId()) {
-            throw new AssignmentException();
-        }
+        validateUserIsChef();
+        validateAssociationForDeletion(a, s, c);
+
         a.deleteAssociation(a);
-        this.notifyAssociationRemoved(a);
+        notifyAssociationRemoved(a);
     }
 
     public void changeAssignmentDetails(Assignment a, String time, String amount) throws UseCaseLogicException, AssignmentException {
-        User user = getCurrentUser();
-        if (!user.isChef()) {
-            throw new UseCaseLogicException();
-        }
-        if(this.currentService == null ||
-                this.currentService.getAssignments() == null ||
-                !this.currentService.getAssignments().contains(a) ||
-                !a.hasToBePrepared()) {
-            throw new AssignmentException();
-        }
+        validateUserIsChef();
+        validateAssignmentForDetailsChange(a);
+
         a.changeAssignmentDetails(time, amount);
-        this.notifyAssignmentDetailsChanged(a);
+        notifyAssignmentDetailsChanged(a);
     }
 
     public void changeAssignmentTimeDetail(Assignment a, String time) throws UseCaseLogicException, AssignmentException {
-        User user = getCurrentUser();
-        if (!user.isChef()) {
-            throw new UseCaseLogicException();
-        }
-        if(this.currentService == null ||
-                this.currentService.getAssignments() == null ||
-                !this.currentService.getAssignments().contains(a) ||
-                !a.hasToBePrepared()){
-            throw new AssignmentException();
-        }
+        validateUserIsChef();
+        validateAssignmentForDetailsChange(a);
+
         a.changeAssignmentDetails(time, null);
     }
 
     public void changeAssignmentAmountDetail(Assignment a, String amount) throws UseCaseLogicException, AssignmentException {
-        User user = getCurrentUser();
-        if (!user.isChef()) {
-            throw new UseCaseLogicException();
-        }
-        if(this.currentService == null ||
-                this.currentService.getAssignments() == null ||
-                !this.currentService.getAssignments().contains(a) ||
-                !a.hasToBePrepared()){
-            throw new AssignmentException();
-        }
+        validateUserIsChef();
+        validateAssignmentForDetailsChange(a);
+
         a.changeAssignmentDetails(null, amount);
     }
 
     public void setToBePrepared(Assignment a, boolean toBePrepared) throws UseCaseLogicException, AssignmentException {
-        User user = getCurrentUser();
-        if (!user.isChef()) {
-            throw new UseCaseLogicException();
-        }
-        if(this.currentService == null ||
-                this.currentService.getAssignments() == null ||
-                !this.currentService.getAssignments().contains(a) ||
-                a.getShift() != null ||
-                a.getCook() != null){
-            throw new AssignmentException();
-        }
+        validateUserIsChef();
+        validateAssignmentForToBePreparedChange(a);
+
         a.setToBePrepared(toBePrepared);
-        this.notifyToBePreparedSet(a);
+        notifyToBePreparedSet(a);
     }
 
     private User getCurrentUser() {
         return CatERing.getInstance().getUserManager().getCurrentUser();
+    }
+
+    private void validateUserIsChef() throws UseCaseLogicException {
+        User user = getCurrentUser();
+        if (!user.isChef()) {
+            throw new UseCaseLogicException();
+        }
+    }
+
+    private void validateServiceForCreation(Service srv) throws AssignmentException {
+        Event ev = srv.getEvent();
+        Menu menu = srv.getMenu();
+        ObservableList<Assignment> assignments = srv.getAssignments();
+
+        if (!assignments.isEmpty() || ev == null || menu == null || ev.getChef().getId() != getCurrentUser().getId()) {
+            throw new AssignmentException();
+        }
+    }
+
+    private void validateServiceForOpening(Service srv) throws NoSummarySheetException {
+        Event ev = srv.getEvent();
+
+        if (srv.getAssignments().isEmpty() || ev == null || ev.getChef().getId() != getCurrentUser().getId()) {
+            throw new NoSummarySheetException();
+        }
+    }
+
+    private void validateCurrentServiceForAssignment() throws AssignmentException {
+        if (currentService == null || currentService.getAssignments() == null) {
+            throw new AssignmentException();
+        }
+    }
+
+    private void validateCurrentServiceForSorting(int position) throws AssignmentException {
+        if (currentService == null || currentService.getAssignments() == null || position <= 0 || position > currentService.getAssignments().size()) {
+            throw new AssignmentException();
+        }
+    }
+
+    private void validateAssignmentForAssociation(Assignment a, Shift s, Cook c) throws AssignmentException {
+        if (currentService == null || currentService.getAssignments() == null ||
+                !currentService.getAssignments().contains(a) || s == null || s.isFull() || !a.hasToBePrepared()) {
+            throw new AssignmentException();
+        }
+
+        if (c != null) {
+            ObservableList<Availability> availabilities = c.getDeclaredAvailabilities();
+            boolean isAvailable = true;
+            for (Availability av : availabilities) {
+                isAvailable = av.getService().getId() == currentService.getId() && av.getShift().getId() == s.getId() && isAvailable;
+            }
+
+            if (!isAvailable) {
+                throw new AssignmentException();
+            }
+        }
+    }
+
+    private void validateAssignmentForDetailsChange(Assignment a) throws AssignmentException {
+        if (currentService == null || currentService.getAssignments() == null ||
+                !currentService.getAssignments().contains(a) || !a.hasToBePrepared()) {
+            throw new AssignmentException();
+        }
+    }
+
+    private void validateAssignmentForToBePreparedChange(Assignment a) throws AssignmentException {
+        if (currentService == null || currentService.getAssignments() == null ||
+                !currentService.getAssignments().contains(a) || a.getShift() != null || a.getCook() != null) {
+            throw new AssignmentException();
+        }
+    }
+
+    private void validateAssociationForDeletion(Assignment a, Shift s, Cook c) throws AssignmentException {
+        if (currentService == null || currentService.getAssignments() == null ||
+                !currentService.getAssignments().contains(a) || a.getShift().getId() != s.getId() || c == null ||
+                a.getCook().getId() != c.getId()) {
+            throw new AssignmentException();
+        }
+    }
+
+    private void setCurrentService(Service s) {
+        this.currentService = s;
     }
 
     private void notifySummarySheetCreated(Service srv) {
@@ -253,7 +231,7 @@ public class AssignmentManager {
         }
     }
 
-    public void notifyDeletedAssignment(Assignment a, Service currentService) {
+    private void notifyDeletedAssignment(Assignment a, Service currentService) {
         for (AssignmentEventReceiver ar : this.eventReceivers) {
             ar.updateDeletedAssignment(a, currentService);
         }
@@ -295,10 +273,6 @@ public class AssignmentManager {
         }
     }
 
-    public void setCurrentService(Service s) {
-        this.currentService = s;
-    }
-
     public void addEventReceiver(AssignmentEventReceiver rec) {
         this.eventReceivers.add(rec);
     }
@@ -314,6 +288,7 @@ public class AssignmentManager {
     public Service getCurrentService() {
         return currentService;
     }
+
     public static ObservableList<Assignment> getAssignments() {
         return Assignment.fetchAssignments();
     }
