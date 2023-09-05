@@ -2,7 +2,6 @@ package businesslogic.assignment;
 
 import businesslogic.AssignmentException;
 import businesslogic.CatERing;
-import businesslogic.NoSummarySheetException;
 import businesslogic.UseCaseLogicException;
 import businesslogic.event.Event;
 import businesslogic.event.Service;
@@ -13,7 +12,6 @@ import businesslogic.shift.Shift;
 import businesslogic.shift.ShiftManager;
 import businesslogic.user.Cook;
 import businesslogic.user.User;
-import businesslogic.user.UserManager;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 
@@ -34,7 +32,7 @@ public class AssignmentManager {
         return srv;
     }
 
-    public boolean openSummarySheet(Service srv) throws UseCaseLogicException, NoSummarySheetException {
+    public boolean openSummarySheet(Service srv) throws UseCaseLogicException, AssignmentException {
         validateUserIsChef();
         validateServiceForOpening(srv);
 
@@ -154,11 +152,11 @@ public class AssignmentManager {
         }
     }
 
-    private void validateServiceForOpening(Service srv) throws NoSummarySheetException {
+    private void validateServiceForOpening(Service srv) throws AssignmentException {
         Event ev = srv.getEvent();
 
         if (srv.getAssignments().isEmpty() || ev == null || ev.getChef().getId() != getCurrentUser().getId()) {
-            throw new NoSummarySheetException();
+            throw new AssignmentException();
         }
     }
 
