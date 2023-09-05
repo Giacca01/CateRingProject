@@ -1,0 +1,29 @@
+<diagram program="umletino" version="15.1"><zoom_level>10</zoom_level><element><id>UMLPackage</id><coordinates><x>160</x><y>0</y><w>100</w><h>80</h></coordinates><panel_attributes>UI</panel_attributes><additional_attributes></additional_attributes></element><element><id>Relation</id><coordinates><x>200</x><y>70</y><w>30</w><h>570</h></coordinates><panel_attributes>lt=.</panel_attributes><additional_attributes>10;10;10;550</additional_attributes></element><element><id>UMLGeneric</id><coordinates><x>340</x><y>30</y><w>190</w><h>50</h></coordinates><panel_attributes>shiftsManager: ShiftsManager
+</panel_attributes><additional_attributes></additional_attributes></element><element><id>Relation</id><coordinates><x>430</x><y>70</y><w>30</w><h>680</h></coordinates><panel_attributes>lt=.</panel_attributes><additional_attributes>10;10;10;660</additional_attributes></element><element><id>UMLGeneric</id><coordinates><x>430</x><y>130</y><w>20</w><h>600</h></coordinates><panel_attributes></panel_attributes><additional_attributes></additional_attributes></element><element><id>Relation</id><coordinates><x>200</x><y>110</y><w>250</w><h>40</h></coordinates><panel_attributes>lt=&lt;&lt;&lt;-
+setShiftSaturation(s, full)</panel_attributes><additional_attributes>230;20;10;20</additional_attributes></element><element><id>UMLGeneric</id><coordinates><x>720</x><y>170</y><w>20</w><h>20</h></coordinates><panel_attributes></panel_attributes><additional_attributes></additional_attributes></element><element><id>UMLGeneric</id><coordinates><x>630</x><y>30</y><w>170</w><h>50</h></coordinates><panel_attributes>userManager: UserManager
+</panel_attributes><additional_attributes></additional_attributes></element><element><id>Relation</id><coordinates><x>720</x><y>70</y><w>30</w><h>140</h></coordinates><panel_attributes>lt=.</panel_attributes><additional_attributes>10;10;10;120</additional_attributes></element><element><id>Relation</id><coordinates><x>440</x><y>150</y><w>310</w><h>40</h></coordinates><panel_attributes>lt=&lt;&lt;&lt;-
+getCurrentUser( )</panel_attributes><additional_attributes>290;20;10;20</additional_attributes></element><element><id>Relation</id><coordinates><x>440</x><y>170</y><w>300</w><h>40</h></coordinates><panel_attributes>lt=&lt;.
+user</panel_attributes><additional_attributes>10;20;280;20</additional_attributes></element><element><id>Relation</id><coordinates><x>200</x><y>250</y><w>250</w><h>40</h></coordinates><panel_attributes>lt=&lt;.
+throw UseCaseLogicException</panel_attributes><additional_attributes>10;20;230;20</additional_attributes></element><element><id>UMLFrame</id><coordinates><x>0</x><y>220</y><w>1320</w><h>530</h></coordinates><panel_attributes>ALT 
+
+[ !user.isChef() ]
+
+fontsize=11
+fg=red
+--
+
+-.
+
+
+
+
+
+</panel_attributes><additional_attributes></additional_attributes></element><element><id>UMLGeneric</id><coordinates><x>870</x><y>30</y><w>170</w><h>50</h></coordinates><panel_attributes>s: Shift
+</panel_attributes><additional_attributes></additional_attributes></element><element><id>Relation</id><coordinates><x>940</x><y>70</y><w>30</w><h>340</h></coordinates><panel_attributes>lt=.</panel_attributes><additional_attributes>10;10;10;320</additional_attributes></element><element><id>UMLGeneric</id><coordinates><x>940</x><y>330</y><w>20</w><h>60</h></coordinates><panel_attributes></panel_attributes><additional_attributes></additional_attributes></element><element><id>Relation</id><coordinates><x>440</x><y>310</y><w>520</w><h>40</h></coordinates><panel_attributes>lt=&lt;&lt;&lt;-
+setFull(full)</panel_attributes><additional_attributes>500;20;10;20</additional_attributes></element><element><id>Relation</id><coordinates><x>950</x><y>340</y><w>140</w><h>70</h></coordinates><panel_attributes>lt=&lt;&lt;&lt;-
+this.full = full</panel_attributes><additional_attributes>10;50;50;50;50;10;10;10</additional_attributes></element><element><id>Relation</id><coordinates><x>460</x><y>580</y><w>750</w><h>40</h></coordinates><panel_attributes>lt=&lt;&lt;&lt;-
+updateSaturationChanged(s)</panel_attributes><additional_attributes>730;20;10;20</additional_attributes></element><element><id>Relation</id><coordinates><x>440</x><y>520</y><w>260</w><h>50</h></coordinates><panel_attributes>lt=&lt;&lt;&lt;-
+notifySaturationChanged(s)</panel_attributes><additional_attributes>30;30;90;30;90;10;10;10</additional_attributes></element><element><id>UMLGeneric</id><coordinates><x>440</x><y>550</y><w>30</w><h>50</h></coordinates><panel_attributes></panel_attributes><additional_attributes></additional_attributes></element><element><id>UMLFrame</id><coordinates><x>280</x><y>570</y><w>990</w><h>100</h></coordinates><panel_attributes>for each
+rcv in eventReceivers
+fg=blue</panel_attributes><additional_attributes></additional_attributes></element><element><id>UMLGeneric</id><coordinates><x>1100</x><y>30</y><w>200</w><h>50</h></coordinates><panel_attributes>rcv: ShiftsEventReceiver
+</panel_attributes><additional_attributes></additional_attributes></element><element><id>Relation</id><coordinates><x>1190</x><y>70</y><w>30</w><h>580</h></coordinates><panel_attributes>lt=.</panel_attributes><additional_attributes>10;10;10;560</additional_attributes></element><element><id>UMLGeneric</id><coordinates><x>1190</x><y>600</y><w>20</w><h>30</h></coordinates><panel_attributes></panel_attributes><additional_attributes></additional_attributes></element></diagram>

@@ -1,0 +1,52 @@
+<diagram program="umletino" version="15.1"><zoom_level>8</zoom_level><element><id>UMLGeneric</id><coordinates><x>304</x><y>16</y><w>200</w><h>40</h></coordinates><panel_attributes>assignmentManager:AssignmentManager</panel_attributes><additional_attributes></additional_attributes></element><element><id>Relation</id><coordinates><x>144</x><y>48</y><w>24</w><h>824</h></coordinates><panel_attributes>lt=.</panel_attributes><additional_attributes>10;10;10;1010</additional_attributes></element><element><id>Relation</id><coordinates><x>416</x><y>48</y><w>24</w><h>824</h></coordinates><panel_attributes>lt=.</panel_attributes><additional_attributes>10;10;10;1010</additional_attributes></element><element><id>Relation</id><coordinates><x>144</x><y>80</y><w>288</w><h>32</h></coordinates><panel_attributes>lt=&lt;&lt;&lt;-
+addAssignment(kt, prevKt)</panel_attributes><additional_attributes>340;20;10;20</additional_attributes></element><element><id>UMLGeneric</id><coordinates><x>520</x><y>16</y><w>200</w><h>40</h></coordinates><panel_attributes>userManager:UserManager
+</panel_attributes><additional_attributes></additional_attributes></element><element><id>Relation</id><coordinates><x>608</x><y>48</y><w>24</w><h>96</h></coordinates><panel_attributes>lt=.</panel_attributes><additional_attributes>10;10;10;100</additional_attributes></element><element><id>UMLFrame</id><coordinates><x>0</x><y>152</y><w>1520</w><h>768</h></coordinates><panel_attributes>ALT 
+[!user.isChef()]
+fg=red
+--
+
+
+
+-.
+
+
+
+
+
+-.
+fontsize=11
+</panel_attributes><additional_attributes></additional_attributes></element><element><id>Relation</id><coordinates><x>424</x><y>96</y><w>208</w><h>32</h></coordinates><panel_attributes>lt=&lt;&lt;&lt;-
+getCurrentUser( )</panel_attributes><additional_attributes>240;20;10;20</additional_attributes></element><element><id>Relation</id><coordinates><x>424</x><y>112</y><w>208</w><h>32</h></coordinates><panel_attributes>lt=&lt;.
+user</panel_attributes><additional_attributes>10;20;240;20</additional_attributes></element><element><id>UMLGeneric</id><coordinates><x>608</x><y>112</y><w>16</w><h>16</h></coordinates><panel_attributes></panel_attributes><additional_attributes></additional_attributes></element><element><id>Relation</id><coordinates><x>1384</x><y>40</y><w>32</w><h>832</h></coordinates><panel_attributes>lt=.</panel_attributes><additional_attributes>10;10;20;1020</additional_attributes></element><element><id>UMLGeneric</id><coordinates><x>1392</x><y>808</y><w>16</w><h>16</h></coordinates><panel_attributes>
+</panel_attributes><additional_attributes></additional_attributes></element><element><id>UMLGeneric</id><coordinates><x>1352</x><y>16</y><w>184</w><h>32</h></coordinates><panel_attributes>rcv: AssignmentsEventReceiver
+
+</panel_attributes><additional_attributes></additional_attributes></element><element><id>Relation</id><coordinates><x>144</x><y>168</y><w>288</w><h>32</h></coordinates><panel_attributes>lt=&lt;.
+throw UseCaseLogicException</panel_attributes><additional_attributes>10;20;340;20</additional_attributes></element><element><id>UMLGeneric</id><coordinates><x>744</x><y>16</y><w>240</w><h>40</h></coordinates><panel_attributes>assignmentManager.currentService: Service
+
+</panel_attributes><additional_attributes></additional_attributes></element><element><id>Relation</id><coordinates><x>856</x><y>48</y><w>24</w><h>720</h></coordinates><panel_attributes>lt=.</panel_attributes><additional_attributes>10;10;10;880</additional_attributes></element><element><id>UMLGeneric</id><coordinates><x>856</x><y>336</y><w>16</w><h>416</h></coordinates><panel_attributes></panel_attributes><additional_attributes></additional_attributes></element><element><id>Relation</id><coordinates><x>424</x><y>320</y><w>448</w><h>32</h></coordinates><panel_attributes>lt=&lt;&lt;&lt;-
+addAssignment(kt, prevKt)</panel_attributes><additional_attributes>540;20;10;20</additional_attributes></element><element><id>UMLGeneric</id><coordinates><x>1232</x><y>488</y><w>16</w><h>16</h></coordinates><panel_attributes></panel_attributes><additional_attributes></additional_attributes></element><element><id>Relation</id><coordinates><x>864</x><y>472</y><w>384</w><h>32</h></coordinates><panel_attributes>lt=&lt;&lt;&lt;-
+add(a)</panel_attributes><additional_attributes>460;20;10;20</additional_attributes></element><element><id>UMLGeneric</id><coordinates><x>976</x><y>320</y><w>104</w><h>32</h></coordinates><panel_attributes>a:
+Assignment
+fontsize=12</panel_attributes><additional_attributes></additional_attributes></element><element><id>Relation</id><coordinates><x>864</x><y>320</y><w>128</w><h>32</h></coordinates><panel_attributes>lt=&lt;.
+create(kt)</panel_attributes><additional_attributes>140;20;10;20</additional_attributes></element><element><id>Relation</id><coordinates><x>864</x><y>456</y><w>160</w><h>32</h></coordinates><panel_attributes>lt=&lt;.
+a</panel_attributes><additional_attributes>10;20;180;20</additional_attributes></element><element><id>UMLFrame</id><coordinates><x>272</x><y>776</y><w>1152</w><h>80</h></coordinates><panel_attributes>for each
+rcv in eventReceivers
+fg=blue</panel_attributes><additional_attributes></additional_attributes></element><element><id>Relation</id><coordinates><x>440</x><y>792</y><w>968</w><h>32</h></coordinates><panel_attributes>lt=&lt;&lt;&lt;-
+updateAddedAssignment(a, currentService)</panel_attributes><additional_attributes>1190;20;10;20</additional_attributes></element><element><id>UMLGeneric</id><coordinates><x>1112</x><y>16</y><w>232</w><h>32</h></coordinates><panel_attributes>currentService.assignments:List&lt;Assignments&gt;
+
+</panel_attributes><additional_attributes></additional_attributes></element><element><id>Relation</id><coordinates><x>1232</x><y>40</y><w>24</w><h>688</h></coordinates><panel_attributes>lt=.</panel_attributes><additional_attributes>10;10;10;840</additional_attributes></element><element><id>Relation</id><coordinates><x>424</x><y>744</y><w>280</w><h>40</h></coordinates><panel_attributes>lt=&lt;&lt;&lt;-
+notifyAddedAssignment(a, currentService)</panel_attributes><additional_attributes>30;30;90;30;90;10;10;10</additional_attributes></element><element><id>UMLPackage</id><coordinates><x>120</x><y>0</y><w>80</w><h>56</h></coordinates><panel_attributes>UI</panel_attributes><additional_attributes></additional_attributes></element><element><id>Relation</id><coordinates><x>1016</x><y>344</y><w>24</w><h>144</h></coordinates><panel_attributes>lt=.</panel_attributes><additional_attributes>10;10;10;160</additional_attributes></element><element><id>UMLGeneric</id><coordinates><x>1008</x><y>368</y><w>32</w><h>104</h></coordinates><panel_attributes></panel_attributes><additional_attributes></additional_attributes></element><element><id>Relation</id><coordinates><x>1032</x><y>368</y><w>168</w><h>40</h></coordinates><panel_attributes>lt=&lt;&lt;&lt;-
+this.toBePrepared = true</panel_attributes><additional_attributes>10;30;50;30;50;10;10;10</additional_attributes></element><element><id>Relation</id><coordinates><x>144</x><y>232</y><w>288</w><h>32</h></coordinates><panel_attributes>lt=&lt;.
+throw AssignmentException</panel_attributes><additional_attributes>10;20;340;20</additional_attributes></element><element><id>UMLGeneric</id><coordinates><x>424</x><y>768</y><w>24</w><h>40</h></coordinates><panel_attributes></panel_attributes><additional_attributes></additional_attributes></element><element><id>Text</id><coordinates><x>0</x><y>224</y><w>128</w><h>24</h></coordinates><panel_attributes>[ srv.assignments == null ]
+style=wordwrap
+fontsize=11</panel_attributes><additional_attributes></additional_attributes></element><element><id>UMLGeneric</id><coordinates><x>416</x><y>96</y><w>16</w><h>760</h></coordinates><panel_attributes></panel_attributes><additional_attributes></additional_attributes></element><element><id>Relation</id><coordinates><x>1032</x><y>400</y><w>112</w><h>40</h></coordinates><panel_attributes>lt=&lt;&lt;&lt;-
+this.task = kt</panel_attributes><additional_attributes>10;30;50;30;50;10;10;10</additional_attributes></element><element><id>Relation</id><coordinates><x>1032</x><y>432</y><w>184</w><h>40</h></coordinates><panel_attributes>lt=&lt;&lt;&lt;-
+this.continuationOf = prevKt</panel_attributes><additional_attributes>10;30;50;30;50;10;10;10</additional_attributes></element><element><id>UMLFrame</id><coordinates><x>728</x><y>512</y><w>624</w><h>216</h></coordinates><panel_attributes>for each ing
+in kt.getIngredients()
+fg=blue</panel_attributes><additional_attributes></additional_attributes></element><element><id>UMLGeneric</id><coordinates><x>960</x><y>528</y><w>112</w><h>24</h></coordinates><panel_attributes>a': Assignment
+fontsize=12</panel_attributes><additional_attributes></additional_attributes></element><element><id>Relation</id><coordinates><x>864</x><y>520</y><w>112</w><h>32</h></coordinates><panel_attributes>lt=&lt;.
+create(ing)</panel_attributes><additional_attributes>120;20;10;20</additional_attributes></element><element><id>Relation</id><coordinates><x>1008</x><y>544</y><w>24</w><h>144</h></coordinates><panel_attributes>lt=.</panel_attributes><additional_attributes>10;10;10;160</additional_attributes></element><element><id>UMLGeneric</id><coordinates><x>1008</x><y>568</y><w>16</w><h>104</h></coordinates><panel_attributes></panel_attributes><additional_attributes></additional_attributes></element><element><id>Relation</id><coordinates><x>1016</x><y>568</y><w>168</w><h>40</h></coordinates><panel_attributes>lt=&lt;&lt;&lt;-
+this.toBePrepared = true</panel_attributes><additional_attributes>10;30;50;30;50;10;10;10</additional_attributes></element><element><id>Relation</id><coordinates><x>1016</x><y>600</y><w>120</w><h>40</h></coordinates><panel_attributes>lt=&lt;&lt;&lt;-
+this.task = ing</panel_attributes><additional_attributes>10;30;50;30;50;10;10;10</additional_attributes></element><element><id>UMLGeneric</id><coordinates><x>1232</x><y>688</y><w>16</w><h>24</h></coordinates><panel_attributes></panel_attributes><additional_attributes></additional_attributes></element><element><id>Relation</id><coordinates><x>864</x><y>656</y><w>160</w><h>32</h></coordinates><panel_attributes>lt=&lt;.
+a'</panel_attributes><additional_attributes>10;20;180;20</additional_attributes></element><element><id>Relation</id><coordinates><x>864</x><y>672</y><w>384</w><h>32</h></coordinates><panel_attributes>lt=&lt;&lt;&lt;-
+add(a')</panel_attributes><additional_attributes>460;20;10;20</additional_attributes></element></diagram>
