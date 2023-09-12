@@ -123,7 +123,7 @@ CREATE TABLE `MenuItems` (
 
 LOCK TABLES `MenuItems` WRITE;
 /*!40000 ALTER TABLE `MenuItems` DISABLE KEYS */;
-INSERT INTO `MenuItems` VALUES (1,1, 1, 'Croissant vuoti',9),(2,2,2,'Croissant alla marmellata',9),(3,3,3,'Pane al cioccolato mignon',10),(4,1, 4,'Panini al latte con prosciutto crudo',12),(5,2, 5,'Panini al latte con prosciutto cotto',12),(6,3,1,'Panini al latte con formaggio spalmabile alle erbe',12),(7,1, 2,'Girelle all\'uvetta mignon',11),(8,2,3,'Biscotti',13),(9,3,4,'Lingue di gatto',14),(10,5, 1,'Bigné alla crema',15);
+INSERT INTO `MenuItems` VALUES (1,1, 1, 'Croissant vuoti',9),(2,2,2,'Croissant alla marmellata',9),(3,3,3,'Pane al cioccolato mignon',10),(4,1, 4,'Panini al latte con prosciutto crudo',12),(5,2, 5,'Panini al latte con prosciutto cotto',12),(6,3,1,'Panini al latte con formaggio spalmabile alle erbe',12),(7,3, 2,'Girelle all\'uvetta mignon',11),(8,2,3,'Biscotti',13),(9,3,4,'Lingue di gatto',14),(10,5, 1,'Bigné alla crema',15);
 /*!40000 ALTER TABLE `MenuItems` ENABLE KEYS */;
 UNLOCK TABLES;
 
