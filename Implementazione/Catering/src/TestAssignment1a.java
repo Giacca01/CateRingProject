@@ -16,10 +16,7 @@ import javafx.collections.ObservableList;
 
 public class TestAssignment1a {
     static ObservableList<Cook> cooks = FXCollections.observableArrayList();
-    static ObservableList<Recipe> recipes = FXCollections.observableArrayList();
     static ObservableList<Shift> shifts = FXCollections.observableArrayList();
-    static ObservableList<Availability> availabilities = FXCollections.observableArrayList();
-    static ObservableList<Assignment> assignments = FXCollections.observableArrayList();
     static ObservableList<Service> services = FXCollections.observableArrayList();
     public static void printSummarySheet(ObservableList<Assignment> assignments) {
         System.out.println("Summary Sheet:");
@@ -28,20 +25,10 @@ public class TestAssignment1a {
         }
     }
 
-    public static void printShiftsTable(ObservableList<Shift> shifts) {
-        System.out.println("Shifts Table:");
-        for(Shift shift: shifts){
-            shift.printDetails();
-        }
-    }
-
     public static void fetchAllData() {
         cooks = UserManager.getCooks();
-        recipes = RecipeManager.getRecipes();
         shifts = ShiftManager.getShifts();
-        assignments = AssignmentManager.getAssignments();
         services = Service.fetchServices();
-        availabilities = Availability.fetchAvailabilities();
     }
     public static void main(String[] args) {
         try{

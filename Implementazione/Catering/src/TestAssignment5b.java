@@ -28,13 +28,6 @@ public class TestAssignment5b {
         }
     }
 
-    public static void printShiftsTable(ObservableList<Shift> shifts) {
-        System.out.println("Shifts Table:");
-        for(Shift shift: shifts){
-            shift.printDetails();
-        }
-    }
-
     public static void fetchAllData() {
         cooks = UserManager.getCooks();
         recipes = RecipeManager.getRecipes();
